@@ -67,7 +67,7 @@ function CommunityNew() {
       <br />
       <form onSubmit={handleSubmit(onSubmit)} className="grid gap-2">
 
-        <div className="flex flex-col gap-0 lg:justify-between xl:flex-row xl:gap-40 xl:justify-between">
+        <div className="flex flex-col gap-0 lg:justify-between xl:flex-row xl:gap-40 xl:justify-between xl:items-start">
           <div className="flex gap-2 relative">
             <label
               htmlFor="file"
