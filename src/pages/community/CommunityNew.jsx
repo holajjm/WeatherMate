@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import CommunityHeader from './CommunityHeader';
@@ -6,7 +7,6 @@ import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import Button from '@components/layout/Button';
 import Submit from '@components/layout/Submit';
 import { FaArrowLeft } from 'react-icons/fa';
-import { useState } from 'react';
 
 function CommunityNew() {
   const {
@@ -18,11 +18,11 @@ function CommunityNew() {
   const axios = useCustomAxios();
 
   const onSubmit = async formData => {
-    console.log(formData.image);
+    // console.log(formData.image);
     formData.type = 'community';
     formData.title = dataWeater
     if (formData.image.length > 0) {
-      console.log('formData : ', formData);
+      // console.log('formData : ', formData);
       const imageFormData = new FormData();
       imageFormData.append('attach', formData.image[0]);
 
@@ -33,14 +33,14 @@ function CommunityNew() {
         },
         data: imageFormData,
       });
-      console.log('files : ', files);
+      // console.log('files : ', files);
       formData.image = files.data.item[0]?.name;
-      console.log(formData.image);
+      // console.log(formData.image);
     } else {
       delete formData.image;
     }
     const res = await axios.post('/posts', formData);
-    console.log(res);
+    // console.log(res);
     navigate(`/community/${res.data.item._id}`);
   };
 

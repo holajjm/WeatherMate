@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { memberState } from "@recoil/atom.mjs";
 import {useNavigate} from 'react-router-dom';
-import { FaRegHeart } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
+import { FaRegHeart,FaHeart } from "react-icons/fa";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import PropTypes from 'prop-types'
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
