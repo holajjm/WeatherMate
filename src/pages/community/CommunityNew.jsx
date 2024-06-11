@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import CommunityHeader from './CommunityHeader';
@@ -6,7 +7,6 @@ import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import Button from '@components/layout/Button';
 import Submit from '@components/layout/Submit';
 import { FaArrowLeft } from 'react-icons/fa';
-import { useState } from 'react';
 
 function CommunityNew() {
   const {
@@ -18,11 +18,11 @@ function CommunityNew() {
   const axios = useCustomAxios();
 
   const onSubmit = async formData => {
-    console.log(formData.image);
+    // console.log(formData.image);
     formData.type = 'community';
     formData.title = dataWeater
     if (formData.image.length > 0) {
-      console.log('formData : ', formData);
+      // console.log('formData : ', formData);
       const imageFormData = new FormData();
       imageFormData.append('attach', formData.image[0]);
 
@@ -33,14 +33,14 @@ function CommunityNew() {
         },
         data: imageFormData,
       });
-      console.log('files : ', files);
+      // console.log('files : ', files);
       formData.image = files.data.item[0]?.name;
-      console.log(formData.image);
+      // console.log(formData.image);
     } else {
       delete formData.image;
     }
     const res = await axios.post('/posts', formData);
-    console.log(res);
+    // console.log(res);
     navigate(`/community/${res.data.item._id}`);
   };
 
@@ -67,7 +67,7 @@ function CommunityNew() {
       <br />
       <form onSubmit={handleSubmit(onSubmit)} className="grid gap-2">
 
-        <div className="flex flex-col gap-0 lg:justify-between xl:flex-row xl:gap-40 xl:justify-between">
+        <div className="flex flex-col gap-0 lg:justify-between xl:flex-row xl:gap-40 xl:justify-between xl:items-start">
           <div className="flex gap-2 relative">
             <label
               htmlFor="file"
@@ -95,7 +95,7 @@ function CommunityNew() {
                     src="/uvi.svg"
                     alt="uvi"
                     data-weather="uvi"
-                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2`}
+                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2 lg:w-full`}
                   />
                 </button>
                 <button type="button">
@@ -103,7 +103,7 @@ function CommunityNew() {
                     src="/manyClouds.svg"
                     alt="manyClouds"
                     data-weather="manyClouds"
-                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2`}
+                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2 lg:w-full`}
                   />
                 </button>
                 <button type="button">
@@ -111,7 +111,7 @@ function CommunityNew() {
                     src="/rain.svg"
                     alt="rain"
                     data-weather="rain"
-                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2`}
+                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2 lg:w-full`}
                   />
                 </button>
                 <button type="button">
@@ -119,7 +119,7 @@ function CommunityNew() {
                     src="/littleCloud.svg"
                     alt="littleCloud"
                     data-weather="littleCloud"
-                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2`}
+                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2 lg:w-full`}
                   />
                 </button>
                 <button type="button">
@@ -127,7 +127,7 @@ function CommunityNew() {
                     src="/mainSnow.svg"
                     alt="mainSnow"
                     data-weather="mainSnow"
-                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2`}
+                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2 lg:w-full`}
                   />
                 </button>
                 <button type="button">
@@ -135,7 +135,7 @@ function CommunityNew() {
                     src="/windspeed.svg"
                     alt="windspeed"
                     data-weather="windspeed"
-                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2`}
+                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2 lg:w-full`}
                   />
                 </button>
               </div>
