@@ -442,41 +442,44 @@ PW: 11111111
 - 특정 유저가 본인이 작성한 글 조회 기능 구현
 
 ## 8. UI
+### 모바일 버전
 
-|                           제목                           |                           제목                           |                           제목                           |
+|                       시작 화면                          |                       메인 화면                          |                  메인 화면 -  전국 날씨                    |
 | :------------------------------------------------------: | :------------------------------------------------------: | :------------------------------------------------------: |
-| <img width="200px" alt="thumbnail" src='./public/a.gif'> | <img width="200px" alt="thumbnail" src='./public/b.gif'> | <img width="200px" alt="thumbnail" src='./public/c.gif'> |
+| <img width="300px" alt="thumbnail" src='./public/a.gif'> | <img width="300px" alt="thumbnail" src='./public/b.gif'> | <img width="300px" alt="thumbnail" src='./public/c.gif'> |
 
-|                           제목                           |                           제목                           |                           제목                           |
+|                메인 화면 - 추천 장소 상세                 |               메인 화면 - 날씨 성격 테스트                |                        로그인 화면                        |
 | :------------------------------------------------------: | :------------------------------------------------------: | :------------------------------------------------------: |
-| <img width="200px" alt="thumbnail" src='./public/d.gif'> | <img width="200px" alt="thumbnail" src='./public/e.gif'> | <img width="200px" alt="thumbnail" src='./public/f.gif'> |
+| <img width="300px" alt="thumbnail" src='./public/d.gif'> | <img width="300px" alt="thumbnail" src='./public/e.gif'> | <img width="300px" alt="thumbnail" src='./public/f.gif'> |
 
-|                           제목                           |                           제목                           |                           제목                           |
+|                    커뮤니티 - 메인화면                    |                커뮤니티 - 게시글 상세보기                 |                    장소 추천 - 메인 화면                  |
 | :------------------------------------------------------: | :------------------------------------------------------: | :------------------------------------------------------: |
-| <img width="200px" alt="thumbnail" src='./public/g.gif'> | <img width="200px" alt="thumbnail" src='./public/h.gif'> | <img width="200px" alt="thumbnail" src='./public/i.gif'> |
+| <img width="300px" alt="thumbnail" src='./public/g.gif'> | <img width="300px" alt="thumbnail" src='./public/h.gif'> | <img width="300px" alt="thumbnail" src='./public/i.gif'> |
 
-|                           제목                           | 제목  | 제목  |
-| :------------------------------------------------------: | :---: | :---: |
-| <img width="200px" alt="thumbnail" src='./public/j.gif'> | 내용2 | 내용3 |
+|                       마이페이지                          |                카테고리 - 상세 내용                      |                    카테고리 - 상세 내용                   |
+| :------------------------------------------------------: | :------------------------------------------------------: | :------------------------------------------------------: |
+| <img width="300px" alt="thumbnail" src='./public/j.gif'> | <img width="300px" alt="thumbnail" src=''>               | <img width="300px" alt="thumbnail" src=''>               |
 
-|                           제목                           |                           제목                           |
+### 웹 버전
+
+|                  시작 화면 + 로그인                       |                    메인 화면 - 전국 날씨                 |
 | :------------------------------------------------------: | :------------------------------------------------------: |
 | <img width="400px" alt="thumbnail" src='./public/k.gif'> | <img width="400px" alt="thumbnail" src='./public/l.gif'> |
 
-|                           제목                           |                           제목                           |
+|             메인 화면 - 날씨 성격 테스트                  |             장소 추천 - 메인 화면 + 상세 보기             |
 | :------------------------------------------------------: | :------------------------------------------------------: |
 | <img width="400px" alt="thumbnail" src='./public/m.gif'> | <img width="400px" alt="thumbnail" src='./public/n.gif'> |
 
-|                           제목                           |                           제목                           |
+|               장소 추천 - 카테고리 설정                   |                       메인 화면                          |
 | :------------------------------------------------------: | :------------------------------------------------------: |
 | <img width="400px" alt="thumbnail" src='./public/o.gif'> | <img width="400px" alt="thumbnail" src='./public/p.gif'> |
 
-|                           제목                           |                           제목                           |
+|                                                          |               메인 화면 - 추천 장소 상세                  |
 | :------------------------------------------------------: | :------------------------------------------------------: |
-| <img width="400px" alt="thumbnail" src='./public/o.gif'> | <img width="400px" alt="thumbnail" src='./public/t.gif'> |
+| <img width="400px" alt="thumbnail" src=''>               | <img width="400px" alt="thumbnail" src='./public/t.gif'> |
 
-| 제목 | 제목  | 제목  |
-| :--: | :---: | :---: |
-| 내용 | 내용2 | 내용3 |
+|                                                          |                                                          |
+| :------------------------------------------------------: | :------------------------------------------------------: |
+| <img width="400px" alt="thumbnail" src=''>               | <img width="400px" alt="thumbnail" src=''>               |
 
 ## 9. 기능 소개
