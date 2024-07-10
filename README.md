@@ -446,19 +446,19 @@ PW: 11111111
 
 |                       시작 화면                          |                       메인 화면                          |                  메인 화면 -  전국 날씨                    |
 | :------------------------------------------------------: | :------------------------------------------------------: | :------------------------------------------------------: |
-| <img width="300px" alt="thumbnail" src='./public/a.gif'> | <img width="300px" alt="thumbnail" src='./public/b.gif'> | <img width="300px" alt="thumbnail" src='./public/c.gif'> |
+| <img width="260px" alt="thumbnail" src='./public/a.gif'> | <img width="260px" alt="thumbnail" src='./public/b.gif'> | <img width="260px" alt="thumbnail" src='./public/c.gif'> |
 
 |                메인 화면 - 추천 장소 상세                 |               메인 화면 - 날씨 성격 테스트                |                        로그인 화면                        |
 | :------------------------------------------------------: | :------------------------------------------------------: | :------------------------------------------------------: |
-| <img width="300px" alt="thumbnail" src='./public/d.gif'> | <img width="300px" alt="thumbnail" src='./public/e.gif'> | <img width="300px" alt="thumbnail" src='./public/f.gif'> |
+| <img width="260px" alt="thumbnail" src='./public/d.gif'> | <img width="260px" alt="thumbnail" src='./public/e.gif'> | <img width="260px" alt="thumbnail" src='./public/f.gif'> |
 
 |                    커뮤니티 - 메인화면                    |                커뮤니티 - 게시글 상세보기                 |                    장소 추천 - 메인 화면                  |
 | :------------------------------------------------------: | :------------------------------------------------------: | :------------------------------------------------------: |
-| <img width="300px" alt="thumbnail" src='./public/g.gif'> | <img width="300px" alt="thumbnail" src='./public/h.gif'> | <img width="300px" alt="thumbnail" src='./public/i.gif'> |
+| <img width="260px" alt="thumbnail" src='./public/g.gif'> | <img width="260px" alt="thumbnail" src='./public/h.gif'> | <img width="260px" alt="thumbnail" src='./public/i.gif'> |
 
 |                       마이페이지                          |                카테고리 - 상세 내용                      |                    카테고리 - 상세 내용                   |
 | :------------------------------------------------------: | :------------------------------------------------------: | :------------------------------------------------------: |
-| <img width="300px" alt="thumbnail" src='./public/j.gif'> | <img width="300px" alt="thumbnail" src=''>               | <img width="300px" alt="thumbnail" src=''>               |
+| <img width="260px" alt="thumbnail" src='./public/j.gif'> | <img width="260px" alt="thumbnail" src=''>               | <img width="260px" alt="thumbnail" src=''>               |
 
 ### 웹 버전
 
