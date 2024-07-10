@@ -173,10 +173,9 @@ function Location({ keyword }) {
 
   return (
     <div className="container mx-auto p-4 min-h-screen">
-      <div className="flex flex-wrap justify-center items-center ">
+      <div className="flex flex-grow gap-1 justify-center items-center py-6 ">
         {options.map((option, index) => (
-          <div className="w-1/4" key={option.id}>
-            {/* 각 컴포넌트를 1/4 너비로 설정 */}
+          <div className="flex flex-grow items-center justify-center rounded-lg" key={option.id}>
             <LocationKeywords
               id={option.id}
               label={option.label}
@@ -186,14 +185,13 @@ function Location({ keyword }) {
           </div>
         ))}
       </div>
-      <hr className="w-full border-t border-gray-300 mb-8" />
       {isLoading ? (
         <Loading />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative">
           {locationData?.map((item, index) => (
             <div
-              className="p-4 rounded-md shadow-md overflow-y-hidden relative m-w-[400]" // 부모 요소도 relative로 설정합니다.
+              className="p-4 rounded-md shadow-lg border-2 border-gray-100 relative m-w-[400]" // 부모 요소도 relative로 설정합니다.
               key={index}
             >
               <div className="flex gap-4">
@@ -209,7 +207,8 @@ function Location({ keyword }) {
                   />
                 </div>
 
-                <div>
+                <div className='min-w-28'>
+                  
                   <Link to={`/location/${item.contentid}`}>
                     <p className="text-base text-left text-slate-400">
                       {getCategoryText(item.cat2)}
@@ -219,7 +218,7 @@ function Location({ keyword }) {
                   </Link>
 
                   <div className="flex justify-end box-border mt-8">
-                    <div className="flex items-center ml-3">
+                    <div className="">
                       <div className="bg-[#FFF387] w-[112px] absolute bottom-0 right-0 flex justify-center items-center gap-3 opacity-80 rounded-md">
                         <FiMapPin />
                         <p className="text-base text-right">
@@ -230,7 +229,9 @@ function Location({ keyword }) {
                       </div>
                     </div>
                   </div>
+
                 </div>
+
               </div>
             </div>
           ))}

@@ -20,10 +20,10 @@ function SearchLocation() {
 
   return (
     <div className="sm:px-48">
-      <div className="flex justify-center items-center mt-[2rem] w-full mb-6">
+      <div className="flex justify-center items-center mt-[2rem] w-full mb-6 ">
         <form onSubmit={handleSubmit} className="relative">
           <input
-            className=" w-[100%] border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black h-[2.5rem] pl-10 font-bold" // 버튼의 너비만큼 왼쪽 여백 추가
+            className="w-96 border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black h-[2.5rem] pl-10 font-bold" // 버튼의 너비만큼 왼쪽 여백 추가
             placeholder="장소 검색 ex)서울"
             type="text"
             value={keyword}
