@@ -23,14 +23,14 @@ function SearchLocation() {
       <div className="flex justify-center items-center mt-[2rem] w-full mb-6 ">
         <form onSubmit={handleSubmit} className="relative">
           <input
-            className="w-96 border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black h-[2.5rem] pl-10 font-bold" // 버튼의 너비만큼 왼쪽 여백 추가
+            className="h-10 font-bold px-4 border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-gray-500 focus:ring-2 focus:ring-slate-500"
             placeholder="장소 검색 ex)서울"
             type="text"
             value={keyword}
             onChange={handleChange}
           />
-          <button type="submit" className="absolute left-2 top-3">
-            <FaSearch className="text-slate-300 focus:outline-none" />
+          <button type="submit" className="absolute right-2 top-3 ">
+            <FaSearch className="text-slate-300 focus:outline-none hover:scale-125 transition-all duration-500" />
           </button>
         </form>
       </div>
