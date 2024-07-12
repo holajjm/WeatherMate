@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
+import CommunityNewbutton from "@pages/community/CommunityNewbutton";
 
 CommunityPopularItem.propTypes = {
   data: PropTypes.object
@@ -23,6 +24,7 @@ function CommunityPopularItem({data}) {
     <div className="pb-3 border-b-8 flex flex-col">
       <div className="flex justify-between mb-2">
         <h2 className="font-bold text-lg text-gray-700 md:text-xl xl:text-2xl">인기 포스팅</h2>
+        <CommunityNewbutton />
       </div>
       <div className="w-full flex gap-3 overflow-x-scroll">
         {itemViews}
