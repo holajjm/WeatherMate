@@ -54,41 +54,43 @@ function LocationBookMark() {
   };
 
   return (
-    <div className="h-[300px] border-t-2 py-4 overflow-y-scroll mb-16 bg-slate-100 p-4 rounded-lg">
+    <div className="mt-2 h-[300px] box-border overflow-y-scroll bg-slate-100 p-4  rounded-lg">
 
       {loading ? (
         <Loading />
       ) : (
-        <ul>
+        <div className='flex flex-wrap justify-between'>
           {bookmarkData.map((item, index) => (
-            <li key={index}>
-              <div className="flex justify-between mb-8">
-                <div className='flex gap-4'>
+            <div key={index} className='flex border-2 rounded-lg p-2 box-border w-1/2'>
+              <div className="">
+
+                <div className='flex'>
                   <img
                     src={item.firstimage ? item.firstimage : '/01.svg'}
-                    className="w-20 h-20 rounded-3xl"
+                    className="rounded-3xl"
                   />
-                  <p className="text-base mt-2 font-medium hover:text-primary_deep">{item.title}</p>
                 </div>
 
-                <div className='flex gap-1'>
+                <div className='flex flex-col gap-2'>
+                  <p className="text-base font-medium hover:text-primary_deep">{item.title}</p>
                   <button
                     onClick={() => moveToBookMarkPage(item.contentid)}
-                    className="bg-slate-200 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-500 hover:text-slate-800 h-9"
+                    className="bg-slate-200 py-2 rounded-md font-semibold text-sm text-slate-600 hover:bg-primary hover:text-white"
                   >
-                    이동
+                    상세보기
                   </button>
                   <button
                     onClick={() => removeBookmark(item.contentid)}
-                    className="bg-slate-200 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-500 hover:bg-primary hover:text-white h-9"
+                    className="py-2 rounded-md font-medium text-sm bg-red-300 text-white hover:text-red-800 hover:font-extrabold"
                   >
-                    삭제
+                    삭제하기
                   </button>
                 </div>
+                
               </div>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
