@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { memberState } from '@recoil/atom.mjs';
+import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import CommunityHeader from './CommunityHeader';
 import CommunityItem from './CommunityItem';
@@ -11,21 +9,7 @@ import ToTheTopButton from '@components/layout/ToTheTopButton';
 import CommunityPopularItem from '@pages/community/CommunityPopularItem';
 
 function CommunityMain() {
-  const navigate = useNavigate();
   const axios = useCustomAxios();
-  const user = useRecoilValue(memberState);
-
-  const handleWrite = () => {
-    if (!user) {
-      const gotologin = confirm(
-        '로그인 후 이용 가능합니다. \n 로그인 하시겠습니까?',
-      );
-      gotologin && navigate('/user/login');
-    } else {
-      navigate('/community/new');
-    }
-  };
-
   const [searchParams, setSearchParams] = useSearchParams();
   const page = searchParams.get('page');
 
@@ -72,12 +56,7 @@ function CommunityMain() {
         <div className="grow xl:grow-0 2xl:w-96">
           <Search onClick={handleSearch}></Search>
         </div>
-        <button
-          onClick={handleWrite}
-          className="bg-indigo-200 boreder rounded-xl px-4 py-3 text-sm text-indigo-400 font-bold text-nowrap w-40 xl:text-lg"
-        >
-          새 글쓰기
-        </button>
+        
       </div>
       <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
         {isLoading && <p colSpan="5">로딩중...</p>}
