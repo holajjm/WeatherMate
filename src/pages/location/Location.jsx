@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useCurrentLocation from '@hooks/useCurrentLocation';
-import { IoIosBookmark } from 'react-icons/io';
+// import { BsBookmarks } from "react-icons/bs";
+import { BsBookmarksFill } from "react-icons/bs";
 import LocationKeywords from './LocationKeyword';
 import { useRecoilValue } from 'recoil';
 import { memberState } from '@recoil/atom.mjs';
@@ -20,6 +21,7 @@ function Location({ keyword }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [contentID, setContentID] = useState('12');
   const [isLoading, setIsLoading] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
   const navigate = useNavigate();
   const radius = '200000';
 
@@ -97,7 +99,6 @@ function Location({ keyword }) {
         '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
         error,
       );
-    } finally {
     }
   };
 
@@ -120,7 +121,7 @@ function Location({ keyword }) {
 
   const handleBookMark = contentId => {
     if (!user) {
-      const confirmed = confirm('로그인 부터 해주세요');
+      const confirmed = confirm('로그인이 필요합니다');
       if (confirmed) {
         navigate('/user/login');
       }
@@ -129,6 +130,7 @@ function Location({ keyword }) {
         let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
         bookmarks.push(contentId);
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+        setIsBookmarked(true)
         alert('해당 게시물이 북마크에 추가 되었습니다.');
         console.log('북마크 추가 성공:', contentId);
       } catch (error) {
@@ -138,6 +140,7 @@ function Location({ keyword }) {
   };
 
   const options = [
+    { id: '11', label: '전체', img_src: 'all.svg' },
     { id: '12', label: '관광지', img_src: 'tour.svg' },
     { id: '14', label: '문화', img_src: 'communityplace.svg' },
     { id: '15', label: '행사', img_src: 'festival.svg' },
@@ -173,9 +176,9 @@ function Location({ keyword }) {
 
   return (
     <div className="container mx-auto p-4 min-h-screen">
-      <div className="flex flex-grow gap-1 justify-center items-center py-6 ">
+      <div className="flex flex-grow gap-1 justify-center items-center py-6  flex-wrap lg:flex-nowrap">
         {options.map((option, index) => (
-          <div className="flex flex-grow items-center justify-center rounded-lg" key={option.id}>
+          <div className="flex flex-grow items-center justify-center rounded-lg w-1/4" key={option.id}>
             <LocationKeywords
               id={option.id}
               label={option.label}
@@ -194,45 +197,46 @@ function Location({ keyword }) {
               className="p-4 rounded-md shadow-lg border-2 border-gray-100 relative m-w-[400]" // 부모 요소도 relative로 설정합니다.
               key={index}
             >
-              <div className="flex gap-4">
-                <div className="relative">
-                  <img
-                    src={item.firstimage ? item.firstimage : recoDefaultImg}
-                    alt="이미지1"
-                    className="max-w-32 mb-2 rounded-md overflow-hidden aspect-square object-cover border-2"
-                  />
-                  <IoIosBookmark
-                    className="text-sub_sal w-[35px] h-[35px] ml-auto absolute top-0 right-0 m-2 cursor-pointer"
-                    onClick={() => handleBookMark(item.contentid)}
-                  />
-                </div>
-
-                <div className='min-w-28'>
+                <div className='min-w-28 flex flex-col'>
                   
                   <Link to={`/location/${item.contentid}`}>
-                    <p className="text-base text-left text-slate-400">
-                      {getCategoryText(item.cat2)}
-                    </p>
-                    <h2 className="text-base font-bold mb-2 ">{item.title}</h2>
-                    <p className="text-pretty">{item.addr1}</p>
-                  </Link>
 
-                  <div className="flex justify-end box-border mt-8">
-                    <div className="">
-                      <div className="bg-[#FFF387] w-[112px] absolute bottom-0 right-0 flex justify-center items-center gap-3 opacity-80 rounded-md">
-                        <FiMapPin />
-                        <p className="text-base text-right">
-                          {isNaN(parseFloat(item.dist))
-                            ? '너무 멀어요!'
-                            : formatDistance(parseFloat(item.dist))}
+                    <div className="flex">
+                      <img
+                        src={item.firstimage ? item.firstimage : recoDefaultImg}
+                        alt="이미지1"
+                        className="max-w-full mb-2 rounded-md overflow-hidden aspect-square object-cover border-2"
+                      />
+                    </div>
+                  </Link>
+                  <div className='flex gap-3'>
+                    <Link to={`/location/${item.contentid}`} className='flex-grow'>
+                      <div className="flex box-border">
+                        <p className="text-base text-left flex-grow text-slate-400">
+                          {getCategoryText(item.cat2)}
                         </p>
+                        <div className="bg-[#FFF387] flex justify-center items-center gap-3 h-6 opacity-80 rounded-md">
+                          <FiMapPin />
+                          <p className="text-base text-right">
+                            {isNaN(parseFloat(item.dist))
+                              ? '너무 멀어요!'
+                              : formatDistance(parseFloat(item.dist))}
+                          </p>
+                        </div>
                       </div>
+                      <h2 className="text-base font-bold">{item.title}</h2>
+                      <p className="text-pretty">{item.addr1}</p>
+                    </Link>
+                    <div>
+                      {/* <BsBookmarks /> */}
+                      <BsBookmarksFill
+                        className="text-blue-300 aspect-square w-[30px] h-[30px] cursor-pointer"
+                        onClick={() => handleBookMark(item.contentid)}
+                      />
                     </div>
                   </div>
 
                 </div>
-
-              </div>
             </div>
           ))}
         </div>
