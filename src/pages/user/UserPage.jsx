@@ -8,6 +8,8 @@ import LocationBookMark from '@pages/location/LocationBookmark';
 import { useQuery } from '@tanstack/react-query';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import UserBoard from '@pages/user/UserBoard';
+import { BsBookmarkStarFill } from "react-icons/bs";
+import { PiUserListBold } from "react-icons/pi";
 
 function UserPage() {
   const navigate = useNavigate();
@@ -26,7 +28,6 @@ function UserPage() {
     navigate('/user/edit');
   };
 
-
   //여기부터
   // const [click, setClick] = useState(false);
   const axios = useCustomAxios();
@@ -44,8 +45,8 @@ function UserPage() {
     suspense: true,
     refetchOnMount: 'always',
   });
-  console.log(user);
-  console.log(data);
+  // console.log(user);
+  // console.log(data);
   const itemList = data?.item
     ?.filter(item => {
       if (user) {
@@ -57,66 +58,63 @@ function UserPage() {
     .map(item => <UserBoard key={item._id} item={item} />);
   //여기까지 바뀜
 
-
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center">
-      <div className="bg-white rounded-3xl drop-shadow-md p-8 max-w-md w-full mt-20">
+    <div className="min-h-screen bg-gray-100 min-w-[430px] p-6 lg:px-60 xl:px-96">
+      <div className="bg-white rounded-3xl drop-shadow-md p-6 w-full mt-20">
         {user && user.name ? (
-          <div>
-            <div className="flex items-center mb-6 justify-between">
-              <div className="flex">
-                <img
-                className="w-10 h-10 rounded-full mr-4"
+          <div className="flex flex-col gap-4">
+            <div className="flex gap-2 lg:gap-6">
+              <img
+                className="w-10 h-10 rounded-full"
                 src={user.profile ? user.profile : '/nulluser.svg'}
                 alt="Profile"
-
-                />
-                <div>
-                  <p className="text-lg font-semibold text-primary_deep">
-                    {user.name}님
-                  </p>
-                  <p className="text-sm font-medium text-slate-600">
-                    오늘 날씨 어때요?
-                  </p>
-                </div>
+              />
+              <div className="flex-grow">
+                <p className="text-lg font-semibold text-primary_deep">
+                  {user.name}님
+                </p>
+                <p className="text-sm font-medium text-nowrap text-slate-600">
+                  오늘 날씨 어때요?
+                </p>
               </div>
-              <div>
-                <Button
-                  onClick={Edit}
-                  className="bg-slate-300 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-600 hover:bg-primary hover:text-white"
-                >
-                  수정
-                </Button>
-                <Button
-                  onClick={handleLogout}
-                  className="bg-slate-300 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-600 hover:bg-primary hover:text-white"
-                >
-                  로그아웃
-                </Button>
-              </div>
-            </div>
-            <div className="mb-4">
-              <ul>
-
-                <li className="bg-white border-2 rounded-md px-2 py-1 hover:bg-primary hover:border-slate-100 mb-10">
-                  <Link
-                    to="/mbti"
-                    className="text-slate-600 font-semibold text-md hover:text-white"
-                  >
-                    MBTI 테스트 하러가기
-                  </Link>
-
-                </li>
-
-                <p className="text-slate-500 ml-2">저장한 장소</p>
-              </ul>
+              <Link
+                to="/mbti"
+                className="flex justify-center items-center px-2 py-0 border-2 rounded-md text-pretty text-slate-600 font-semibold text-sm hover:text-white hover:bg-primary hover:border-slate-100"
+              >
+                MBTI 테스트 하러가기
+              </Link>
             </div>
 
-            <LocationBookMark />
+            <div className="flex gap-2 border-b-2 pb-4 border-slate-300 lg:gap-4">
+              <Button
+                onClick={Edit}
+                className="bg-slate-300 w-1/2 p-1 rounded-md font-medium text-sm text-slate-600 hover:bg-primary hover:text-white lg:p-2 lg:text-md lg:font-semibold"
+              >
+                회원 정보 수정
+              </Button>
+              <Button
+                onClick={handleLogout}
+                className="bg-slate-300 w-1/2 p-1 rounded-md font-medium text-sm text-slate-600 hover:bg-primary hover:text-white lg:p-2 lg:text-md lg:font-semibold"
+              >
+                로그아웃
+              </Button>
+            </div>
 
-            <p className="text-slate-500 px-2 py-4">나의 활동</p>
-            <div className="h-[300px] border-t-2 py-4 overflow-y-scroll bg-slate-100 p-4 rounded-lg">
-              {itemList}
+            <div>
+              <div className='flex gap-2 items-center'>
+                <BsBookmarkStarFill className='text-primary_deep w-6 h-6'/>
+                <p className="text-slate-500 font-bold inline">저장한 장소</p>
+              </div>
+              <LocationBookMark />
+            </div>
+            <div>
+              <div className='flex gap-2 items-center'>
+                <PiUserListBold className='text-primary_deep w-6 h-6'/>
+                <p className="text-slate-500 font-bold inline">나의 활동</p>
+              </div>
+              <div className="mt-2 h-[300px] border-t-2 py-4 overflow-y-scroll bg-slate-100 p-4 rounded-lg">
+                {itemList}
+              </div>
             </div>
           </div>
         ) : (
@@ -131,7 +129,6 @@ function UserPage() {
               className="w-[50%] m-auto comment-float pt-2 pb-10"
               src="/mainlogin.svg"
             />
-
 
             <div className="mb-4 w-full flex flex-col gap-4 comment-text">
               <button
