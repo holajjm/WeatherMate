@@ -20,7 +20,7 @@ function CommunityNewbutton() {
     <div>
       <button
         onClick={handleWrite}
-        className="bg-indigo-200 boreder rounded-xl px-4 py-3 text-sm text-indigo-400 font-bold text-nowrap w-40 xl:text-lg"
+        className="bg-indigo-200 boreder rounded-xl px-4 py-3 text-sm text-indigo-400 font-bold text-nowrap w-40 xl:text-lg transition-all duration-500 hover:text-xl hover:text-indigo-600 hover:font-extrabold"
       >
         새 글쓰기
       </button>
