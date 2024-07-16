@@ -45,7 +45,7 @@ function CommunityMain() {
   // console.log(data.item);
 
   return (
-    <div className="min-h-screen min-w-96 p-5 md:px-48 xl:px-60">
+    <div className="min-h-screen min-w-96 mt-16 p-5 md:px-48 xl:px-60">
       <div className="box-border md:hidden">
         <div className="flex items-center justify-center border-b-4">
           <CommunityHeader title={'커뮤니티'} />

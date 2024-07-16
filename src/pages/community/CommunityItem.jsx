@@ -56,16 +56,16 @@ function CommunityItem({item}) {
   // console.log(item);
 
   return (
-    <div className="flex flex-col gap-3 bg-white border-2 border-indigo-200 shadow-lg p-3 box-border rounded-lg cursor-pointer hover:border-indigo-400">
+    <div className="flex flex-col gap-3 bg-white border-2 border-indigo-100 shadow-lg p-3 box-border rounded-lg cursor-pointer hover:border-indigo-400 transition-all">
       <div className="flex flex-col gap-3 grow" onClick={() => navigate(`/community/${item._id}`)}>
-        <div className="flex gap-3">
+        <div className="flex gap-3 items-center">
           {item.user.profile ? <img src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.user.profile}`} className="rounded-full border-slate-400 border-4 w-12 h-12" /> : <img src="/weatherMateLogo.svg" className="p-1 bg-white w-12 h-12 border-4 border-slate-400 rounded-full"></img>}
           <div className="grow flex items-center">
             <div className="grow">
               <h1 className="text-lg font-bold">{item.user?.name}</h1>
               <p className="text-blue-500">조회수 {item.views}</p>
             </div>
-            {item.title && <img className="w-10 h-10 border-2 rounded-full bg-blue-200 p-1 xl:w-14 xl:h-14" src={`/${item.title}.svg`} alt="weatherIcon" />}
+            {item.title && <img className="w-10 h-10 rounded-lg bg-blue-200 p-1 xl:w-12 xl:h-12" src={`/${item.title}.svg`} alt="weatherIcon" />}
           </div>
         </div>
         <div>
