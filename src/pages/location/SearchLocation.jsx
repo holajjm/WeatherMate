@@ -19,12 +19,12 @@ function SearchLocation() {
   };
 
   return (
-    <div className="sm:px-48">
-      <div className="flex justify-center items-center mt-[2rem] w-full mb-6 ">
-        <form onSubmit={handleSubmit} className="relative">
+    <div className="flex flex-col gap-6 lg:px-48">
+      <div className="mt-4 px-8 flex justify-end items-center w-1/2 ml-auto min-w-[220px]">
+        <form onSubmit={handleSubmit} className="relative w-full">
           <input
-            className="h-10 font-bold px-4 border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-gray-500 focus:ring-2 focus:ring-slate-500"
-            placeholder="장소 검색 ex)서울"
+            className="w-full h-10 font-bold px-2 border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-gray-500 focus:ring-2 focus:ring-slate-500"
+            placeholder="지역,장소 검색"
             type="text"
             value={keyword}
             onChange={handleChange}

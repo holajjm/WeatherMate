@@ -175,8 +175,8 @@ function Location({ keyword }) {
   };
 
   return (
-    <div className="container mx-auto p-4 min-h-screen">
-      <div className="flex flex-grow gap-1 justify-center items-center py-6  flex-wrap lg:flex-nowrap">
+    <div className="flex flex-col gap-6 mx-auto px-8 min-h-screen">
+      <div className="flex flex-grow gap-1 justify-center items-center flex-wrap lg:flex-nowrap">
         {options.map((option, index) => (
           <div className="flex flex-grow items-center justify-center rounded-lg w-1/4" key={option.id}>
             <LocationKeywords
@@ -191,7 +191,7 @@ function Location({ keyword }) {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 relative">
           {locationData?.map((item, index) => (
             <div
               className="p-4 rounded-md shadow-lg border-2 border-gray-100 relative m-w-[400]" // 부모 요소도 relative로 설정합니다.
