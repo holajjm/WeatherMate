@@ -32,7 +32,7 @@ function RecommendationPreview() {
           );
           setLocationData(response.data.response.body.items.item);
           setLoading(false);
-          console.log(response.data);
+          // console.log(response.data);
         } catch (error) {
           console.error(
             '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
@@ -56,19 +56,19 @@ function RecommendationPreview() {
   }, []); // 초기 렌더링 시 한 번 실행됩니다.
 
   return (
-    <div className="flex items-center justify-center w-full px-8">
-      <div className="mt-10">
-        <div className=" mb-7">
-          <strong className="text-primary">웨더메이트</strong> 의 추천장소
+    <div className="flex items-center justify-center border-2">
+      <div className="flex flex-col gap-4">
+        <div className="flex ">
+          <strong className="text-primary">웨더메이트</strong>가 추천하는 장소
           <Link to="/location" className="ml-5 text-gray-400 hover:text-black">
-            더보기
+            보러가기
           </Link>
         </div>
         <div>
           {loading ? (
             <Loading2 />
           ) : (
-            <div className="flex gap-8 font-sans text-sm">
+            <div className="flex gap-6 font-sans text-sm">
               {locationData.map(item => (
                 <div key={item.contentid}>
                   <Link to={`/location/${item.contentid}`}>

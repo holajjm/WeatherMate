@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { userWeatherState } from '../../recoil/atom.mjs';
 // import dummyData from '../../assets/WeatherData';
-import { IoIosRefresh } from 'react-icons/io';
 import Loading from '../../components/layout/Loading';
 // import WeatherByTimeZone from './WeatherByTimeZone';
 
@@ -53,7 +52,7 @@ const MyLocationWeather = () => {
     }
   };
 
-  console.log('mylocationWeather:', userWeather);
+  // console.log('mylocationWeather:', userWeather);
   const defaultImgPath = '/01.svg'; // 디폴트 이미지 경로
 
   const weatherImageMapping = {
@@ -84,13 +83,6 @@ const MyLocationWeather = () => {
   };
   const imagePath = getImagePathForWeather(); // getImagePathForWeather 함수 호출하여 imagePath 설정
 
-  // 새로고침 함수
-  const handleRefresh = () => {
-    sessionStorage.removeItem('userWeather'); // 세션 스토리지 데이터 제거
-    sessionStorage.removeItem('myPlace');
-    window.location.reload(); // 페이지 새로고침
-  };
-
   const unixToHumanTime = unixTimestamp => {
     const date = new Date(unixTimestamp * 1000);
     const hours = date.getHours();
@@ -102,14 +94,7 @@ const MyLocationWeather = () => {
   };
 
   return (
-    <div className=" w-full pl-9  mb-20 mt-20 ">
-      <div className="absolute top-12 right-12 xl:top-24 xl:right-72">
-        {/* 자식 요소에 absolute 클래스 추가하여 절대 위치 지정 */}
-        <IoIosRefresh
-          className="text-2xl xl:text-3xl"
-          onClick={handleRefresh}
-        />
-      </div>
+    <div className="w-full border-2">
       {loading ? (
         <Loading />
       ) : (
@@ -117,7 +102,7 @@ const MyLocationWeather = () => {
           <img
             src={imagePath}
             alt="weather svg "
-            className="mb-3 w-[100px] h-[100px] bg-cover"
+            className="w-[100px] h-[100px] bg-cover"
           />
           {userWeather && (
             <>

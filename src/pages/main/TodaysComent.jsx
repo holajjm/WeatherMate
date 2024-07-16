@@ -24,7 +24,7 @@ function TodaysComent() {
 
   // const [mainImgUrl, setMainImgUrl] = useState(null);
 
-  console.log('session', sessionData);
+  // console.log('session', sessionData);
 
   // 온도 비즈니스 로직
   useEffect(() => {
@@ -40,7 +40,7 @@ function TodaysComent() {
       // 27도 이하일 땐 273.15
       // 29도 이하일 땐 271
 
-      console.log('현재온도', userTemperature);
+      // console.log('현재온도', userTemperature);
       let closestTemperature = dummyData[0].temperature; // 가장 가까운 온도로 초기화
       let selectedDummyData = dummyData[0]; // 가장 가까운 온도에 해당하는 데이터로 초기화
 
@@ -76,9 +76,9 @@ function TodaysComent() {
   const fileName = imagePath; // 경로에서 파일 이름 추출
 
   return (
-    <div className=" w-full h-[300px] font-sans">
-      <div className="p-5">
-        <div className=" w-full ml-8 mt-[72px] ">
+    <div className="font-sans border-2">
+      <div className="">
+        <div className="">
           {/* user name 받아와 저장해야합니다 */}
           <div className=" w-[350px] flex flex-wrap ">
             <div className="text-primary mb-3 text-2xl">
@@ -91,29 +91,23 @@ function TodaysComent() {
               </div>
             </div>
 
-            <p className="comment-text truncate w-full mb-3 text-2xl font-semibold whitespace-pre-line">
+            <p className="comment-text truncate w-full text-2xl font-semibold whitespace-pre-line">
               {recomendClothes}
             </p>
             <div className="font-sans text-base">
-              <Link to="/allcity">
-                <div className="flex px-3 py-1 items-center rounded border-primary border-2 text-slate-700 hover:bg-primary hover:text-white transition-all duration-300 ">
-                  <p>전국날씨</p>
-                  <MdOutlineKeyboardArrowRight />
-                </div>
+              <Link to="/allcity" className="flex px-3 py-1 items-center rounded border-primary border-2 text-slate-700 hover:bg-primary hover:text-white transition-all duration-300 ">
+                <p>전국날씨</p>
+                <MdOutlineKeyboardArrowRight />
               </Link>
             </div>
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center">
-        <div className="">
-          <img
-            src={fileName}
-            alt="main-img"
-            className="w-[250px] pl-9 ml-32 comment-text2"
-          />
-        </div>
-      </div>
+      <img
+        src={fileName}
+        alt="main-img"
+        className="w-[200px] comment-text2"
+      />
     </div>
   );
 }

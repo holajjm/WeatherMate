@@ -6,7 +6,7 @@ import { userWeatherState } from '../../recoil/atom.mjs';
 function WeatherDetail() {
   const detailWeather = useRecoilValue(userWeatherState);
 
-  console.log('weatherDetail', detailWeather);
+  // console.log('weatherDetail', detailWeather);
 
   function getWindStatus(speed) {
     if (speed > 1 && speed < 3) {
@@ -20,8 +20,9 @@ function WeatherDetail() {
 
   return (
     <>
-      <div>
-        <div className="flex justify-center items-center p-6">
+      <div className='flex justify-center border-2'>
+        <div className="flex flex-col justify-center items-center">
+          <strong className=" text-primary">웨더메이트</strong>가 추천하는 장소
           {detailWeather && (
             <div className="flex justify-center items-center gap-4 font-sans">
               <div className="bg-white w-[77px] h-[88px] flex flex-col items-center  justify-center shadow-lg rounded-lg">
