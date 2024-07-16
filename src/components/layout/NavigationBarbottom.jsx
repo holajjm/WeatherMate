@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 function NavigationBarBottom() {
   return (
     <>
-      <footer className="w-full flex text-white min-h-20 rounded-t-3xl items-center justify-center gap-8 bg-white sticky bottom-0 shadow-inner sm:hidden">
+      <footer className="w-full flex text-white min-h-20 rounded-t-3xl items-center justify-center gap-8 bg-white sticky bottom-0 shadow-inner md:hidden">
         <Link
           to="/main"
           className={`flex flex-col items-center text-gray_03 px-2 hover:text-primary ${

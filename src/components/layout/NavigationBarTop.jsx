@@ -3,20 +3,27 @@ import { Link, useLocation } from 'react-router-dom';
 function NavigationBarTop() {
   const location = useLocation();
 
+   // 새로고침 함수
+  const handleRefresh = () => {
+    sessionStorage.removeItem('userWeather'); // 세션 스토리지 데이터 제거
+    sessionStorage.removeItem('myPlace');
+    window.location.reload(); // 페이지 새로고침
+  };
   return (
     <>
-      <div className="w-full text-white min-h-16 items-center justify-between bg-[#EEF8FF] sticky bottom-0 shadow-inner hidden md:flex md:px-20 lg:px-56 xl:px-60">
+      <div className="w-full text-white h-16 items-center justify-between bg-[#EEF8FF] fixed top-0 z-50 shadow-inner hidden md:flex md:px-20 lg:px-56 xl:px-60">
         <Link to="/main">
           <img
             src="/weatherMateLogo.svg"
             alt="weathermate logo"
-            className="w-12 "
+            className="w-16"
+            onClick={handleRefresh}
           />
         </Link>
-        <div className="flex  gap-24">
+        <div className="flex gap-16 xl:gap-24">
           <Link
             to="/main"
-            className={` text-gray_04 font-bold hover:text-primary ${
+            className={`text-gray_04 font-bold hover:text-primary ${
               location.pathname === '/' ? 'text-primary ' : ''
             }`}
           >
@@ -25,7 +32,7 @@ function NavigationBarTop() {
 
           <Link
             to="/community"
-            className={` text-gray_04 font-bold hover:text-primary ${
+            className={`text-gray_04 font-bold hover:text-primary ${
               location.pathname === '/community' ? 'text-primary ' : ''
             }`}
           >
@@ -34,7 +41,7 @@ function NavigationBarTop() {
 
           <Link
             to="/location"
-            className={` text-gray_04 font-bold hover:text-primary ${
+            className={`text-gray_04 font-bold hover:text-primary ${
               location.pathname === '/location' ? 'text-primary ' : ''
             }`}
           >
