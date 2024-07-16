@@ -78,20 +78,18 @@ function TodaysComent() {
   return (
     <div className="font-sans border-2">
       <div className="">
-        <div className="">
+        <div className="flex flex-col">
           {/* user name 받아와 저장해야합니다 */}
-          <div className=" w-[350px] flex flex-wrap ">
+          <div className=" w-[350px] flex flex-wrap justify-center">
             <div className="text-primary mb-3 text-2xl">
-              <div>
-                {sessionData &&
-                sessionData.useState &&
-                sessionData.useState.name
-                  ? `${sessionData.useState.name} 님 안녕하세요?`
-                  : '환영해요!'}
-              </div>
+              {sessionData &&
+              sessionData.useState &&
+              sessionData.useState.name
+                ? `환영합니다! ${sessionData.useState.name} 메이트님!`
+                : '로그인해주세요.'}
             </div>
-
-            <p className="comment-text truncate w-full text-2xl font-semibold whitespace-pre-line">
+            {/*p태그 gsap 애니메이션 comment-text  */}
+            <p className="truncate w-full text-2xl font-semibold whitespace-pre-line">
               {recomendClothes}
             </p>
             <div className="font-sans text-base">
@@ -106,8 +104,9 @@ function TodaysComent() {
       <img
         src={fileName}
         alt="main-img"
-        className="w-[200px] comment-text2"
+        className="w-[200px] "
       />
+      {/*이미지 gsap 애니메이션 comment-text2 */}
     </div>
   );
 }

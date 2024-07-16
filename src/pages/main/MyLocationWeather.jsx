@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import { userWeatherState } from '../../recoil/atom.mjs';
 // import dummyData from '../../assets/WeatherData';
 import Loading from '../../components/layout/Loading';
+import WeatherDetail from '@pages/main/weatherDetail';
 // import WeatherByTimeZone from './WeatherByTimeZone';
 
 const MyLocationWeather = () => {
@@ -51,7 +52,6 @@ const MyLocationWeather = () => {
       });
     }
   };
-
   // console.log('mylocationWeather:', userWeather);
   const defaultImgPath = '/01.svg'; // 디폴트 이미지 경로
 
@@ -98,38 +98,40 @@ const MyLocationWeather = () => {
       {loading ? (
         <Loading />
       ) : (
-        <>
-          <img
-            src={imagePath}
-            alt="weather svg "
-            className="w-[100px] h-[100px] bg-cover"
-          />
+        <div className='flex flex-col items-center'>
           {userWeather && (
             <>
-              <div className="text-4xl font-bold  ">
+              <img
+                src={imagePath}
+                alt="weather svg "
+                className="aspect-square w-[80px]"
+              />
+              <div className="text-5xl font-bold text-center">
+                <h2 className="text-xl font-bold">{myPlace}</h2>
                 {(userWeather.main.temp - 273.15).toFixed(1)}°C
               </div>
               <p className="text-lg font-bold ">
                 {userWeather.weather[0].description}
               </p>
-              <p className="mb-7">기준 : {unixToHumanTime(userWeather.dt)}</p>
-              <h2 className="text-2xl font-bold mb-4">{myPlace}</h2>
+              <p className="">기준 : {unixToHumanTime(userWeather.dt)}</p>
 
-              <div className="flex gap-5 mb-20">
+              <div className="flex gap-5">
                 <div className="flex flex-col justify-center items-center">
-                  <img src="sunset.svg" className="w-5 h-5 mb-1" />
-                  <p> {unixToHumanTime(userWeather.sys.sunrise)}</p>
-                  <p>{unixToHumanTime(userWeather.sys.sunset)}</p>
+                  <img src="sunset.svg" className="w-5 h-5" />
+                  <p>일출:{unixToHumanTime(userWeather.sys.sunrise)}</p>
+                  <p>일몰:{unixToHumanTime(userWeather.sys.sunset)}</p>
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                  <img src="dgree.svg" className="w-5 h-5 mb-1" />
-                  <p> {(userWeather.main.temp_max - 273.15).toFixed(1)}°C</p>
-                  <p> {(userWeather.main.temp_min - 274.15).toFixed(1)}°C</p>
+                  <img src="dgree.svg" className="w-5 h-5" />
+                  <p>최고:{(userWeather.main.temp_max - 273.15).toFixed(1)}°C</p>
+                  <p>최저:{(userWeather.main.temp_min - 274.15).toFixed(1)}°C</p>
                 </div>
               </div>
+              <WeatherDetail />
             </>
           )}
-        </>
+
+        </div>
       )}
     </div>
   );

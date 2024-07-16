@@ -7,7 +7,6 @@ import PreviewMbti from './PreviewMbti';
 import RecommendationPreview from './RecommendationPreview';
 import TodaysComent from './TodaysComent';
 import WeatherByTimeZone from './WeatherByTimeZone';
-import WeatherDetail from './weatherDetail';
 
 // import WeatherByTimeZone from './WeatherByTimeZone';
 
@@ -23,7 +22,6 @@ function MainWeather() {
             </div>
             <div className="">
               <WeatherByTimeZone />
-              <WeatherDetail />
               <RecommendationPreview />
               <PreviewMbti />
             </div>
