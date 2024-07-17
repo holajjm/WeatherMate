@@ -194,13 +194,12 @@ function Location({ keyword }) {
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 relative">
           {locationData?.map((item, index) => (
             <div
-              className="p-4 rounded-md shadow-lg border-2 border-gray-100 relative m-w-[400]" // 부모 요소도 relative로 설정합니다.
+              className="p-4 rounded-md shadow-lg border-2 border-gray-100 relative m-w-[400]"
               key={index}
             >
                 <div className='min-w-28 flex flex-col'>
                   
                   <Link to={`/location/${item.contentid}`}>
-
                     <div className="flex">
                       <img
                         src={item.firstimage ? item.firstimage : recoDefaultImg}
