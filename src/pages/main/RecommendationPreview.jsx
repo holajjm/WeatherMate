@@ -1,12 +1,11 @@
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useCurrentLocation from '@hooks/useCurrentLocation';
 import { Link } from 'react-router-dom';
+import Loading2 from '@components/layout/Loading2';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
-/* eslint-disable */
-import Loading from '@components/layout/Loading';
-import Loading2 from '@components/layout/Loading2';
 
 function RecommendationPreview() {
   const [locationData, setLocationData] = useState([]);
@@ -14,9 +13,9 @@ function RecommendationPreview() {
   const [contentTypeId, setContentTypeId] = useState('14');
   const [loading, setLoading] = useState(true);
 
-  const radius = '100000';
+  const radius = '10000'; //10km
   const { latitude, longitude } = useCurrentLocation();
-
+  
   useEffect(() => {
     if (latitude !== null && longitude !== null) {
       setLocationReady(true);
@@ -53,10 +52,10 @@ function RecommendationPreview() {
       return options[randomIndex]; // 선택된 contentTypeId 반환
     };
     setContentTypeId(getRandomContentTypeId());
-  }, []); // 초기 렌더링 시 한 번 실행됩니다.
+  }, []);
 
   return (
-    <div className="flex items-center justify-center border-2">
+    <div className="flex-grow flex items-center justify-center border-2">
       <div className="flex flex-col gap-4">
         <div className="flex ">
           <strong className="text-primary">웨더메이트</strong>가 추천하는 장소
@@ -80,7 +79,7 @@ function RecommendationPreview() {
                   </Link>
                   <p className="text-center text-sm mt-2">
                     {item.title.length > 5
-                      ? `${item.title.slice(0, 5)}...`
+                      ? `${item.title.slice(0, 10)}...`
                       : item.title}
                   </p>
                 </div>
