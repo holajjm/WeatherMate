@@ -76,29 +76,25 @@ function TodaysComent() {
   const fileName = imagePath; // 경로에서 파일 이름 추출
 
   return (
-    <div className="font-sans border-2">
+    <div className="font-sans border-2 flex-grow">
       <div className="">
         <div className="flex flex-col">
           {/* user name 받아와 저장해야합니다 */}
-          <div className=" w-[350px] flex flex-wrap justify-center">
-            <div className="text-primary mb-3 text-2xl">
-              {sessionData &&
-              sessionData.useState &&
-              sessionData.useState.name
-                ? `환영합니다! ${sessionData.useState.name} 메이트님!`
-                : '로그인해주세요.'}
-            </div>
-            {/*p태그 gsap 애니메이션 comment-text  */}
-            <p className="truncate w-full text-2xl font-semibold whitespace-pre-line">
-              {recomendClothes}
-            </p>
-            <div className="font-sans text-base">
-              <Link to="/allcity" className="flex px-3 py-1 items-center rounded border-primary border-2 text-slate-700 hover:bg-primary hover:text-white transition-all duration-300 ">
-                <p>전국날씨</p>
-                <MdOutlineKeyboardArrowRight />
-              </Link>
-            </div>
+          <div className="text-primary text-2xl">
+            {sessionData &&
+            sessionData.useState &&
+            sessionData.useState.name
+              ? `환영합니다! ${sessionData.useState.name} 메이트님!`
+              : '로그인해주세요.'}
           </div>
+          {/*p태그 gsap 애니메이션 comment-text  */}
+          <p className="truncate w-full text-2xl font-semibold whitespace-pre-line">
+            {recomendClothes}
+          </p>
+          <Link to="/allcity" className="flex">
+            <p className='bg-indigo-100'>전국날씨</p>
+            <MdOutlineKeyboardArrowRight />
+          </Link>
         </div>
       </div>
       <img

@@ -13,22 +13,16 @@ import WeatherByTimeZone from './WeatherByTimeZone';
 function MainWeather() {
   return (
     <div className="font-sans overflow-hidden pt-16 px-48 lg:px-56 xl:px-60 ">
-      <div className="">
+        <div className="flex">
+          <TodaysComent />
+          <MyLocationWeather />
+        </div>
         <div className="">
-          <div className="">
-            <div className="flex">
-              <TodaysComent />
-              <MyLocationWeather />
-            </div>
-            <div className="">
-              <WeatherByTimeZone />
-              <RecommendationPreview />
-              <PreviewMbti />
-            </div>
-          </div>
+          <WeatherByTimeZone />
+          <RecommendationPreview />
+          <PreviewMbti />
         </div>
         <ToTheTopButton />
-      </div>
     </div>
   );
 }

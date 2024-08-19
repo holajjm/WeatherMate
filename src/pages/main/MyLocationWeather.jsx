@@ -94,11 +94,11 @@ const MyLocationWeather = () => {
   };
 
   return (
-    <div className="w-full border-2">
+    <div className="flex-grow border-2">
       {loading ? (
         <Loading />
       ) : (
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center '>
           {userWeather && (
             <>
               <img
