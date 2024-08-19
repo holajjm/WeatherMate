@@ -13,10 +13,8 @@ import Login from '@pages/user/Login';
 import UserPage from '@pages/user/UserPage';
 import CommunityMain from './pages/community/CommunityMain';
 import LocationDetailPage from './pages/location/LocationDetailPage';
-
 import LocationMainPage from './pages/location/LocationMainPage';
 import Setting from './pages/user/Setting';
-
 import ReplyList from './pages/community/ReplyList';
 import MainLogin from '@pages/user/MainLogin';
 import UserEdit from '@pages/user/UserEdit';
@@ -43,7 +41,7 @@ const router = createBrowserRouter([
             element: <MainPage />,
           },
           {
-            path: '/allcity',
+            path: 'allcity',
             element: <AllCitiesWeather />,
           },
           {
@@ -72,7 +70,6 @@ const router = createBrowserRouter([
             path: 'location/:id',
             element: <LocationDetailPage />,
           },
-
           {
             path: 'mbti',
             element: <MbtiTest />,
@@ -89,7 +86,6 @@ const router = createBrowserRouter([
             path: 'user/mypage',
             element: <UserPage />,
           },
-
           {
             path: 'user/signup',
             element: <SignUp />,
