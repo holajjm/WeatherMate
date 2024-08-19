@@ -2,12 +2,15 @@ import { Link, useLocation } from 'react-router-dom';
 
 function NavigationBarTop() {
   const location = useLocation();
-
+  // console.log(location)
+  
    // 새로고침 함수
   const handleRefresh = () => {
     sessionStorage.removeItem('userWeather'); // 세션 스토리지 데이터 제거
     sessionStorage.removeItem('myPlace');
-    window.location.reload(); // 페이지 새로고침
+    if(location.pathname === "/main"){
+      window.location.reload(); // 페이지 새로고침
+    }
   };
   return (
     <>
