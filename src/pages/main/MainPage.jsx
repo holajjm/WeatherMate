@@ -19,8 +19,10 @@ function MainWeather() {
         </div>
         <div className="">
           <WeatherByTimeZone />
-          <RecommendationPreview />
-          <PreviewMbti />
+          <div className='flex'>
+            <RecommendationPreview />
+            <PreviewMbti />
+          </div>
         </div>
         <ToTheTopButton />
     </div>
