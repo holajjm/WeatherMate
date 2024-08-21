@@ -8,11 +8,11 @@ function NavigationBarBottom() {
   const location = useLocation();
   return (
     <>
-      <footer className="w-full py-3 flex text-white h-18 rounded-t-3xl items-center justify-center gap-8 bg-white sticky bottom-0 shadow-inner md:hidden">
+      <footer className="w-full py-3 flex text-white h-18 rounded-t-3xl items-center justify-center gap-8 bg-[#d1ebff] sticky bottom-0 shadow-inner md:hidden">
         <Link
           to="/main"
-          className={`flex flex-col items-center text-gray_03 px-2 hover:text-primary ${
-            location.pathname === '/main' ? 'text-primary ' : ''
+          className={`flex flex-col items-center  px-2 hover:text-[#567CBD] ${
+            location.pathname === '/main' ? 'text-[#567CBD] font-bold' : 'text-[#bac7ce]'
           }`}
         >
           <GoHomeFill className="text-2xl mb-1" />
@@ -21,8 +21,8 @@ function NavigationBarBottom() {
 
         <Link
           to="/community"
-          className={`flex flex-col items-center px-2 text-gray_03 hover:text-primary ${
-            location.pathname === '/community' ? 'text-primary ' : ''
+          className={`flex flex-col items-center px-2  hover:text-[#567CBD] ${
+            location.pathname === '/community' ? 'text-[#567CBD] font-bold' : 'text-[#bac7ce]'
           }`}
         >
           <SiGooglechat className="text-2xl mb-1" />
@@ -31,8 +31,8 @@ function NavigationBarBottom() {
 
         <Link
           to="/location"
-          className={`flex flex-col items-center px-2 text-gray_03 hover:text-primary ${
-            location.pathname === '/location' ? 'text-primary ' : ''
+          className={`flex flex-col items-center px-2  hover:text-[#567CBD] ${
+            location.pathname === '/location' ? 'text-[#567CBD] font-bold' : 'text-[#bac7ce]'
           }`}
         >
           <MdLocationOn className="text-2xl mb-1" />
@@ -41,8 +41,8 @@ function NavigationBarBottom() {
 
         <Link
           to="/user/mypage"
-          className={`flex flex-col items-center px-2 text-gray_03 hover:text-primary ${
-            location.pathname === '/user/mypage' ? 'text-primary ' : ''
+          className={`flex flex-col items-center px-2  hover:text-[#567CBD] ${
+            location.pathname === '/user/mypage' ? 'text-[#567CBD] font-bold' : 'text-[#bac7ce]'
           }`}
         >
           <FaAddressBook className="text-2xl mb-1" />
