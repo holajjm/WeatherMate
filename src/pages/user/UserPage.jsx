@@ -16,8 +16,10 @@ function UserPage() {
   const [user, setUser] = useRecoilState(memberState);
 
   const handleLogout = () => {
-    setUser(null);
-    navigate('/');
+    if(confirm("로그아웃 하시겠습니까?")){
+      setUser(null);
+      navigate('/');
+    }
   };
 
   const handleLogin = () => {
@@ -40,7 +42,6 @@ function UserPage() {
           type: 'community',
         },
       }),
-
     select: response => response.data,
     suspense: true,
     refetchOnMount: 'always',
@@ -119,40 +120,40 @@ function UserPage() {
           </div>
         ) : (
           <div className="text-center">
-            <h2 className="text-3xl font-black text-primary_deep mb-4 pt-6 font-Ainmom">
-              로그인 후 이용할 수 있어요
+            <h2 className="text-3xl font-black text-primary_deep font-Ainmom">
+              로그인 후 이용할 수 있어요!
             </h2>
-            <p className="mb-4 text-gray-600">
+            <p className="text-gray-600">
               원활한 서비스 사용을 위해 로그인을 해주세요!
             </p>
             <img
-              className="w-[50%] m-auto comment-float pt-2 pb-10"
+              className="w-[50%] m-auto"
               src="/mainlogin.svg"
             />
 
-            <div className="mb-4 w-full flex flex-col gap-4 comment-text">
+            <div className="w-full grid grid-cols-2 gap-4">
               <button
-                className="bg-primary text-white py-2 px-4 rounded-lg mr-2 hover:bg-primary_deep"
+                className="grow bg-primary text-white border-2 rounded-lg py-2 hover:bg-primary_deep"
                 onClick={() => navigate('/user/Login')}
               >
-                이메일 로그인
+                로그인
               </button>
               <button
-                className="bg-white border-primary border-2 text-primary py-2 px-4 rounded-lg mr-2 hover:bg-gray-200"
+                className="grow bg-white border-primary border-2 text-primary rounded-lg py-2 hover:bg-gray-200"
                 onClick={() => navigate('/user/SignUp')}
               >
                 회원가입
               </button>
               <button
-                className="bg-[#FEE500] text-[#55461a] py-2 px-4 rounded-lg mr-2 hover:bg-[#fed400]"
+                className="grow bg-[#FEE500] border-2 text-[#55461a] py-2 rounded-lg hover:bg-[#fed400]"
                 onClick={handleLogin}
               >
                 카카오로 시작하기
               </button>
+              <Link to="/" className="grow border-2 py-2 rounded-lg text-gray-500 hover:underline text-sm">
+                메인으로 돌아가기
+              </Link>
             </div>
-            <Link to="/" className="text-gray-500 hover:underline text-sm">
-              웨더메이트 둘러보기
-            </Link>
           </div>
         )}
       </div>
