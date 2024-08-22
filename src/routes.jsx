@@ -16,11 +16,11 @@ import LocationDetailPage from './pages/location/LocationDetailPage';
 import LocationMainPage from './pages/location/LocationMainPage';
 import Setting from './pages/user/Setting';
 import ReplyList from './pages/community/ReplyList';
-import MainLogin from '@pages/user/MainLogin';
+// import MainLogin from '@pages/user/MainLogin';
 import UserEdit from '@pages/user/UserEdit';
 import Edit from '@pages/user/Edit';
 import AllCitiesWeather from '@pages/main/AllCitiesWeather';
-import Oauth from '@pages/user/Oauth'
+import Oauth from '@pages/user/Oauth';
 
 const router = createBrowserRouter([
   {
@@ -28,17 +28,22 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        element: <MainLogin />,
-      },
-      {
         path: '/',
         element: <Layout />,
         children: [
           {
             index: true,
+            element: <MainPage />,
+          },
+          {
             path: 'main',
             element: <MainPage />,
+            // children: [
+            //   {
+            //     index: true,
+            //     element: <MainLogin />
+            //   }
+            // ]
           },
           {
             path: 'allcity',
@@ -108,7 +113,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'auth/kakao',
-            element:<Oauth/>,
+            element: <Oauth />,
           },
         ],
       },
