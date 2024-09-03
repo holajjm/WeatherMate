@@ -9,13 +9,14 @@ import { useRecoilValue } from 'recoil';
 import { memberState } from '@recoil/atom.mjs';
 import Loading from '@components/layout/Loading';
 import { FiMapPin } from 'react-icons/fi';
+import DetailPageHeader from '@components/layout/DetailPageHeader';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 /* eslint-disable */
 
 function Location({ keyword }) {
   const user = useRecoilValue(memberState);
-  const [locationData, setLocationData] = useState([]); //
+  const [locationData, setLocationData] = useState([]);
   const [locationReady, setLocationReady] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,15 +25,16 @@ function Location({ keyword }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const navigate = useNavigate();
   const radius = '200000';
-
   const { latitude, longitude } = useCurrentLocation();
 
+  //사용자 현재 위치 위도, 경도 정보 받아온 후 locationReady 상태값 업데이트
   useEffect(() => {
     if (latitude !== null && longitude !== null) {
       setLocationReady(true);
     }
   }, [latitude, longitude]);
 
+  //사용자 위치가 변경되었을 경우 
   useEffect(() => {
     if (locationReady && !searchKeyword.trim().length) {
       const fetchData = async () => {
@@ -55,10 +57,12 @@ function Location({ keyword }) {
     }
   }, [locationReady, latitude, longitude, contentID]);
 
+  //검색창에 검색했을 경우 검색어 상태값으로 관리
   useEffect(() => {
     setSearchKeyword(keyword);
   }, [keyword]);
 
+  //
   useEffect(() => {
     if (searchKeyword) {
       const fetchData = async () => {
@@ -102,6 +106,7 @@ function Location({ keyword }) {
     }
   };
 
+  //무한 스크롤에 따른 데이터 호출 구현
   const handleScroll = () => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
     if (
@@ -118,7 +123,7 @@ function Location({ keyword }) {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [locationData]);
-
+  //북마크 기능 구현
   const handleBookMark = contentId => {
     if (!user) {
       const confirmed = confirm('로그인이 필요합니다');
@@ -140,8 +145,7 @@ function Location({ keyword }) {
   };
 
   const options = [
-    { id: '11', label: '전체', img_src: 'all.svg' },
-    { id: '12', label: '관광지', img_src: 'tour.svg' },
+    { id: '12', label: '전체', img_src: 'all.svg' },
     { id: '14', label: '문화', img_src: 'communityplace.svg' },
     { id: '15', label: '행사', img_src: 'festival.svg' },
     { id: '25', label: '여행지', img_src: 'travel.svg' },
@@ -176,6 +180,7 @@ function Location({ keyword }) {
 
   return (
     <div className="flex flex-col gap-6 mx-auto px-8 min-h-screen">
+      <DetailPageHeader title={"장소 추천"}/>
       <div className="flex flex-grow gap-1 justify-center items-center flex-wrap lg:flex-nowrap">
         {options.map((option, index) => (
           <div className="flex flex-grow items-center justify-center rounded-lg w-1/4" key={option.id}>
