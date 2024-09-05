@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <>
-      <div className="p-4 pt-12 flex justify-between items-end border-t-2 border-gray_01 lg:px-56 xl:px-60 text-gray_03">
+      <div className="px-8 py-8 flex justify-between items-end border-t-2 border-gray_01 md:px-20 lg:px-56 xl:px-60 text-gray_03 flex-wrap">
         <div>
-          <div className="flex gap-2 pb-4">
+          <div className="flex gap-2 pb-4 text-nowrap">
             <Link to="https://github.com/FRONTENDSCHOOL9/WeatherMate">
               프로젝트 소개
             </Link>{' '}
