@@ -10,6 +10,7 @@ import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import UserBoard from '@pages/user/UserBoard';
 import { BsBookmarkStarFill } from "react-icons/bs";
 import { PiUserListBold } from "react-icons/pi";
+import DetailPageHeader from '@components/layout/DetailPageHeader';
 
 function UserPage() {
   const navigate = useNavigate();
@@ -60,8 +61,9 @@ function UserPage() {
   //여기까지 바뀜
 
   return (
-    <div className="min-h-screen bg-gray-100 min-w-[430px] p-6 lg:px-60 xl:px-96">
-      <div className="bg-white rounded-3xl drop-shadow-md p-6 w-full mt-20">
+    <div className="min-h-screen bg-gray-100 w-full p-6 md:flex md:flex-col md:items-center">
+      <DetailPageHeader title={"마이페이지"}/>
+      <div className="bg-white rounded-3xl drop-shadow-md p-6 md:w-[600px]">
         {user && user.name ? (
           <div className="flex flex-col gap-4">
             <div className="flex gap-2 lg:gap-6">
