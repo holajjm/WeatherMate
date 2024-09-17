@@ -14,7 +14,7 @@ function NavigationBarTop() {
   };
   return (
     <>
-      <div className="w-full text-white h-16 items-center justify-between bg-[#d1ebff] fixed top-0 z-30 shadow-inner hidden md:flex md:px-20 lg:px-56 xl:px-60">
+      <div className="w-full text-white h-16 items-center justify-between bg-[#d1ebff] sticky top-0 z-30 shadow-inner hidden md:flex md:px-20 lg:px-56 xl:px-60">
         <Link to="/main">
           <img
             src="/weatherMateLogo.svg"
