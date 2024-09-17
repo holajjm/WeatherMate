@@ -1,17 +1,19 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import CommunityHeader from './CommunityHeader';
 import CommunityItem from './CommunityItem';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import Search from '@components/layout/Search';
 import ToTheTopButton from '@components/layout/ToTheTopButton';
 import CommunityPopularItem from '@pages/community/CommunityPopularItem';
+import DetailPageHeader from '@components/layout/DetailPageHeader';
 
 function CommunityMain() {
   const axios = useCustomAxios();
   const [searchParams, setSearchParams] = useSearchParams();
   const page = searchParams.get('page');
+  // console.log(page)
+  // console.log(searchParams)
 
   const { isLoading, data, isError, refetch } = useQuery({
     queryKey: ['posts', page],
@@ -45,11 +47,9 @@ function CommunityMain() {
   // console.log(data.item);
 
   return (
-    <div className="min-h-screen min-w-96 mt-16 p-5 md:px-48 xl:px-60">
+    <div className="min-h-screen min-w-96 p-5 md:px-48 xl:px-60">
       <div className="box-border md:hidden">
-        <div className="flex items-center justify-center border-b-4">
-          <CommunityHeader title={'커뮤니티'} />
-        </div>
+        <DetailPageHeader title={'커뮤니티'} />
       </div>
       <CommunityPopularItem data={data} />
       <div className="flex items-center py-3 gap-3 xl:justify-between">
