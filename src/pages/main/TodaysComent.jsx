@@ -76,7 +76,7 @@ function TodaysComent() {
   const fileName = imagePath; // 경로에서 파일 이름 추출
 
   return (
-    <div className="font-sans border-b-4 rounded-2xl shadow-md shadow-violet-200/100 border-violet-200 flex-grow ">
+    <div className="font-sans border-2 rounded-2xl shadow-md shadow-violet-200/100 border-violet-200 flex-grow ">
       <div className="">
         <div className="flex flex-col">
           {/* user name 받아와 저장해야합니다 */}
