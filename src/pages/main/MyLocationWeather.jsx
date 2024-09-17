@@ -98,13 +98,13 @@ const MyLocationWeather = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className='flex flex-col items-center '>
+        <div className='flex flex-col items-center relative'>
           {userWeather && (
             <>
               <img
                 src={imagePath}
                 alt="weather svg "
-                className="aspect-square w-[80px]"
+                className="absolute -z-10 opacity-80"
               />
               <div className="text-5xl font-bold text-center">
                 <h2 className="text-xl font-bold">{myPlace}</h2>
