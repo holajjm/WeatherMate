@@ -57,7 +57,8 @@ function CommunityItem({item}) {
 
   return (
     <div className="flex flex-col gap-3 bg-white border-2 border-indigo-100 shadow-lg p-3 box-border rounded-lg cursor-pointer hover:border-indigo-400 transition-all">
-      <div className="flex flex-col gap-3 grow" onClick={() => navigate(`/community/${item._id}`)}>
+
+      <div className="flex flex-col gap-3" onClick={() => navigate(`/community/${item._id}`)}>
         <div className="flex gap-3 items-center">
           {item.user.profile ? <img src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.user.profile}`} className="rounded-full border-slate-400 border-4 w-12 h-12" /> : <img src="/weatherMateLogo.svg" className="p-1 bg-white w-12 h-12 border-4 border-slate-400 rounded-full"></img>}
           <div className="grow flex items-center">
@@ -68,17 +69,20 @@ function CommunityItem({item}) {
             {item.title && <img className="w-10 h-10 rounded-lg bg-blue-200 p-1 xl:w-12 xl:h-12" src={`/${item.title}.svg`} alt="weatherIcon" />}
           </div>
         </div>
-        <div>
-          <div className="bg-gray-500 text-white rounded-md p-2 box-border">{item.content}</div>
-          {image && <img className="w-full" src={image} alt="image" />}
-        </div>
       </div>
+
+      <div className="grow flex flex-col gap-3 justify-between">
+        {image && <img className="w-full h-[75%] rounded-md" src={image} alt="image" />}
+        <div className="text-gray-700 bg-slate-100 font-semibold rounded-md p-2 box-border grow">{item.content}</div>
+      </div>
+
       <div className="flex gap-3">
         <button onClick={handleLikeBTN} className="flex items-center">{like === 1 ? <FaHeart className="text-orange-300 text-2xl"/> : <FaRegHeart className="text-orange-300 text-2xl"/>}</button>
         <p className="text-orange-300">좋아요 {like}</p>
         <p className="flex items-center"><IoChatbubbleEllipsesOutline className="text-orange-300 text-2xl"/></p>
         <p className="text-orange-300">댓글 {item.repliesCount}개</p>
       </div>
+
     </div>
   )
 }
