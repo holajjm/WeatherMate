@@ -5,7 +5,7 @@ import SearchLocation from './SearchLocation';
 // 장소추천 최상단 페이지
 function LocationMainPage() {
   return (
-    <div className='mt-16'>
+    <div className=''>
       <ToTheTopButton />
       <SearchLocation />
     </div>
