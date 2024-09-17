@@ -77,7 +77,7 @@ function CommunityDetail() {
         <CommunityHeader title={'상세보기'} />
         </div>
       </div>
-      <div className="grid 2xl:grid-cols-2 gap-8">
+      <div className="grid 2xl:grid-cols-2 gap-4">
       <div className="px-5 rounded-md border">
         <div>
           {item && (
