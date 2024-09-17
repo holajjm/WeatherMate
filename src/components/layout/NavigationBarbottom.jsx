@@ -8,7 +8,7 @@ function NavigationBarBottom() {
   const location = useLocation();
   return (
     <>
-      <footer className="w-full py-3 flex text-white h-18 rounded-t-3xl items-center justify-center gap-8 bg-[#d1ebff] sticky bottom-0 shadow-inner md:hidden">
+      <footer className="w-screen py-3 flex text-white h-18 rounded-t-3xl items-center justify-center gap-8 bg-[#d1ebff] sticky bottom-0 shadow-inner md:hidden">
         <Link
           to="/main"
           className={`flex flex-col items-center  px-2 hover:text-[#567CBD] ${
