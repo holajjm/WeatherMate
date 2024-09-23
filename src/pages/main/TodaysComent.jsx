@@ -64,7 +64,7 @@ function TodaysComent() {
   // 메인화면 애니메이션
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power1.out' } });
-    tl.from('.fade-in-from-down', { opacity: 0, y: 200, duration: 1 });
+    tl.from('.fade-in-from-NS', { opacity: 0, y: 200, duration: 1 });
     return () => {
       // Clean up animations
       tl.kill();
@@ -75,7 +75,7 @@ function TodaysComent() {
   const fileName = imagePath; // 경로에서 파일 이름 추출
 
   return (
-    <div className="font-sans p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300 h-full text-lg md:text-2xl fade-in-from-down">
+    <div className="font-sans p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300 h-full text-lg md:text-2xl fade-in-from-NS">
       <div className="flex flex-col items-center gap-2">
         {/* user name 받아와 저장 */}
         <div className="text-[#80c8ff] font-semibold text-wrap">

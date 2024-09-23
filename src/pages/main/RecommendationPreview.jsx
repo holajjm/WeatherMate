@@ -4,6 +4,7 @@ import axios from 'axios';
 import useCurrentLocation from '@hooks/useCurrentLocation';
 import { Link } from 'react-router-dom';
 import Loading2 from '@components/layout/Loading2';
+import gsap from 'gsap';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
@@ -54,8 +55,16 @@ function RecommendationPreview() {
     setContentTypeId(getRandomContentTypeId());
   }, []);
 
+  useEffect(() => {
+    const tl = gsap.timeline({defaults: {ease: 'power2.out'}});
+    tl.from('.fade-in-from-SW',{opacity: 0, y: 200, duration: 4});
+    return () => {
+      tl.kill();
+    }
+  },[])
+
   return (
-    <div className="p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300">
+    <div className="p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300 fade-in-from-SW">
       <div className="flex flex-col gap-4">
         <div className="flex ">
           <strong className="text-primary">웨더메이트</strong>가 추천하는 장소

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
-import gsap from 'gsap';
+import {gsap} from 'gsap';
 
 const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
 
@@ -46,6 +46,14 @@ function WeatherByTimeZone() {
     }
   }, [weatherData]);
 
+  useEffect(() => {
+    const tl = gsap.timeline({defaults: {ease: 'power2.out'}});
+    tl.from('.fade-in',{opacity: 0,y: 200, duration:3});
+    return () => {
+      tl.kill();
+    }
+  })
+
   const memoizedWeatherData = useMemo(() => weatherData, [weatherData]);
 
   if (error) {
@@ -71,8 +79,10 @@ function WeatherByTimeZone() {
     return `https://openweathermap.org/img/wn/${iconName}.png`;
   }
 
+  
+
   return (
-    <div className="p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300 flex items-center justify-center gap-5 sm:gap-3 overflow-x-scroll scrollbar-hide">
+    <div className="fade-in p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300 flex items-center justify-center gap-5 sm:gap-3 overflow-x-scroll scrollbar-hide">
       {memoizedWeatherData.list.map(item => (
         <div key={item.dt} className="flex items-center justify-center">
           <div className="w-16 bg-white border-[1.2px] border-slate-200 h-28 rounded-xl sm:w-14 flex justify-center items-center shadow-sm">

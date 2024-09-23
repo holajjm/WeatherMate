@@ -5,6 +5,7 @@ import { userWeatherState } from '../../recoil/atom.mjs';
 // import dummyData from '../../assets/WeatherData';
 import Loading from '../../components/layout/Loading';
 import WeatherDetail from '@pages/main/weatherDetail';
+import gsap from 'gsap';
 // import WeatherByTimeZone from './WeatherByTimeZone';
 
 const MyLocationWeather = () => {
@@ -93,8 +94,16 @@ const MyLocationWeather = () => {
     return `${hour}${minutes} ${ampm}`;
   };
 
+  useEffect(() => {
+    const tl = gsap.timeline({defaults: {ease: 'power1.out'}});
+    tl.from('.fade-in-from-NE',{opacity: 0, y: 200, duration: 2});
+    return () => {
+      tl.kill();
+    }
+  },[])
+
   return (
-    <div className="rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300 h-full">
+    <div className="rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300 h-full fade-in-from-NE">
       {loading ? (
         <Loading />
       ) : (
