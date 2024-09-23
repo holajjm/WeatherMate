@@ -3,17 +3,30 @@ import { Link, useLocation } from 'react-router-dom';
 function NavigationBarTop() {
   const location = useLocation();
   // console.log(location)
-  
-   // 새로고침 함수
+
+  // 새로고침 함수
   const handleRefresh = () => {
     sessionStorage.removeItem('userWeather'); // 세션 스토리지 데이터 제거
     sessionStorage.removeItem('myPlace');
-    if(location.pathname === "/main"){
+    if (location.pathname === '/main') {
       window.location.reload(); // 페이지 새로고침
     }
   };
   return (
     <>
+      {/* 반응형 헤더 */}
+      <div className="w-full flex gap-2 items-center justify-center h-16 bg-slate-100 border-b-2 fixed top-0 z-50 shadow-inner md:hidden">
+        <Link
+          to="/main"
+          className="text-4xl text-amber-300 font-extrabold font-UhBeeKang-Ja"
+        >
+          <button className="w-14 h-full opacity-60 md:hidden">
+            <img src="/weatherMateLogo.svg" alt="weatherMateLogo" />
+          </button>
+          WeatherMate
+        </Link>
+      </div>
+
       <div className="w-full text-white h-16 items-center justify-between bg-[#d1ebff] sticky top-0 z-30 shadow-inner hidden md:flex md:px-20 lg:px-56 xl:px-60">
         <Link to="/main">
           <img
@@ -27,7 +40,9 @@ function NavigationBarTop() {
           <Link
             to="/main"
             className={`grow hover:text-[#2F4156] hover:-translate-y-1 transition-all duration-200 ${
-              location.pathname === '/main' ? 'text-[#2F4156] border-2 rounded-2xl font-extrabold border-[#567CBD] bg-white' : 'text-[#567CBD] font-semibold'
+              location.pathname === '/main'
+                ? 'text-[#2F4156] border-2 rounded-2xl font-extrabold border-[#567CBD] bg-white'
+                : 'text-[#567CBD] font-semibold'
             }`}
           >
             <p className="text-nowrap">홈</p>
@@ -36,7 +51,9 @@ function NavigationBarTop() {
           <Link
             to="/community"
             className={`grow hover:text-[#2F4156] hover:-translate-y-1 transition-all duration-200 ${
-              location.pathname === '/community' ? 'text-[#2F4156] border-2 rounded-2xl font-extrabold border-[#567CBD] bg-white' : 'text-[#567CBD] font-semibold'
+              location.pathname === '/community'
+                ? 'text-[#2F4156] border-2 rounded-2xl font-extrabold border-[#567CBD] bg-white'
+                : 'text-[#567CBD] font-semibold'
             }`}
           >
             <p className="text-nowrap">커뮤니티</p>
@@ -45,7 +62,9 @@ function NavigationBarTop() {
           <Link
             to="/location"
             className={`grow hover:text-[#2F4156] hover:-translate-y-1 transition-all duration-200 ${
-              location.pathname === '/location' ? 'text-[#2F4156] border-2 rounded-2xl font-extrabold border-[#567CBD] bg-white' : 'text-[#567CBD] font-semibold'
+              location.pathname === '/location'
+                ? 'text-[#2F4156] border-2 rounded-2xl font-extrabold border-[#567CBD] bg-white'
+                : 'text-[#567CBD] font-semibold'
             }`}
           >
             <p className="text-nowrap">장소추천</p>
@@ -54,7 +73,9 @@ function NavigationBarTop() {
           <Link
             to="/user/mypage"
             className={`grow hover:text-[#2F4156] hover:-translate-y-1 transition-all duration-200 ${
-              location.pathname === '/user/mypage' ? 'text-[#2F4156] border-2 rounded-2xl font-extrabold border-[#567CBD] bg-white' : 'text-[#567CBD] font-semibold'
+              location.pathname === '/user/mypage'
+                ? 'text-[#2F4156] border-2 rounded-2xl font-extrabold border-[#567CBD] bg-white'
+                : 'text-[#567CBD] font-semibold'
             }`}
           >
             <p className="text-nowrap">마이페이지</p>
