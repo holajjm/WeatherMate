@@ -17,32 +17,24 @@ import { useState } from 'react';
 function MainWeather() {
   const user = useRecoilState(memberState);
   console.log(user);
-  
+
   const [childData, setChildData] = useState('');
-  const handleChildData = (data) => {
+  const handleChildData = data => {
     setChildData(data);
-  }
+  };
   return (
     <div className="">
-      {childData || user && user[0].name ? 
-        null
-        : <MainLogin onDataChange={handleChildData}/>
-      }
-      <div className="font-sans overflow-hidden px-48 lg:px-56 xl:px-60 flex flex-col flex-nowrap gap-4">
-
-        <div className="flex gap-4">
-          <TodaysComent />
-          <MyLocationWeather />
-        </div>
-
-        <div className="flex flex-col gap-4">
+      {childData || (user && user[0].name) ? null : (
+        <MainLogin onDataChange={handleChildData} />
+      )}
+      <div className="flex flex-col gap-4 font-sans overflow-hidden px-20 pt-24 pb-8 md:py-8 md:px-48 lg:px-56  xl:px-60 lg:grid lg:grid-cols-2 min-w-[375px]">
+        <TodaysComent />
+        <MyLocationWeather />
+        <div className="xl:col-span-2">
           <WeatherByTimeZone />
-          <div className="flex gap-4">
-            <RecommendationPreview />
-            <PreviewMbti />
-          </div>
         </div>
-        
+        <RecommendationPreview />
+        <PreviewMbti />
         <ToTheTopButton />
       </div>
     </div>
