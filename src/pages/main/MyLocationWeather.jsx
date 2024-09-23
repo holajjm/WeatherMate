@@ -94,7 +94,7 @@ const MyLocationWeather = () => {
   };
 
   return (
-    <div className="flex-grow border-2 rounded-2xl shadow-md shadow-violet-200/100 border-violet-200">
+    <div className="rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300 h-full">
       {loading ? (
         <Loading />
       ) : (

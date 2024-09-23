@@ -8,7 +8,7 @@ function PreviewMbti() {
   };
 
   return (
-    <div className="border-2 rounded-2xl shadow-md shadow-violet-200/100 border-violet-200 flex-grow">
+    <div className="p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300 h-full">
       <h1 className="font-bold text-xl">🌤️날씨 성격 테스트</h1>
       <p>나의 성격은 어느 날씨와 어울릴까요? <br/> 날씨 성향 테스트를 통해 알아보세요!</p>
       <button
