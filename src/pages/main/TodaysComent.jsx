@@ -4,7 +4,7 @@ import dummyData from '../../assets/WeatherData';
 import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { Link } from 'react-router-dom';
-import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
+// import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 
 /** 날씨에 따른 의상 추천 & 이미지 보여주기 */
 function TodaysComent() {
@@ -64,8 +64,7 @@ function TodaysComent() {
   // 메인화면 애니메이션
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power1.out' } });
-    tl.from('.comment-text', { opacity: 0, x: -100, duration: 1 });
-    tl.from('.comment-text2', { opacity: 0, x: 100, duration: 1 });
+    tl.from('.fade-in-from-down', { opacity: 0, y: 200, duration: 1 });
     return () => {
       // Clean up animations
       tl.kill();
@@ -76,33 +75,36 @@ function TodaysComent() {
   const fileName = imagePath; // 경로에서 파일 이름 추출
 
   return (
-    <div className="font-sans border-2 rounded-2xl shadow-md shadow-violet-200/100 border-violet-200 flex-grow ">
-      <div className="">
-        <div className="flex flex-col">
-          {/* user name 받아와 저장해야합니다 */}
-          <div className="text-primary text-2xl">
-            {sessionData &&
-            sessionData.useState &&
-            sessionData.useState.name
-              ? `환영합니다! ${sessionData.useState.name} 메이트님!`
-              : '로그인해주세요.'}
+    <div className="font-sans p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300 h-full text-lg md:text-2xl fade-in-from-down">
+      <div className="flex flex-col items-center gap-2">
+        {/* user name 받아와 저장 */}
+        <div className="text-[#80c8ff] font-semibold text-wrap">
+          {sessionData && sessionData.useState && sessionData.useState.name ? (
+            <h1>
+              {sessionData.useState.name} 메이트님, 환영합니다.
+              <br /> WeatherMate입니다.
+            </h1>
+          ) : (
+            '로그인해주세요.'
+          )}
+        </div>
+        <div className="flex">
+          <div className="flex flex-col gap-2">
+            <div className="border-2 grow rounded-md text-lg font-semibold shadow-[inset_0px_2px_10px_rgba(255,255,255,0.5)] shadow-slate-400 p-2">
+              <p className="text-center">- 오늘의 Comment -</p>
+              <h3>{recomendClothes}</h3>
+            </div>
+            <Link
+              to="/allcity"
+              className="flex justify-center items-center text-base font-semibold text-white bg-indigo-500 h-10 text-pretty rounded-lg p-1 hover:bg-indigo-700 hover:shadow-[0_5px_30px_4px] hover:shadow-slate-400 duration-200 transition-all"
+            >
+              <p className="">전국날씨 보러가기</p>
+              {/* <MdOutlineKeyboardArrowRight /> */}
+            </Link>
           </div>
-          {/*p태그 gsap 애니메이션 comment-text  */}
-          <p className="truncate w-full text-2xl font-semibold whitespace-pre-line">
-            {recomendClothes}
-          </p>
-          <Link to="/allcity" className="flex">
-            <p className='bg-indigo-100'>전국날씨</p>
-            <MdOutlineKeyboardArrowRight />
-          </Link>
+          <img src={fileName} alt="main-img" className="w-[200px]" />
         </div>
       </div>
-      <img
-        src={fileName}
-        alt="main-img"
-        className="w-[200px] "
-      />
-      {/* 이미지 gsap 애니메이션 comment-text2 */}
     </div>
   );
 }
