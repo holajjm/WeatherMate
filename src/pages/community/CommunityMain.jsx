@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import CommunityItem from './CommunityItem';
@@ -7,10 +7,17 @@ import Search from '@components/layout/Search';
 import ToTheTopButton from '@components/layout/ToTheTopButton';
 import CommunityPopularItem from '@pages/community/CommunityPopularItem';
 import DetailPageHeader from '@components/layout/DetailPageHeader';
+import MainLogin from '@pages/user/MainLogin';
+import { useRecoilState } from 'recoil';
+import { memberState } from '@recoil/atom.mjs';
 
 function CommunityMain() {
   const axios = useCustomAxios();
   const [searchParams, setSearchParams] = useSearchParams();
+  const user = useRecoilState(memberState);
+  console.log(user);
+  
+
   const page = searchParams.get('page');
   // console.log(page)
   // console.log(searchParams)
@@ -45,26 +52,34 @@ function CommunityMain() {
   ));
 
   // console.log(data.item);
-
+  const [childData, setChildData] = useState('');
+  const handleChildData = data => {
+    setChildData(data);
+  };
   return (
-    <div className="min-h-screen min-w-96 p-5 md:px-48 xl:px-60">
-      <div className="box-border md:hidden">
-        <DetailPageHeader title={'커뮤니티'} />
-      </div>
-      <CommunityPopularItem data={data} />
-      <div className="flex items-center py-3 gap-3 xl:justify-between">
-        <div className="grow xl:grow-0 2xl:w-96">
-          <Search onClick={handleSearch}></Search>
+    <>
+      {user && !user[0]?.name ? <MainLogin onDataChange={handleChildData} /> : (
+        <div className="min-h-screen min-w-96 p-5 md:px-48 xl:px-60">
+        <div className="box-border md:hidden">
+          <DetailPageHeader title={'커뮤니티'} />
         </div>
-        
+        <CommunityPopularItem data={data} />
+        <div className="flex items-center py-3 gap-3 xl:justify-between">
+          <div className="grow xl:grow-0 2xl:w-96">
+            <Search onClick={handleSearch}></Search>
+          </div>
+          
+        </div>
+        <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
+          {isLoading && <p colSpan="5">로딩중...</p>}
+          {isError && <p colSpan="5">{isError.message}</p>}
+          {itemList}
+        </div>
+        <ToTheTopButton />
       </div>
-      <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-        {isLoading && <p colSpan="5">로딩중...</p>}
-        {isError && <p colSpan="5">{isError.message}</p>}
-        {itemList}
-      </div>
-      <ToTheTopButton />
-    </div>
+      )}
+    </>
+    
   );
 }
 
