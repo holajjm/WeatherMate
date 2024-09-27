@@ -50,7 +50,7 @@ function TodaysComent() {
   }, [userWeather]);
 
   useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: 'power1.out' } });
+    const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
     tl.from('.fade-in-from-NS', { opacity: 0, y: 200, duration: 1 });
     return () => {
       tl.kill();
@@ -61,7 +61,7 @@ function TodaysComent() {
   const fileName = imagePath; 
 
   return (
-    <div className="font-sans p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300 h-full text-lg md:text-2xl fade-in-from-NS">
+    <div className="bg-white border-4 border-violet-200 font-sans p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200 h-full text-lg md:text-2xl fade-in-from-NS">
       <div className="flex flex-col items-center gap-2">
         <div className="text-[#80c8ff] font-semibold text-wrap">
           {sessionData && sessionData.useState && sessionData.useState.name ? (
@@ -75,9 +75,10 @@ function TodaysComent() {
         </div>
         <div className="flex">
           <div className="flex flex-col gap-2">
-            <div className="border-2 grow rounded-md text-lg font-semibold shadow-[inset_0px_2px_10px_rgba(255,255,255,0.5)] shadow-slate-400 p-2">
-              <p className="text-center">- 오늘의 Comment -</p>
-              <h3>{recomendClothes}</h3>
+            <div className="flex flex-col gap-2 grow rounded-xl text-lg font-semibold border-4 border-indigo-200 shadow-[inset_0px_2px_30px_rgba(255,255,255,0.5)] shadow-blue-300 p-2">
+              <p className="text-center text-xl">- 오늘의 Comment -</p>
+              <hr className='border-[1px] border-slate-300'/>
+              <p>{recomendClothes}</p>
             </div>
             <Link
               to="/allcity"
