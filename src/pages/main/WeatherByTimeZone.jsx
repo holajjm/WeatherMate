@@ -48,7 +48,7 @@ function WeatherByTimeZone() {
 
   useEffect(() => {
     const tl = gsap.timeline({defaults: {ease: 'power2.out'}});
-    tl.from('.fade-in',{opacity: 0,y: 200, duration:3});
+    tl.from('.fade-in',{opacity: 0,y: 200, duration:2});
     return () => {
       tl.kill();
     }
@@ -82,10 +82,10 @@ function WeatherByTimeZone() {
   
 
   return (
-    <div className="fade-in p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300 flex items-center justify-center gap-5 sm:gap-3 overflow-x-scroll scrollbar-hide">
+    <div className="bg-white border-4 border-violet-200 fade-in p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200 flex items-center justify-center gap-5 sm:gap-3 overflow-x-scroll scrollbar-hide">
       {memoizedWeatherData.list.map(item => (
         <div key={item.dt} className="flex items-center justify-center">
-          <div className="w-16 bg-white border-[1.2px] border-slate-200 h-28 rounded-xl sm:w-14 flex justify-center items-center shadow-sm">
+          <div className="w-16 bg-white border-2 border-slate-200 h-28 rounded-xl sm:w-14 flex justify-center items-center shadow-sm">
             <div className="flex-col justify-center items-center">
               <div className="text-xs text-center text-slate-600">
                 {unixToHumanTime(item.dt)}
