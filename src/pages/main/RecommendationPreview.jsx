@@ -57,18 +57,18 @@ function RecommendationPreview() {
 
   useEffect(() => {
     const tl = gsap.timeline({defaults: {ease: 'power2.out'}});
-    tl.from('.fade-in-from-SW',{opacity: 0, y: 200, duration: 4});
+    tl.from('.fade-in-from-SW',{opacity: 0, y: 200, duration: 2.5});
     return () => {
       tl.kill();
     }
   },[])
 
   return (
-    <div className="p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300 fade-in-from-SW">
+    <div className="bg-white border-4 border-violet-200 p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200 fade-in-from-SW">
       <div className="flex flex-col gap-4">
-        <div className="flex ">
-          <strong className="text-primary">웨더메이트</strong>가 추천하는 장소
-          <Link to="/location" className="ml-5 text-gray-400 hover:text-black">
+        <div className="flex justify-center gap-4 font-bold">
+          <h1 className="text-xl text-primary">웨더메이트</h1>가 추천하는 장소
+          <Link to="/location" className="text-base font-semibold text-white bg-indigo-500 h-10 text-pretty rounded-lg p-1 hover:bg-indigo-700 hover:shadow-[0_5px_30px_4px] hover:shadow-slate-400 duration-200 transition-all">
             보러가기
           </Link>
         </div>
