@@ -12,7 +12,7 @@ function NavigationBarBottom() {
         <Link
           to="/main"
           className={`flex flex-col items-center  px-2 hover:text-[#567CBD] ${
-            location.pathname === '/main' ? 'text-[#567CBD] font-bold' : 'text-[#bac7ce]'
+            location.pathname === '/main' || location.pathname === '/' ? 'text-[#567CBD] font-bold' : 'text-[#bac7ce]'
           }`}
         >
           <GoHomeFill className="text-2xl mb-1" />

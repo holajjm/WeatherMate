@@ -8,7 +8,7 @@ function NavigationBarTop() {
   const handleRefresh = () => {
     sessionStorage.removeItem('userWeather'); // 세션 스토리지 데이터 제거
     sessionStorage.removeItem('myPlace');
-    if (location.pathname === '/main') {
+    if (location.pathname === '/') {
       window.location.reload(); // 페이지 새로고침
     }
   };
@@ -26,9 +26,9 @@ function NavigationBarTop() {
           WeatherMate
         </Link>
       </div>
-
+      {/* ------------------------------- */}
       <div className="w-full text-white h-16 items-center justify-between bg-[#d1ebff] sticky top-0 z-30 shadow-inner hidden md:flex md:px-20 lg:px-56 xl:px-60">
-        <Link to="/main">
+        <Link to="/">
           <img
             src="/weatherMateLogo.svg"
             alt="weathermate logo"
@@ -40,7 +40,7 @@ function NavigationBarTop() {
           <Link
             to="/main"
             className={`grow hover:text-[#2F4156] hover:-translate-y-1 transition-all duration-200 ${
-              location.pathname === '/main'
+              location.pathname === '/' || location.pathname === '/main'
                 ? 'text-[#2F4156] border-2 rounded-2xl font-extrabold border-[#567CBD] bg-white'
                 : 'text-[#567CBD] font-semibold'
             }`}
