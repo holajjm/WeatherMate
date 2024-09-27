@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { userWeatherState } from '../../recoil/atom.mjs';
-// import dummyData from '../../assets/WeatherData';
 import Loading from '../../components/layout/Loading';
 import WeatherDetail from '@pages/main/weatherDetail';
 import gsap from 'gsap';
-// import WeatherByTimeZone from './WeatherByTimeZone';
 
 const MyLocationWeather = () => {
   const [myPlace, setMyPlace] = useState('');
@@ -16,14 +14,13 @@ const MyLocationWeather = () => {
   // const [recommendationImage, setRecommendationImage] = useState(null);
 
   useEffect(() => {
-    // 세션 스토리지에서 데이터 가져오기
     const sessionData = sessionStorage.getItem('userWeather');
     if (sessionData) {
       setUserWeather(JSON.parse(sessionData));
-      setMyPlace(sessionStorage.getItem('myPlace')); // 세션 스토리지에서 myPlace 가져오기
+      setMyPlace(sessionStorage.getItem('myPlace')); 
       setLoading(false);
     } else {
-      getUserWeather(); // 세션에 데이터가 없으면 API 호출
+      getUserWeather();
     }
   }, []);
 
@@ -40,9 +37,8 @@ const MyLocationWeather = () => {
           setUserWeather(response.data);
           setMyPlace(response.data.name);
           setLoading(false);
-          // 세션 스토리지에 데이터 저장
           sessionStorage.setItem('userWeather', JSON.stringify(response.data));
-          sessionStorage.setItem('myPlace', response.data.name); // myPlace 저장
+          sessionStorage.setItem('myPlace', response.data.name);
         } catch (error) {
           console.error(
             '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
@@ -64,8 +60,7 @@ const MyLocationWeather = () => {
     Thunderstorm: '/thunderStorm.svg',
     Snow: '/mainSnow.svg',
     Mist: '/Mist.svg',
-    'overcast clouds': '/sun.svg',
-    // 추가적인 날씨 종류에 따른 매핑 추가 가능
+    overcastClouds: '/sun.svg',
   };
 
   // userWeather가 존재하고, userWeather.weather 배열의 첫 번째 요소의 description이 있는 경우에만 이미지 경로를 설정
@@ -95,25 +90,25 @@ const MyLocationWeather = () => {
   };
 
   useEffect(() => {
-    const tl = gsap.timeline({defaults: {ease: 'power1.out'}});
-    tl.from('.fade-in-from-NE',{opacity: 0, y: 200, duration: 2});
+    const tl = gsap.timeline({defaults: {ease: 'power2.out'}});
+    tl.from('.fade-in-from-NE',{opacity: 0, y: 200, duration: 1.5});
     return () => {
       tl.kill();
     }
   },[])
 
   return (
-    <div className="rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-300 h-full fade-in-from-NE">
+    <div className="bg-white border-4 border-violet-200 rounded-2xl p-4 shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200 h-full fade-in-from-NE">
       {loading ? (
         <Loading />
       ) : (
-        <div className='flex flex-col items-center relative'>
+        <div className='flex flex-col items-center justify-between relative h-full'>
           {userWeather && (
             <>
               <img
                 src={imagePath}
-                alt="weather svg "
-                className="absolute -z-10 opacity-80"
+                alt="weather"
+                className="max-w-[80%] max-h-[80%] absolute -z-10 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 opacity-60"
               />
               <div className="text-5xl font-bold text-center">
                 <h2 className="text-xl font-bold">{myPlace}</h2>
@@ -146,16 +141,3 @@ const MyLocationWeather = () => {
   );
 };
 export default React.memo(MyLocationWeather);
-
-{
-  /* <div className="bg-white w-[77px] h-[88px] flex flex-col items-center  justify-center shadow-lg rounded-lg">
-                  <img src="humidity.svg" className="w-[31px] " />
-                  <p className="text-[#00179C] font-medium">최고온도</p>
-                  <p>{(detailWeather.main.temp_max - 269.15).toFixed(1)}°C</p>
-                </div>
-                <div className="bg-white w-[77px] h-[88px] flex flex-col items-center  justify-center shadow-lg rounded-lg">
-                  <img src="humidity.svg" className="w-[31px] " />
-                  <p className="text-[#00179C] font-medium">최저온도</p>
-                  <p>{(detailWeather.main.temp_min - 269.15).toFixed(1)}°C</p>
-                </div> */
-}
