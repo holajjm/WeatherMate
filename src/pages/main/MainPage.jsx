@@ -7,14 +7,18 @@ import ToTheTopButton from '@components/layout/ToTheTopButton';
 
 function MainWeather() {
   return (
-    <div className="bg-gray-100 flex flex-col gap-4 font-sans overflow-hidden px-20 pt-24 pb-8 md:py-8 md:px-48 lg:px-56  xl:px-60 lg:grid lg:grid-cols-2 min-w-[375px] ">
-      <TodaysComent />
-      <MyLocationWeather />
-      <div className="xl:col-span-2">
+    <div className="bg-gray-100 xl:h-screen h-full flex flex-col gap-4 font-sans overflow-y-scroll px-20 pt-24 pb-8 md:py-8 lg:px-48 xl:px-56 2xl:px-60 min-w-[375px] ">
+      <div className='flex flex-col h-full xl:flex-row gap-4'>
+        <TodaysComent />
+        <MyLocationWeather />
+      </div>
+      <div className=''>
         <WeatherByTimeZone />
       </div>
-      <RecommendationPreview />
-      <PreviewMbti />
+      <div className='flex flex-col xl:flex-row gap-4 h-full'>
+        <RecommendationPreview />
+        <PreviewMbti />
+      </div>
       <ToTheTopButton />
     </div>
   );

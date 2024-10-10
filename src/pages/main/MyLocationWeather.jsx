@@ -98,7 +98,7 @@ const MyLocationWeather = () => {
   },[])
 
   return (
-    <div className="bg-white border-4 border-violet-200 rounded-2xl p-4 shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200 h-full fade-in-from-NE">
+    <div className="grow bg-white border-4 border-violet-200 rounded-2xl p-4 shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200  fade-in-from-NE">
       {loading ? (
         <Loading />
       ) : (

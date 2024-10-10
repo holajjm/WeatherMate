@@ -64,7 +64,7 @@ function RecommendationPreview() {
   },[])
 
   return (
-    <div className="bg-white border-4 border-violet-200 p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200 fade-in-from-SW">
+    <div className="grow bg-white border-4 border-violet-200 p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200 fade-in-from-SW">
       <div className="flex flex-col gap-4">
         <div className="flex justify-center gap-4 font-bold">
           <h1 className="text-xl text-primary">웨더메이트</h1>가 추천하는 장소
