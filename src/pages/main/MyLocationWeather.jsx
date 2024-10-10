@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { userWeatherState } from '../../recoil/atom.mjs';
 import Loading from '../../components/layout/Loading';
 import WeatherDetail from '@pages/main/weatherDetail';
-import gsap from 'gsap';
+// import gsap from 'gsap';
 
 const MyLocationWeather = () => {
   const [myPlace, setMyPlace] = useState('');
@@ -89,16 +89,16 @@ const MyLocationWeather = () => {
     return `${hour}${minutes} ${ampm}`;
   };
 
-  useEffect(() => {
-    const tl = gsap.timeline({defaults: {ease: 'power2.out'}});
-    tl.from('.fade-in-from-NE',{opacity: 0, y: 200, duration: 1.5});
-    return () => {
-      tl.kill();
-    }
-  },[])
+  // useEffect(() => {
+  //   const tl = gsap.timeline({defaults: {ease: 'power2.out'}});
+  //   tl.from('.fade-in',{opacity: 0, y: 200, duration: 1.5});
+  //   return () => {
+  //     tl.kill();
+  //   }
+  // },[])
 
   return (
-    <div className="grow bg-white border-4 border-violet-200 rounded-2xl p-4 shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200  fade-in-from-NE">
+    <div className="grow bg-white border-4 border-violet-200 rounded-2xl p-4 shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200  fade-in">
       {loading ? (
         <Loading />
       ) : (
