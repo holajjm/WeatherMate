@@ -2,8 +2,8 @@ import TodaysComent from './TodaysComent';
 import MyLocationWeather from './MyLocationWeather';
 import WeatherByTimeZone from './WeatherByTimeZone';
 import RecommendationPreview from './RecommendationPreview';
-import PreviewMbti from './PreviewMbti';
 import ToTheTopButton from '@components/layout/ToTheTopButton';
+import RecommendationCommunity from '@pages/main/RecommendationCommunity';
 
 function MainWeather() {
   return (
@@ -17,7 +17,7 @@ function MainWeather() {
       </div>
       <div className='flex flex-col xl:flex-row gap-4 h-full'>
         <RecommendationPreview />
-        <PreviewMbti />
+        <RecommendationCommunity />
       </div>
       <ToTheTopButton />
     </div>
