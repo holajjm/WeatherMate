@@ -11,8 +11,6 @@ const MyLocationWeather = () => {
   const [userWeather, setUserWeather] = useRecoilState(userWeatherState);
   const [loading, setLoading] = useState(true);
 
-  // const [recommendationImage, setRecommendationImage] = useState(null);
-
   useEffect(() => {
     const sessionData = sessionStorage.getItem('userWeather');
     if (sessionData) {
@@ -51,7 +49,6 @@ const MyLocationWeather = () => {
   };
   // console.log('mylocationWeather:', userWeather);
   const defaultImgPath = '/01.svg'; // 디폴트 이미지 경로
-
   const weatherImageMapping = {
     Clear: '/uvi.svg',
     Clouds: '/manyClouds.svg',
@@ -70,10 +67,8 @@ const MyLocationWeather = () => {
       !userWeather.weather ||
       userWeather.weather.length === 0
     )
-      return defaultImgPath; // userWeather나 userWeather.weather가 없으면 기본 이미지 반환
-
+    return defaultImgPath; // userWeather나 userWeather.weather가 없으면 기본 이미지 반환
     const englishDescription = userWeather.weather[0].main; // 영어로된 날씨 설명 가져오기
-
     // 영어로 된 날씨 설명에 해당하는 이미지 경로 반환
     return weatherImageMapping[englishDescription] || defaultImgPath;
   };
@@ -98,18 +93,13 @@ const MyLocationWeather = () => {
   // },[])
 
   return (
-    <div className="grow bg-white border-4 border-violet-200 rounded-2xl p-4 shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200  fade-in">
+    <div  className="grow bg-white border-4 border-violet-200 rounded-2xl p-4 shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200  fade-in">
       {loading ? (
         <Loading />
       ) : (
-        <div className='flex flex-col items-center justify-between relative h-full'>
+        <div style={{backgroundImage: `url(${imagePath})`}} className='flex flex-col items-center justify-between relative h-full bg-contain bg-center bg-no-repeat'>
           {userWeather && (
             <>
-              <img
-                src={imagePath}
-                alt="weather"
-                className="max-w-[80%] max-h-[80%] absolute -z-10 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 opacity-60"
-              />
               <div className="text-5xl font-bold text-center">
                 <h2 className="text-xl font-bold">{myPlace}</h2>
                 {(userWeather.main.temp - 273.15).toFixed(1)}°C
