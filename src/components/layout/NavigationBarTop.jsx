@@ -1,7 +1,16 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { memberState } from '@recoil/atom.mjs';
 
 function NavigationBarTop() {
   const location = useLocation();
+  const [user, setUser] = useRecoilState(memberState);
+  const handleLogout = () => {
+    window.location.reload();
+    setUser(null);
+  };
+
+  // console.log(user);
   // console.log(location)
 
   // 새로고침 함수
@@ -25,9 +34,16 @@ function NavigationBarTop() {
           </button>
           WeatherMate
         </Link>
+        {user ? (
+            <p className="text-slate-400 cursor-pointer hover:text-red-500 hover:font-semibold" onClick={handleLogout}> 로그아웃</p>
+          ) : (
+            <Link to="/mainlogin" className="text-black">
+              로그인
+            </Link>
+          )}
       </div>
       {/* ------------------------------- */}
-      <div className="w-full text-white h-16 items-center justify-between bg-[#d1ebff] sticky top-0 z-30 shadow-inner hidden md:flex md:px-20 lg:px-56 xl:px-60">
+      <div className="w-full text-white h-16 items-center justify-between bg-[#d1ebff] sticky top-0 z-30 shadow-inner hidden md:flex md:px-20 xl:px-60">
         <Link to="/">
           <img
             src="/weatherMateLogo.svg"
@@ -36,7 +52,15 @@ function NavigationBarTop() {
             onClick={handleRefresh}
           />
         </Link>
-        <div className="flex text-center gap-4 py-2 w-1/2 h-full leading-[48px]">
+        <div className="flex text-center gap-4 py-2 w-2/3 2xl:w-1/2 3xl:w-1/3 h-full leading-[48px]">
+          {user ? (
+            <p className="text-slate-400 cursor-pointer hover:text-red-500 hover:font-semibold" onClick={handleLogout}> 로그아웃</p>
+          ) : (
+            <Link to="/mainlogin" className="grow text-black">
+              로그인
+            </Link>
+          )}
+
           <Link
             to="/main"
             className={`grow hover:text-[#2F4156] hover:-translate-y-1 transition-all duration-200 ${
@@ -45,9 +69,8 @@ function NavigationBarTop() {
                 : 'text-[#567CBD] font-semibold'
             }`}
           >
-            <p className="text-nowrap">홈</p>
+            홈
           </Link>
-
           <Link
             to="/community"
             className={`grow hover:text-[#2F4156] hover:-translate-y-1 transition-all duration-200 ${
@@ -56,9 +79,8 @@ function NavigationBarTop() {
                 : 'text-[#567CBD] font-semibold'
             }`}
           >
-            <p className="text-nowrap">커뮤니티</p>
+            커뮤니티
           </Link>
-
           <Link
             to="/location"
             className={`grow hover:text-[#2F4156] hover:-translate-y-1 transition-all duration-200 ${
@@ -67,9 +89,8 @@ function NavigationBarTop() {
                 : 'text-[#567CBD] font-semibold'
             }`}
           >
-            <p className="text-nowrap">장소추천</p>
+            장소추천
           </Link>
-
           <Link
             to="/user/mypage"
             className={`grow hover:text-[#2F4156] hover:-translate-y-1 transition-all duration-200 ${
@@ -78,7 +99,7 @@ function NavigationBarTop() {
                 : 'text-[#567CBD] font-semibold'
             }`}
           >
-            <p className="text-nowrap">마이페이지</p>
+            마이페이지
           </Link>
         </div>
       </div>
