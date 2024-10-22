@@ -49,19 +49,18 @@ function AllCitiesWeather() {
       floatTl.kill();
     };
   })
-
   return (
-    <div className='flex flex-col gap-4 pt-4 pb-8 mt-16 px-20 sm:px-40 md:px-48 md:mt-0 lg:px-56 xl:px-60'>
+    <div className='bg-gray-100 xl:h-screen h-full flex flex-col gap-4 xl:gap-8 font-sans overflow-y-scroll scrollbar-hide p-8 md:px-20 xl:px-56 2xl:px-60 min-w-[375px]'>
       <div className="flex items-center">
-        <div className=" text-xl text-nowrap md:text-2xl font-bold flex-grow flex justify-center items-center flex-row">
-          <div className='text-center text-xl md:text-2xl md:flex '>
-            <p>WeathreMate의 전국날씨</p>
-            <p>({new Date().toLocaleString().slice(13,20)} 기준)</p>
+        <div className="text-xl text-nowrap md:text-2xl xl:text-3xl font-bold flex-grow flex justify-center items-center flex-row">
+          <div className='text-center md:flex font-Ranchers'>
+            <p><strong className="text-amber-400">WeatherMate</strong>의 전국날씨</p>
+            <p>({new Date().toLocaleString().slice(13,21)} 기준)</p>
           </div>
-          <img src="clothes-m-2.svg" className="w-20 mb-2 hidden aniFloat md:inline" />
+          <img src="clothes-m-2.svg" className="w-20 xl:w-28 mb-2 hidden aniFloat md:inline" />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-6">
         {data?.length > 0 && (
           <>
             {data.map(item => {
@@ -70,21 +69,21 @@ function AllCitiesWeather() {
               return (
                 <div
                   key={item.id}
-                  className="bg-[#fffdea] p-2 md:p-4 rounded-md shadow-lg shadow-[#b8b4ae] justify-center items-center border-[#ffe3b8] border-2"
+                  className="bg-amber-100 p-4 rounded-md shadow-xl shadow-[#b8b4ae] justify-center items-center border-amber-300 border-2"
                 >
                   <div className="text-center">
                     <h2 className="text-md font-bold">{cityName}</h2>
-                    <p className="text-3xl">{String(item.main.temp).slice(0,2)}°C</p>
+                    <p className="text-3xl font-bold">{String(item.main.temp).slice(0,2)}°C</p>
                     <div className='flex gap-2 items-center justify-center'>
                       <img src={iconURL} alt="Weather Icon" className="" />
-                      <p className="text-sm font-bold">{item.weather[0].description}</p>
+                      <p className="text-md font-bold">{item.weather[0].description}</p>
                     </div>
                     <div className='flex gap-2'>
                       <div className='rounded-md py-2 border border-b-slate-400 shadow-md shadow-slate-400 flex-grow text-nowrap'>
-                        <p className="text-[14px]">최고 :{String(item.main.temp_max).slice(0,4)}°C</p>
+                        <p className="text-md">최고 :{String(item.main.temp_max).slice(0,4)}°C</p>
                       </div>
                       <div className='rounded-md py-2 border border-b-slate-400 shadow-md shadow-slate-400 flex-grow text-nowrap'>
-                        <p className="text-[14px]">최저 :{String(item.main.temp_min).slice(0,4)}°C</p>
+                        <p className="text-md">최저 :{String(item.main.temp_min).slice(0,4)}°C</p>
                       </div>
                     </div>
                   </div>
