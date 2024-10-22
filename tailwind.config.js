@@ -7,9 +7,11 @@ export default {
       fontFamily: {
         sans: ['Noto Sans', 'sans-serif'],
         Ainmom: ['Ainmom', 'sans-serif'],
-        'UhBeeKang-Ja': ['UhBeeKang-Ja', 'sans-serif'],
+        UhBeeKangJa: ['UhBeeKang-Ja', 'sans-serif'],
         TTLaundryGothicB: ['TTLaundryGothicB', 'sans-serif'],
         KOTRAHOPE: ['KOTRAHOPE', 'sans-serif'],
+        RubikBubbles: ['Rubik Bubbles','sans-serif'],
+        Ranchers: ['Ranchers','sans-serif'],
       },
       colors: {
         'my-color': '#00FF7F',
@@ -27,6 +29,9 @@ export default {
         kakao: '#FEE500',
         'kakao-lable': '#191919',
       },
+      screens: {
+        '3xl': "1920px"
+      }
     },
   },
   plugins: [require('tailwind-scrollbar-hide')],
