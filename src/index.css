@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ranchers&family=Rubik+Bubbles&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -31,5 +34,3 @@
   font-weight: 700;
   font-style: normal;
 }
-
-
