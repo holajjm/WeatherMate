@@ -16,7 +16,7 @@ import LocationDetailPage from './pages/location/LocationDetailPage';
 import LocationMainPage from './pages/location/LocationMainPage';
 import Setting from './pages/user/Setting';
 import ReplyList from './pages/community/ReplyList';
-// import MainLogin from '@pages/user/MainLogin';
+import MainLogin from '@pages/user/MainLogin';
 import UserEdit from '@pages/user/UserEdit';
 import Edit from '@pages/user/Edit';
 import AllCitiesWeather from '@pages/main/AllCitiesWeather';
@@ -38,12 +38,10 @@ const router = createBrowserRouter([
           {
             path: 'main',
             element: <MainPage />,
-            // children: [
-            //   {
-            //     index: true,
-            //     element: <MainLogin />
-            //   }
-            // ]
+          },
+          {
+            path: "mainlogin",
+            element: <MainLogin />
           },
           {
             path: 'allcity',
