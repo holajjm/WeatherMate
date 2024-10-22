@@ -80,7 +80,7 @@ function WeatherByTimeZone() {
   }
 
   return (
-    <div className="bg-white border-4 border-violet-200 fade-in p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200 flex items-center justify-center gap-5 sm:gap-3 overflow-x-scroll">
+    <div className="w-full bg-white border-4 border-violet-200 fade-in p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200 flex items-center justify-center gap-5 sm:gap-3 overflow-x-scroll">
       {memoizedWeatherData.list.map(item => (
         <div key={item.dt} className="flex items-center justify-center">
           <div className="w-16 bg-white border-2 border-slate-200 h-28 rounded-xl sm:w-14 flex justify-center items-center shadow-sm">
