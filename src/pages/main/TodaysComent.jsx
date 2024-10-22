@@ -82,7 +82,7 @@ function TodaysComent() {
             </div>
             <PreviewMbti />
           </div>
-          <img src={fileName} alt="main-img" className="hidden sm:inline sm:w-[200px] 2xl:w-60" />
+          <img src={fileName} alt="main-img" className="hidden sm:inline sm:w-[200px] xl:w-40 2xl:w-60" />
         </div>
       </div>
     </div>
