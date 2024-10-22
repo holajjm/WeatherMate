@@ -24,10 +24,10 @@ function NavigationBarTop() {
   return (
     <>
       {/* 반응형 헤더 */}
-      <div className="w-full flex gap-2 items-center justify-center h-16 bg-slate-100 border-b-2 fixed top-0 z-50 shadow-inner md:hidden">
+      <div className="w-full flex gap-2 items-center justify-center h-16 bg-slate-100 border-b-2 sticky top-0 z-30 shadow-inner md:hidden">
         <Link
           to="/main"
-          className="text-4xl text-amber-300 font-extrabold font-UhBeeKang-Ja"
+          className="text-4xl text-amber-300 font-extrabold font-UhBeeKangJa"
         >
           <button className="w-14 h-full opacity-60 md:hidden">
             <img src="/weatherMateLogo.svg" alt="weatherMateLogo" />
