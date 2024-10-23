@@ -1,27 +1,21 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
-import gsap from 'gsap';
+// import gsap from 'gsap';
 
 const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
 
 function WeatherByTimeZone() {
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(null);
-  const [location, setLocation] = useState(null); // 위치 정보 상태 추가
 
   const fetchWeatherData = async () => {
     try {
       const position = await new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject);
       });
-
       const { latitude, longitude } = position.coords;
-      setLocation({ latitude, longitude }); // 위치 정보 상태 업데이트
-
-      // 위치 정보 세션에 저장
       sessionStorage.setItem('latitude', latitude);
       sessionStorage.setItem('longitude', longitude);
-
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&cnt=14`,
       );
@@ -34,17 +28,6 @@ function WeatherByTimeZone() {
   useEffect(() => {
     fetchWeatherData();
   }, []);
-
-  useEffect(() => {
-    if (weatherData) {
-      gsap.from('.weather-container', {
-        duration: 1,
-        opacity: 0,
-        x: '100%',
-        ease: 'power3.out',
-      });
-    }
-  }, [weatherData]);
 
   // useEffect(() => {
   //   const tl = gsap.timeline({defaults: {ease: 'power2.out'}});
@@ -71,7 +54,7 @@ function WeatherByTimeZone() {
     const ampm = hours >= 12 ? 'PM' : 'AM';
     const hour = hours % 12 || 12;
     minutes = minutes === 0 ? '' : ':' + (minutes < 10 ? '0' : '') + minutes;
-    return `${hour}${minutes} ${ampm}`;
+    return `${hour}${minutes}${ampm}`;
   };
 
   // 날씨에 따른 아이콘 이미지 변경
@@ -80,25 +63,19 @@ function WeatherByTimeZone() {
   }
 
   return (
-    <div className="w-full bg-white border-4 border-violet-200 fade-in p-4 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200 flex items-center justify-center gap-5 sm:gap-3 overflow-x-scroll">
+    <div className="w-full h-1/6 2xl:h-full p-2 box-border bg-white border-4 border-violet-200 rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.2),inset_0px_4px_10px_rgba(255,255,255,0.5)] shadow-violet-200 flex gap-2 overflow-x-scroll scrollbar-hide fade-in">
       {memoizedWeatherData.list.map(item => (
-        <div key={item.dt} className="flex items-center justify-center">
-          <div className="w-16 bg-white border-2 border-slate-200 h-28 rounded-xl sm:w-14 flex justify-center items-center shadow-sm">
-            <div className="flex-col justify-center items-center">
-              <div className="text-xs text-center text-slate-600">
-                {unixToHumanTime(item.dt)}
-              </div>
-              <div className="">
-                <img
-                  src={getIconUrl(item.weather[0].icon)}
-                  alt="Weather Icon"
-                />
-              </div>
-              <div className="text-center text-sm font-semibold">
-                {(item.main.temp - 273.15).toFixed(0)}°C
-              </div>
-            </div>
-          </div>
+        <div key={item.dt} className="p-2 h-full w-full bg-white border-2 border-slate-200 rounded-xl flex-col text-nowrap">
+          <p className="text-xs text-center text-slate-600">
+            {unixToHumanTime(item.dt)}
+          </p>
+          <img
+            src={getIconUrl(item.weather[0].icon)}
+            alt="Weather Icon"
+          />
+          <p className="text-center text-sm font-semibold">
+            {(item.main.temp - 273.15).toFixed(0)}°C
+          </p>
         </div>
       ))}
     </div>
