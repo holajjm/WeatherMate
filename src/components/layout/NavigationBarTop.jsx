@@ -10,7 +10,7 @@ function NavigationBarTop() {
     setUser(null);
   };
 
-  // console.log(user);
+  // console.log(user && user.name);
   // console.log(location)
 
   // 새로고침 함수
@@ -34,7 +34,7 @@ function NavigationBarTop() {
           </button>
           WeatherMate
         </Link>
-        {user.name ? (
+        {user && user.name ? (
             <p className="text-slate-400 cursor-pointer hover:text-red-500 hover:font-semibold" onClick={handleLogout}> 로그아웃</p>
           ) : (
             <Link to="/mainlogin" className="text-black">
@@ -53,7 +53,7 @@ function NavigationBarTop() {
           />
         </Link>
         <div className="flex text-center gap-4 py-2 w-2/3 2xl:w-1/2 3xl:w-1/3 h-full leading-[48px]">
-          {user.name ? (
+          {user && user.name ? (
             <p className="text-slate-400 cursor-pointer hover:text-red-500 hover:font-semibold" onClick={handleLogout}> 로그아웃</p>
           ) : (
             <Link to="/mainlogin" className="grow text-black">
