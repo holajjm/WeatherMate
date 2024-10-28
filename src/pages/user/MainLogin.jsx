@@ -31,7 +31,7 @@ function MainLogin() {
       <div className="w-full flex justify-center p-8 md:px-20 xl:px-56 2xl:px-60 min-w-[375px] drop-shadow-md">
         <nav className="bg-white flex flex-col justify-between w-full lg:w-1/2 p-4 md:p-8 rounded-xl gap-4">
           <div className="flex flex-col justify-center items-center gap-4">
-            <h2 className="font-black text-3xl text-primary_deep font-Ainmom">
+            <h2 className="font-black text-3xl text-sky-400 font-Ainmom">
               Weather Mate
             </h2>
             <p className="text-gray-600">
