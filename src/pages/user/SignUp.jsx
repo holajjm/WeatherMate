@@ -11,14 +11,7 @@ function SignUp() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm({
-    defaultValues: {
-      name: 'Tester',
-      email: 'WeatherMate@naver.com',
-      password: '123456789',
-      phone: '01012345678',
-    },
-  });
+  } = useForm();
 
   const onSubmit = async formData => {
     try {
@@ -180,8 +173,7 @@ function SignUp() {
             />
           </div>
 
-          <Submit className="bg-primary text-white py-2 px-4 mt-6 rounded-lg hover:bg-primary_deep w-[100%]">
-            회원가입
+          <Submit text={"회원가입"} className="bg-primary text-white py-2 px-4 mt-6 rounded-lg hover:bg-primary_deep w-[100%]">
           </Submit>
         </form>
       </div>
