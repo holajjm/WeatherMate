@@ -6,19 +6,19 @@ function NavigationBarTop() {
   const location = useLocation();
   const [user, setUser] = useRecoilState(memberState);
   const handleLogout = () => {
-    window.location.reload();
-    setUser(null);
+    if(confirm("로그아웃 하시겠습니까?")){
+      setTimeout(() => {
+        window.location.reload();
+        setUser(null)
+      },300)
+    }
+    return
   };
-
-  // console.log(user && user.name);
-  // console.log(location)
-
-  // 새로고침 함수
   const handleRefresh = () => {
-    sessionStorage.removeItem('userWeather'); // 세션 스토리지 데이터 제거
+    sessionStorage.removeItem('userWeather');
     sessionStorage.removeItem('myPlace');
     if (location.pathname === '/') {
-      window.location.reload(); // 페이지 새로고침
+      window.location.reload();
     }
   };
   return (
