@@ -1,5 +1,3 @@
-/* eslint-disable */
-import React from 'react';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -15,9 +13,9 @@ function SignUp() {
     setError,
   } = useForm({
     defaultValues: {
-      name: '전희선',
-      email: 'gmltjs6346pk@naver.com',
-      password: '123123123',
+      name: 'Tester',
+      email: 'WeatherMate@naver.com',
+      password: '123456789',
       phone: '01012345678',
     },
   });
