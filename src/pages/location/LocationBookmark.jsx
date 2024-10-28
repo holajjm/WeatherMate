@@ -54,7 +54,7 @@ function LocationBookMark() {
   };
 
   return (
-    <div className="mt-2 h-[300px] box-border overflow-y-scroll bg-slate-100 p-4  rounded-lg">
+    <div className="h-full box-border overflow-y-scroll bg-slate-100 p-4  rounded-lg">
 
       {loading ? (
         <Loading />
