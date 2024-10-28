@@ -1,44 +1,18 @@
-/* eslint-disable */
-import React, { useEffect, useState } from 'react';
-import { memberState } from '@recoil/atom.mjs';
-import { Link, useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
-import PropTypes from 'prop-types';
 
-MainLogin.propTypes = {
-  handleChildData: PropTypes.func
-}
-
-function MainLogin({onDataChange}) {
+function MainLogin() {
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    setUser(null);
-    navigate('/');
-  };
-
-  const Rest_api_key = import.meta.env.VITE_KAKAO_REST_API_KEY; //REST API KEY
-  const redirect_uri = 'http://localhost:5173/auth/kakao'; //Redirect URI
+  const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY; //REST API KEY
+  const REDIRECT_URI = 'http://localhost:5173/auth/kakao'; //REDIRECT URI
   // oauth 요청 URL
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   const handleLogin = () => {
     window.location.href = kakaoURL;
   };
 
-  const Edit = () => {
-    console.log({ user });
-  };
-
-  const [user, setUser] = useRecoilState(memberState);
-  console.log(user);
-  const [data, setData] = useState(false)
-  const handleData = (data) => {
-    setData(!data)
-    onDataChange(!data)
-  }
-  
   useEffect(() => {
     const floatTl = gsap.to('.comment-float', {
       y: 10,
@@ -46,65 +20,56 @@ function MainLogin({onDataChange}) {
       repeat: -1,
       yoyo: true,
     });
-    const tl = gsap.timeline({ defaults: { ease: 'power1.out' } });
     return () => {
-      // Clean up animations
-      tl.kill();
       floatTl.kill();
     };
   }, []);
 
   return (
-    <div className='absolute w-screen h-screen border-black border-2 bg-slate-200 opacity-80 z-40'>
-      <nav className="border-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 border-red-700 w-1/2 h-1/2 bg-white rounded-2xl shadow-lg p-4 opacity-100 z-50">
-        <div className="text-center h-full flex gap-4 justify-center items-center">
-
-          <div className='w-1/2 flex flex-col'>
-            <h2 className="font-TTLaundryGothicB text-xl text-primary">
-              Weather Mate
-            </h2>
-            <p className="text-base text-gray-800">
-              오늘의 날씨와 우리의 이야기를 나눠봐요
-            </p>
-            <img className="w-[50%] m-auto comment-float" src="/mainlogin.svg" />
-          </div>
-
-          <div className="w-1/2 flex flex-col gap-4 comment-text grow">
-            <img className="w-[50%] m-auto comment-float" src="/logo.svg" />
-            <button
-              className="bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary_deep"
-              onClick={() => navigate('/user/Login')}
-            >
-              로그인
-            </button>
-            <button
-              className="bg-white border-primary border-2 text-primary py-2 px-4 rounded-lg hover:bg-gray-200"
-              onClick={() => navigate('/user/SignUp')}
-            >
-              회원가입
-            </button>
-            <button
-              className="text-gray-700 text-sm hover:underline"
-              onClick={() => {
-                // navigate('/main')
-                handleData()
-              }}
-            >
-              웨더메이트 둘러보기
-            </button>
-            <button
-              className="bg-[#FEE500] text-[#55461a] py-2 px-4 rounded-lg hover:bg-[#fed400]"
-              onClick={handleLogin}
-            >
-              카카오로 시작하기
-            </button>
-          </div>
-
-        </div>
-      </nav>
+    <div className="min-h-screen bg-gray-100">
+      <div className="w-full flex justify-center p-8 md:px-20 xl:px-56 2xl:px-60 min-w-[375px] drop-shadow-md">
+        <nav className="bg-white flex flex-col justify-between w-full lg:w-1/2 p-4 md:p-8 rounded-xl gap-4">
+            <div className="flex flex-col justify-center items-center gap-4">
+              <h2 className="font-black text-3xl text-primary_deep font-Ainmom">
+                Weather Mate
+              </h2>
+              <p className="text-gray-600">
+                오늘의 날씨와 우리의 이야기를 나눠봐요
+              </p>
+            </div>
+            <img className="h-1/3 comment-float" src="/logo.svg" />
+            <div className="w-full grid grid-cols-2 gap-2 md:gap-4 comment-text">
+              <button
+                className="p-2 2xl:p-4 border-2 border-slate-100 rounded-lg text-sm 2xl:text-base font-semibold transition-all duration-200 text-white bg-sky-400 hover:bg-sky-500 hover:shadow-[0_5px_30px_4px] hover:shadow-slate-400"
+                onClick={() => navigate('/user/Login')}
+              >
+                로그인
+              </button>
+              <button
+                className="p-2 2xl:p-4 border-2 border-slate-100 rounded-lg text-sm 2xl:text-base font-semibold transition-all duration-200 text-white bg-indigo-500 hover:bg-indigo-700 hover:shadow-[0_5px_30px_4px] hover:shadow-slate-400"
+                onClick={() => navigate('/user/SignUp')}
+              >
+                회원가입
+              </button>
+              <button
+                className="p-2 2xl:p-4 border-2 border-[#FEE500] rounded-lg text-sm 2xl:text-base font-semibold transition-all duration-200 text-gray-500 text-nowrap bg-[#FEE500] hover:bg-yellow-400 hover:shadow-[0_5px_30px_4px] hover:shadow-slate-400 hover:text-white"
+                onClick={handleLogin}
+              >
+                카카오로 시작하기
+              </button>
+              <button
+                className="p-2 2xl:p-4 border-2 border-slate-100 rounded-lg text-sm 2xl:text-base font-semibold transition-all duration-200 text-gray-500 text-nowrap bg-slate-50 hover:bg-slate-400 hover:shadow-[0_5px_30px_4px] hover:shadow-slate-400 hover:text-white"
+                onClick={() => {
+                  navigate('/main', {replace: true})
+                }}
+              >
+                메인으로 돌아가기
+              </button>
+            </div>
+        </nav>
+      </div>
     </div>
   );
 }
 
 export default MainLogin;
-// 이게 수정
