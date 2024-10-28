@@ -23,7 +23,7 @@ function ValidLogin() {
       <div className="p-8 md:px-20 min-w-[375px] w-full flex justify-center drop-shadow-md">
         <div className="bg-white flex flex-col w-full lg:w-1/2 p-4 md:p-8 rounded-xl gap-4">
           <div className="flex flex-col justify-center items-center gap-4">
-            <h2 className="text-3xl font-black text-primary_deep font-Ainmom">
+            <h2 className="text-3xl font-black text-sky-400 font-Ainmom">
               로그인 후 이용할 수 있어요!
             </h2>
             <p className="text-gray-600">
