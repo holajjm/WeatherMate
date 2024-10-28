@@ -1,9 +1,11 @@
 import gsap from 'gsap';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function ValidLogin() {
   const navigate = useNavigate();
+  const location = useLocation();
+  
   useEffect(() => {
     const floatTl = gsap.to('.comment-float', {
       y: 10,
@@ -31,7 +33,7 @@ function ValidLogin() {
           <div className="w-full grid grid-cols-2 gap-2 md:gap-4">
             <button
               className="p-2 2xl:p-4 border-2 border-slate-100 rounded-lg text-sm 2xl:text-base font-semibold transition-all duration-200 text-white bg-sky-400 hover:bg-sky-500 hover:shadow-[0_5px_30px_4px] hover:shadow-slate-400"
-              onClick={() => navigate('/user/Login')}
+              onClick={() => navigate('/user/Login',{state: location.pathname})}
             >
               로그인
             </button>
