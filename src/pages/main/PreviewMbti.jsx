@@ -1,3 +1,4 @@
+import Button from '@components/layout/Button';
 import { useNavigate } from 'react-router-dom';
 
 function PreviewMbti() {
@@ -8,22 +9,23 @@ function PreviewMbti() {
       <div className="flex flex-col gap-2 border-2 rounded-xl grow p-2 box-border ">
         <p className="font-bold text-center">🌤️날씨 성격 테스트</p>
         <p className="hidden sm:inline 2xl:hidden 3xl:inline">나의 성격은 어느 날씨와 어울릴까요?<br />날씨 성향 테스트를 통해 알아보세요!</p>
-        <button
-          className="w-full h-full flex justify-center items-center text-base font-semibold text-white text-pretty rounded-lg p-1 duration-200 transition-all bg-primary hover:bg-sky-500 hover:shadow-[0_5px_30px_4px] hover:shadow-slate-400"
+        <Button
+          text={"테스트 하러가기"}
+          className="w-full h-full flex justify-center items-center text-base font-semibold text-white text-pretty rounded-lg p-1 duration-200 transition-all bg-sky-400 hover:bg-sky-500 hover:shadow-[0_5px_30px_4px] hover:shadow-slate-400"
           onClick={() => navigate('/mbti')}
         >
           테스트 하러가기
-        </button>
+        </Button>
       </div>
       <div className="flex flex-col gap-2 border-2 rounded-xl grow p-2 box-border ">
         <p className="font-bold text-center">🌤️전국의 날씨</p>
         <p className="hidden sm:inline 2xl:hidden 3xl:inline">나의 성격은 어느 날씨와 어울릴까요?<br />날씨 성향 테스트를 통해 알아보세요!</p>
-        <button
+        <Button
+        text={"전국날씨 보러가기"}
           className="w-full h-full flex justify-center items-center text-base font-semibold text-white text-pretty rounded-lg p-1 duration-200 transition-all bg-indigo-500 hover:bg-indigo-700 hover:shadow-[0_5px_30px_4px] hover:shadow-slate-400"
           onClick={() => navigate("/allcity")}
         >
-          전국날씨 보러가기
-        </button>
+        </Button>
       </div>
     </div>
   );

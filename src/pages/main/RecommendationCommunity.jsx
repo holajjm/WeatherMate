@@ -3,6 +3,7 @@ import axios from 'axios';
 import useCurrentLocation from '@hooks/useCurrentLocation';
 import { Link, useNavigate } from 'react-router-dom';
 import Loading2 from '@components/layout/Loading2';
+import Button from '@components/layout/Button';
 // import gsap from 'gsap';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
@@ -67,9 +68,8 @@ function RecommendationCommunity() {
       <div className="flex flex-col gap-4 h-full">
         <div className="flex justify-center items-center gap-4 font-bold">
           <h1><span className="text-xl text-blue-600">웨더메이트</span>의 커뮤니티</h1>
-          <button onClick={() => navigate("/location")} className="text-base font-semibold text-white bg-indigo-500 h-full text-pretty rounded-lg p-1 hover:bg-indigo-700 hover:shadow-[0_5px_30px_4px] hover:shadow-slate-400 duration-200 transition-all">
-            보러가기
-          </button>
+          <Button text={"보러가기"} onClick={() => navigate("/location")} className="text-base font-semibold text-white bg-indigo-500 h-full text-pretty rounded-lg p-1 hover:bg-indigo-700 hover:shadow-[0_5px_30px_4px] hover:shadow-slate-400 duration-200 transition-all">
+          </Button>
         </div>
         <hr className="border-slate-700"/>
         {loading ? (
