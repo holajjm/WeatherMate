@@ -8,9 +8,8 @@ UserBoard.propTypes = {
 function UserBoard({item}) {
   const navigate = useNavigate();
   
-  
   return (
-    <div className="flex flex-col gap-3 bg-white p-3 box-border rounded-lg mb-6" >
+    <div className="flex flex-col gap-3 bg-white p-3 box-border rounded-lg" >
       <div className="flex flex-col gap-3 grow" onClick={() => navigate(`/community/${item._id}`)}>
         <div className="flex gap-3">
           <img src={item.user.profile} className="rounded-full border-gray-400 border-2 w-12 h-12" />
