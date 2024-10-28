@@ -1,5 +1,3 @@
-/* eslint-disable */
-import React from 'react';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -12,7 +10,6 @@ function Login() {
   const setUser = useSetRecoilState(memberState);
   const axios = useCustomAxios();
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -41,7 +38,7 @@ function Login() {
       });
 
       alert(res.data.item.name + '님 반갑습니다');
-      navigate(location.state?.from ? location.state?.from : '/main');
+      navigate(location.state ? `${location.state}` : '/main');
       console.log(res.data.item);
     } catch (err) {
       if (err.response?.data.errors) {
@@ -53,7 +50,7 @@ function Login() {
       }
     }
   };
-
+  
   return (
     <>
       <nav className="h-screen flex items-center justify-center bg-slate-100 p-16 max-w-full min-w-80">
