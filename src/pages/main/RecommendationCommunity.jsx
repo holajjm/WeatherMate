@@ -80,7 +80,7 @@ function RecommendationCommunity() {
               <Link key={item.contentid} to={`/location/${item.contentid}`} className="w-full h-full flex flex-col gap-2 text-center text-nowrap border-2 border-slate-300 p-2 rounded-xl">
                 <img
                   src={item.firstimage}
-                  className="grow aspect-square min-w-[200px] max-h-[200px] rounded-lg"
+                  className="grow aspect-square min-w-[200px] max-h-3/4 rounded-lg"
                   alt={item.title}
                 />
                 <hr className="border-slate-700"/>
