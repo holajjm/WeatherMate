@@ -2,14 +2,11 @@ import Button from "@components/layout/Button.jsx";
 import PropTypes from "prop-types";
 
 Submit.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string
-  ]),
+  text: PropTypes.string
 };
 
-function Submit({ children, ...rest }){
-  return <Button type="submit" { ...rest }>{ children }</Button>
+function Submit({ text, ...rest }){
+  return <Button type="submit" text={text} { ...rest }></Button>
 }
 
 export default Submit;
