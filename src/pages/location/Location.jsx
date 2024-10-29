@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useCurrentLocation from '@hooks/useCurrentLocation';
-// import { BsBookmarks } from "react-icons/bs";
 import { BsBookmarksFill } from "react-icons/bs";
 import LocationKeywords from './LocationKeyword';
 import { useRecoilValue } from 'recoil';
@@ -10,9 +9,12 @@ import { memberState } from '@recoil/atom.mjs';
 import Loading from '@components/layout/Loading';
 import { FiMapPin } from 'react-icons/fi';
 import DetailPageHeader from '@components/layout/DetailPageHeader';
+import PropTypes from 'prop-types';
 
+Location.propTypes = {
+  keyword: PropTypes.string
+}
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
-/* eslint-disable */
 
 function Location({ keyword }) {
   const user = useRecoilValue(memberState);
@@ -22,7 +24,6 @@ function Location({ keyword }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [contentID, setContentID] = useState('12');
   const [isLoading, setIsLoading] = useState(false);
-  const [isBookmarked, setIsBookmarked] = useState(false);
   const navigate = useNavigate();
   const radius = '200000';
   const { latitude, longitude } = useCurrentLocation();
@@ -126,21 +127,19 @@ function Location({ keyword }) {
   //북마크 기능 구현
   const handleBookMark = contentId => {
     if (!user) {
-      const confirmed = confirm('로그인이 필요합니다');
-      if (confirmed) {
+      if (confirm('로그인이 필요합니다. 로그인 하시겠습니까?')) {
         navigate('/user/login');
       }
     } else {
-      try {
-        let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
-        bookmarks.push(contentId);
-        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-        setIsBookmarked(true)
-        alert('해당 게시물이 북마크에 추가 되었습니다.');
-        console.log('북마크 추가 성공:', contentId);
-      } catch (error) {
-        console.error('북마크 추가 실패:', error);
-      }
+        try {
+          let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+          bookmarks.push(contentId);
+          localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+          alert('해당 게시물이 북마크에 추가 되었습니다.');
+          console.log('북마크 추가 성공:', contentId);
+        } catch (error) {
+          console.error('북마크 추가 실패:', error);
+        }
     }
   };
 
@@ -182,7 +181,7 @@ function Location({ keyword }) {
     <div className="flex flex-col gap-6 mx-auto px-8 min-h-screen">
       <DetailPageHeader title={"장소 추천"}/>
       <div className="flex flex-grow gap-1 justify-center items-center flex-wrap lg:flex-nowrap">
-        {options.map((option, index) => (
+        {options.map((option) => (
           <div className="flex flex-grow items-center justify-center rounded-lg w-1/4" key={option.id}>
             <LocationKeywords
               id={option.id}
@@ -232,7 +231,6 @@ function Location({ keyword }) {
                       <p className="text-pretty">{item.addr1}</p>
                     </Link>
                     <div>
-                      {/* <BsBookmarks /> */}
                       <BsBookmarksFill
                         className="text-blue-300 aspect-square w-[30px] h-[30px] cursor-pointer"
                         onClick={() => handleBookMark(item.contentid)}
