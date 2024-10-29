@@ -1,8 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-
 import Layout from '@components/layout';
 import MainPage from '@pages/main/MainPage';
-import MbtiTest from '@pages/Mbti/MbtiTest';
 import ErrorPage from '@pages/ErrorPage';
 import CommunityNew from '@pages/community/CommunityNew';
 import CommunityDetail from './pages/community/CommunityDetail';
@@ -21,6 +19,7 @@ import UserEdit from '@pages/user/UserEdit';
 import Edit from '@pages/user/Edit';
 import AllCitiesWeather from '@pages/main/AllCitiesWeather';
 import Oauth from '@pages/user/Oauth';
+import MbtiHome from '@pages/Mbti/MbtiHome';
 
 const router = createBrowserRouter([
   {
@@ -75,7 +74,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'mbti',
-            element: <MbtiTest />,
+            element: <MbtiHome />,
           },
           {
             path: 'mbti/question',
