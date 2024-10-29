@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import Button from '@components/layout/Button';
 
 function MainLogin() {
   const navigate = useNavigate();
+  const location = useLocation();
   const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY; //REST API KEY
   const REDIRECT_URI = 'http://localhost:5173/auth/kakao'; //REDIRECT URI
   // oauth 요청 URL
@@ -43,7 +44,7 @@ function MainLogin() {
             <Button
               text={'로그인'}
               className="p-2 2xl:p-4 border-2 border-slate-100 rounded-lg text-sm 2xl:text-base font-semibold transition-all duration-200 text-white bg-sky-400 hover:bg-sky-500 hover:shadow-[0_5px_30px_4px] hover:shadow-slate-400"
-              onClick={() => navigate('/user/Login')}
+              onClick={() => navigate('/user/Login',{state: location.state})}
             ></Button>
             <Button
               text={'회원가입'}
