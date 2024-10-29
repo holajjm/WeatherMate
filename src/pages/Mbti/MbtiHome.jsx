@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import mbtiStart from '@assets/mbti/mbtiimg/mbtiStart.png';
 import Button from '@components/layout/Button';
 import { useRecoilState } from 'recoil';
@@ -6,9 +6,8 @@ import { memberState } from '@recoil/atom.mjs';
 
 function MbtiHome() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [user] = useRecoilState(memberState);
-  console.log(user);
-  
 
   return (
     <div className="bg-gray-100 h-screen flex flex-col gap-4 font-TTLaundryGothicB p-8 md:px-20 xl:px-56 2xl:px-60 min-w-[375px]">
@@ -29,7 +28,7 @@ function MbtiHome() {
               text={'테스트 시작하기'}
               onClick={() => {
                 if(!user){
-                  confirm("로그인이 필요합니다. 로그인 하시겠습니까?") ? navigate('/mainlogin') : null;
+                  confirm("로그인이 필요합니다. 로그인 하시겠습니까?") ? navigate('/mainlogin',{state: location.pathname}) : null;
                 }else{
                   navigate('question');
                 }
