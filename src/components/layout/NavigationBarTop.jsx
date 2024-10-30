@@ -43,12 +43,12 @@ function NavigationBarTop() {
           )}
       </div>
       {/* ------------------------------- */}
-      <div className="w-full text-white h-16 items-center justify-between bg-[#d1ebff] sticky top-0 z-30 shadow-inner hidden md:flex md:px-20 xl:px-60">
+      <div className="w-full h-16 bg-sky-200 sticky top-0 z-30 shadow-inner hidden md:flex md:items-center md:justify-between md:px-20 xl:px-60">
         <Link to="/">
           <img
             src="/weatherMateLogo.svg"
             alt="weathermate logo"
-            className="w-16"
+            className="w-20"
             onClick={handleRefresh}
           />
         </Link>
@@ -56,47 +56,47 @@ function NavigationBarTop() {
           {user && user.name ? (
             <p className="text-slate-400 cursor-pointer hover:text-red-500 hover:font-semibold" onClick={handleLogout}> 로그아웃</p>
           ) : (
-            <Link to="/mainlogin" className="grow text-black">
+            <Link to="/mainlogin" className="grow text-black hover:font-bold hover:text-indigo-600">
               로그인
             </Link>
           )}
 
           <Link
             to="/main"
-            className={`grow hover:text-[#2F4156] hover:-translate-y-1 transition-all duration-200 ${
+            className={`grow text-lg flex items-center justify-center font-bold transition-all duration-200 hover:text-indigo-600 ${
               location.pathname === '/' || location.pathname === '/main'
-                ? 'text-[#2F4156] border-2 rounded-2xl font-extrabold border-[#567CBD] bg-white'
-                : 'text-[#567CBD] font-semibold'
+                ? 'text-indigo-600 border-2 rounded-xl border-indigo-400 bg-white'
+                : 'text-slate-600'
             }`}
           >
             홈
           </Link>
           <Link
             to="/community"
-            className={`grow hover:text-[#2F4156] hover:-translate-y-1 transition-all duration-200 ${
+            className={`grow text-lg flex items-center justify-center font-bold transition-all duration-200 hover:text-indigo-600 ${
               location.pathname === '/community'
-                ? 'text-[#2F4156] border-2 rounded-2xl font-extrabold border-[#567CBD] bg-white'
-                : 'text-[#567CBD] font-semibold'
+                ? 'text-indigo-600 border-2 rounded-xl border-indigo-400 bg-white'
+                : 'text-slate-600'
             }`}
           >
             커뮤니티
           </Link>
           <Link
             to="/location"
-            className={`grow hover:text-[#2F4156] hover:-translate-y-1 transition-all duration-200 ${
+            className={`grow text-lg flex items-center justify-center font-bold transition-all duration-200 hover:text-indigo-600 ${
               location.pathname === '/location'
-                ? 'text-[#2F4156] border-2 rounded-2xl font-extrabold border-[#567CBD] bg-white'
-                : 'text-[#567CBD] font-semibold'
+                ? 'text-indigo-600 border-2 rounded-xl border-indigo-400 bg-white'
+                : 'text-slate-600'
             }`}
           >
             장소추천
           </Link>
           <Link
             to="/user/mypage"
-            className={`grow hover:text-[#2F4156] hover:-translate-y-1 transition-all duration-200 ${
+            className={`grow text-lg flex items-center justify-center font-bold transition-all duration-200 hover:text-indigo-600 ${
               location.pathname === '/user/mypage'
-                ? 'text-[#2F4156] border-2 rounded-2xl font-extrabold border-[#567CBD] bg-white'
-                : 'text-[#567CBD] font-semibold'
+                ? 'text-indigo-600 border-2 rounded-xl border-indigo-400 bg-white'
+                : 'text-slate-600'
             }`}
           >
             마이페이지
