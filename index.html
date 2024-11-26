@@ -1,26 +1,24 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="logo.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="upgrade-insecure-requests"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap"
-    />
-    <title>웨더 메이트(Weather mate)</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script
-      type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	44ca17bb4cb74c64db42d774cc78f8af"
-    ></script>
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" />
+  <title>WeatherMate</title>
+  <meta property="og:title" content="WeatherMate" />
+  <meta property="og:description" content="위치 정보를 통해 만나는 날씨 친구" />
+  <meta property="og:image" content="/thumbnail.png" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	44ca17bb4cb74c64db42d774cc78f8af"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>
