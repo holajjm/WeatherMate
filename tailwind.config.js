@@ -1,36 +1,42 @@
 /** @type {import('tailwindcss').Config} */
 /* eslint-disable */
 export default {
-  content: ['./index.html', './src/**/*.{js,jsx}'],
+  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       fontFamily: {
         sans: ['Noto Sans', 'sans-serif'],
-        Ainmom: ['Ainmom', 'sans-serif'],
-        UhBeeKangJa: ['UhBeeKang-Ja', 'sans-serif'],
-        TTLaundryGothicB: ['TTLaundryGothicB', 'sans-serif'],
-        KOTRAHOPE: ['KOTRAHOPE', 'sans-serif'],
-        RubikBubbles: ['Rubik Bubbles','sans-serif'],
-        Ranchers: ['Ranchers','sans-serif'],
+        UhBeeKangJa: ['UhBeeKang-Ja', 'sans-serif'], //삐뚤삐뚤 글씨체 / 버튼,제목 요소들에 사용
+        TTLaundryGothicB: ['TTLaundryGothicB', 'sans-serif'], //캐주얼 문구체
+        RubikBubbles: ['Rubik Bubbles','sans-serif'], //둥글둥글 글씨체
+        SSRONETHandwritten: ['SSRONETHandwritten','sans-serif'] //작은 애기 글씨체, 컨텐츠 요소들에 사용, text-xl 기본
       },
       colors: {
-        'my-color': '#00FF7F',
+        my_color: '#00FF7F',
         primary: '#81CDFF',
         primary_deep: '#21A6FF',
         sub_yel: '#FFF387',
         sub_yel_deep: '#FFE500',
         sub_sal: '#FFBD99',
-        gray_01: '#F2F2F2',
-        gray_02: '#D9D9D9',
-        gray_03: '#A6A6A6',
-        gray_04: '#666',
-        black: '#000',
-        white: '#fff',
         kakao: '#FEE500',
-        'kakao-lable': '#191919',
+        kakao_lable: '#191919',
       },
-      screens: {
-        '3xl': "1920px"
+      animation: {
+        slideIn: "slideIn 0.7s ease-out forwards",
+        slideOut: "slideOut 0.7s ease-in forwards",
+      },
+      keyframes: {
+        slideIn: {
+          "0%": { opacity: "0", transform: "translateX(-100%)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        slideOut: {
+          "0%": { opacity: "1", transform: "translateX(0)" },
+          "100%": { opacity: "0", transform: "translateX(-100%)" },
+        },
+      },
+      height: {
+        'calc-100-minus-128': 'calc(100% - 128px)'
       }
     },
   },
