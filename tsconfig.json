@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "strict": true,
+    "outDir": "dist",
+    "moduleDetection": "force",
+    "paths": {
+      "@/*": ["/*"],
+      "@assets": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@pages/*": ["pages/*"],
+      "@hooks/*": ["hooks/*"],
+      "@main/*": ["main/*"],
+      "@Mbti/*": ["Mbti/*"],
+      "@user/*": ["user/*"],
+      "@location/*": ["location/*"],
+      "@community/*": ["community/*"],
+    },
+    //이하 블로그 참고 추가
+    "baseUrl": "src",
+    "lib": ["dom", "ESNext"],
+    "allowJs": true,
+    "checkJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": ["@types"],
+    "allowImportingTsExtensions": true
+  },
+  "include": ["src","svg.d.ts","global.d.ts"]
+}
