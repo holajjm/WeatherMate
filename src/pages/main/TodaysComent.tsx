@@ -119,7 +119,7 @@ function TodaysComent() {
         )}
         <section
           style={{ backgroundImage: `url(${realImage})` }}
-          className={`border-2 w-1/2 text-base text-nowrap ${['Clouds', 'Rain', 'Drizzle', 'Thunderstorm', 'Snow'].includes(data.weather[0].main) ? 'text-slate-200' : 'text-slate-700'} flex gap-4 rounded-xl p-4 box-border bg-white bg-cover bg-no-repeat bg-center`}
+          className={`border-2 w-1/2 text-base text-nowrap ${['Clouds', 'Rain', 'Drizzle', 'Thunderstorm', 'Snow'].includes(data?.weather[0].main) ? 'text-slate-200' : 'text-slate-700'} flex gap-4 rounded-xl p-4 box-border bg-white bg-cover bg-no-repeat bg-center`}
         >
           <div className="w-2/3 flex flex-col gap-2 justify-between">
             <div className="">
@@ -130,7 +130,7 @@ function TodaysComent() {
               <p className="">{String(new Date()).slice(0, 3)}</p>
             </div>
             <div className="">
-              <p className="">{data.weather && data.weather[0].description}</p>
+              <p className="">{data?.weather && data.weather[0].description}</p>
               <p className="">
                 {data && String(data.main?.temp).slice(0, 3)}°C
               </p>
@@ -141,7 +141,7 @@ function TodaysComent() {
             <div>
               <p>강수량</p>
               <p className="text-base">
-                {data.rain ? data?.rain?.['1h'] : '00'}mm
+                {data?.rain ? data?.rain?.['1h'] : '00'}mm
               </p>
             </div>
           </div>
