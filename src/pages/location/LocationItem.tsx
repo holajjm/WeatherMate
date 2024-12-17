@@ -111,7 +111,7 @@ function LocationItem({item}:{item:LocationMainData}) {
 
       </Link>
       <footer>
-        {(localStorage.getItem('bookmarks') as string).includes(item.contentid) ? (
+        {(localStorage.getItem('bookmarks') as string)?.includes(item.contentid) ? (
           <div className="flex justify-center items-center gap-1 text-sm">
             <BsBookmarks
               className="text-blue-300 aspect-square cursor-pointer"
