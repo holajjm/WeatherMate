@@ -18,11 +18,11 @@ function Login() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm({
-    values: {
-      email: 'WeatherMate@naver.com',
-      password: '123456789',
-    },
+  } = useForm<LoginMainData>({
+    // values: {
+    //   email: 'WeatherMate@naver.com',
+    //   password: '123456789',
+    // },
   });
 
   const onSubmit = async (formData: LoginMainData) => {

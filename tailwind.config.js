@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 /* eslint-disable */
+import tailwindScrollbarHide from 'tailwind-scrollbar-hide'
 export default {
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
@@ -40,6 +41,6 @@ export default {
       }
     },
   },
-  plugins: [require('tailwind-scrollbar-hide')],
+  plugins: ['tailwind-scrollbar-hide'],
   darkMode: 'selector',
 };
