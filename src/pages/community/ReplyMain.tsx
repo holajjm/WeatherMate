@@ -1,6 +1,7 @@
-import React from 'react'
-import ReplyList from './ReplyList'
-import ReplyNew from './ReplyNew'
+import React from "react";
+
+import ReplyList from "./ReplyList";
+import ReplyNew from "./ReplyNew";
 
 function ReplyMain() {
   return (
@@ -8,7 +9,7 @@ function ReplyMain() {
       <ReplyNew />
       <ReplyList />
     </div>
-  )
+  );
 }
 
-export default ReplyMain
+export default ReplyMain;

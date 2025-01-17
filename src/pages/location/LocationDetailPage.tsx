@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import Loading from '@components/layout/Loading';
-import LocationMap from '@pages/location/LocationMap';
-import { LocationDetailData, LocationSuperDetailData } from 'type';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { LocationDetailData, LocationSuperDetailData } from "type";
 
+import Loading from "@components/layout/Loading";
+import LocationMap from "@pages/location/LocationMap";
 import { FaLocationDot } from "react-icons/fa6";
 import { BsTelephoneFill } from "react-icons/bs";
 import { FaParking } from "react-icons/fa";
@@ -22,7 +22,7 @@ function LocationDetailPage() {
   const [isMoreView, setIsMoreView] = useState<boolean>(false);
   const [superDetail, setSuperDetail] = useState<LocationSuperDetailData[]>([]);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,11 +32,12 @@ function LocationDetailPage() {
         setDetailData(response.data.response.body.items.item[0]);
         // URL 추출 부분
         const regex = /(http[^"]+)/g;
-        const match = response.data.response.body.items.item[0].homepage.match(regex);
+        const match =
+          response.data.response.body.items.item[0].homepage.match(regex);
         setHomepageUrls(match);
       } catch (error) {
         console.error(
-          '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
+          "데이터를 원활하게 가져오는데 오류가 발생하였습니다.",
           error,
         );
       }
@@ -50,7 +51,7 @@ function LocationDetailPage() {
         setSuperDetail(response.data.response.body.items.item);
         setLoading(false);
       } catch (error) {
-        console.error('데이터 패칭 실패', error);
+        console.error("데이터 패칭 실패", error);
         setLoading(false);
       }
     };
@@ -73,7 +74,12 @@ function LocationDetailPage() {
     <div className="max-w-[600px] min-w-[320px] m-auto">
       <div className="p-2 flex flex-col gap-4">
         <div className="relative">
-          <button className="absolute p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400" onClick={() => window.history.back()}>뒤로 가기</button>
+          <button
+            className="absolute p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+            onClick={() => window.history.back()}
+          >
+            뒤로 가기
+          </button>
           <h1 className="text-3xl text-center font-bold font-UhBeeKangJa">
             {detailData.title}
           </h1>
@@ -97,7 +103,7 @@ function LocationDetailPage() {
                     </td>
                     <td className="p-2 grow">
                       {detailData.addr1}
-                      {detailData.addr2 ? detailData.addr2 : ''}
+                      {detailData.addr2 ? detailData.addr2 : ""}
                     </td>
                   </tr>
                   <tr className="flex items-center">
@@ -106,8 +112,8 @@ function LocationDetailPage() {
                     </td>
                     <td className="p-2 grow">
                       {superDetail[0].infocenter
-                        ? superDetail[0].infocenter.replace(/<br>/g,' / ')
-                        : '-'}
+                        ? superDetail[0].infocenter.replace(/<br>/g, " / ")
+                        : "-"}
                     </td>
                   </tr>
                   <tr className="flex items-center">
@@ -115,7 +121,9 @@ function LocationDetailPage() {
                       <FaParking />
                     </td>
                     <td className="p-2 grow">
-                      {superDetail[0].parking ? superDetail[0].parking.replace(/<br>/g,' / ') : '불가'}
+                      {superDetail[0].parking
+                        ? superDetail[0].parking.replace(/<br>/g, " / ")
+                        : "불가"}
                     </td>
                   </tr>
                   <tr className="flex items-center">
@@ -123,10 +131,8 @@ function LocationDetailPage() {
                       <FaClock />
                     </td>
                     <td className="p-2 grow">
-                      {' '}
-                      {superDetail[0].usetime
-                        ? superDetail[0].usetime
-                        : '-'}
+                      {" "}
+                      {superDetail[0].usetime ? superDetail[0].usetime : "-"}
                     </td>
                   </tr>
                   <tr className="flex items-center">
@@ -135,8 +141,8 @@ function LocationDetailPage() {
                     </td>
                     <td className="p-2 grow">
                       {superDetail[0].restdate
-                        ? superDetail[0].restdate.replace(/<br>/g,' / ')
-                        : '-'}
+                        ? superDetail[0].restdate.replace(/<br>/g, " / ")
+                        : "-"}
                     </td>
                   </tr>
                   <tr className="flex items-center">
@@ -144,7 +150,7 @@ function LocationDetailPage() {
                       <FaDog />
                     </td>
                     <td className="p-2 grow">
-                      {superDetail[0].chkpet ? superDetail[0].chkpet : '불가'}
+                      {superDetail[0].chkpet ? superDetail[0].chkpet : "불가"}
                     </td>
                   </tr>
                   <tr className="flex items-center">
@@ -153,9 +159,9 @@ function LocationDetailPage() {
                     </td>
                     <td className="p-2 grow">
                       <button
-                        onClick={() => window.open(homepageUrls[0], '_blank')}
+                        onClick={() => window.open(homepageUrls[0], "_blank")}
                       >
-                        {homepageUrls ? homepageUrls[0] : '없음'}
+                        {homepageUrls ? homepageUrls[0] : "없음"}
                       </button>
                     </td>
                   </tr>

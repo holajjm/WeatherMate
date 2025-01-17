@@ -1,4 +1,4 @@
-import React,{ useEffect } from 'react';
+import React, { useEffect } from "react";
 
 declare global {
   interface Window {
@@ -6,10 +6,18 @@ declare global {
   }
 }
 
-function LocationMap({ latitude, longitude, locationName }:{ latitude:number, longitude:number, locationName:string }) {
+function LocationMap({
+  latitude,
+  longitude,
+  locationName,
+}: {
+  latitude: number;
+  longitude: number;
+  locationName: string;
+}) {
   useEffect(() => {
     //map
-    const mapContainer = document.getElementById('map');
+    const mapContainer = document.getElementById("map");
     const mapOption = {
       center: new window.kakao.maps.LatLng(latitude, longitude),
       level: 3,
@@ -22,7 +30,7 @@ function LocationMap({ latitude, longitude, locationName }:{ latitude:number, lo
     });
     marker.setMap(map);
     //길찾기 설정
-    const iwContent = `<div> ${locationName || '위치 정보 없음'}<a href="https://map.kakao.com/link/to/${locationName},${latitude},${longitude}"  target="_blank">길찾기</a></div>`;
+    const iwContent = `<div> ${locationName || "위치 정보 없음"}<a href="https://map.kakao.com/link/to/${locationName},${latitude},${longitude}"  target="_blank">길찾기</a></div>`;
     const iwPosition = new window.kakao.maps.LatLng(latitude, longitude);
     //연결
     const infowindow = new window.kakao.maps.InfoWindow({
@@ -33,9 +41,7 @@ function LocationMap({ latitude, longitude, locationName }:{ latitude:number, lo
     infowindow.open(map, marker);
   }, [latitude, longitude, locationName]);
 
-  return (
-    <div id="map" className="w-full h-80 rounded-lg"></div>
-  );
+  return <div id="map" className="w-full h-80 rounded-lg"></div>;
 }
 
 export default LocationMap;

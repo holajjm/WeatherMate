@@ -1,47 +1,49 @@
-import React, { memo, useState, useEffect } from 'react';
-import axios from 'axios';
-import useCurrentLocation from '../../hooks/useCurrentLocation';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { memo, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import useCurrentLocation from "@hooks/useCurrentLocation";
 // import Button from '@components/layout/Button';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation, HashNavigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation, HashNavigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
-function RecommendationPreview() {
+function MainRecommendationPreview() {
   interface PreviewItem {
-    addr1: string,
-    addr2: string,
-    areacode: string,
-    booktour: string,
-    cat1: string,
-    cat2: string,
-    cat3: string,
-    contentid: string,
-    contenttypeid: string,
-    cpyrhtDivCd: string,
-    createdtime: string,
-    dist: string,
-    firstimage: string,
-    firstimage2: string,
-    mapx: string,
-    mapy: string,
-    mlevel: string,
-    modifiedtime: string,
-    sigungucode: string,
-    tel: string,
-    title: string,
+    addr1: string;
+    addr2: string;
+    areacode: string;
+    booktour: string;
+    cat1: string;
+    cat2: string;
+    cat3: string;
+    contentid: string;
+    contenttypeid: string;
+    cpyrhtDivCd: string;
+    createdtime: string;
+    dist: string;
+    firstimage: string;
+    firstimage2: string;
+    mapx: string;
+    mapy: string;
+    mlevel: string;
+    modifiedtime: string;
+    sigungucode: string;
+    tel: string;
+    title: string;
   }
   const navigate = useNavigate();
   const [locationData, setLocationData] = useState([]);
   const [locationReady, setLocationReady] = useState(false);
-  const [contentTypeId, setContentTypeId] = useState('14');
+  const [contentTypeId, setContentTypeId] = useState("14");
   // const [loading, setLoading] = useState(true);
 
-  const radius = '10000'; //10km
+  const radius = "10000"; //10km
   const { latitude, longitude } = useCurrentLocation();
 
   useEffect(() => {
@@ -61,7 +63,7 @@ function RecommendationPreview() {
           // setLoading(false);
         } catch (error) {
           console.error(
-            '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
+            "데이터를 원활하게 가져오는데 오류가 발생하였습니다.",
             error,
           );
           // setLoading(false);
@@ -74,7 +76,7 @@ function RecommendationPreview() {
 
   useEffect(() => {
     const getRandomContentTypeId = () => {
-      const options = ['12', '14', '15', '25']; // 사용 가능한 contentTypeId 옵션
+      const options = ["12", "14", "15", "25"]; // 사용 가능한 contentTypeId 옵션
       const randomIndex = Math.floor(Math.random() * options.length); // 랜덤한 인덱스 선택
       return options[randomIndex]; // 선택된 contentTypeId 반환
     };
@@ -97,9 +99,11 @@ function RecommendationPreview() {
           <button
             type="button"
             // text={'더보기'}
-            onClick={() => navigate('/location')}
+            onClick={() => navigate("/location")}
             className="h-1/2 mt-auto text-sm text-white font-semibold bg-indigo-500 rounded-md p-2 hover:bg-indigo-700 hover:shadow-[0_5px_30px_4px] hover:shadow-slate-400 duration-200 transition-all"
-          >더보기</button>
+          >
+            더보기
+          </button>
         </div>
         <div className="w-full flex gap-4 font-sans text-sm">
           <Swiper
@@ -146,4 +150,4 @@ function RecommendationPreview() {
   );
 }
 
-export default memo(RecommendationPreview);
+export default memo(MainRecommendationPreview);

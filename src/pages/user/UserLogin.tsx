@@ -1,14 +1,15 @@
-import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import { memberState } from '../../recoil/atom.mts';
-import { useForm } from 'react-hook-form';
-import useCustomAxios from '@hooks/useCustomAxios.mts';
-import { LoginMainData } from 'type';
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { memberState } from "../../recoil/atom.mjs";
+import { useForm } from "react-hook-form";
+import useCustomAxios from "@hooks/useCustomAxios.mts";
+import { LoginMainData } from "type";
+
 // import Submit from '@components/layout/Submit.tsx';
 // import Button from '@components/layout/Button';
 
-function Login() {
+function UserLogin() {
   const location = useLocation();
   const setUser = useSetRecoilState(memberState);
   const axios = useCustomAxios();
@@ -27,7 +28,7 @@ function Login() {
 
   const onSubmit = async (formData: LoginMainData) => {
     try {
-      const res = await axios.post('/users/login', formData);
+      const res = await axios.post("/users/login", formData);
       console.log(formData);
 
       setUser({
@@ -39,8 +40,8 @@ function Login() {
         token: res.data.item.token,
       });
 
-      alert(res.data.item.name + '님 반갑습니다');
-      navigate(location.state ? `${location.state}` : '/main');
+      alert(res.data.item.name + "님 반갑습니다");
+      navigate(location.state ? `${location.state}` : "/main");
       console.log(res.data.item);
     } catch (err: any) {
       console.log(err);
@@ -53,9 +54,8 @@ function Login() {
       }
     }
   };
-  const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY; //REST API KEY
-  const REDIRECT_URI = 'http://localhost:5173/auth/kakao'; //REDIRECT URI
-  // oauth 요청 URL
+  const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
+  const REDIRECT_URI = "http://localhost:5173/auth/kakao";
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const handleLogin = () => {
     window.location.href = kakaoURL;
@@ -91,12 +91,12 @@ function Login() {
                 type="email"
                 id="email"
                 placeholder="이메일을 입력하세요"
-                {...register('email', {
-                  required: '이메일을 입력하세요',
+                {...register("email", {
+                  required: "이메일을 입력하세요",
                   pattern: {
                     value:
                       /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
-                    message: '이메일 형식이 아닙니다',
+                    message: "이메일 형식이 아닙니다",
                   },
                 })}
               />
@@ -104,7 +104,9 @@ function Login() {
                 <p className="p-1 text-sm text-red-500">
                   {errors.email.message}
                 </p>
-              ):(<p className="p-2"></p>)}
+              ) : (
+                <p className="p-2"></p>
+              )}
             </div>
             <div>
               <label htmlFor="password" className="sr-only">
@@ -115,15 +117,17 @@ function Login() {
                 type="password"
                 id="password"
                 placeholder="비밀번호를 입력하세요"
-                {...register('password', {
-                  required: '비밀번호를 입력하세요',
+                {...register("password", {
+                  required: "비밀번호를 입력하세요",
                 })}
               />
               {errors.password ? (
                 <p className="p-1 text-sm text-red-500">
                   {errors.password.message}
                 </p>
-              ):(<p className="p-2"></p>)}
+              ) : (
+                <p className="p-2"></p>
+              )}
             </div>
             <div className="flex flex-col items-center gap-4">
               <div className="flex gap-2 w-full">
@@ -150,4 +154,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default UserLogin;

@@ -1,16 +1,16 @@
-import React,{ useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Coment from '../../assets/Coment';
-import { WeatherImage } from 'type';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Coment from "../../assets/Coment.ts";
+import { WeatherImage } from "type";
 
-function TodaysComent() {
+function MainTodaysComent() {
   const [recommendClothes, setRecommendClothes] = useState<string>("");
   const [recommendationImage, setRecommendationImage] = useState<string>("");
   const [storageUser, setStorageUser] = useState(null);
-  const data = JSON.parse(sessionStorage.getItem('sessionWeather') as string);
+  const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
 
   useEffect(() => {
-    const sessionUser = sessionStorage.getItem('saveUser');
+    const sessionUser = sessionStorage.getItem("saveUser");
     if (sessionUser) {
       setStorageUser(JSON.parse(sessionUser));
     }
@@ -40,19 +40,19 @@ function TodaysComent() {
 
   const imagePath = recommendationImage;
 
-  const defaultImgPath = '/01.svg';
-  const weatherImageMapping:WeatherImage = {
-    Clear: '/uvi.svg',
-    Clouds: '/manyClouds.svg',
-    Rain: '/rain.svg',
-    Drizzle: '/rain.svg',
-    Thunderstorm: '/thunderStorm.svg',
-    Snow: '/mainSnow.svg',
-    Haze: '/Haze.svg',
-    Mist: '/Mist.svg',
-    Smoke: '/manyClouds.svg',
-    Dust: '/manyClouds.svg',
-    overcastClouds: '/sun.svg',
+  const defaultImgPath = "/01.svg";
+  const weatherImageMapping: WeatherImage = {
+    Clear: "/uvi.svg",
+    Clouds: "/manyClouds.svg",
+    Rain: "/rain.svg",
+    Drizzle: "/rain.svg",
+    Thunderstorm: "/thunderStorm.svg",
+    Snow: "/mainSnow.svg",
+    Haze: "/Haze.svg",
+    Mist: "/Mist.svg",
+    Smoke: "/manyClouds.svg",
+    Dust: "/manyClouds.svg",
+    overcastClouds: "/sun.svg",
   };
 
   // userWeather가 존재하고, userWeather.weather 배열의 첫 번째 요소의 description이 있는 경우에만 이미지 경로를 설정
@@ -61,23 +61,26 @@ function TodaysComent() {
       return defaultImgPath; // userWeather나 userWeather.weather가 없으면 기본 이미지 반환
     const englishDescription = data.weather[0].main; // 영어로된 날씨 설명 가져오기
     // 영어로 된 날씨 설명에 해당하는 이미지 경로 반환
-    return weatherImageMapping[englishDescription as keyof WeatherImage] || defaultImgPath;
+    return (
+      weatherImageMapping[englishDescription as keyof WeatherImage] ||
+      defaultImgPath
+    );
   };
 
   const imagePath1 = getImagePathForWeather(); // getImagePathForWeather 함수 호출하여 imagePath 설정
 
-  const RealImage:WeatherImage = {
-    Clear: './realImage/SunnyRealImage.svg', //text-slate-700
-    Clouds: './realImage/CloudyRealImage.svg', //text-slate-200
-    Rain: './realImage/RainyRealImage.svg', //text-slate-200
-    Drizzle: './realImage/RainyRealImage.svg', //text-slate-200
-    Thunderstorm: './realImage/RainyRealImage.svg', //text-slate-200
-    Snow: './realImage/SnowRealImage.svg', //text-slate-200
-    Haze: './realImage/HazeRealImage.svg', //text-slate-700
-    Mist: './realImage/HazeRealImage.svg', //text-slate-700
-    Smoke: './realImage/HazeRealImage.svg', //text-slate-700
-    Dust: './realImage/HazeRealImage.svg', //text-slate-700
-    overcastClouds: './realImage/SunnyRealImage.svg', //text-slate-700
+  const RealImage: WeatherImage = {
+    Clear: "./realImage/SunnyRealImage.svg", //text-slate-700
+    Clouds: "./realImage/CloudyRealImage.svg", //text-slate-200
+    Rain: "./realImage/RainyRealImage.svg", //text-slate-200
+    Drizzle: "./realImage/RainyRealImage.svg", //text-slate-200
+    Thunderstorm: "./realImage/RainyRealImage.svg", //text-slate-200
+    Snow: "./realImage/SnowRealImage.svg", //text-slate-200
+    Haze: "./realImage/HazeRealImage.svg", //text-slate-700
+    Mist: "./realImage/HazeRealImage.svg", //text-slate-700
+    Smoke: "./realImage/HazeRealImage.svg", //text-slate-700
+    Dust: "./realImage/HazeRealImage.svg", //text-slate-700
+    overcastClouds: "./realImage/SunnyRealImage.svg", //text-slate-700
   };
   const getRealImage = () => {
     if (data && data.weather && data.weather.length !== 0) {
@@ -93,7 +96,7 @@ function TodaysComent() {
       <div className="w-full flex justify-between text-left text-lg font-bold text-wrap">
         {storageUser && (storageUser as any).useState?.name ? (
           <div>
-            <Link to={'/user/mypage'} className="text-blue-400">
+            <Link to={"/user/mypage"} className="text-blue-400">
               {(storageUser as any).useState?.name}
             </Link>
             님,
@@ -105,7 +108,7 @@ function TodaysComent() {
         ) : (
           <div>
             <Link
-              to={'/user/validlogin'}
+              to={"/user/validlogin"}
               className="font-medium hover:text-blue-600"
             >
               로그인
@@ -119,7 +122,7 @@ function TodaysComent() {
         )}
         <section
           style={{ backgroundImage: `url(${realImage})` }}
-          className={`border-2 w-1/2 text-base text-nowrap ${['Clouds', 'Rain', 'Drizzle', 'Thunderstorm', 'Snow'].includes(data?.weather[0].main) ? 'text-slate-200' : 'text-slate-700'} flex gap-4 rounded-xl p-4 box-border bg-white bg-cover bg-no-repeat bg-center`}
+          className={`border-2 w-1/2 text-base text-nowrap ${["Clouds", "Rain", "Drizzle", "Thunderstorm", "Snow"].includes(data?.weather[0].main) ? "text-slate-200" : "text-slate-700"} flex gap-4 rounded-xl p-4 box-border bg-white bg-cover bg-no-repeat bg-center`}
         >
           <div className="w-2/3 flex flex-col gap-2 justify-between">
             <div className="">
@@ -141,7 +144,7 @@ function TodaysComent() {
             <div>
               <p>강수량</p>
               <p className="text-base">
-                {data?.rain ? data?.rain?.['1h'] : '00'}mm
+                {data?.rain ? data?.rain?.["1h"] : "00"}mm
               </p>
             </div>
           </div>
@@ -157,4 +160,4 @@ function TodaysComent() {
   );
 }
 
-export default TodaysComent;
+export default MainTodaysComent;

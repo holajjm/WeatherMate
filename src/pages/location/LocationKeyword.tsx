@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 function LocationKeywords({
   id,
@@ -13,25 +13,24 @@ function LocationKeywords({
   img_src: string;
 }) {
   const [click, setClick] = useState<boolean>(false);
-  const [searchParams,setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   // console.log(searchParams.get("id"));
   useEffect(() => {
-    setSearchParams({id:"12"})
-  },[])
+    setSearchParams({ id: "12" });
+  }, []);
   return (
     <div
       onClick={e => {
-        onClick(id)
-        setSearchParams({id:id})
-        if(searchParams.get("id") === id){
-          setClick(true)
-        }else if(searchParams.get("id") !== id){
-          setClick(false)
+        onClick(id);
+        setSearchParams({ id: id });
+        if (searchParams.get("id") === id) {
+          setClick(true);
+        } else if (searchParams.get("id") !== id) {
+          setClick(false);
         }
-        console.log(e.currentTarget.getAttribute('datatype'));
+        console.log(e.currentTarget.getAttribute("datatype"));
         console.log(searchParams.get("id"));
         console.log(id);
-        
       }}
       datatype={label}
       className={`flex flex-col justify-center items-center font-UhBeeKangJa bg-slate-200 p-2 rounded-lg transition-all duration-100 hover:bg-blue-300 hover:cursor-pointer ${click ? "border-2 border-black" : "border-none"}`}

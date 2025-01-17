@@ -1,20 +1,21 @@
-import React,{ useState } from 'react';
-import Location from './Location';
-import { useDebounce } from '../../hooks/useDebounce';
-import { FaSearch } from 'react-icons/fa';
+import React, { useState } from "react";
+import { useDebounce } from "../../hooks/useDebounce";
+
+import Location from "./Location";
+import { FaSearch } from "react-icons/fa";
 
 // 장소추천 자식 컴포넌트 (검색 | 보여주기)
-function SearchLocation() {
-  const [keyword, setKeyword] = useState('');
+function LocationSearch() {
+  const [keyword, setKeyword] = useState("");
 
   // useDebounce 훅을 사용하여 입력값에 대한 디바운스 처리
   const debouncedKeyword = useDebounce(keyword, 2000);
 
-  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
 
-  const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
@@ -39,4 +40,4 @@ function SearchLocation() {
   );
 }
 
-export default SearchLocation;
+export default LocationSearch;

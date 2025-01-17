@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function CommunityEdit() {
-  return (
-    <div>CommunityEdit</div>
-  )
+  return <div>CommunityEdit</div>;
 }
 
-export default CommunityEdit
+export default CommunityEdit;

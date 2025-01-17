@@ -1,45 +1,46 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { memberState } from '../../recoil/atom.mts';
-import { useQuery } from '@tanstack/react-query';
-import { useRecoilState } from 'recoil';
-import useCustomAxios from '@hooks/useCustomAxios.mts';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { memberState } from "../../recoil/atom.mts";
+import { useQuery } from "@tanstack/react-query";
+import { useRecoilState } from "recoil";
+import { AxiosResponse } from "axios";
+import useCustomAxios from "@hooks/useCustomAxios.mts";
+import usePageTitle from "@hooks/usePageTitle";
+import { CommunityMainData, ExpandCommunityData } from "type";
+
 // import Button from '@components/layout/Button';
-import UserBoard from '@pages/user/UserBoard';
-import ValidLogin from '@pages/user/ValidLogin';
-import { BsBookmarkStarFill } from 'react-icons/bs';
-import { PiUserListBold } from 'react-icons/pi';
-import usePageTitle from '@hooks/usePageTitle';
-import { CommunityMainData, ExpandCommunityData } from 'type';
-import { AxiosResponse } from 'axios';
-import UserBookMark from '@pages/user/UserBookmark';
+import UserBoard from "@pages/user/UserBoard";
+import ValidLogin from "@pages/user/UserValidLogin";
+import UserBookMark from "@pages/user/UserBookmark";
+import { BsBookmarkStarFill } from "react-icons/bs";
+import { PiUserListBold } from "react-icons/pi";
 
 function UserPage() {
-  usePageTitle('MyPage');
+  usePageTitle("MyPage");
   const navigate = useNavigate();
   const axios = useCustomAxios();
   const [user, setUser] = useRecoilState(memberState);
   const handleLogout = () => {
-    if (confirm('로그아웃 하시겠습니까?')) {
+    if (confirm("로그아웃 하시겠습니까?")) {
       setUser(null);
-      navigate('/');
+      navigate("/");
     }
   };
 
   const Edit = () => {
-    navigate('/user/edit');
+    navigate("/user/edit");
   };
 
   const { data } = useQuery<AxiosResponse<CommunityMainData>>({
-    queryKey: ['posts'],
+    queryKey: ["posts"],
     queryFn: () =>
-      axios.get('/posts', {
+      axios.get("/posts", {
         params: {
-          type: 'community',
+          type: "community",
         },
       }),
     // suspense: true,
-    refetchOnMount: 'always',
+    refetchOnMount: "always",
   });
   // console.log(data);
 
@@ -49,7 +50,9 @@ function UserPage() {
         return item;
       }
     })
-    .map((item: ExpandCommunityData) => <UserBoard key={item._id} item={item} />);
+    .map((item: ExpandCommunityData) => (
+      <UserBoard key={item._id} item={item} />
+    ));
 
   return (
     <>
@@ -61,7 +64,7 @@ function UserPage() {
                 <div className="flex gap-2 md:gap-4 items-center">
                   <img
                     className="w-12 h-12 rounded-full"
-                    src={user.profile ? user.profile : '/nulluser.svg'}
+                    src={user.profile ? user.profile : "/nulluser.svg"}
                     alt="Profile"
                   />
                   <div className="flex-grow">
@@ -100,7 +103,7 @@ function UserPage() {
                     저장한 장소
                   </p>
                   <Link
-                    to={'/location'}
+                    to={"/location"}
                     className="ml-auto text-base text-slate-400 hover:text-amber-400 hover:font-bold"
                   >
                     장소추천 &rarr;
@@ -116,7 +119,7 @@ function UserPage() {
                     나의 게시글
                   </p>
                   <Link
-                    to={'/community'}
+                    to={"/community"}
                     className="ml-auto text-base text-slate-400 hover:text-amber-400 hover:font-bold"
                   >
                     커뮤니티 &rarr;

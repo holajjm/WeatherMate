@@ -1,7 +1,7 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { memberState } from '../../recoil/atom.mts';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { memberState } from "../../recoil/atom.mts";
 
 function CommunityNewbutton() {
   const navigate = useNavigate();
@@ -10,11 +10,11 @@ function CommunityNewbutton() {
   const handleWrite = () => {
     if (!user) {
       const gotologin = confirm(
-        '로그인 후 이용 가능합니다. \n 로그인 하시겠습니까?',
+        "로그인 후 이용 가능합니다. \n 로그인 하시겠습니까?",
       );
-      gotologin && navigate('/user/login');
+      gotologin && navigate("/user/login");
     } else {
-      navigate('/community/new');
+      navigate("/community/new");
     }
   };
   return (

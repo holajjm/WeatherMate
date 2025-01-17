@@ -1,7 +1,7 @@
 import React from "react";
 
-function EnvCheck(){
-  return(
+function EnvCheck() {
+  return (
     <div>
       <h1>환경변수 확인</h1>
       <div>
@@ -22,7 +22,7 @@ function EnvCheck(){
         </ul>
       </div>
     </div>
-  )
+  );
 }
 
 export default EnvCheck;

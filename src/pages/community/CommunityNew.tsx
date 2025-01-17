@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import useCustomAxios from '../../hooks/useCustomAxios.mts';
-import { MdOutlineCameraAlt } from 'react-icons/md';
-import { FaArrowLeft } from 'react-icons/fa';
-import { CommunityFormData } from 'type';
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import useCustomAxios from "../../hooks/useCustomAxios.mts";
+import { CommunityFormData } from "type";
+
+import { MdOutlineCameraAlt } from "react-icons/md";
+import { FaArrowLeft } from "react-icons/fa";
 // import Button from '@components/layout/Button';
 // import Submit from '@components/layout/Submit';
 
@@ -22,11 +23,11 @@ function CommunityNew() {
   } = useForm<CommunityFormData>();
   console.log(errors);
 
-  const [weatherType, setWeatherType] = useState<string>('');
+  const [weatherType, setWeatherType] = useState<string>("");
   const [selectedLabel, setSelectedLabel] = useState<string>("");
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const targetTag = e.target as HTMLElement;
-    const value = targetTag.getAttribute('data-weather');
+    const value = targetTag.getAttribute("data-weather");
     // console.log(targetTag);
     console.log(value);
     // value === targetTag.getAttribute('data-weather')
@@ -38,28 +39,30 @@ function CommunityNew() {
 
     setWeatherType(value as string);
     setSelectedLabel(value as string);
-    setValue('title', weatherType);
-    clearErrors('title');
+    setValue("title", weatherType);
+    clearErrors("title");
   };
-  const isSelected = (labelValue: string) => { return selectedLabel === labelValue ? 'ring-2 ring-blue-500' : ''; };
+  const isSelected = (labelValue: string) => {
+    return selectedLabel === labelValue ? "ring-2 ring-blue-500" : "";
+  };
 
   const onSubmit = async (formData: CommunityFormData) => {
-    console.log('formData : ', formData);
-    formData.type = 'community';
+    console.log("formData : ", formData);
+    formData.type = "community";
     formData.title = weatherType;
 
     const imageFormData = new FormData();
-    imageFormData.append('attach', formData.image[0]);
-    const files = await axios('/files', {
-      method: 'post',
+    imageFormData.append("attach", formData.image[0]);
+    const files = await axios("/files", {
+      method: "post",
       headers: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
       data: imageFormData,
     });
     formData.image = files.data.item[0]?.name;
 
-    const res = await axios.post('/posts', formData);
+    const res = await axios.post("/posts", formData);
     console.log(res.data.item);
     navigate(`/community/${res.data.item._id}`);
   };
@@ -78,7 +81,7 @@ function CommunityNew() {
     <div className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-slate-50">
       <header className="flex relative">
         <button
-          onClick={() => navigate('/community')}
+          onClick={() => navigate("/community")}
           className="absolute top-2 left-0 p-2 flex gap-1 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
         >
           <FaArrowLeft className="text-xl" />
@@ -106,7 +109,7 @@ function CommunityNew() {
                     type="file"
                     accept="image/*"
                     id="file"
-                    {...register('image', { required: '사진을 추가하세요.' })}
+                    {...register("image", { required: "사진을 추가하세요." })}
                   />
                 </div>
                 <div>
@@ -124,7 +127,7 @@ function CommunityNew() {
                 >
                   <label
                     htmlFor="title"
-                    className={`rounded-lg w-full hover:ring-2 ${isSelected('uvi')}`}
+                    className={`rounded-lg w-full hover:ring-2 ${isSelected("uvi")}`}
                   >
                     <img
                       src="/uvi.svg"
@@ -135,7 +138,7 @@ function CommunityNew() {
                   </label>
                   <label
                     htmlFor="title"
-                    className={`rounded-lg w-full hover:ring-2 ${isSelected('manyClouds')}`}
+                    className={`rounded-lg w-full hover:ring-2 ${isSelected("manyClouds")}`}
                   >
                     <img
                       src="/manyClouds.svg"
@@ -146,7 +149,7 @@ function CommunityNew() {
                   </label>
                   <label
                     htmlFor="title"
-                    className={`rounded-lg w-full hover:ring-2 ${isSelected('rain')}`}
+                    className={`rounded-lg w-full hover:ring-2 ${isSelected("rain")}`}
                   >
                     <img
                       src="/rain.svg"
@@ -157,7 +160,7 @@ function CommunityNew() {
                   </label>
                   <label
                     htmlFor="title"
-                    className={`rounded-lg w-full hover:ring-2 ${isSelected('littleCloud')}`}
+                    className={`rounded-lg w-full hover:ring-2 ${isSelected("littleCloud")}`}
                   >
                     <img
                       src="/littleCloud.svg"
@@ -168,7 +171,7 @@ function CommunityNew() {
                   </label>
                   <label
                     htmlFor="title"
-                    className={`rounded-lg w-full hover:ring-2 ${isSelected('mainSnow')}`}
+                    className={`rounded-lg w-full hover:ring-2 ${isSelected("mainSnow")}`}
                   >
                     <img
                       src="/mainSnow.svg"
@@ -179,7 +182,7 @@ function CommunityNew() {
                   </label>
                   <label
                     htmlFor="title"
-                    className={`rounded-lg w-full hover:ring-2 ${isSelected('windspeed')}`}
+                    className={`rounded-lg w-full hover:ring-2 ${isSelected("windspeed")}`}
                   >
                     <img
                       src="/windspeed.svg"
@@ -193,7 +196,7 @@ function CommunityNew() {
                     type="hidden"
                     value={weatherType}
                     id="title"
-                    {...register('title', { required: '날씨를 선택하세요.' })}
+                    {...register("title", { required: "날씨를 선택하세요." })}
                   />
                 </div>
                 <div>
@@ -213,7 +216,7 @@ function CommunityNew() {
                 cols={50}
                 rows={10}
                 placeholder="웨더메이트에게 공유하고 싶은 이야기를 해주세요!"
-                {...register('content', { required: '내용을 입력하세요.' })}
+                {...register("content", { required: "내용을 입력하세요." })}
               />
               <div>
                 {errors.content && (
@@ -228,8 +231,8 @@ function CommunityNew() {
                 // text={'취소'}
                 type="button"
                 onClick={() => {
-                  if (confirm('그만쓸까요?')) {
-                    navigate('/community');
+                  if (confirm("그만쓸까요?")) {
+                    navigate("/community");
                   }
                   return;
                 }}

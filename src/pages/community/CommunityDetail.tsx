@@ -1,13 +1,14 @@
-import React from 'react';
-import { Outlet, useParams, useNavigate } from 'react-router-dom';
-import useCustomAxios from '../../hooks/useCustomAxios.mts';
-import { useQuery } from '@tanstack/react-query';
-import { AxiosResponse } from 'axios';
-import { CommunityDetailData } from 'type';
-import { useRecoilValue } from 'recoil';
-import { memberState } from '../../recoil/atom.mts';
-import { FaHeart } from 'react-icons/fa';
-import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
+import React from "react";
+import { Outlet, useParams, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { AxiosResponse } from "axios";
+import { useRecoilValue } from "recoil";
+import useCustomAxios from "../../hooks/useCustomAxios.mts";
+import { memberState } from "../../recoil/atom.mts";
+import { CommunityDetailData } from "type";
+
+import { FaHeart } from "react-icons/fa";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 // import Button from '@components/layout/Button';
 
 function CommunityDetail() {
@@ -16,16 +17,16 @@ function CommunityDetail() {
   const axios = useCustomAxios();
   const user = useRecoilValue(memberState);
   const { data } = useQuery<AxiosResponse<CommunityDetailData>>({
-    queryKey: ['posts', _id],
+    queryKey: ["posts", _id],
     queryFn: () => axios.get(`/posts/${_id}`),
     refetchOnWindowFocus: false,
   });
 
   const handleDelete = async () => {
-    const deleteRes = confirm('삭제하시겠습니까?');
+    const deleteRes = confirm("삭제하시겠습니까?");
     if (deleteRes) {
       await axios.delete(`/posts/${_id}`);
-      navigate('/community');
+      navigate("/community");
     }
   };
   console.log(data?.data.item);
@@ -96,8 +97,10 @@ function CommunityDetail() {
                 <div className="flex gap-1 items-center">
                   <IoChatbubbleEllipsesOutline className="text-orange-300 text-2xl" />
                   <p className="text-orange-300">
-                    댓글{' '}
-                    {data?.data?.item && data?.data?.item.replies ? data?.data?.item.replies?.length : 0}
+                    댓글{" "}
+                    {data?.data?.item && data?.data?.item.replies
+                      ? data?.data?.item.replies?.length
+                      : 0}
                     개
                   </p>
                 </div>
@@ -108,7 +111,7 @@ function CommunityDetail() {
                 <button
                   // text={'이전'}
                   className="w-full p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                  onClick={() =>  window.history.back()}
+                  onClick={() => window.history.back()}
                 >
                   이전
                 </button>

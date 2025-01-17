@@ -1,9 +1,8 @@
-import React from 'react';
-import WeatherDetail from '@pages/main/WeatherDetail';
+import React from "react";
+import MainWeatherDetail from "@pages/main/MainWeatherDetail";
 
-const MyLocationWeather = () => {
-
-  const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string)
+const MainMyLocationWeather = () => {
+  const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
 
   return (
     <div className="bg-white flex flex-col gap-4 px-2">
@@ -22,11 +21,12 @@ const MyLocationWeather = () => {
               {data.main.temp.toFixed(1)}°C
               <p className="text-lg font-bold">{data.weather[0].description}</p>
             </div>
-            <WeatherDetail />
+            <MainWeatherDetail />
           </>
         )}
       </main>
     </div>
   );
 };
-export default MyLocationWeather;
+
+export default MainMyLocationWeather;

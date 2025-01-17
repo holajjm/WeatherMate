@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '@components/layout/Button';
 
-function MainLogin() {
+function UserMainLogin() {
   const navigate = useNavigate();
   const location = useLocation();
   const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY; //REST API KEY
@@ -56,4 +56,4 @@ function MainLogin() {
   );
 }
 
-export default MainLogin;
+export default UserMainLogin;

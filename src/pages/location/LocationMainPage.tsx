@@ -1,9 +1,9 @@
-import React from 'react';
-import usePageTitle from '@hooks/usePageTitle';
-import ToTheTopButton from '../../components/layout/ToTheTopButton';
-import Location from '@pages/location/Location';
+import React from "react";
 
-// 장소추천 최상단 페이지
+import Location from "@pages/location/Location";
+import usePageTitle from "@hooks/usePageTitle";
+import ToTheTopButton from "@components/layout/ToTheTopButton";
+
 function LocationMainPage() {
   usePageTitle("Location");
   return (

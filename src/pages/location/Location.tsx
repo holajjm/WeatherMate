@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import LocationKeywords from '@pages/location/LocationKeyword';
-import LocationItem from '@pages/location/LocationItem';
-import Loading from '@components/layout/Loading';
-import { useDebounce } from '@hooks/useDebounce';
-import useCurrentLocation from '@hooks/useCurrentLocation';
-import { LocationMainData } from 'type';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useDebounce } from "@hooks/useDebounce";
+import useCurrentLocation from "@hooks/useCurrentLocation";
+import { LocationMainData } from "type";
+
+import LocationKeywords from "@pages/location/LocationKeyword";
+import LocationItem from "@pages/location/LocationItem";
+import Loading from "@components/layout/Loading";
 // import Button from '@components/layout/Button';
 
 const LocationAPIKEY = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
@@ -13,11 +14,11 @@ const LocationAPIKEY = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 function Location() {
   const { latitude, longitude } = useCurrentLocation();
   const [locationData, setLocationData] = useState<LocationMainData[]>([]);
-  const [searchKeyword, setSearchKeyword] = useState<string>('');
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [contentID, setContentID] = useState<string>('12');
+  const [contentID, setContentID] = useState<string>("12");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const radius = '200000';
+  const radius = "200000";
   // console.log(contentID);
   // console.log(locationData);
 
@@ -39,7 +40,7 @@ function Location() {
         } catch (error) {
           setIsLoading(false);
           console.error(
-            '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
+            "데이터를 원활하게 가져오는데 오류가 발생하였습니다.",
             error,
           );
         }
@@ -49,11 +50,11 @@ function Location() {
   }, [latitude, longitude, contentID]);
 
   //검색 로직 구현
-  const [keyword, setKeyword] = useState('');
-  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const [keyword, setKeyword] = useState("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
-  const debounceSearchKeyword = useDebounce(keyword,0);
+  const debounceSearchKeyword = useDebounce(keyword, 0);
   useEffect(() => {
     setSearchKeyword(debounceSearchKeyword);
   }, [debounceSearchKeyword]);
@@ -69,7 +70,7 @@ function Location() {
     } catch (error) {
       setIsLoading(false);
       console.error(
-        '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
+        "데이터를 원활하게 가져오는데 오류가 발생하였습니다.",
         error,
       );
     }
@@ -78,17 +79,17 @@ function Location() {
   const handleSubmit = () => {
     if (searchKeyword) {
       fetchLocationSearchData();
-      setKeyword('');
+      setKeyword("");
     }
   };
   const handleClick = () => {
     if (searchKeyword) {
       fetchLocationSearchData();
-      setKeyword('');
+      setKeyword("");
     }
   };
-  const handleKeyDown = (e:React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
       handleSubmit();
     }
   };
@@ -106,7 +107,7 @@ function Location() {
       setCurrentPage(prevPage => prevPage + 1);
     } catch (error) {
       console.error(
-        '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
+        "데이터를 원활하게 가져오는데 오류가 발생하였습니다.",
         error,
       );
     }
@@ -124,26 +125,28 @@ function Location() {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [locationData]);
 
   const options = [
-    { id: '12', label: '전체', img_src: 'all.svg' },
-    { id: '14', label: '문화', img_src: 'communityplace.svg' },
-    { id: '15', label: '행사', img_src: 'festival.svg' },
-    { id: '25', label: '여행지', img_src: 'travel.svg' },
-    { id: '28', label: '레포츠', img_src: 'reports.svg' },
-    { id: '32', label: '숙박', img_src: 'hotel.svg' },
-    { id: '38', label: '쇼핑', img_src: 'shopping.svg' },
-    { id: '39', label: '음식점', img_src: 'food.svg' },
+    { id: "12", label: "전체", img_src: "all.svg" },
+    { id: "14", label: "문화", img_src: "communityplace.svg" },
+    { id: "15", label: "행사", img_src: "festival.svg" },
+    { id: "25", label: "여행지", img_src: "travel.svg" },
+    { id: "28", label: "레포츠", img_src: "reports.svg" },
+    { id: "32", label: "숙박", img_src: "hotel.svg" },
+    { id: "38", label: "쇼핑", img_src: "shopping.svg" },
+    { id: "39", label: "음식점", img_src: "food.svg" },
   ];
 
   // console.log(locationData);
 
-  const locationItemList = locationData && locationData.map((e,i) => <LocationItem key={i} item={e}/>)
+  const locationItemList =
+    locationData &&
+    locationData.map((e, i) => <LocationItem key={i} item={e} />);
 
   return (
     <div className="flex flex-col gap-4 mx-auto p-2 min-h-screen bg-slate-50">
@@ -160,12 +163,16 @@ function Location() {
           // text={'검색하기'}
           onClick={handleClick}
           className="w-1/4 p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-sky-400 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-        >검색하기</button>
+        >
+          검색하기
+        </button>
         <button
           // text={'새로 고침'}
           onClick={() => window.location.reload()}
           className="w-1/4 p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-        >초기화</button>
+        >
+          초기화
+        </button>
       </header>
 
       <aside className="grid grid-cols-4 sm:flex gap-1 justify-center items-center">
@@ -188,7 +195,6 @@ function Location() {
           {locationItemList}
         </main>
       )}
-
     </div>
   );
 }

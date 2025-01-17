@@ -1,32 +1,32 @@
-import React,{ useState } from 'react';
-import useCustomAxios from '@hooks/useCustomAxios.mts';
-import { useRecoilState } from 'recoil';
-import { memberState } from '../../recoil/atom.mts';
-import { useNavigate } from 'react-router-dom';
-import { UserMainData } from 'type';
+import React, { useState } from "react";
+import { useRecoilState } from "recoil";
+import { memberState } from "../../recoil/atom.mts";
+import { useNavigate } from "react-router-dom";
+import useCustomAxios from "@hooks/useCustomAxios.mts";
+import { UserMainData } from "type";
 
-function EditProfile() {
+function UserEdit() {
   const [user, setUser] = useRecoilState<UserMainData>(memberState);
   const [name, setName] = useState<string>(user.name);
   const [phone, setPhone] = useState<string>(user.phone);
   const [email, setEmail] = useState<string>(user.email);
-  const [password, setPassword] = useState<string>('');
+  const [password, setPassword] = useState<string>("");
   const axios = useCustomAxios();
   const navigate = useNavigate();
   console.log(user);
-  
-  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const updatedData = {
         name,
         phone,
         email,
-        password
+        password,
       };
       let updated = false;
       console.log(updatedData);
-      
+
       if (name !== user.name) {
         updatedData.name = name;
         updated = true;
@@ -39,22 +39,19 @@ function EditProfile() {
         updatedData.email = email;
         updated = true;
       }
-      if (password !== '') {
+      if (password !== "") {
         updatedData.password = password;
         updated = true;
       }
 
       if (!updated) {
-        alert('변경된 정보가 없습니다.');
+        alert("변경된 정보가 없습니다.");
         return;
       }
 
-      const response = await axios.patch(
-        `/users/${user._id}`,
-        updatedData,
-      );
+      const response = await axios.patch(`/users/${user._id}`, updatedData);
       if (response.status !== 200) {
-        throw new Error('회원가입 정보를 수정하는 데 실패했습니다.');
+        throw new Error("회원가입 정보를 수정하는 데 실패했습니다.");
       }
 
       setUser(prevUser => ({
@@ -73,10 +70,10 @@ function EditProfile() {
         setEmail(updatedData.email);
       }
       setPassword(updatedData.password);
-      alert('회원 정보가 성공적으로 수정되었습니다.');
+      alert("회원 정보가 성공적으로 수정되었습니다.");
     } catch (error) {
       console.error(error);
-      alert('회원 정보 수정에 실패했습니다.');
+      alert("회원 정보 수정에 실패했습니다.");
     }
   };
 
@@ -121,7 +118,7 @@ function EditProfile() {
           />
           <div className="flex gap-2">
             <button
-            onClick={() => navigate("/user/mypage")}
+              onClick={() => navigate("/user/mypage")}
               type="button"
               className="w-full p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
             >
@@ -140,4 +137,4 @@ function EditProfile() {
   );
 }
 
-export default EditProfile;
+export default UserEdit;

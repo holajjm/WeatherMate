@@ -1,6 +1,6 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ExpandCommunityData } from 'type';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { ExpandCommunityData } from "type";
 
 function UserBoard({ item }: { item: ExpandCommunityData }) {
   const navigate = useNavigate();

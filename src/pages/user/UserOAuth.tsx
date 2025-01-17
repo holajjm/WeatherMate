@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { memberState } from '../../recoil/atom.mts';
-import useCustomAxios from '@hooks/useCustomAxios.mts';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useSetRecoilState } from "recoil";
+import { memberState } from "../../recoil/atom.mjs";
+import useCustomAxios from "@hooks/useCustomAxios.mts";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
-const Oauth = () => {
+const UserOAuth = () => {
   const [loading, setLoading] = useState(true);
   const setUser = useSetRecoilState(memberState);
   const axios = useCustomAxios();
@@ -12,18 +12,18 @@ const Oauth = () => {
   const location = useLocation();
   // 토큰 -> 사용자 정보 -> 백엔드
   const [searchParams] = useSearchParams();
-  const code = searchParams.get('code');
+  const code = searchParams.get("code");
   const redirect_uri = `${window.location.origin}/auth/kakao`;
   console.log(redirect_uri);
   console.log(code);
 
   const sendUserDataToBackend = async () => {
     try {
-      const res = await axios.post('/users/login/kakao', {
+      const res = await axios.post("/users/login/kakao", {
         code,
         redirect_uri,
       });
-      console.log('User data sent to backend:', res.data);
+      console.log("User data sent to backend:", res.data);
       if (res.data.item) {
         setUser({
           _id: res.data.item._id,
@@ -33,8 +33,8 @@ const Oauth = () => {
           profile: res.data.item.profileImage,
           token: res.data.item.token,
         });
-        alert(res.data.item.name + '님 반갑습니다');
-        navigate(location.state?.from ? location.state?.from : '/main');
+        alert(res.data.item.name + "님 반갑습니다");
+        navigate(location.state?.from ? location.state?.from : "/main");
         console.log(res.data.item);
       }
     } catch (error) {
@@ -52,11 +52,7 @@ const Oauth = () => {
     <div className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-slate-50">
       {loading ? (
         <div className="flex flex-col items-center justify-center">
-          <img
-            className="w-60"
-            src="/error.svg"
-            alt="Loading"
-          />
+          <img className="w-60" src="/error.svg" alt="Loading" />
           <h1 className="text-xl font-semibold font-TTLaundryGothicB">
             Loading
           </h1>
@@ -68,4 +64,4 @@ const Oauth = () => {
   );
 };
 
-export default Oauth;
+export default UserOAuth;

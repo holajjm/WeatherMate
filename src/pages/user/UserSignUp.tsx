@@ -1,10 +1,10 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import useCustomAxios from '@hooks/useCustomAxios.mts';
-import { SignUpMainData } from 'type';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import useCustomAxios from "@hooks/useCustomAxios.mts";
+import { SignUpMainData } from "type";
 
-function SignUp() {
+function UserSignUp() {
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const {
@@ -13,26 +13,26 @@ function SignUp() {
     formState: { errors },
     setError,
   } = useForm<SignUpMainData>();
-  
+
   const onSubmit = async (formData: SignUpMainData) => {
     try {
-      formData.type = 'user';
+      formData.type = "user";
       if (formData.profileImage && formData.profileImage.length > 0) {
         const imageFormData = new FormData();
-        imageFormData.append('attach', formData.profileImage[0]);
+        imageFormData.append("attach", formData.profileImage[0]);
 
-        const fileRes = await axios.post('/files', imageFormData, {
+        const fileRes = await axios.post("/files", imageFormData, {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            "Content-Type": "multipart/form-data",
           },
         });
         formData.profileImage = fileRes.data.item[0].name;
       } else {
         delete formData.profileImage;
       }
-      const res = await axios.post('/users', formData);
+      const res = await axios.post("/users", formData);
       alert(`${res.data.item.name}님 회원가입이 완료되었습니다.`);
-      navigate('/user/login');
+      navigate("/user/login");
     } catch (err: any) {
       console.log(err);
       if (err.response?.data.errors) {
@@ -73,11 +73,11 @@ function SignUp() {
                   type="text"
                   id="name"
                   placeholder="이름을 입력하세요"
-                  {...register('name', {
-                    required: '이름을 입력하세요',
+                  {...register("name", {
+                    required: "이름을 입력하세요",
                     minLength: {
                       value: 2,
-                      message: '이름을 두글자 이상 입력하세요',
+                      message: "이름을 두글자 이상 입력하세요",
                     },
                   })}
                   className="p-4 rounded-lg bg-slate-100 focus:ring-2 focus:ring-primary focus:border-transparent w-full"
@@ -85,8 +85,12 @@ function SignUp() {
               </div>
               <div>
                 {errors.name ? (
-                  <p className="text-base text-red-500">{errors.name.message}</p>
-                ):(<p className="p-2"></p>)}
+                  <p className="text-base text-red-500">
+                    {errors.name.message}
+                  </p>
+                ) : (
+                  <p className="p-2"></p>
+                )}
               </div>
             </section>
 
@@ -102,11 +106,11 @@ function SignUp() {
                   type="text"
                   id="phone"
                   placeholder="휴대폰 번호를 입력하세요"
-                  {...register('phone', {
-                    required: '휴대폰 번호를 입력하세요',
+                  {...register("phone", {
+                    required: "휴대폰 번호를 입력하세요",
                     minLength: {
                       value: +/^\d{3}-\d{3,4}-\d{4}$/,
-                      message: '전화번호 양식을 맞춰 입력 해 주세요',
+                      message: "전화번호 양식을 맞춰 입력 해 주세요",
                     },
                   })}
                   className="p-4 rounded-lg bg-slate-100 focus:ring-2 focus:ring-primary focus:border-transparent w-full"
@@ -114,8 +118,12 @@ function SignUp() {
               </div>
               <div>
                 {errors.phone ? (
-                  <p className="text-base text-red-500">{errors.phone.message}</p>
-                ):(<p className="p-2"></p>)}
+                  <p className="text-base text-red-500">
+                    {errors.phone.message}
+                  </p>
+                ) : (
+                  <p className="p-2"></p>
+                )}
               </div>
             </section>
 
@@ -131,12 +139,12 @@ function SignUp() {
                   type="email"
                   id="email"
                   placeholder="이메일을 입력하세요"
-                  {...register('email', {
-                    required: '이메일을 입력하세요',
+                  {...register("email", {
+                    required: "이메일을 입력하세요",
                     pattern: {
                       value:
                         /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
-                      message: '이메일 형식이 아닙니다',
+                      message: "이메일 형식이 아닙니다",
                     },
                   })}
                   className="p-4 rounded-lg bg-slate-100 focus:ring-2 focus:ring-primary focus:border-transparent w-full"
@@ -144,8 +152,12 @@ function SignUp() {
               </div>
               <div>
                 {errors.email ? (
-                  <p className="text-base text-red-500">{errors.email.message}</p>
-                ):(<p className="p-2"></p>)}
+                  <p className="text-base text-red-500">
+                    {errors.email.message}
+                  </p>
+                ) : (
+                  <p className="p-2"></p>
+                )}
               </div>
             </section>
 
@@ -161,8 +173,8 @@ function SignUp() {
                   type="password"
                   id="password"
                   placeholder="비밀번호를 입력하세요"
-                  {...register('password', {
-                    required: '비밀번호를 입력하세요',
+                  {...register("password", {
+                    required: "비밀번호를 입력하세요",
                   })}
                   className="p-4 rounded-lg bg-slate-100 focus:ring-2 focus:ring-primary focus:border-transparent w-full"
                 />
@@ -172,7 +184,9 @@ function SignUp() {
                   <p className="text-base text-red-500">
                     {errors.password.message}
                   </p>
-                ):(<p className="p-2"></p>)}
+                ) : (
+                  <p className="p-2"></p>
+                )}
               </div>
             </section>
 
@@ -188,7 +202,7 @@ function SignUp() {
                   type="file"
                   accept="image/*"
                   id="profileImage"
-                  {...register('profileImage')}
+                  {...register("profileImage")}
                   className="p-4 rounded-lg bg-slate-100 focus:ring-2 focus:ring-primary focus:border-transparent w-full"
                 />
               </div>
@@ -202,9 +216,10 @@ function SignUp() {
                 회원가입
               </button>
               <button
-                type='button'
+                type="button"
                 onClick={() => window.history.back()}
-                className="w-full p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400">
+                className="w-full p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+              >
                 취소
               </button>
             </section>
@@ -215,4 +230,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default UserSignUp;

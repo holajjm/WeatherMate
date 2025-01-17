@@ -1,26 +1,27 @@
-import React,{ useEffect, useState } from 'react';
-import { createSearchParams, useNavigate } from 'react-router-dom';
-import MbtiQuestionData from '../../assets/MbtiQuestionData';
-import mbtiStart from '@assets/mbti/mbtiimg/mbtiStart.png';
+import React, { useEffect, useState } from "react";
+import { createSearchParams, useNavigate } from "react-router-dom";
+
+import MbtiQuestionData from "../../assets/MbtiQuestionData";
+import mbtiStart from "@assets/mbti/mbtiimg/mbtiStart.png";
 // import Button from '@components/layout/Button';
 
 function MbtiQuestion() {
   const navigate = useNavigate();
   useEffect(() => {
-    window.scrollTo(0,0)
-  },[])
+    window.scrollTo(0, 0);
+  }, []);
   const [questionNo, setQuestionNo] = useState(0);
   const [totalScore, setTotalScore] = useState([
-    { id: 'EI', score: 0 },
-    { id: 'SN', score: 0 },
-    { id: 'TF', score: 0 },
-    { id: 'JP', score: 0 },
+    { id: "EI", score: 0 },
+    { id: "SN", score: 0 },
+    { id: "TF", score: 0 },
+    { id: "JP", score: 0 },
   ]);
 
   //프로그래스바
   const progress = (questionNo + 1) / MbtiQuestionData.length;
 
-  const handleClickButton = (no:number, type:string) => {
+  const handleClickButton = (no: number, type: string) => {
     const newScore = totalScore.map(s =>
       s.id === type ? { id: s.id, score: s.score + no } : s,
     );
@@ -34,12 +35,12 @@ function MbtiQuestion() {
         (acc, curr) =>
           acc +
           (curr.score >= 2 ? curr.id.substring(0, 1) : curr.id.substring(1, 2)),
-        '',
+        "",
       );
-      console.log('mbti', mbti);
+      console.log("mbti", mbti);
       // 마지막 질문인 경우 결과 페이지로 이동
       navigate({
-        pathname: '/mbti/result',
+        pathname: "/mbti/result",
         search: `?${createSearchParams({
           mbti: mbti,
         })}`,
@@ -110,7 +111,7 @@ function MbtiQuestion() {
                 )}
                 <button
                   // text={'Mbti 메인으로 가기'}
-                  onClick={() => navigate('/mbti')}
+                  onClick={() => navigate("/mbti")}
                   className="w-full p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-white bg-indigo-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
                 >
                   메인으로
