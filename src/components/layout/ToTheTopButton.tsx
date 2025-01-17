@@ -1,5 +1,6 @@
-import React,{ useState, useEffect } from 'react';
-import { FaArrowUp } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+
+import { FaArrowUp } from "react-icons/fa";
 
 function ToTheTopButton() {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,21 +14,21 @@ function ToTheTopButton() {
         setIsVisible(false);
       }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleClick = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth', // 부드럽게 스크롤되도록 설정
+      behavior: "smooth", // 부드럽게 스크롤되도록 설정
     });
   };
 
   return (
     <button
       className={`fixed bottom-28 right-5 rounded-full z-50 p-2 w-16 h-12 shadow-xl border-2 bg-white duration-500 transition-opacity flex justify-center items-center ${
-        isVisible ? 'opacity-100' : 'opacity-0'
+        isVisible ? "opacity-100" : "opacity-0"
       }`}
       onClick={handleClick}
     >

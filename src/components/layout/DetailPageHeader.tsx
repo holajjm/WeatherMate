@@ -1,11 +1,6 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React from "react";
 
-DetailPageHeader.propTypes = {
-  title: PropTypes.string,
-};
-
-function DetailPageHeader(title:string) {
+function DetailPageHeader(title: string) {
   return (
     <>
       <div className=" px-5 p-5 flex items-center justify-center md:hidden xl:mx-60">

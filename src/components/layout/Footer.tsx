@@ -1,7 +1,8 @@
-import React from 'react';
-import { IoLogoFacebook, IoLogoGoogle } from 'react-icons/io';
-import { BiLogoInstagram } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+
+import { IoLogoFacebook, IoLogoGoogle } from "react-icons/io";
+import { BiLogoInstagram } from "react-icons/bi";
 
 function Footer() {
   return (
@@ -16,7 +17,10 @@ function Footer() {
           <p>고객센터</p>
         </div>
         <div>
-          <Link to="https://github.com/FRONTENDSCHOOL9/WeatherMate" className="font-bold font-TTLaundryGothicB">
+          <Link
+            to="https://github.com/FRONTENDSCHOOL9/WeatherMate"
+            className="font-bold font-TTLaundryGothicB"
+          >
             WeatherMate
           </Link>
         </div>

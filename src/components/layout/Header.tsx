@@ -1,12 +1,12 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 
 function Header() {
   const location = useLocation();
   const handleRefresh = () => {
-    sessionStorage.removeItem('userWeather');
-    sessionStorage.removeItem('myPlace');
-    if (location.pathname === '/') {
+    sessionStorage.removeItem("userWeather");
+    sessionStorage.removeItem("myPlace");
+    if (location.pathname === "/") {
       window.location.reload();
     }
   };

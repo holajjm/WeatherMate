@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';
-import kakaoLogo from '/kakaoLogo.svg';
+import React, { useEffect } from "react";
+
+import kakaoLogo from "/kakaoLogo.svg";
+
 const { Kakao } = window as any;
 interface Result {
-  data: {
-    desc: string;
-    id: number;
-    image: string;
-    title: string;
-    type: string;
-  } | undefined;
+  data:
+    | {
+        desc: string;
+        id: number;
+        image: string;
+        title: string;
+        type: string;
+      }
+    | undefined;
 }
 
 function KakaoShareButton(data: Result) {
@@ -18,9 +22,9 @@ function KakaoShareButton(data: Result) {
 
   const shareKakao = () => {
     Kakao.Link.sendDefault({
-      objectType: 'feed',
+      objectType: "feed",
       content: {
-        title: '🌤️날씨 성격 테스트🌤️',
+        title: "🌤️날씨 성격 테스트🌤️",
         description: ` ${data.data?.title}`,
         imageUrl: `url + data.data.image`,
         link: {
@@ -30,7 +34,7 @@ function KakaoShareButton(data: Result) {
       },
       buttons: [
         {
-          title: '나도 테스트하러가기',
+          title: "나도 테스트하러가기",
           link: {
             mobileWebUrl: url,
             webUrl: url,
