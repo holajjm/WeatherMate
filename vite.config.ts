@@ -1,18 +1,27 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import alias from "@rollup/plugin-alias";
+import * as path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: [
-      { find: '@', replacement: resolve(__dirname, 'src') },
-      { find: '@assets', replacement: resolve(__dirname, 'src/assets') },
-      { find: '@components', replacement: resolve(__dirname, 'src/components')},
-      { find: '@pages', replacement: resolve(__dirname, 'src/pages') },
-      { find: '@hooks', replacement: resolve(__dirname, 'src/hooks') },
-      { find: '@recoil', replacement: resolve(__dirname, 'src/recoil') },
+      { find: "@", replacement: path.resolve(__dirname, "src") },
+      { find: "@assets", replacement: path.resolve(__dirname, "src/assets") },
+      {
+        find: "@components",
+        replacement: path.resolve(__dirname, "src/components"),
+      },
+      { find: "@hooks", replacement: path.resolve(__dirname, "src/hooks") },
+      { find: "@pages", replacement: path.resolve(__dirname, "src/pages") },
+      { find: "@community", replacement: path.resolve(__dirname, "src/community") },
+      { find: "@location", replacement: path.resolve(__dirname, "src/location") },
+      { find: "@main", replacement: path.resolve(__dirname, "src/main") },
+      { find: "@Mbti", replacement: path.resolve(__dirname, "src/Mbti") },
+      { find: "@user", replacement: path.resolve(__dirname, "src/user") },
+      { find: "@recoil", replacement: path.resolve(__dirname, "src/recoil") },
     ],
   },
 });

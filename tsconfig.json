@@ -5,20 +5,20 @@
     "strict": true,
     "outDir": "dist",
     "moduleDetection": "force",
+    "baseUrl": "src",
     "paths": {
       "@/*": ["/*"],
       "@assets": ["assets/*"],
       "@components/*": ["components/*"],
-      "@pages/*": ["pages/*"],
       "@hooks/*": ["hooks/*"],
+      "@pages/*": ["pages/*"],
+      "@community/*": ["community/*"],
+      "@location/*": ["location/*"],
       "@main/*": ["main/*"],
       "@Mbti/*": ["Mbti/*"],
       "@user/*": ["user/*"],
-      "@location/*": ["location/*"],
-      "@community/*": ["community/*"],
     },
-    //이하 블로그 참고 추가
-    "baseUrl": "src",
+    "composite": true,
     "lib": ["dom", "ESNext"],
     "allowJs": true,
     "checkJs": false,
@@ -34,5 +34,5 @@
     "typeRoots": ["@types"],
     "allowImportingTsExtensions": true
   },
-  "include": ["src","svg.d.ts","global.d.ts"]
+  "include": ["src", "svg.d.ts", "global.d.ts"]
 }
