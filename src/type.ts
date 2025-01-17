@@ -72,6 +72,7 @@ export interface NewReply {
   comment: string;
   commentRequired: string;
 }
+
 //Weather Data Type
 export interface WeatherImage {
   Clear: string;
@@ -86,6 +87,7 @@ export interface WeatherImage {
   Dust: string;
   overcastClouds: string;
 }
+
 //Mbti Data Type
 export interface MBTIResult {
   desc: string;
@@ -94,10 +96,12 @@ export interface MBTIResult {
   title: string;
   type: string;
 }
+
 //Kakao Data Type
 export interface KakaoShareData extends MBTIResult {
   data: MBTIResult | undefined;
 }
+
 //Location Data Type
 export interface LocationMainData {
   addr1: string;
@@ -162,6 +166,7 @@ export interface LocationDetailData {
   title: string;
   zipcode: string;
 }
+
 //User Data Type
 export interface UserMainData {
   _id: number;
@@ -187,11 +192,13 @@ export interface UserBookmarkData {
   telname: string
   title: string
 }
+
 //Login Data Type
 export interface LoginMainData {
   email: string;
   password: string;
 }
+
 //SignUp Data Type
 export interface SignUpMainData {
   type: string;
