@@ -69,15 +69,19 @@ const router = createBrowserRouter([
             path: "community/edit",
             element: <CommunityEdit />,
           },
+          // {
+          //   path: "community/:_id",
+          //   element: <CommunityDetail />,
+          //   children: [
+          //     {
+          //       index: true,
+          //       element: <ReplyMain />,
+          //     },
+          //   ],
+          // },
           {
             path: "community/:_id",
             element: <CommunityDetail />,
-            children: [
-              {
-                index: true,
-                element: <ReplyMain />,
-              },
-            ],
           },
 
           // Location
