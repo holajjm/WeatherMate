@@ -7,6 +7,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 function UserValidLogin() {
   const navigate = useNavigate();
   const location = useLocation();
+  console.log(location);
+  
   const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY; //REST API KEY
   const REDIRECT_URI = "http://localhost:5173/auth/kakao"; //REDIRECT URI
   // oauth 요청 URL
@@ -32,7 +34,7 @@ function UserValidLogin() {
             <button
               // text={'로그인'}
               className="p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-white bg-sky-400 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-              onClick={() => navigate("/user/Login", { state: location.state })}
+              onClick={() => navigate("/user/Login", { state: location.pathname })}
             >
               로그인
             </button>
