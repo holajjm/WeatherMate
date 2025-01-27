@@ -5,7 +5,7 @@ import { IoSearch } from "react-icons/io5";
 
 type ClickFn = (keyword: string) => void;
 
-function Search(onClick: ClickFn) {
+function Search({onClick}:{onClick: ClickFn}) {
   const [keyword, setKeyword] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
