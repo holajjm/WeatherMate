@@ -18,6 +18,11 @@ export const memberState = atom({
   effects: [persistAtom],
 });
 
+export const LocationState = atom({
+  key: "LocationState",
+  default: { lat: 0, lon: 0}
+})
+
 export const userWeatherState = atom({
   key: "userWeatherState",
   default: null,
