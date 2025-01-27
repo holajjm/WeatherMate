@@ -13,14 +13,15 @@ import usePageTitle from "@hooks/usePageTitle";
 import CommunityItem from "@pages/community/CommunityItem";
 import CommunityPopularItem from "@pages/community/CommunityPopularItem";
 import CommunityNewbutton from "@pages/community/CommunityNewbutton";
-import ValidLogin from "@pages/user/UserValidLogin";
+import UserValidLogin from "@pages/user/UserValidLogin";
 
 function CommunityMain() {
   usePageTitle("Community");
-  const [select, setSelect] = useState("");
+  const [select, setSelect] = useState<string>("");
   const axios = useCustomAxios();
   const [searchParams, setSearchParams] = useSearchParams();
   const user = useRecoilState(memberState);
+  
   const page = searchParams.get("page");
   const { isLoading, data, error, refetch } = useQuery<
     AxiosResponse<CommunityMainData>
@@ -114,7 +115,7 @@ function CommunityMain() {
           <ToTheTopButton />
         </div>
       ) : (
-        <ValidLogin />
+        <UserValidLogin />
       )}
     </>
   );
