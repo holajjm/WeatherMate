@@ -2,46 +2,42 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Coment from "../../assets/Coment.ts";
 import { WeatherImage } from "type";
+import MainComentSkeleton from "./MainComentSkeleton.tsx";
+import { memberState } from "../../recoil/atom.mts";
+import { useRecoilValue } from "recoil";
+
+interface ComentObj {
+  temperature: number;
+  recommendation: string;
+  CLOTHES_IMG: string;
+}
 
 function MainTodaysComent() {
-  const [recommendClothes, setRecommendClothes] = useState<string>("");
-  const [recommendationImage, setRecommendationImage] = useState<string>("");
-  const [storageUser, setStorageUser] = useState(null);
+  //코멘트 및 의상 추천 로직
   const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
+  const user = useRecoilValue(memberState);
+  const [comentObj, setComentObj] = useState<ComentObj>();
 
   useEffect(() => {
-    const sessionUser = sessionStorage.getItem("saveUser");
-    if (sessionUser) {
-      setStorageUser(JSON.parse(sessionUser));
-    }
-  }, []);
-
-  useEffect(() => {
-    const getRecommendedClothes = () => {
-      const userTemperature = data?.main.temp - 273.15;
-
-      let closestTemperature = Coment[0].temperature; // 가장 가까운 온도로 초기화
-      let selectedDummyData = Coment[0]; // 가장 가까운 온도에 해당하는 데이터로 초기화
-
+    const getRecommendation = () => {
+      const currentTemperature = data?.main.temp - 273.15;
+      let firstTemperature = Coment[0].temperature;
+      let comentObject = Coment[0];
       for (let i = 1; i < Coment.length; i++) {
         if (
-          Math.abs(userTemperature - Coment[i].temperature) <
-          Math.abs(userTemperature - closestTemperature)
+          Math.abs(currentTemperature - Coment[i].temperature) <
+          Math.abs(currentTemperature - firstTemperature)
         ) {
-          closestTemperature = Coment[i].temperature;
-          selectedDummyData = Coment[i];
+          comentObject = Coment[i];
         }
       }
-      setRecommendClothes(selectedDummyData?.recommendation);
-      setRecommendationImage(selectedDummyData?.CLOTHES_IMG);
+      setComentObj(comentObject);
     };
-    getRecommendedClothes();
+    getRecommendation();
   }, [data]);
 
-  const imagePath = recommendationImage;
-
-  const defaultImgPath = "/01.svg";
-  const weatherImageMapping: WeatherImage = {
+  //날씨 이모티콘 로직
+  const weatherIconList: WeatherImage = {
     Clear: "/uvi.svg",
     Clouds: "/manyClouds.svg",
     Rain: "/rain.svg",
@@ -54,22 +50,13 @@ function MainTodaysComent() {
     Dust: "/manyClouds.svg",
     overcastClouds: "/sun.svg",
   };
+  const weatherImage =
+    !data || !data.weather
+      ? weatherIconList["Clear"]
+      : weatherIconList[data.weather[0].main as keyof WeatherImage];
 
-  // userWeather가 존재하고, userWeather.weather 배열의 첫 번째 요소의 description이 있는 경우에만 이미지 경로를 설정
-  const getImagePathForWeather = () => {
-    if (!data || !data.weather || data.weather.length === 0)
-      return defaultImgPath; // userWeather나 userWeather.weather가 없으면 기본 이미지 반환
-    const englishDescription = data.weather[0].main; // 영어로된 날씨 설명 가져오기
-    // 영어로 된 날씨 설명에 해당하는 이미지 경로 반환
-    return (
-      weatherImageMapping[englishDescription as keyof WeatherImage] ||
-      defaultImgPath
-    );
-  };
-
-  const imagePath1 = getImagePathForWeather(); // getImagePathForWeather 함수 호출하여 imagePath 설정
-
-  const RealImage: WeatherImage = {
+  //실제 이미지 로직
+  const realImageList: WeatherImage = {
     Clear: "./realImage/SunnyRealImage.svg", //text-slate-700
     Clouds: "./realImage/CloudyRealImage.svg", //text-slate-200
     Rain: "./realImage/RainyRealImage.svg", //text-slate-200
@@ -82,22 +69,18 @@ function MainTodaysComent() {
     Dust: "./realImage/HazeRealImage.svg", //text-slate-700
     overcastClouds: "./realImage/SunnyRealImage.svg", //text-slate-700
   };
-  const getRealImage = () => {
-    if (data && data.weather && data.weather.length !== 0) {
-      return RealImage[data.weather[0].main as keyof WeatherImage];
-    }
-    return null;
-  };
-  const realImage = getRealImage();
-  // console.log(data);
+  const realImage =
+    data && data.weather
+      ? realImageList[data.weather[0].main as keyof WeatherImage]
+      : null;
 
   return (
     <div className="p-2 flex flex-col gap-2 items-center bg-slate-50 font-TTLaundryGothicB h-full fade-in">
       <div className="w-full flex justify-between text-left text-lg font-bold text-wrap">
-        {storageUser && (storageUser as any).useState?.name ? (
+        {user && user?.name ? (
           <div>
             <Link to={"/user/mypage"} className="text-blue-400">
-              {(storageUser as any).useState?.name}
+              {user?.name}
             </Link>
             님,
             <h1>
@@ -140,7 +123,7 @@ function MainTodaysComent() {
             </div>
           </div>
           <div className="w-1/3 text-center flex flex-col gap-2">
-            <img src={imagePath1} alt="weatherIcon" className="w-14 m-auto" />
+            <img src={weatherImage} alt="weatherIcon" className="w-14 m-auto" />
             <div>
               <p>강수량</p>
               <p className="text-base">
@@ -150,12 +133,20 @@ function MainTodaysComent() {
           </div>
         </section>
       </div>
-      <div className="w-full text-center grow">
-        <p className="font-SSRONETHandwritten text-amber-500 text-xl font-bold rounded-xl bg-amber-200 p-2">
-          {recommendClothes}
-        </p>
-        <img src={imagePath} alt="main-img" className="w-56 m-auto" />
-      </div>
+      {comentObj ? (
+        <div className="w-full text-center grow">
+          <p className="font-SSRONETHandwritten text-amber-500 text-xl font-bold rounded-xl bg-amber-200 p-2">
+            {comentObj?.recommendation}
+          </p>
+          <img
+            src={comentObj?.CLOTHES_IMG}
+            alt="main-img"
+            className="w-56 m-auto"
+          />
+        </div>
+      ) : (
+        <MainComentSkeleton />
+      )}
     </div>
   );
 }
