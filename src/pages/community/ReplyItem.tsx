@@ -1,38 +1,46 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { SubmitHandler } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useRecoilValue } from "recoil";
 import { memberState } from "../../recoil/atom.mts";
 import { NewReply, ReplyData } from "type";
 
-import ReplyEdit from "@pages/community/ReplyEdit";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 
-function ReplyItem(item: ReplyData) {
-  const [editReply, setEditReply] = useState(false);
+function ReplyItem({ item }: { item: ReplyData }) {
+  const [editReply, setEditReply] = useState<boolean>(false);
   const user = useRecoilValue(memberState);
   const axios = useCustomAxios();
   const { _id } = useParams();
-  const { refetch } = useQuery({
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<NewReply>();
+
+  const { data, refetch } = useQuery({
     queryKey: ["posts", _id, "replies"],
     queryFn: () => axios.get(`/posts/${_id}/replies`),
   });
+
+  const onUpdate = async (formData: FieldValues) => {
+    if (confirm("댓글을 수정하시겠습니까?")) {
+      await axios.patch(`/posts/${_id}/replies/${item._id}`, formData);
+      refetch();
+      reset();
+    }
+    setEditReply(false);
+  };
+
   const handleDelete = async (reply_id: number) => {
     if (confirm("후기를 삭제하시겠습니까?")) {
       await axios.delete(`/posts/${_id}/replies/${reply_id}`);
     }
     refetch();
   };
-  const onUpdate: SubmitHandler<NewReply> = async () => {
-    if (confirm("댓글을 수정하시겠습니까?")) {
-      await axios.patch(`/posts/${_id}/replies/${item._id}`);
-    }
-    refetch();
-    setEditReply(false);
-  };
-  // console.log(item);
-
   return (
     <div className="p-2 bg-slate-50 flex flex-col gap-2 rounded-lg">
       <div className="flex justify-center items-center gap-2">
@@ -53,31 +61,70 @@ function ReplyItem(item: ReplyData) {
               <p className="text-stone-500">
                 {item?.createdAt.substring(5, 16)}
               </p>
+
               {user._id === item?.user._id ? (
-                <div className="ml-auto flex">
-                  <button
-                    onClick={() => setEditReply(!editReply)}
-                    className="w-full px-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-indigo-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                  >
-                    {editReply ? "취소" : "수정"}
-                  </button>
-                  <button
-                    onClick={() => handleDelete(item?._id)}
-                    className="w-full px-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-red-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                  >
-                    삭제
-                  </button>
-                </div>
+                editReply ? (
+                  <div className="ml-auto flex">
+                    <button
+                      onClick={() => setEditReply(!editReply)}
+                      className="w-full px-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-slate-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+                    >
+                      취소
+                    </button>
+                  </div>
+                ) : (
+                  <div className="ml-auto flex">
+                    <button
+                      onClick={() => setEditReply(!editReply)}
+                      className="w-full px-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-indigo-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+                    >
+                      수정
+                    </button>
+                    <button
+                      onClick={() => handleDelete(item?._id)}
+                      className="w-full px-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-red-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+                    >
+                      삭제
+                    </button>
+                  </div>
+                )
               ) : null}
             </div>
           </div>
-          <div className="border-2 rounded-lg p-2 bg-white border-gray-200">
-            {item?.comment}
+          <div>
+            {editReply ? (
+              <form
+                className="w-full flex gap-2"
+                onSubmit={handleSubmit(onUpdate)}
+              >
+                <textarea
+                  {...register("comment", {
+                    required: "내용을 입력하세요",
+                  })}
+                  rows={1}
+                  className="grow p-2 w-full text-sm border rounded-lg border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                  placeholder="내용을 입력하세요."
+                />
+                {errors.comment && (
+                  <p className="text-sm text-red-500">
+                    {errors.comment.message as string}
+                  </p>
+                )}
+                <button
+                  // text={'수정'}
+                  type="submit"
+                  className="w-1/6 p-1 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-indigo-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+                >
+                  수정
+                </button>
+              </form>
+            ) : (
+              <div className="border-2 rounded-lg p-1 bg-white border-gray-200">
+                {item?.comment}
+              </div>
+            )}
           </div>
         </div>
-      </div>
-      <div className={editReply ? `block` : "hidden"}>
-        <ReplyEdit onUpdate={onUpdate} />
       </div>
     </div>
   );
