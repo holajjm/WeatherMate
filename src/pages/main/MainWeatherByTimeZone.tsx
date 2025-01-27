@@ -52,10 +52,9 @@ function MainWeatherByTimeZone() {
       const data = await response.json();
       return data;
     },
-    // suspense: true,
-    refetchInterval: 10000,
-    refetchIntervalInBackground: true,
     staleTime: 1000 * 60 * 60,
+    refetchInterval: 1000 * 60 * 60,
+    refetchIntervalInBackground: true,
     enabled: !!latitude && !!longitude,
   });
   // console.log(data);
