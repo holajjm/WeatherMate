@@ -11,6 +11,7 @@ import { Pagination, Navigation, HashNavigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import MainRecommendationSkeleton from "@components/skeleton/MainRecommendationSkeleton";
 
 function MainRecommendationCommunity() {
   const navigate = useNavigate();
@@ -20,6 +21,11 @@ function MainRecommendationCommunity() {
     queryFn: () => axios.get("/posts", { params: { type: "community" } }),
     select: response => response.data,
     refetchOnMount: "always",
+    staleTime: 1000 * 60 * 60,
+    retry: 2,
+    retryDelay: 2000,
+
+    // enabled
   });
   const communityData = data && data.item.slice(0, 10);
   // console.log(communityData);
@@ -44,53 +50,57 @@ function MainRecommendationCommunity() {
             더보기
           </button>
         </div>
-        <div className="w-full flex gap-4 font-sans text-sm">
-          <Swiper
-            spaceBetween={30}
-            hashNavigation={{
-              watchState: true,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            modules={[Pagination, Navigation, HashNavigation]}
-            className="w-full border-2 border-slate-200"
-          >
-            {communityData &&
-              communityData.map((item: ExpandCommunityData) => (
-                <SwiperSlide
-                  key={item._id}
-                  data-hash={`community-${item._id + 1}`}
-                  className="w-[500px] mb-10"
-                >
-                  <Link
-                    to={`/community/${item._id}`}
-                    className="w-full flex flex-col gap-2 text-center text-nowrap p-2 box-border"
+        {communityData ? (
+          <div className="w-full flex gap-4 font-sans text-sm">
+            <Swiper
+              spaceBetween={30}
+              hashNavigation={{
+                watchState: true,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              navigation={true}
+              modules={[Pagination, Navigation, HashNavigation]}
+              className="w-full border-2 border-slate-200"
+            >
+              {communityData &&
+                communityData.map((item: ExpandCommunityData) => (
+                  <SwiperSlide
+                    key={item._id}
+                    data-hash={`community-${item._id + 1}`}
+                    className="w-[500px] mb-10"
                   >
-                    {item.image ? (
-                      <img
-                        className="w-full h-[200px] rounded-lg "
-                        src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.image}`}
-                        alt={item.type}
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="w-full h-[200px] flex items-center justify-center">
-                        No Image
-                      </div>
-                    )}
-                    <hr className="border-slate-700" />
-                    <p className="flex justify-center items-center text-center text-sm font-bold overflow-hidden">
-                      {item.content?.length > 10
-                        ? `${item.content.slice(0, 10)}...`
-                        : item.content}
-                    </p>
-                  </Link>
-                </SwiperSlide>
-              ))}
-          </Swiper>
-        </div>
+                    <Link
+                      to={`/community/${item._id}`}
+                      className="w-full flex flex-col gap-2 text-center text-nowrap p-2 box-border"
+                    >
+                      {item.image ? (
+                        <img
+                          className="w-full h-[200px] rounded-lg "
+                          src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.image}`}
+                          alt={item.type}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="w-full h-[200px] flex items-center justify-center">
+                          No Image
+                        </div>
+                      )}
+                      <hr className="border-slate-700" />
+                      <p className="flex justify-center items-center text-center text-sm font-bold overflow-hidden">
+                        {item.content?.length > 10
+                          ? `${item.content.slice(0, 10)}...`
+                          : item.content}
+                      </p>
+                    </Link>
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+          </div>
+        ) : (
+          <MainRecommendationSkeleton />
+        )}
       </div>
     </div>
   );

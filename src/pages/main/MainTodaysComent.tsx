@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Coment from "../../assets/Coment.ts";
 import { WeatherImage } from "type";
-import MainComentSkeleton from "./MainComentSkeleton.tsx";
+import MainComentSkeleton from "@components/skeleton/MainComentSkeleton.tsx";
 import { memberState } from "../../recoil/atom.mts";
 import { useRecoilValue } from "recoil";
 

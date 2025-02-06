@@ -10,6 +10,7 @@ import { Pagination, Navigation, HashNavigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import MainRecommendationSkeleton from "@components/skeleton/MainRecommendationSkeleton";
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
@@ -105,46 +106,50 @@ function MainRecommendationPreview() {
             더보기
           </button>
         </div>
-        <div className="w-full flex gap-4 font-sans text-sm">
-          <Swiper
-            spaceBetween={30}
-            hashNavigation={{
-              watchState: true,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            modules={[Pagination, Navigation, HashNavigation]}
-            className="w-full border-2 border-slate-200"
-          >
-            {locationData.map((item: PreviewItem) => (
-              <SwiperSlide
-                key={item.contentid}
-                data-hash={`location-${item.contentid + 1}`}
-                className="w-[500px] mb-10"
-              >
-                <Link
-                  to={`/location/${item.contentid}`}
-                  className="w-full flex flex-col gap-2 text-center text-nowrap p-2 box-border"
+        {locationData ? (
+          <div className="w-full flex gap-4 font-sans text-sm">
+            <Swiper
+              spaceBetween={30}
+              hashNavigation={{
+                watchState: true,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              navigation={true}
+              modules={[Pagination, Navigation, HashNavigation]}
+              className="w-full border-2 border-slate-200"
+            >
+              {locationData.map((item: PreviewItem) => (
+                <SwiperSlide
+                  key={item.contentid}
+                  data-hash={`location-${item.contentid + 1}`}
+                  className="w-[500px] mb-10"
                 >
-                  <img
-                    src={item.firstimage}
-                    className="w-full h-[200px] rounded-lg"
-                    alt={item.title}
-                    loading="lazy"
-                  />
-                  <hr className="border-slate-700" />
-                  <p className="flex justify-center items-center text-center text-sm font-bold overflow-hidden">
-                    {item.title.length > 10
-                      ? `${item.title.slice(0, 15)}...`
-                      : item.title}
-                  </p>
-                </Link>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+                  <Link
+                    to={`/location/${item.contentid}`}
+                    className="w-full flex flex-col gap-2 text-center text-nowrap p-2 box-border"
+                  >
+                    <img
+                      src={item.firstimage}
+                      className="w-full h-[200px] rounded-lg"
+                      alt={item.title}
+                      loading="lazy"
+                    />
+                    <hr className="border-slate-700" />
+                    <p className="flex justify-center items-center text-center text-sm font-bold overflow-hidden">
+                      {item.title.length > 10
+                        ? `${item.title.slice(0, 15)}...`
+                        : item.title}
+                    </p>
+                  </Link>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        ) : (
+          <MainRecommendationSkeleton />
+        )}
       </div>
     </div>
   );
