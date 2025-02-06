@@ -9,6 +9,8 @@ import LocationItem from "@pages/location/LocationItem";
 import Loading from "@components/layout/Loading";
 // import Button from '@components/layout/Button';
 
+import { motion } from "framer-motion";
+
 const LocationAPIKEY = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
 function Location() {
@@ -146,7 +148,20 @@ function Location() {
 
   const locationItemList =
     locationData &&
-    locationData.map((e, i) => <LocationItem key={i} item={e} />);
+    locationData.map((e, i) => (
+      <motion.section
+        initial={{ translateY: 200, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        transition={{
+          ease: "easeInOut",
+          duration: +`1.${i}`,
+        }}
+        key={i} 
+        className="flex flex-col p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:scale-105 hover:border-blue-400 duration-200"
+      >
+        <LocationItem item={e} />
+      </motion.section>
+    ));
 
   return (
     <div className="flex flex-col gap-4 mx-auto p-2 min-h-screen bg-slate-50">
