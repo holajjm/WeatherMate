@@ -11,6 +11,8 @@ import MainRecommendationPreview from "@pages/main/MainRecommendationPreview";
 import ToTheTopButton from "@components/layout/ToTheTopButton";
 import usePageTitle from "@hooks/usePageTitle";
 
+import { motion } from "framer-motion";
+
 function MainHomePage() {
   usePageTitle("WeatherMate");
   const coords = useRecoilState(LocationState);
@@ -52,11 +54,56 @@ function MainHomePage() {
 
   return (
     <div className="max-w-[600px] min-w-[320px] m-auto flex flex-col gap-8">
-      <MainTodaysComent />
-      <MainMyLocationWeather />
-      <MainWeatherByTimeZone />
-      <MainRecommendationCommunity />
-      <MainRecommendationPreview />
+      <motion.div
+        initial={{ translateY: -50, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        transition={{
+          ease: "easeInOut",
+          duration: 1,
+        }}
+      >
+        <MainTodaysComent />
+      </motion.div>
+      <motion.div
+        initial={{ translateY: -100, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        transition={{
+          ease: "easeInOut",
+          duration: 1.5,
+        }}
+      >
+        <MainMyLocationWeather />
+      </motion.div>
+      <motion.div
+        initial={{ translateY: -150, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        transition={{
+          ease: "easeInOut",
+          duration: 2,
+        }}
+      >
+        <MainWeatherByTimeZone />
+      </motion.div>
+      <motion.div
+        initial={{ translateY: -200, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        transition={{
+          ease: "easeInOut",
+          duration: 2.5,
+        }}
+      >
+        <MainRecommendationCommunity />
+      </motion.div>
+      <motion.div
+        initial={{ translateY: -250, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        transition={{
+          ease: "easeInOut",
+          duration: 3,
+        }}
+      >
+        <MainRecommendationPreview />
+      </motion.div>
       <ToTheTopButton />
     </div>
   );
