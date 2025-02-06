@@ -2,13 +2,12 @@ import React from "react";
 
 function Loading() {
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="absolute inset-0 bg-white opacity-70"></div>
-      <div className="text-center relative">
+    <div className="max-w-[600px] min-w-[320px] w-full h-screen m-auto relative flex items-center justify-center bg-white">
+      <div className="text-center w-full h-full flex flex-col items-center justify-center inset-0 bg-white ">
         <img
           src="../gif/loading.gif"
           alt="로딩중..."
-          className="mx-auto mb-2 w-16"
+          className="mx-auto w-16"
         />
         <p className="text-gray-600 font-UhBeeKangJa text-2xl">로딩중...</p>
       </div>
