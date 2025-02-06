@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 import { useRecoilValue } from "recoil";
@@ -9,36 +9,38 @@ import { CommunityDetailData } from "type";
 
 import { FaHeart } from "react-icons/fa";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import ReplyMain from "./ReplyMain";
 // import Button from '@components/layout/Button';
 
 function CommunityDetail() {
   const navigate = useNavigate();
+  const user = useRecoilValue(memberState);
   const { _id } = useParams();
   const axios = useCustomAxios();
-  const user = useRecoilValue(memberState);
   const { data } = useQuery<AxiosResponse<CommunityDetailData>>({
     queryKey: ["posts", _id],
     queryFn: () => axios.get(`/posts/${_id}`),
     refetchOnWindowFocus: false,
   });
-
+  const handleEdit = () => {
+    if (confirm("게시글을 수정하시겠습니까?")) {
+      navigate(`/community/${_id}/edit`);
+    }
+    return;
+  };
   const handleDelete = async () => {
-    const deleteRes = confirm("삭제하시겠습니까?");
-    if (deleteRes) {
+    if (confirm("삭제하시겠습니까?")) {
       await axios.delete(`/posts/${_id}`);
       navigate("/community");
     }
   };
-  console.log(data?.data.item);
+  // console.log(data?.data.item);
   // console.log(user);
 
   return (
     <div className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-slate-50 overflow-y-scroll scrollbar-hide">
       {data?.data?.item && (
-        <section
-          className="p-2 bg-white drop-shadow-lg rounded-xl flex flex-col gap-2 flex-nowrap"
-          onClick={() => navigate(`/community/${data?.data?.item?._id}`)}
-        >
+        <section className="p-2 bg-white drop-shadow-lg rounded-xl flex flex-col gap-2 flex-nowrap">
           <header className="flex gap-2">
             {data?.data?.item.user.profile ? (
               <img
@@ -67,7 +69,7 @@ function CommunityDetail() {
             </div>
           </header>
 
-          <main className="">
+          <main>
             {data?.data?.item.image && (
               <div className="flex flex-col h-full">
                 <div className="h-full flex justify-center items-center">
@@ -118,7 +120,7 @@ function CommunityDetail() {
                 <button
                   // text={'수정'}
                   className="w-full p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-indigo-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                  // onClick={(handleDelete)}
+                  onClick={handleEdit}
                 >
                   수정
                 </button>
@@ -144,7 +146,8 @@ function CommunityDetail() {
           </footer>
         </section>
       )}
-      <Outlet context={data?.data?.item} />
+      {/* <Outlet context={data?.data?.item} /> */}
+      <ReplyMain />
     </div>
   );
 }
