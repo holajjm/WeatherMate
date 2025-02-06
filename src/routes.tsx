@@ -1,16 +1,16 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+
 import Layout from "@components/layout";
 import ErrorPage from "@pages/ErrorPage";
 // MainPage
 import MainHomePage from "@pages/main/MainHomePage";
 import MainAllCitiesWeather from "@pages/main/MainAllCitiesWeather";
-import MainPreviewMbti from "@pages/main/MainPreviewMbti";
+import MainCategory from "@pages/main/MainCategory";
 // Community
 import CommunityNew from "@pages/community/CommunityNew";
 import CommunityDetail from "@pages/community/CommunityDetail";
 import CommunityMain from "@pages/community/CommunityMain";
-import ReplyMain from "@pages/community/ReplyMain";
 import CommunityEdit from "@pages/community/CommunityEdit";
 // Location
 import LocationDetailPage from "@pages/location/LocationDetailPage";
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
           },
           {
             path: "category",
-            element: <MainPreviewMbti />,
+            element: <MainCategory />,
           },
 
           // Community
@@ -66,19 +66,9 @@ const router = createBrowserRouter([
             element: <CommunityNew />,
           },
           {
-            path: "community/edit",
+            path: "community/:_id/edit",
             element: <CommunityEdit />,
           },
-          // {
-          //   path: "community/:_id",
-          //   element: <CommunityDetail />,
-          //   children: [
-          //     {
-          //       index: true,
-          //       element: <ReplyMain />,
-          //     },
-          //   ],
-          // },
           {
             path: "community/:_id",
             element: <CommunityDetail />,
