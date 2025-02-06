@@ -4,6 +4,7 @@ import { useRecoilValue } from "recoil";
 import { memberState } from "../../recoil/atom.mts";
 import { LocationMainData } from "type";
 
+import { motion } from "framer-motion";
 import { FiMapPin } from "react-icons/fi";
 import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 
@@ -47,7 +48,7 @@ function LocationItem({ item }: { item: LocationMainData }) {
   // console.log(user);
 
   const handleBookMark = (contentId: string) => {
-    if (!user) {
+    if (!user?.name) {
       if (confirm("로그인이 필요합니다. 로그인 하시겠습니까?")) {
         navigate("/user/login", { state: location.pathname });
       }
@@ -78,7 +79,17 @@ function LocationItem({ item }: { item: LocationMainData }) {
     }
   };
   return (
-    <section className="flex flex-col p-2 rounded-lg shadow-lg border-2 border-slate-200">
+    // <motion.section
+    //   initial={{ translateY: 200, opacity: 0 }}
+    //   animate={{ translateY: 0, opacity: 1 }}
+    //   transition={{
+    //     ease: "easeInOut",
+    //     duration: 1,
+    //   }}
+    //   className="flex flex-col p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:scale-105 hover:border-blue-400 duration-200"
+    // >
+    <>
+    
       <Link
         to={`/location/${item.contentid}`}
         className="grow flex flex-col gap-1"
@@ -117,28 +128,29 @@ function LocationItem({ item }: { item: LocationMainData }) {
         {(localStorage.getItem("bookmarks") as string)?.includes(
           item.contentid,
         ) ? (
-          <div className="flex justify-center items-center gap-1 text-sm">
-            <BsBookmarks
-              className="text-blue-300 aspect-square cursor-pointer"
-              onClick={() => {
-                removeBookMark(item.contentid);
-              }}
-            />
+          <div
+            onClick={() => {
+              removeBookMark(item.contentid);
+            }}
+            className="flex justify-center items-center gap-1 text-sm cursor-pointer"
+          >
+            <BsBookmarks className="text-blue-300 aspect-square" />
             <p>북마크 제거하기</p>
           </div>
         ) : (
-          <div className="flex justify-center items-center gap-1 text-sm">
-            <BsBookmarksFill
-              className="text-blue-300 aspect-square cursor-pointer"
-              onClick={() => {
-                handleBookMark(item.contentid);
-              }}
-            />
+          <div
+            onClick={() => {
+              handleBookMark(item.contentid);
+            }}
+            className="flex justify-center items-center gap-1 text-sm cursor-pointer"
+          >
+            <BsBookmarksFill className="text-blue-300 aspect-square" />
             <p>북마크 추가하기</p>
           </div>
         )}
       </footer>
-    </section>
+    </>
+    // </motion.section>
   );
 }
 
