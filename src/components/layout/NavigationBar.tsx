@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { GoHomeFill } from "react-icons/go";
 import { IoMdChatboxes } from "react-icons/io";
@@ -9,12 +9,11 @@ import { BiSolidCategory } from "react-icons/bi";
 
 function NavigationBar() {
   const location = useLocation();
-  const navigate = useNavigate();
   return (
-    <footer className="max-w-[600px] min-w-[320px] m-auto py-2 flex text-white h-16 items-center justify-center gap-4 font-bold bg-blue-200 sticky bottom-0 z-20 shadow-inner font-UhBeeKangJa">
+    <footer className="max-w-[600px] min-w-[320px] m-auto py-2 flex text-white h-16 items-center justify-around gap-4 font-bold bg-blue-200 sticky bottom-0 z-20 shadow-inner font-UhBeeKangJa">
       <Link
         to="/category"
-        className={`w-1/6 flex flex-col gap-1 items-center p-1 hover:text-white ${location.pathname === "/category" ? "text-white" : "text-indigo-500"}`}
+        className={`w-20 flex flex-col gap-1 items-center p-1 ${location.pathname === "/category" ? "text-indigo-600 border-2 rounded-full bg-white shadow-inner shadow-slate-400" : "text-indigo-500 hover:text-white"}`}
       >
         <BiSolidCategory className="text-2xl" />
         <p className="text-nowrap text-sm">카테고리</p>
@@ -22,8 +21,10 @@ function NavigationBar() {
 
       <Link
         to="/community"
-        className={`w-1/6 flex flex-col gap-1 items-center p-1 hover:text-white ${
-          location.pathname === "/community" ? "text-white" : "text-indigo-500"
+        className={`w-20 flex flex-col gap-1 items-center p-1 ${
+          location.pathname === "/community"
+            ? "text-indigo-600 border-2 rounded-full bg-white shadow-inner shadow-slate-400"
+            : "text-indigo-500 hover:text-white"
         }`}
       >
         <IoMdChatboxes className="text-2xl" />
@@ -32,32 +33,32 @@ function NavigationBar() {
 
       <Link
         to="/main"
-        className={`w-1/6 flex flex-col gap-1 items-center p-1 hover:text-white ${
+        className={`w-20 flex flex-col gap-1 items-center p-1 ${
           location.pathname === "/main" || location.pathname === "/"
-            ? "text-white"
-            : "text-indigo-500"
+            ? "text-indigo-600 border-2 rounded-full bg-white shadow-inner shadow-slate-400"
+            : "text-indigo-500 hover:text-white"
         }`}
       >
         <GoHomeFill className="text-2xl" />
         <p className="text-nowrap text-sm">홈</p>
       </Link>
-
       <Link
         to="/location"
-        className={`w-1/6 flex flex-col gap-1 items-center p-1 hover:text-white ${
-          location.pathname === "/location" ? "text-white" : "text-indigo-500"
+        className={`w-20 flex flex-col gap-1 items-center p-1 ${
+          location.pathname === "/location"
+            ? "text-indigo-600 border-2 rounded-full bg-white shadow-inner shadow-slate-400"
+            : "text-indigo-500 hover:text-white"
         }`}
       >
         <MdLocationOn className="text-2xl" />
         <p className="text-nowrap text-sm">장소추천</p>
       </Link>
-
       <Link
         to="/user/mypage"
-        className={`w-1/6 flex flex-col gap-1 items-center p-1 hover:text-white ${
+        className={`w-20 flex flex-col gap-1 items-center p-1 ${
           location.pathname === "/user/mypage"
-            ? "text-white"
-            : "text-indigo-500"
+            ? "text-indigo-600 border-2 rounded-full bg-white shadow-inner shadow-slate-400"
+            : "text-indigo-500 hover:text-white"
         }`}
       >
         <FaUserCircle className="text-2xl" />
