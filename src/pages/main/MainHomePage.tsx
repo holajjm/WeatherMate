@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { LocationState } from "../../recoil/atom.mts";
 
+import ToTheTopButton from "@components/layout/ToTheTopButton";
+import usePageTitle from "@hooks/usePageTitle";
+import useScrollTop from "@hooks/useScrollTop";
 import MainTodaysComent from "@pages/main/MainTodaysComent";
 import MainMyLocationWeather from "@pages/main/MainMyLocationWeather";
 import MainWeatherByTimeZone from "@pages/main/MainWeatherByTimeZone";
 import MainRecommendationCommunity from "@pages/main/MainRecommendationCommunity";
 import MainRecommendationPreview from "@pages/main/MainRecommendationPreview";
-import ToTheTopButton from "@components/layout/ToTheTopButton";
-import usePageTitle from "@hooks/usePageTitle";
 
 import { motion } from "framer-motion";
 
 function MainHomePage() {
   usePageTitle("WeatherMate");
+  useScrollTop();
   const coords = useRecoilState(LocationState);
   const setCoords = useSetRecoilState(LocationState);
   useEffect(() => {
-    window.scrollTo(0, 0);
     navigator.geolocation.getCurrentPosition(
       position => {
         setCoords({
@@ -59,7 +60,7 @@ function MainHomePage() {
         animate={{ translateY: 0, opacity: 1 }}
         transition={{
           ease: "easeInOut",
-          duration: 1,
+          duration: 0.5,
         }}
       >
         <MainTodaysComent />
@@ -69,7 +70,7 @@ function MainHomePage() {
         animate={{ translateY: 0, opacity: 1 }}
         transition={{
           ease: "easeInOut",
-          duration: 1.5,
+          duration: 0.75,
         }}
       >
         <MainMyLocationWeather />
@@ -79,7 +80,7 @@ function MainHomePage() {
         animate={{ translateY: 0, opacity: 1 }}
         transition={{
           ease: "easeInOut",
-          duration: 2,
+          duration: 1,
         }}
       >
         <MainWeatherByTimeZone />
@@ -89,7 +90,7 @@ function MainHomePage() {
         animate={{ translateY: 0, opacity: 1 }}
         transition={{
           ease: "easeInOut",
-          duration: 2.5,
+          duration: 1.25,
         }}
       >
         <MainRecommendationCommunity />
@@ -99,7 +100,7 @@ function MainHomePage() {
         animate={{ translateY: 0, opacity: 1 }}
         transition={{
           ease: "easeInOut",
-          duration: 3,
+          duration: 1.5,
         }}
       >
         <MainRecommendationPreview />
