@@ -1,17 +1,20 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-// import { useEffect } from 'react';
+import usePageTitle from "@hooks/usePageTitle";
+import useScrollTop from "@hooks/useScrollTop";
+
 // import Button from '@components/layout/Button';
 
 function UserValidLogin() {
+  usePageTitle("Login");
+  useScrollTop();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
-  
-  const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY; //REST API KEY
-  const REDIRECT_URI = "http://localhost:5173/auth/kakao"; //REDIRECT URI
-  // oauth 요청 URL
+  const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
+  const REDIRECT_URI = `${import.meta.env.VITE_APP_TITLE}/auth`;
+  // 개발 환경 redirect uri
+  // const REDIRECT_URI = "http://localhost:5173/auth/kakao";
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const handleLogin = () => {
     window.location.href = kakaoURL;
@@ -34,7 +37,9 @@ function UserValidLogin() {
             <button
               // text={'로그인'}
               className="p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-white bg-sky-400 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-              onClick={() => navigate("/user/Login", { state: location.pathname })}
+              onClick={() =>
+                navigate("/user/Login", { state: location.pathname })
+              }
             >
               로그인
             </button>
