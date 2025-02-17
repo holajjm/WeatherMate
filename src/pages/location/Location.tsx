@@ -24,10 +24,6 @@ function Location() {
   // console.log(contentID);
   // console.log(locationData);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, []);
-
   //사용자 위치 정보에 따른 기본 데이터 호출 로직
   useEffect(() => {
     if (latitude && longitude) {
@@ -154,9 +150,9 @@ function Location() {
         animate={{ translateY: 0, opacity: 1 }}
         transition={{
           ease: "easeInOut",
-          duration: +`1.${i}`,
+          duration: 0.25 * (i + 2),
         }}
-        key={i} 
+        key={i}
         className="flex flex-col p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:scale-105 hover:border-blue-400 duration-200"
       >
         <LocationItem item={e} />
