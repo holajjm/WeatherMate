@@ -5,10 +5,12 @@ import { memberState } from "../../recoil/atom.mts";
 import usePageTitle from "@hooks/usePageTitle";
 
 import mbtiStart from "@assets/mbti/mbtiimg/mbtiStart.png";
+import useScrollTop from "@hooks/useScrollTop";
 // import Button from '@components/layout/Button';
 
 function MbtiHome() {
   usePageTitle("MBTI");
+  useScrollTop();
   const navigate = useNavigate();
   const location = useLocation();
   const [user] = useRecoilState(memberState);
