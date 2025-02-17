@@ -108,7 +108,7 @@ const router = createBrowserRouter([
             element: <UserValidLogin />,
           },
           {
-            path: "auth/kakao",
+            path: "auth",
             element: <UserOAuth />,
           },
           {
