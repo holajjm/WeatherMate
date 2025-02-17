@@ -67,8 +67,8 @@ function LocationDetailPage() {
   if (!detailData || loading) {
     return <Loading />;
   }
-  console.log(detailData);
-  console.log(superDetail);
+  // console.log(detailData);
+  // console.log(superDetail);
 
   return (
     <div className="max-w-[600px] min-w-[320px] m-auto">
@@ -157,7 +157,7 @@ function LocationDetailPage() {
                     <td className="text-center p-2 w-1/6 flex justify-center">
                       <RiGlobalFill />
                     </td>
-                    <td className="p-2 grow">
+                    <td className="p-2 grow hover:text-indigo-500">
                       <button
                         onClick={() => window.open(homepageUrls[0], "_blank")}
                       >
@@ -168,7 +168,7 @@ function LocationDetailPage() {
                 </tbody>
               )}
             </table>
-            <div className="w-1/2">
+            <div className="w-1/2 h-full">
               <LocationMap
                 latitude={Number(detailData.mapy)}
                 longitude={Number(detailData.mapx)}
