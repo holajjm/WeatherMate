@@ -14,14 +14,16 @@ import CommunityItem from "@pages/community/CommunityItem";
 import CommunityPopularItem from "@pages/community/CommunityPopularItem";
 import CommunityNewbutton from "@pages/community/CommunityNewbutton";
 import UserValidLogin from "@pages/user/UserValidLogin";
+import useScrollTop from "@hooks/useScrollTop";
 
 function CommunityMain() {
   usePageTitle("Community");
+  useScrollTop();
   const [select, setSelect] = useState<string>("");
   const axios = useCustomAxios();
   const [searchParams, setSearchParams] = useSearchParams();
   const user = useRecoilState(memberState);
-  
+
   const page = searchParams.get("page");
   const { isLoading, data, error, refetch } = useQuery<
     AxiosResponse<CommunityMainData>
@@ -39,13 +41,8 @@ function CommunityMain() {
   });
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
     refetch();
   }, [searchParams.toString()]);
-  // console.log(data?.data?.item);
 
   const handleSearch = (keyword: string) => {
     searchParams.set("keyword", keyword);
