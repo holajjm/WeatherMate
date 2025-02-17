@@ -1,6 +1,11 @@
 import React, { memo, useEffect, useState } from "react";
 import axios from "axios";
 
+import usePageTitle from "@hooks/usePageTitle";
+import useScrollTop from "@hooks/useScrollTop";
+
+import { motion } from "framer-motion";
+
 const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
 interface Cities {
   Seoul: string;
@@ -65,6 +70,8 @@ interface Data {
 }
 
 function MainAllCitiesWeather() {
+  usePageTitle("All City");
+  useScrollTop();
   const [data, setData] = useState<Data[]>([]);
 
   useEffect(() => {
@@ -85,7 +92,6 @@ function MainAllCitiesWeather() {
     };
     getWeather();
   }, []);
-  console.log(data);
 
   return (
     <div className="max-w-[600px] min-w-[320px] m-auto bg-slate-50 h-full flex flex-col gap-4 font-sans overflow-y-scroll scrollbar-hide p-8">
@@ -101,14 +107,20 @@ function MainAllCitiesWeather() {
       <div className="grid grid-cols-2 gap-4">
         {data?.length > 0 && (
           <>
-            {data.map(item => {
+            {data.map((item, i) => {
               const cityName =
                 citiesMappingData[item.name as keyof Cities] || item.name;
               const iconURL = `http://openweathermap.org/img/wn/${item.weather[0].icon}.png`;
               return (
-                <div
+                <motion.div
+                  initial={{ translateX: 200, opacity: 0 }}
+                  animate={{ translateX: 0, opacity: 1 }}
+                  transition={{
+                    ease: "easeInOut",
+                    duration: 0.25 * (i + 2),
+                  }}
                   key={item.id}
-                  className="bg-amber-100 p-4 rounded-md shadow-xl shadow-[#b8b4ae] justify-center items-center border-amber-300 border-2"
+                  className="bg-[#E6E6FA] text-gray-600 p-4 rounded-lg shadow-lg shadow-[#b8b4ae] justify-center items-center border-white border-2"
                 >
                   <div className="text-center">
                     <h2 className="text-md font-bold">{cityName}</h2>
@@ -122,19 +134,19 @@ function MainAllCitiesWeather() {
                       </p>
                     </div>
                     <div className="flex gap-2">
-                      <div className="rounded-md py-2 border border-b-slate-400 shadow-md shadow-slate-400 flex-grow text-nowrap">
+                      <div className="rounded-md py-2 border border-slate-300 shadow-md shadow-slate-400 flex-grow text-nowrap">
                         <p className="text-md">
                           최고 :{String(item.main.temp_max).slice(0, 4)}°C
                         </p>
                       </div>
-                      <div className="rounded-md py-2 border border-b-slate-400 shadow-md shadow-slate-400 flex-grow text-nowrap">
+                      <div className="rounded-md py-2 border border-slate-300 shadow-md shadow-slate-400 flex-grow text-nowrap">
                         <p className="text-md">
                           최저 :{String(item.main.temp_min).slice(0, 4)}°C
                         </p>
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </>
