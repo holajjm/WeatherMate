@@ -10,6 +10,7 @@ import { CommunityDetailData } from "type";
 import { FaHeart } from "react-icons/fa";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import ReplyMain from "./ReplyMain";
+import Button from "@components/layout/Button";
 // import Button from '@components/layout/Button';
 
 function CommunityDetail() {
@@ -38,9 +39,18 @@ function CommunityDetail() {
   // console.log(user);
 
   return (
-    <div className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-slate-50 overflow-y-scroll scrollbar-hide">
+    <div className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-slate-50 overflow-y-scroll scrollbar-hide flex flex-col gap-1">
+      <div className="w-full">
+        <Button
+          text={"이전"}
+          textColor={"text-gray-500"}
+          bgColor={"gray"}
+          width={"w-1/6"}
+          onClick={() => window.history.back()}
+        />
+      </div>
       {data?.data?.item && (
-        <section className="p-2 bg-white drop-shadow-lg rounded-xl flex flex-col gap-2 flex-nowrap">
+        <section className="p-2 bg-white drop-shadow-lg rounded-xl flex flex-col flex-grow gap-2 flex-nowrap">
           <header className="flex gap-2">
             {data?.data?.item.user.profile ? (
               <img
@@ -69,24 +79,20 @@ function CommunityDetail() {
             </div>
           </header>
 
-          <main>
-            {data?.data?.item.image && (
-              <div className="flex flex-col h-full">
-                <div className="h-full flex justify-center items-center">
-                  <img
-                    src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item.image}`}
-                    alt="Content Image"
-                    className="h-full object-contain"
-                  />
-                </div>
-              </div>
-            )}
+          <main className="flex flex-col flex-grow">
+            <div className="flex justify-center items-center">
+              <img
+                src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item.image}`}
+                alt="Content Image"
+                className="w-full h-full object-contain aspect-square"
+              />
+            </div>
             <p className="bg-slate-400 text-white rounded-lg p-2">
               {data?.data?.item.content}
             </p>
           </main>
 
-          <footer className="flex items-center">
+          <footer className="flex items-center mt-auto">
             <div>
               <p className="text-md font-semibold text-slate-400">
                 조회수 {data?.data?.item.views}
@@ -109,14 +115,7 @@ function CommunityDetail() {
               </div>
             </div>
             {data.data.item.user.name === user.name ? (
-              <div className="ml-auto w-1/2 flex gap-2">
-                <button
-                  // text={'이전'}
-                  className="w-full p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                  onClick={() => window.history.back()}
-                >
-                  이전
-                </button>
+              <section className="ml-auto w-1/2 flex gap-2">
                 <button
                   // text={'수정'}
                   className="w-full p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-indigo-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
@@ -131,18 +130,8 @@ function CommunityDetail() {
                 >
                   삭제
                 </button>
-              </div>
-            ) : (
-              <div className="ml-auto w-1/4">
-                <button
-                  // text={'이전'}
-                  className="w-full p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                  onClick={() => window.history.back()}
-                >
-                  이전
-                </button>
-              </div>
-            )}
+              </section>
+            ) : null}
           </footer>
         </section>
       )}
