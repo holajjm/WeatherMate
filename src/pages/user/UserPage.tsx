@@ -20,6 +20,8 @@ function UserPage() {
   const navigate = useNavigate();
   const axios = useCustomAxios();
   const [user, setUser] = useRecoilState(memberState);
+  console.log(user);
+  
   const handleLogout = () => {
     if (confirm("로그아웃 하시겠습니까?")) {
       setUser(null);
@@ -53,7 +55,6 @@ function UserPage() {
     .map((item: ExpandCommunityData) => (
       <UserBoard key={item._id} item={item} />
     ));
-
   return (
     <>
       {user && user.name ? (
@@ -64,7 +65,8 @@ function UserPage() {
                 <div className="flex gap-2 md:gap-4 items-center">
                   <img
                     className="w-12 h-12 rounded-full"
-                    src={user.profile ? user.profile : "/nulluser.svg"}
+                    // src={user.profile ? user.profile : "/nulluser.svg"}
+                    src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${user?.profile}`}
                     alt="Profile"
                   />
                   <div className="flex-grow">
