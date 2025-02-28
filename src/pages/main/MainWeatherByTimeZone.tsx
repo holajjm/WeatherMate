@@ -71,7 +71,7 @@ function MainWeatherByTimeZone() {
   }
   return (
     <div className="w-full p-2 bg-white flex flex-col gap-2 ">
-      <h1 className="font-bold font-SSRONETHandwritten text-xl text-center">
+      <h1 className="font-bold font-SSRONETHandwritten text-xl text-center text-[#2D2D2D]">
         시간대별 날씨정보(3시간 기준)
       </h1>
       {data?.cod === "400" ? (
@@ -88,6 +88,7 @@ function MainWeatherByTimeZone() {
                   {unixTime(item.dt)}
                 </p>
                 <img
+                  className="w-10 h-10"
                   src={getIconUrl(item.weather[0].icon)}
                   alt="Weather Icon"
                 />
