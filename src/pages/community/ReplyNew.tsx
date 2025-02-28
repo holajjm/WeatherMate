@@ -39,7 +39,7 @@ function ReplyNew() {
             {...register("comment", {
               required: "내용을 입력하세요",
             })}
-            autoFocus
+            // autoFocus
             rows={1}
             placeholder="댓글을 입력하세요"
             className="p-2 w-full text-sm border rounded-lg lg:min-h-12 lg:max-h-12 border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
