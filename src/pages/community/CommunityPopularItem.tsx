@@ -17,7 +17,7 @@ function CommunityPopularItem() {
       });
     },
   });
-  console.log(data?.data.item);
+  // console.log(data?.data.item);
 
   const itemViews =
     data &&
@@ -29,7 +29,7 @@ function CommunityPopularItem() {
           className="text-nowrap text-center cursor-pointer"
           onClick={() => navigate(`/community/${item._id}`)}
         >
-          <div className="border-4 border-blue-200 box-border rounded-full w-24 h-24">
+          <div className="border-4 border-blue-200 box-border rounded-full w-24 h-24 hover:border-blue-400 duration-200">
             <img
               className="w-full h-full rounded-full"
               src={
