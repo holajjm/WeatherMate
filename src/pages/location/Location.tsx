@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useDebounce } from "@hooks/useDebounce";
 import useCurrentLocation from "@hooks/useCurrentLocation";
-import { LocationMainData } from "type";
+import { useDebounce } from "@hooks/useDebounce";
 
+import { LocationMainData } from "type";
 import LocationKeywords from "@pages/location/LocationKeyword";
 import LocationItem from "@pages/location/LocationItem";
 import Loading from "@components/layout/Loading";
