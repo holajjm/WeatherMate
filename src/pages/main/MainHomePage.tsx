@@ -9,8 +9,8 @@ import useScrollTop from "@hooks/useScrollTop";
 import MainTodaysComent from "@pages/main/MainTodaysComent";
 import MainMyLocationWeather from "@pages/main/MainMyLocationWeather";
 import MainWeatherByTimeZone from "@pages/main/MainWeatherByTimeZone";
-import MainRecommendationCommunity from "@pages/main/MainRecommendationCommunity";
-import MainRecommendationPreview from "@pages/main/MainRecommendationPreview";
+// import MainRecommendationCommunity from "@pages/main/MainRecommendationCommunity";
+// import MainRecommendationPreview from "@pages/main/MainRecommendationPreview";
 
 import { motion } from "framer-motion";
 
@@ -85,7 +85,7 @@ function MainHomePage() {
       >
         <MainWeatherByTimeZone />
       </motion.div>
-      <motion.div
+      {/* <motion.div
         initial={{ translateY: -200, opacity: 0 }}
         animate={{ translateY: 0, opacity: 1 }}
         transition={{
@@ -104,7 +104,7 @@ function MainHomePage() {
         }}
       >
         <MainRecommendationPreview />
-      </motion.div>
+      </motion.div> */}
       <ToTheTopButton />
     </div>
   );
