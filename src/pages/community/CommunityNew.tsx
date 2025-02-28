@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import useCustomAxios from "../../hooks/useCustomAxios.mts";
@@ -47,12 +47,10 @@ function CommunityNew() {
   };
 
   const onSubmit = async (formData: CommunityFormData) => {
-    console.log("formData : ", formData);
-    formData.type = "community";
-    formData.title = weatherType;
-
     const imageFormData = new FormData();
     imageFormData.append("attach", formData.image[0]);
+    console.log(imageFormData);
+    
     const files = await axios("/files", {
       method: "post",
       headers: {
@@ -61,7 +59,11 @@ function CommunityNew() {
       data: imageFormData,
     });
     formData.image = files.data.item[0]?.name;
-
+    formData.type = "community";
+    formData.title = weatherType;
+    
+    console.log("formData : ", formData);
+    
     const res = await axios.post("/posts", formData);
     console.log(res.data.item);
     navigate(`/community/${res.data.item._id}`);
