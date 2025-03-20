@@ -1,4 +1,4 @@
-const Coment = [
+export const Coment = [
   {
     temperature: 4,
     recommendation:
@@ -45,5 +45,3 @@ const Coment = [
     CLOTHES_IMG: "/clothes-8.svg",
   },
 ];
-
-export default Coment;
