@@ -52,7 +52,7 @@ function MainHomePage() {
 
   return (
     <main className="max-w-[600px] min-w-[320px] m-auto flex flex-col gap-8">
-      <motion.div
+      <motion.section
         initial={{ translateY: -50, opacity: 0 }}
         animate={{ translateY: 0, opacity: 1 }}
         transition={{
@@ -61,8 +61,8 @@ function MainHomePage() {
         }}
       >
         <MainTodaysComent />
-      </motion.div>
-      <motion.div
+      </motion.section>
+      <motion.section
         initial={{ translateY: -100, opacity: 0 }}
         animate={{ translateY: 0, opacity: 1 }}
         transition={{
@@ -71,8 +71,8 @@ function MainHomePage() {
         }}
       >
         <MainMyLocationWeather />
-      </motion.div>
-      <motion.div
+      </motion.section>
+      <motion.section
         initial={{ translateY: -150, opacity: 0 }}
         animate={{ translateY: 0, opacity: 1 }}
         transition={{
@@ -81,7 +81,7 @@ function MainHomePage() {
         }}
       >
         <MainWeatherByTimeZone />
-      </motion.div>
+      </motion.section>
       <ToTheTopButton />
     </main>
   );
