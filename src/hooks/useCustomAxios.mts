@@ -5,7 +5,7 @@ import { useRecoilState } from "recoil";
 import { UserMainData } from "type";
 
 const API_SERVER = import.meta.env.VITE_API_SERVER;
-const REFRESH_URL = '/auth/refresh';
+const REFRESH_URL = "/auth/refresh";
 
 function useCustomAxios() {
   const navigate = useNavigate();
@@ -13,21 +13,30 @@ function useCustomAxios() {
 
   // Recoil에서 사용자 상태 가져오기
   const [user, setUser] = useRecoilState<UserMainData>(memberState);
-  // console.log(user);
-  
+
   // Axios 인스턴스 생성
   const instance = axios.create({
     baseURL: API_SERVER,
     timeout: 1000 * 20,
     headers: {
-      'content-type': 'application/json', // 요청 데이터 유형
-      'accept': 'application/json',  // 응답 데이터 유형
-      'client-id': '07-WeatherMate', // 프로젝트 식별자
-    }
+      "content-type": "application/json", // 요청 데이터 유형
+      accept: "application/json", // 응답 데이터 유형
+      "client-id": "07-WeatherMate", // 프로젝트 식별자
+    },
   });
-  // console.log(instance.interceptors.request);
-  // console.log(instance.interceptors.response);
-  
+
+  // 리프레시 토큰으로 새로운 액세스 토큰 요청
+  async function getAccessToken(instance: any) {
+    try {
+      const {
+        data: { accessToken },
+      } = await instance.get(REFRESH_URL);
+      return accessToken;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   // 요청 인터셉터
   instance.interceptors.request.use(config => {
     if (user && user.token && user.token.accessToken) {
@@ -37,20 +46,23 @@ function useCustomAxios() {
       }
       config.headers.Authorization = `Bearer ${token}`;
     }
-    // console.log(config);
     return config;
   });
-  
 
   // 응답 인터셉터
   instance.interceptors.response.use(
     res => res,
     async err => {
       const { config, response } = err;
-      if (response?.status === 401) { // 인증되지 않음
-        if (config.url === REFRESH_URL) { // 리프레시 토큰 인증 실패
-          const gotoLogin = confirm('로그인 후 이용 가능합니다.\n로그인 페이지로 이동하시겠습니까?');
-          gotoLogin && navigate('/users/login', { state: { from: location.pathname } });
+      if (response?.status === 401) {
+        // 인증되지 않음
+        if (config.url === REFRESH_URL) {
+          // 리프레시 토큰 인증 실패
+          const gotoLogin = confirm(
+            "로그인 후 이용 가능합니다.\n로그인 페이지로 이동하시겠습니까?",
+          );
+          gotoLogin &&
+            navigate("/users/login", { state: { from: location.pathname } });
         } else {
           // 리프레시 토큰으로 액세스 토큰 요청
           const accessToken = await getAccessToken(instance);
@@ -59,8 +71,8 @@ function useCustomAxios() {
               ...prevUser,
               token: {
                 ...prevUser.token,
-                accessToken
-              }
+                accessToken,
+              },
             }));
             config.headers.Authorization = `Bearer ${accessToken}`;
             // 업데이트된 액세스 토큰으로 요청 다시 보내기
@@ -70,18 +82,8 @@ function useCustomAxios() {
       } else {
         return Promise.reject(err);
       }
-    }
+    },
   );
-
-  // 리프레시 토큰으로 새로운 액세스 토큰 요청
-  async function getAccessToken(instance: any) {
-    try {
-      const { data: { accessToken } } = await instance.get(REFRESH_URL);
-      return accessToken;
-    } catch (err) {
-      console.error(err);
-    }
-  }
 
   return instance;
 }
