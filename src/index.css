@@ -1,37 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ranchers&family=Rubik+Bubbles&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ranchers&family=Rubik+Bubbles&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @font-face {
-  font-family: 'SSRONETHandwritten';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/SSRONETHandwritten.woff2')
-    format('woff2');
+  font-family: "SSRONETHandwritten";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/SSRONETHandwritten.woff2")
+    format("woff2");
   font-weight: bolder;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Ainmom';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_01@1.0/Ainmom.woff')
-    format('woff');
+  font-family: "Ainmom";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_01@1.0/Ainmom.woff")
+    format("woff");
   font-weight: bolder;
   font-style: normal;
 }
 @font-face {
-  font-family: 'UhBeeKang-Ja';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeKang-Ja.woff')
-    format('woff');
+  font-family: "UhBeeKang-Ja";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeKang-Ja.woff")
+    format("woff");
   font-weight: bolder;
   font-style: normal;
 }
 @font-face {
-  font-family: 'TTLaundryGothicB';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+  font-family: "TTLaundryGothicB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
+    format("woff2");
   font-weight: 700;
   font-style: normal;
 }
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Pretendard-Bold";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff")
+    format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+/* * {
+  font-family: "Pretendard-Regular";
+} */
 
 .custom-before::before {
   content: "/";
