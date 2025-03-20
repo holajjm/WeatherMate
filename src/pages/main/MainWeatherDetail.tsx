@@ -22,7 +22,7 @@ function MainWeatherDetail() {
   return (
     <>
       {data && (
-        <div className="grow flex flex-col w-full h-full justify-center items-center gap-2 font-TTLaundryGothicB text-sm">
+        <article className="grow flex flex-col w-full h-full justify-center items-center gap-2 font-TTLaundryGothicB text-sm">
           <section className="w-full flex gap-2 justify-between">
             <div className="bg-white w-full h-full text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
               <img src="sunrise.svg" className="w-8" />
@@ -69,19 +69,19 @@ function MainWeatherDetail() {
               </p>
             </div>
             <div className="bg-white w-full h-full text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
-              <img src="windspeed.svg" className="w-8" />
+              <img src="WeatherIcon6.svg" className="w-8" />
               <p className="text-slate-600">풍속</p>
               <hr className="border-[1px] border-slate-400 w-3/4" />
               <p className="text-slate-700">{data.wind.speed}m/s</p>
             </div>
             <div className="bg-white w-full h-full text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
-              <img src="uvi.svg" className="w-8" />
+              <img src="WeatherIcon1.svg" className="w-8" />
               <p className="text-slate-600">자외선</p>
               <hr className="border-[1px] border-slate-400 w-3/4" />
               <p className="text-slate-700">{getWindStatus(data.wind.speed)}</p>
             </div>
           </section>
-        </div>
+        </article>
       )}
     </>
   );
