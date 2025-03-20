@@ -17,6 +17,7 @@
       "@main/*": ["main/*"],
       "@Mbti/*": ["Mbti/*"],
       "@user/*": ["user/*"],
+      "@recoil/*": ["recoil/*"],
     },
     "composite": true,
     "lib": ["dom", "ESNext"],
