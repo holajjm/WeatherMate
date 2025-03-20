@@ -1,27 +1,35 @@
 import React from "react";
 
 interface ButtonProps {
-  text: string;
-  textColor: string;
+  bgColor: keyof typeof buttonColor;
+  textColor: keyof typeof fontColor;
   width: string;
-  bgColor: keyof typeof buttonStyle;
+  text: React.ReactNode;
   onClick: () => void;
 }
 
-const buttonStyle = {
-  skyFull: `sky-400`,
-  skyHalf: `sky-400`,
-  indigoFull: `indigo-500`,
-  indigoHalf: `indigo-500`,
-  kakao: `[#FEE500]`,
-  gray: `slate-300`,
-  amber: `amber-200`,
-  red: `red-500`,
+const buttonColor = {
+  sky: "sky-400",
+  blue: "blue-600",
+  indigo: "indigo-500",
+  kakao: "#FEE500",
+  gray: "slate-300",
+  amber: "amber-200",
+  red: "red-500",
+  white: "white",
+  black: "[#2D2D2D]",
+};
+const fontColor = {
+  white: "white",
+  gray: "gray-500",
+  black: "[#2D2D2D]",
+  amber: "amber-500",
 };
 function Button({ text, textColor, bgColor, width, onClick }: ButtonProps) {
   return (
     <button
-      className={`bg-${buttonStyle[bgColor]} ${width} ${textColor} h-10 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400`}
+      className={`bg-${buttonColor[bgColor]} text-${fontColor[textColor]} w-${width} h-10 p-2 border-[1px] flex items-center justify-center rounded-lg font-Pretendard font-bold transition-all duration-200 text-nowrap border-slate-100 shadow-sm shadow-slate-300`}
+      onClick={onClick}
     >
       {text}
     </button>
