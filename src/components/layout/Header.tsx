@@ -22,7 +22,7 @@ function Header() {
   };
 
   return (
-    <div className="max-w-[600px] min-w-[320px] h-14 m-auto sticky top-0 z-50 flex items-center justify-center bg-blue-200">
+    <header className="max-w-[600px] min-w-[320px] h-14 m-auto sticky top-0 z-50 flex items-center justify-center bg-blue-200">
       {!open ? (
         <CgMenuLeftAlt
           className="text-2xl absolute left-4"
@@ -35,18 +35,20 @@ function Header() {
         />
       )}
       <AnimatePresence>
-        {open && <motion.div
-          initial={{ x: -100, opacity: 0 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -100 }}
-          transition={{
-            ease: "easeInOut",
-            duration: 0.8,
-          }}
-          className={`w-2/3 h-full absolute top-14 left-0 bg-black`}
-        >
-          <MainCategory />
-        </motion.div>}
+        {open && (
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{
+              ease: "easeInOut",
+              duration: 0.8,
+            }}
+            className={`w-2/3 h-full absolute top-14 left-0 bg-black`}
+          >
+            <MainCategory />
+          </motion.div>
+        )}
       </AnimatePresence>
       <Link to="/" className="flex justify-center">
         <img
@@ -59,7 +61,7 @@ function Header() {
           WeatherMate
         </p>
       </Link>
-    </div>
+    </header>
   );
 }
 
