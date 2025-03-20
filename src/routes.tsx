@@ -6,7 +6,6 @@ import ErrorPage from "@pages/ErrorPage";
 // MainPage
 import MainHomePage from "@pages/main/MainHomePage";
 import MainAllCitiesWeather from "@pages/main/MainAllCitiesWeather";
-import MainCategory from "@pages/main/MainCategory";
 // Community
 import CommunityNew from "@pages/community/CommunityNew";
 import CommunityDetail from "@pages/community/CommunityDetail";
@@ -50,10 +49,6 @@ const router = createBrowserRouter([
           {
             path: "allcity",
             element: <MainAllCitiesWeather />,
-          },
-          {
-            path: "category",
-            element: <MainCategory />,
           },
 
           // Community
