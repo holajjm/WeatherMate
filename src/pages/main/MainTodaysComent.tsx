@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { memberState } from "../../recoil/atom.mts";
+import { memberState } from "@recoil/atom.ts";
 
 import { WeatherImage } from "type";
-import Coment from "../../assets/Coment.ts";
+import { Coment } from "../../assets/Coment.ts";
 import MainComentSkeleton from "@components/skeleton/MainComentSkeleton.tsx";
 
 interface ComentObj {
@@ -16,7 +15,6 @@ interface ComentObj {
 function MainTodaysComent() {
   //코멘트 및 의상 추천 로직
   const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
-  const user = useRecoilValue(memberState);
   const [comentObj, setComentObj] = useState<ComentObj>();
 
   useEffect(() => {
@@ -76,53 +74,33 @@ function MainTodaysComent() {
       : null;
 
   return (
-    <div className="p-2 flex flex-col gap-2 items-center bg-slate-50 font-TTLaundryGothicB h-full fade-in">
-      <div className="w-full flex justify-between text-left text-lg font-bold text-wrap">
-        {/* <div> */}
-        {/* {user && user?.name ? (
-            <>
-              <Link to={"/user/mypage"} className="text-blue-400">
-                {user?.name}
-              </Link>
-              님,
-            </>
-          ) : (
-            <>
-              <Link
-                to={"/user/validlogin"}
-                className="font-medium hover:text-blue-600"
-              >
-                로그인
-              </Link>
-              해주세요
-            </>
-          )} */}
+    <article className="p-2 flex flex-col gap-2 items-center bg-slate-50 font-TTLaundryGothicB h-full fade-in">
+      <section className="w-full flex justify-between text-left text-lg font-bold text-wrap">
         <h1 className="text-base text-[#2D2D2D]">
           환영해요! <br /> WeatherMate입니다!
         </h1>
-        {/* </div> */}
-        <section
+        <aside
           style={{ backgroundImage: `url(${realImage})` }}
           className={`border-2 w-1/2 h-32 text-base text-nowrap ${["Clouds", "Rain", "Drizzle", "Thunderstorm", "Snow"].includes(data?.weather[0].main) ? "text-slate-200" : "text-slate-700"} flex gap-4 rounded-xl p-4 box-border bg-white bg-cover bg-no-repeat bg-center relative`}
         >
           <div className="absolute top-0 left-0 w-full h-full opacity-25 bg-white z-10"></div>
           <div className="w-2/3 flex flex-col gap-1 justify-between absolute top-0 left-0 p-2 z-40 text-[#2D2D2D]">
             <p>
-              {String(new Date()).slice(4, 7)},{String(new Date()).slice(8, 11)}{String(new Date()).slice(0, 3)}
+              {String(new Date()).slice(4, 7)},{String(new Date()).slice(8, 11)}
+              {String(new Date()).slice(0, 3)}
             </p>
             <p></p>
             <p>{data?.weather && data.weather[0].description}</p>
             <p>{data && String(data.main?.temp).slice(0, 3)}°C</p>
           </div>
           <div className="w-1/3 text-center flex flex-col gap-1 absolute top-0 right-0 p-2 z-40 text-[#2D2D2D]">
-            {/* <img src={weatherImage} alt="weatherIcon" className="w-14 m-auto" /> */}
             <p>강수량</p>
             <p>{data?.rain ? data?.rain?.["1h"] : "00"}mm</p>
           </div>
-        </section>
-      </div>
+        </aside>
+      </section>
       {comentObj ? (
-        <div className="w-full text-center grow">
+        <section className="w-full text-center grow">
           <p className="font-SSRONETHandwritten text-amber-500 text-lg font-bold rounded-xl bg-amber-200 p-2">
             {comentObj?.recommendation}
           </p>
@@ -131,11 +109,11 @@ function MainTodaysComent() {
             alt="coment-img"
             className="w-40 m-auto"
           />
-        </div>
+        </section>
       ) : (
         <MainComentSkeleton />
       )}
-    </div>
+    </article>
   );
 }
 
