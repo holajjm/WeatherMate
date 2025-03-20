@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import MainCategory from "@pages/main/MainCategory";
+import HeaderCategory from "@components/layout/HeaderCategory";
 import { CgMenuLeftAlt } from "react-icons/cg";
 import { IoIosArrowDropleft } from "react-icons/io";
 
@@ -46,7 +46,7 @@ function Header() {
             }}
             className={`w-2/3 h-full absolute top-14 left-0 bg-black`}
           >
-            <MainCategory />
+            <HeaderCategory />
           </motion.div>
         )}
       </AnimatePresence>
