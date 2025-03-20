@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { motion } from "framer-motion";
 import useScrollTop from "@hooks/useScrollTop";
+import { motion } from "framer-motion";
 
 import { IoMdChatboxes } from "react-icons/io";
 import { MdLocationOn } from "react-icons/md";

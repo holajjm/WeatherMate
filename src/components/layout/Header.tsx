@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { AnimatePresence, motion } from "framer-motion";
-
 import HeaderCategory from "@components/layout/HeaderCategory";
+
 import { CgMenuLeftAlt } from "react-icons/cg";
 import { IoIosArrowDropleft } from "react-icons/io";
 
