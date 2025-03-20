@@ -1,18 +1,15 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { LocationState } from "../../recoil/atom.mts";
+import { LocationState } from "@recoil/atom";
 
 import ToTheTopButton from "@components/layout/ToTheTopButton";
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
+import { motion } from "framer-motion";
 import MainTodaysComent from "@pages/main/MainTodaysComent";
 import MainMyLocationWeather from "@pages/main/MainMyLocationWeather";
 import MainWeatherByTimeZone from "@pages/main/MainWeatherByTimeZone";
-// import MainRecommendationCommunity from "@pages/main/MainRecommendationCommunity";
-// import MainRecommendationPreview from "@pages/main/MainRecommendationPreview";
-
-import { motion } from "framer-motion";
 
 function MainHomePage() {
   usePageTitle("WeatherMate");
@@ -54,7 +51,7 @@ function MainHomePage() {
   }
 
   return (
-    <div className="max-w-[600px] min-w-[320px] m-auto flex flex-col gap-8">
+    <main className="max-w-[600px] min-w-[320px] m-auto flex flex-col gap-8">
       <motion.div
         initial={{ translateY: -50, opacity: 0 }}
         animate={{ translateY: 0, opacity: 1 }}
@@ -85,28 +82,8 @@ function MainHomePage() {
       >
         <MainWeatherByTimeZone />
       </motion.div>
-      {/* <motion.div
-        initial={{ translateY: -200, opacity: 0 }}
-        animate={{ translateY: 0, opacity: 1 }}
-        transition={{
-          ease: "easeInOut",
-          duration: 1.25,
-        }}
-      >
-        <MainRecommendationCommunity />
-      </motion.div>
-      <motion.div
-        initial={{ translateY: -250, opacity: 0 }}
-        animate={{ translateY: 0, opacity: 1 }}
-        transition={{
-          ease: "easeInOut",
-          duration: 1.5,
-        }}
-      >
-        <MainRecommendationPreview />
-      </motion.div> */}
       <ToTheTopButton />
-    </div>
+    </main>
   );
 }
 
