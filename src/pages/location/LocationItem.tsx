@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { memberState } from "../../recoil/atom.mts";
+import { memberState } from "@recoil/atom";
 import { LocationMainData } from "type";
 
 import { motion } from "framer-motion";
@@ -89,7 +89,6 @@ function LocationItem({ item }: { item: LocationMainData }) {
     //   className="flex flex-col p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:scale-105 hover:border-blue-400 duration-200"
     // >
     <>
-    
       <Link
         to={`/location/${item.contentid}`}
         className="grow flex flex-col gap-1"

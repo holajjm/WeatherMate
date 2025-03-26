@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import useCustomAxios from "@hooks/useCustomAxios.mjs";
+import useCustomAxios from "@hooks/useCustomAxios.js";
 import { useQuery } from "@tanstack/react-query";
 import { ReplyData } from "type";
 

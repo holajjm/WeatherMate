@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useRecoilValue } from "recoil";
-import { memberState } from "../../recoil/atom.mts";
+import { memberState } from "@recoil/atom";
 import { NewReply, ReplyData } from "type";
 
-import useCustomAxios from "@hooks/useCustomAxios.mjs";
+import useCustomAxios from "@hooks/useCustomAxios.js";
 
 function ReplyItem({ item }: { item: ReplyData }) {
   const [editReply, setEditReply] = useState<boolean>(false);
