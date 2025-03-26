@@ -74,7 +74,7 @@ function CommunityDetail() {
               {data?.data?.item.title && (
                 <img
                   className="w-12 h-12 rounded-full p-1"
-                  src={`/${data?.data?.item.title}.svg`}
+                  src={`/Weather${data?.data?.item.title}.svg`}
                   alt="weather"
                 />
               )}
