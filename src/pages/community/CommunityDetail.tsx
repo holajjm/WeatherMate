@@ -3,15 +3,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 import { useRecoilValue } from "recoil";
-import useCustomAxios from "../../hooks/useCustomAxios.mts";
-import { memberState } from "../../recoil/atom.mts";
+import useCustomAxios from "@hooks/useCustomAxios";
+import { memberState } from "@recoil/atom";
 import { CommunityDetailData } from "type";
 
 import { FaHeart } from "react-icons/fa";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import ReplyMain from "./ReplyMain";
 import Button from "@components/layout/Button";
-// import Button from '@components/layout/Button';
 
 function CommunityDetail() {
   const navigate = useNavigate();
@@ -24,33 +23,36 @@ function CommunityDetail() {
     refetchOnWindowFocus: false,
   });
   const handleEdit = () => {
-    if (confirm("게시글을 수정하시겠습니까?")) {
-      navigate(`/community/${_id}/edit`);
-    }
+    navigate(`/community/${_id}/edit`);
     return;
   };
   const handleDelete = async () => {
     if (confirm("삭제하시겠습니까?")) {
-      await axios.delete(`/posts/${_id}`);
-      navigate("/community");
+      try {
+        await axios.delete(`/posts/${_id}`);
+        alert("삭제되었습니다.");
+        navigate("/community");
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
-  // console.log(data?.data.item);
+  console.log(data?.data.item);
   // console.log(user);
 
   return (
     <div className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-slate-50 overflow-y-scroll scrollbar-hide flex flex-col gap-1">
       <div className="w-full">
         <Button
-          text={"이전"}
-          textColor={"text-gray-500"}
           bgColor={"gray"}
+          textColor={"gray"}
           width={"w-1/6"}
+          text={"이전"}
           onClick={() => window.history.back()}
         />
       </div>
       {data?.data?.item && (
-        <section className="p-2 bg-white drop-shadow-lg rounded-xl flex flex-col flex-grow gap-2 flex-nowrap">
+        <section className="p-2 bg-white drop-shadow-lg rounded-xl flex flex-col gap-2 flex-nowrap">
           <header className="flex gap-2">
             {data?.data?.item.user.profile ? (
               <img
