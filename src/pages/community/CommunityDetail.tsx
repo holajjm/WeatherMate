@@ -3,14 +3,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 import { useRecoilValue } from "recoil";
-import useCustomAxios from "@hooks/useCustomAxios";
 import { memberState } from "@recoil/atom";
+
+import useCustomAxios from "@hooks/useCustomAxios";
+import Button from "@components/layout/Button";
 import { CommunityDetailData } from "type";
 
-import { FaHeart } from "react-icons/fa";
-import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import ReplyMain from "./ReplyMain";
-import Button from "@components/layout/Button";
+import { FaArrowLeft, FaHeart } from "react-icons/fa";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 function CommunityDetail() {
   const navigate = useNavigate();
@@ -37,17 +38,15 @@ function CommunityDetail() {
       }
     }
   };
-  console.log(data?.data.item);
-  // console.log(user);
 
   return (
     <div className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-slate-50 overflow-y-scroll scrollbar-hide flex flex-col gap-1">
       <div className="w-full">
         <Button
-          bgColor={"gray"}
-          textColor={"gray"}
-          width={"w-1/6"}
-          text={"이전"}
+          text={<FaArrowLeft />}
+          textColor="gray"
+          bgColor="gray"
+          width="8"
           onClick={() => window.history.back()}
         />
       </div>
