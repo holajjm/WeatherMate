@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 import { useRecoilState } from "recoil";
-import { memberState } from "../../recoil/atom.mts";
-import useCustomAxios from "@hooks/useCustomAxios.mts";
+import { memberState } from "../../recoil/atom";
+import useCustomAxios from "@hooks/useCustomAxios";
 import { CommunityMainData } from "type";
 
 import Search from "@components/layout/Search";
@@ -12,9 +12,9 @@ import ToTheTopButton from "@components/layout/ToTheTopButton";
 import usePageTitle from "@hooks/usePageTitle";
 import CommunityItem from "@pages/community/CommunityItem";
 import CommunityPopularItem from "@pages/community/CommunityPopularItem";
-import CommunityNewbutton from "@pages/community/CommunityNewbutton";
 import UserValidLogin from "@pages/user/UserValidLogin";
 import useScrollTop from "@hooks/useScrollTop";
+import Button from "@components/layout/Button";
 
 function CommunityMain() {
   usePageTitle("Community");
@@ -23,8 +23,8 @@ function CommunityMain() {
   const axios = useCustomAxios();
   const [searchParams, setSearchParams] = useSearchParams();
   const user = useRecoilState(memberState);
-
   const page = searchParams.get("page");
+  const navigate = useNavigate();
   const { isLoading, data, error, refetch } = useQuery<
     AxiosResponse<CommunityMainData>
   >({
@@ -79,7 +79,16 @@ function CommunityMain() {
         .map(item => <CommunityItem key={item._id} item={item} />);
     }
   };
-
+  const handleWrite = () => {
+    if (!user) {
+      const gotologin = confirm(
+        "로그인 후 이용 가능합니다. \n 로그인 하시겠습니까?",
+      );
+      gotologin && navigate("/user/login");
+    } else {
+      navigate("/community/new");
+    }
+  };
   return (
     <>
       {user && user[0]?.name ? (
@@ -87,11 +96,11 @@ function CommunityMain() {
           <aside>
             <CommunityPopularItem />
           </aside>
-          <section className="flex flex-col gap-4">
+          <section className="flex gap-2">
             <Search onClick={handleSearch}></Search>
-            <div className="ml-auto flex gap-2">
+            <div className="flex gap-2">
               <select
-                className="border-2 border-slate-300 rounded-md font-SSRONETHandwritten text-xl font-bold text-slate-700"
+                className="h-10 border-2 border-slate-300 rounded-md font-SSRONETHandwritten text-xl font-bold text-slate-700"
                 value={select}
                 onChange={selectValue}
               >
@@ -101,7 +110,13 @@ function CommunityMain() {
                 <option value="least-viewed">조회수 낮은 순</option>
                 <option value="replies">댓글순</option>
               </select>
-              <CommunityNewbutton />
+              <Button
+                text="글 작성하기"
+                textColor="amber"
+                bgColor="amber"
+                width="full"
+                onClick={handleWrite}
+              ></Button>
             </div>
           </section>
           <main className="grid grid-cols-1 sm:grid-cols-2 gap-4">
