@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { AnimatePresence, motion } from "framer-motion";
-import HeaderCategory from "@components/layout/HeaderCategory";
 
+import HeaderCategory from "@components/layout/HeaderCategory";
 import { CgMenuLeftAlt } from "react-icons/cg";
 import { IoIosArrowDropleft } from "react-icons/io";
 
@@ -57,7 +57,7 @@ function Header() {
           className="w-10"
           onClick={handleRefresh}
         />
-        <p className="text-2xl text-orange-400 font-extrabold font-UhBeeKangJa">
+        <p className="text-2xl text-orange-400 font-extrabold font-Pretendard">
           WeatherMate
         </p>
       </Link>
