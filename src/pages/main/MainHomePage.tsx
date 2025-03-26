@@ -3,13 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { LocationState } from "@recoil/atom";
 
-import ToTheTopButton from "@components/layout/ToTheTopButton";
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
 import { motion } from "framer-motion";
+
 import MainTodaysComent from "@pages/main/MainTodaysComent";
 import MainMyLocationWeather from "@pages/main/MainMyLocationWeather";
-import MainWeatherByTimeZone from "@pages/main/MainWeatherByTimeZone";
+import MainWeatherTimeZone from "@pages/main/MainWeatherTimeZone";
+import ToTheTopButton from "@components/layout/ToTheTopButton";
 
 function MainHomePage() {
   usePageTitle("WeatherMate");
@@ -80,7 +81,7 @@ function MainHomePage() {
           duration: 1,
         }}
       >
-        <MainWeatherByTimeZone />
+        <MainWeatherTimeZone />
       </motion.section>
       <ToTheTopButton />
     </main>

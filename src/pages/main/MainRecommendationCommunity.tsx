@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { ExpandCommunityData } from "type";
 
-import useCustomAxios from "@hooks/useCustomAxios.mjs";
+import useCustomAxios from "@hooks/useCustomAxios.js";
 import Button from "@components/layout/Button";
 
 import { Swiper, SwiperSlide } from "swiper/react";
