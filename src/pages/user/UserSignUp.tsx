@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import useCustomAxios from "@hooks/useCustomAxios.mts";
+import useCustomAxios from "@hooks/useCustomAxios";
 import { SignUpMainData } from "type";
 
 function UserSignUp() {

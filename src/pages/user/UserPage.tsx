@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { memberState } from "../../recoil/atom.mts";
+import { memberState } from "../../recoil/atom";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import { AxiosResponse } from "axios";
-import useCustomAxios from "@hooks/useCustomAxios.mts";
+import useCustomAxios from "@hooks/useCustomAxios";
 import usePageTitle from "@hooks/usePageTitle";
 import { CommunityMainData, ExpandCommunityData } from "type";
 
@@ -21,7 +21,7 @@ function UserPage() {
   const axios = useCustomAxios();
   const [user, setUser] = useRecoilState(memberState);
   console.log(user);
-  
+
   const handleLogout = () => {
     if (confirm("로그아웃 하시겠습니까?")) {
       setUser(null);

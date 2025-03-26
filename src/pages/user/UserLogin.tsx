@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { memberState } from "../../recoil/atom.mjs";
+import { memberState } from "../../recoil/atom.js";
 import { useForm } from "react-hook-form";
-import useCustomAxios from "@hooks/useCustomAxios.mts";
+import useCustomAxios from "@hooks/useCustomAxios.js";
 import { LoginMainData } from "type";
 
 // import Submit from '@components/layout/Submit.tsx';

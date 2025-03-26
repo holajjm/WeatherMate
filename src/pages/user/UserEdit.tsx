@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
-import { memberState } from "../../recoil/atom.mts";
+import { memberState } from "../../recoil/atom";
 import { useNavigate } from "react-router-dom";
-import useCustomAxios from "@hooks/useCustomAxios.mts";
+import useCustomAxios from "@hooks/useCustomAxios";
 import { UserMainData } from "type";
 
 function UserEdit() {

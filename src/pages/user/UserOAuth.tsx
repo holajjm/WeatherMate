@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { memberState } from "../../recoil/atom.mjs";
+import { memberState } from "../../recoil/atom.js";
 
-import useCustomAxios from "@hooks/useCustomAxios.mts";
+import useCustomAxios from "@hooks/useCustomAxios.js";
 
 const UserOAuth = () => {
   const [loading, setLoading] = useState(true);

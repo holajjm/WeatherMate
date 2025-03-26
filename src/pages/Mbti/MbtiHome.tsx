@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { memberState } from "../../recoil/atom.mts";
+import { memberState } from "../../recoil/atom";
 import usePageTitle from "@hooks/usePageTitle";
 
 import mbtiStart from "@assets/mbti/mbtiimg/mbtiStart.png";
