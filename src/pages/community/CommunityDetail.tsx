@@ -6,6 +6,7 @@ import { useRecoilValue } from "recoil";
 import { memberState } from "@recoil/atom";
 
 import useCustomAxios from "@hooks/useCustomAxios";
+import useScrollTop from "@hooks/useScrollTop";
 import Button from "@components/layout/Button";
 import { CommunityDetailData } from "type";
 
@@ -14,6 +15,7 @@ import { FaArrowLeft, FaHeart } from "react-icons/fa";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 function CommunityDetail() {
+  useScrollTop();
   const navigate = useNavigate();
   const user = useRecoilValue(memberState);
   const { _id } = useParams();
@@ -59,21 +61,24 @@ function CommunityDetail() {
                 className="rounded-full border-2 w-12 h-12"
               />
             ) : (
-              <p className="rounded-full border w-12 h-12"></p>
+              <img
+                src="/mainlogin.svg"
+                className="rounded-full border w-12 h-12"
+              />
             )}
             <div className="grow">
-              <h1 className="text-lg font-bold">
+              <h1 className="text-base font-bold">
                 {data?.data?.item.user.name}
               </h1>
-              <p className="grow text-gray-400">
+              <p className="grow text-sm text-gray-400">
                 {data?.data?.item.createdAt.substring(5, 16)}
               </p>
             </div>
             <div className="flex flex-col items-center justify-center">
               {data?.data?.item.title && (
                 <img
-                  className="w-12 h-12 rounded-full p-1"
-                  src={`/Weather${data?.data?.item.title}.svg`}
+                  className="w-10 h-10 rounded-full p-1"
+                  src={`/WeatherIcon${data?.data?.item.title}.svg`}
                   alt="weather"
                 />
               )}
@@ -81,14 +86,18 @@ function CommunityDetail() {
           </header>
 
           <main className="flex flex-col flex-grow">
-            <div className="flex justify-center items-center">
+            <div className="w-full h-96 flex justify-center items-center border-2 border-slate-200 rounded-md">
               <img
-                src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item.image}`}
+                src={
+                  data?.data?.item?.image
+                    ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item.image}`
+                    : `/readyforimage.jpeg`
+                }
                 alt="Content Image"
                 className="w-full h-full object-contain aspect-square"
               />
             </div>
-            <p className="bg-slate-400 text-white rounded-lg p-2">
+            <p className="bg-slate-100 text-slate-600 rounded-md p-2 box-border grow font-UhBeeKangJa">
               {data?.data?.item.content}
             </p>
           </main>
@@ -117,20 +126,20 @@ function CommunityDetail() {
             </div>
             {data.data.item.user.name === user.name ? (
               <section className="ml-auto w-1/2 flex gap-2">
-                <button
-                  // text={'수정'}
-                  className="w-full p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-indigo-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+                <Button
+                  text="수정"
+                  textColor="white"
+                  bgColor="indigo"
+                  width="full"
                   onClick={handleEdit}
-                >
-                  수정
-                </button>
-                <button
-                  // text={'삭제'}
-                  className="w-full p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-red-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+                ></Button>
+                <Button
+                  text="삭제"
+                  textColor="white"
+                  bgColor="red"
+                  width="full"
                   onClick={handleDelete}
-                >
-                  삭제
-                </button>
+                ></Button>
               </section>
             ) : null}
           </footer>
