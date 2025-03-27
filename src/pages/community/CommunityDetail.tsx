@@ -89,9 +89,11 @@ function CommunityDetail() {
             <div className="w-full h-96 flex justify-center items-center border-2 border-slate-200 rounded-md">
               <img
                 src={
-                  data?.data?.item?.image
-                    ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item.image}`
-                    : `/readyforimage.jpeg`
+                  data?.data?.item.extra
+                    ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item.extra.image}`
+                    : data?.data?.item?.image
+                      ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item?.image}`
+                      : `/readyforimage.jpeg`
                 }
                 alt="Content Image"
                 className="w-full h-full object-contain aspect-square"
