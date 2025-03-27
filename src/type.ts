@@ -2,6 +2,7 @@
 export interface CommunityData {
   content: string;
   createdAt: string;
+  extra?: {image: string}
   image: string;
   replies?: ReplyData[];
   seller_id: string | null;
