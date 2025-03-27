@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useCustomAxios from "@hooks/useCustomAxios";
 import { NewReply } from "type";
+import Button from "@components/layout/Button";
 
 // import Submit from '@components/layout/Submit';
 
@@ -32,7 +33,7 @@ function ReplyNew() {
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-2 border rounded-lg"
+        className="flex flex-col gap-2 rounded-lg"
       >
         <div className="flex gap-2">
           <textarea
@@ -42,15 +43,15 @@ function ReplyNew() {
             // autoFocus
             rows={1}
             placeholder="댓글을 입력하세요"
-            className="p-2 w-full text-sm border rounded-lg lg:min-h-12 lg:max-h-12 border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+            className="p-2 w-full text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
           ></textarea>
-          <button
-            // text={'등록'}
-            type="submit"
-            className="w-1/6 bg-amber-400 font-bold font-UhBeeKangJa rounded-lg text-white"
-          >
-            등록
-          </button>
+          <Button
+            text="등록"
+            textColor="amber"
+            bgColor="amber"
+            width="1/6"
+            onClick={() => {}}
+          ></Button>
         </div>
         {errors.comment && (
           <p className="text-sm text-red-500">
