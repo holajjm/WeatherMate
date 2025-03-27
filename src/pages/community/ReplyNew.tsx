@@ -2,11 +2,10 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { SubmitHandler, useForm } from "react-hook-form";
-import useCustomAxios from "@hooks/useCustomAxios";
-import { NewReply } from "type";
-import Button from "@components/layout/Button";
 
-// import Submit from '@components/layout/Submit';
+import useCustomAxios from "@hooks/useCustomAxios";
+import Button from "@components/layout/Button";
+import { NewReply } from "type";
 
 function ReplyNew() {
   const axios = useCustomAxios();
@@ -40,7 +39,6 @@ function ReplyNew() {
             {...register("comment", {
               required: "내용을 입력하세요",
             })}
-            // autoFocus
             rows={1}
             placeholder="댓글을 입력하세요"
             className="p-2 w-full text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
