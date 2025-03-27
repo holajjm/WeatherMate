@@ -15,7 +15,7 @@ function ReplyMain() {
     queryFn: () => axios.get(`/posts/${_id}/replies`),
   });
   return (
-    <div className="p-2 bg-slate-200 rounded-lg drop-shadow-lg flex flex-col gap-2">
+    <div className="p-2 bg-white rounded-lg drop-shadow-md flex flex-col gap-2">
       <ReplyNew />
       <div className="grid gap-2">
         {data?.data?.item &&

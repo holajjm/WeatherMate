@@ -42,7 +42,7 @@ function ReplyItem({ item }: { item: ReplyData }) {
     refetch();
   };
   return (
-    <div className="p-2 bg-slate-50 flex flex-col gap-2 rounded-lg">
+    <div className="p-2 bg-slate-100 flex flex-col gap-2 rounded-lg">
       <div className="flex justify-center items-center gap-2">
         <div>
           {item?.user.profile ? (
@@ -51,14 +51,17 @@ function ReplyItem({ item }: { item: ReplyData }) {
               className="rounded-full border w-12 h-12"
             />
           ) : (
-            <p className="border-2 border-black rounded-full w-12 h-12"></p>
+            <img
+              src="/mainlogin.svg"
+              className="rounded-full border w-12 h-12"
+            />
           )}
         </div>
         <div className="grow flex flex-col justify-between gap-1">
           <div className="flex">
             <div className="grow flex items-center gap-2">
-              <div className="">{item?.user.name}</div>
-              <p className="text-stone-500">
+              <div className="text-base">{item?.user.name}</div>
+              <p className="text-sm text-stone-500">
                 {item?.createdAt.substring(5, 16)}
               </p>
 
@@ -119,7 +122,7 @@ function ReplyItem({ item }: { item: ReplyData }) {
                 </button>
               </form>
             ) : (
-              <div className="border-2 rounded-lg p-1 bg-white border-gray-200">
+              <div className="border-2 rounded-lg p-1 text-base text-slate-600 bg-white border-gray-200">
                 {item?.comment}
               </div>
             )}
