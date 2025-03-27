@@ -24,6 +24,7 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
           ? `${diffDay.toFixed(0)}일 전`
           : `${diffMonth.toFixed(0)}개월 전`;
   };
+
   return (
     <div
       className="flex flex-col gap-3 bg-white shadow-md shadow-slate-300 p-2 box-border rounded-lg cursor-pointer"
@@ -63,19 +64,17 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
 
       <main className="grow flex flex-col gap-2">
         <div className="h-3/4">
-          {item?.image ? (
-            <img
-              className="w-full h-full rounded-md"
-              src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.image}`}
-              alt="image"
-            />
-          ) : (
-            <img
-              className="w-full h-full rounded-md"
-              src={`/readyforimage.jpeg`}
-              alt="image"
-            />
-          )}
+          <img
+            className="w-full h-full rounded-md"
+            src={
+              item.extra
+                ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.extra.image}`
+                : item?.image
+                  ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item?.image}`
+                  : `/readyforimage.jpeg`
+            }
+            alt="DetailImage"
+          />
         </div>
         <div className="text-slate-600 bg-slate-100 rounded-md p-2 box-border grow font-UhBeeKangJa">
           {item.content}
