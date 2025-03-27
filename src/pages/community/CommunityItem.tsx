@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+
 import { ExpandCommunityData } from "type";
 
 import { FaHeart } from "react-icons/fa";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-// import { FaRegHeart } from "react-icons/fa";
 
 function CommunityItem({ item }: { item: ExpandCommunityData }) {
   const navigate = useNavigate();
@@ -24,35 +24,36 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
           ? `${diffDay.toFixed(0)}일 전`
           : `${diffMonth.toFixed(0)}개월 전`;
   };
-
   return (
     <div
-      className="flex flex-col gap-3 bg-white shadow-lg shadow-slate-400 p-2 box-border rounded-lg cursor-pointer"
+      className="flex flex-col gap-3 bg-white shadow-md shadow-slate-300 p-2 box-border rounded-lg cursor-pointer"
       onClick={() => navigate(`/community/${item._id}`)}
     >
       <header className="flex flex-col gap-3 font-TTLaundryGothicB">
         <section className="flex gap-3 items-center">
-          <div className="rounded-full w-12 h-12 border-2">
+          <div className="flex items-center justify-center rounded-full w-12 h-12 border-2">
             <img
               src={
                 item?.user.profile
                   ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.user.profile}`
-                  : "/clothes-m-1.svg"
+                  : "/mainlogin.svg"
               }
-              className="rounded-full w-12 h-12"
+              className="rounded-full w-12 h-12 object-contain"
             />
           </div>
           <div className="grow flex items-center">
             <div className="grow">
-              <h1 className="text-lg font-bold">{item.user?.name}</h1>
-              <p className="text-base text-slate-500 font-sans font-medium">
+              <h1 className="text-base font-bold">{item.user?.name}</h1>
+              <p className="text-sm text-slate-500 font-sans font-medium">
                 {getItemTime(item.createdAt)}
               </p>
             </div>
             {item.title && (
               <img
                 className="w-10 h-10"
-                src={`/${item.title}.svg`}
+                src={
+                  item?.title ? `/WeatherIcon${item.title}.svg` : "/logo.svg"
+                }
                 alt="weatherIcon"
               />
             )}
@@ -62,10 +63,16 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
 
       <main className="grow flex flex-col gap-2">
         <div className="h-3/4">
-          {item.image && (
+          {item?.image ? (
             <img
               className="w-full h-full rounded-md"
               src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.image}`}
+              alt="image"
+            />
+          ) : (
+            <img
+              className="w-full h-full rounded-md"
+              src={`/readyforimage.jpeg`}
               alt="image"
             />
           )}
