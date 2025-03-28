@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+
+import Button from "@components/layout/Button";
+import Loading from "@components/layout/Loading";
 import { LocationDetailData, LocationSuperDetailData } from "type";
 
-import Loading from "@components/layout/Loading";
 import LocationMap from "@pages/location/LocationMap";
 import { FaLocationDot } from "react-icons/fa6";
 import { BsTelephoneFill } from "react-icons/bs";
-import { FaParking } from "react-icons/fa";
+import { FaArrowLeft, FaParking } from "react-icons/fa";
 import { FaClock } from "react-icons/fa";
 import { MdFreeBreakfast } from "react-icons/md";
 import { FaDog } from "react-icons/fa";
 import { RiGlobalFill } from "react-icons/ri";
 
-const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
 function LocationDetailPage() {
+  const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
   const { id } = useParams();
   const [detailData, setDetailData] = useState<LocationDetailData>();
   const [homepageUrls, setHomepageUrls] = useState<string[]>([]);
@@ -73,14 +75,15 @@ function LocationDetailPage() {
   return (
     <div className="max-w-[600px] min-w-[320px] m-auto">
       <div className="p-2 flex flex-col gap-4">
-        <div className="relative">
-          <button
-            className="absolute p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+        <div className="flex items-center">
+          <Button
+            text={<FaArrowLeft />}
+            textColor="gray"
+            bgColor="gray"
+            width="8"
             onClick={() => window.history.back()}
-          >
-            뒤로 가기
-          </button>
-          <h1 className="text-3xl text-center font-bold font-UhBeeKangJa">
+          ></Button>
+          <h1 className="grow pr-8 text-xl text-center font-bold font-UhBeeKangJa">
             {detailData.title}
           </h1>
         </div>
