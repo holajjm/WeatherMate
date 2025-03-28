@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { UserBookmarkData } from "type";
 
 import Loading from "@components/layout/Loading";
+import Button from "@components/layout/Button";
+import { UserBookmarkData } from "type";
 
 function UserBookMark() {
   const [bookmarks, setBookmarks] = useState([]);
@@ -82,18 +83,20 @@ function UserBookMark() {
                     {item.title}
                   </p>
                   <div className="flex gap-1">
-                    <button
+                    <Button
+                      text="상세보기"
+                      textColor="gray"
+                      bgColor="gray"
+                      width="full"
                       onClick={() => moveToBookMarkPage(item.contentid)}
-                      className="w-full p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                    >
-                      상세보기
-                    </button>
-                    <button
+                    ></Button>
+                    <Button
+                      text="삭제하기"
+                      textColor="white"
+                      bgColor="lightRed"
+                      width="full"
                       onClick={() => removeBookmark(item.contentid)}
-                      className="w-full p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-red-300 hover:bg-red-400 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                    >
-                      삭제하기
-                    </button>
+                    ></Button>
                   </div>
                 </div>
               </div>

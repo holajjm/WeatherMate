@@ -1,27 +1,28 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { memberState } from "../../recoil/atom";
 import { useQuery } from "@tanstack/react-query";
-import { useRecoilState } from "recoil";
 import { AxiosResponse } from "axios";
+import { memberState } from "@recoil/atom";
+import { useRecoilState } from "recoil";
+
 import useCustomAxios from "@hooks/useCustomAxios";
 import usePageTitle from "@hooks/usePageTitle";
+import useScrollTop from "@hooks/useScrollTop";
+import Button from "@components/layout/Button";
 import { CommunityMainData, ExpandCommunityData } from "type";
 
-// import Button from '@components/layout/Button';
 import UserBoard from "@pages/user/UserBoard";
-import ValidLogin from "@pages/user/UserValidLogin";
 import UserBookMark from "@pages/user/UserBookmark";
+import ValidLogin from "@pages/user/UserValidLogin";
 import { BsBookmarkStarFill } from "react-icons/bs";
 import { PiUserListBold } from "react-icons/pi";
 
 function UserPage() {
   usePageTitle("MyPage");
+  useScrollTop();
   const navigate = useNavigate();
   const axios = useCustomAxios();
   const [user, setUser] = useRecoilState(memberState);
-  console.log(user);
-
   const handleLogout = () => {
     if (confirm("로그아웃 하시겠습니까?")) {
       setUser(null);
@@ -65,48 +66,51 @@ function UserPage() {
                 <div className="flex gap-2 md:gap-4 items-center">
                   <img
                     className="w-12 h-12 rounded-full"
-                    // src={user.profile ? user.profile : "/nulluser.svg"}
-                    src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${user?.profile}`}
+                    src={
+                      user?.profile
+                        ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${user?.profile}`
+                        : "/mainlogin.svg"
+                    }
                     alt="Profile"
                   />
                   <div className="flex-grow">
-                    <p className="text-xl font-TTLaundryGothicB font-bold text-sky-500">
+                    <p className="text-lg font-Pretendard font-bold text-sky-500">
                       {user.name}님
                     </p>
-                    <p className="text-lg text-nowrap font-semibold font-SSRONETHandwritten text-slate-600">
+                    <p className="text-base text-nowrap font-semibold font-SSRONETHandwritten text-slate-600">
                       오늘 날씨 어때요?
                     </p>
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">
                   <div className="flex gap-2">
-                    <button
+                    <Button
+                      text={"회원 정보 수정"}
+                      textColor="white"
+                      bgColor="indigo"
+                      width="full"
                       onClick={Edit}
-                      // text={'회원 정보 수정'}
-                      className="w-full p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-indigo-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                    >
-                      회원 정보 수정
-                    </button>
-                    <button
+                    ></Button>
+                    <Button
+                      text={"로그아웃"}
+                      textColor="white"
+                      bgColor="lightRed"
+                      width="full"
                       onClick={handleLogout}
-                      // text={'로그아웃'}
-                      className="w-full p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-red-400 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                    >
-                      로그아웃
-                    </button>
+                    ></Button>
                   </div>
                 </div>
               </header>
 
               <main className="flex flex-col gap-4 h-full">
                 <div className="flex gap-2 items-center">
-                  <BsBookmarkStarFill className="text-sky-400 w-6 h-6" />
-                  <p className="text-lg text-nowrap text-slate-600 font-bold">
+                  <BsBookmarkStarFill className="text-sky-400 w-4 h-4" />
+                  <p className="text-base text-nowrap text-slate-600 font-bold">
                     저장한 장소
                   </p>
                   <Link
                     to={"/location"}
-                    className="ml-auto text-base text-slate-400 hover:text-amber-400 hover:font-bold"
+                    className="ml-auto text-sm text-slate-400 hover:font-bold"
                   >
                     장소추천 &rarr;
                   </Link>
@@ -116,13 +120,13 @@ function UserPage() {
 
               <main className="flex flex-col gap-4 h-full">
                 <div className="flex gap-2 items-center">
-                  <PiUserListBold className="text-sky-400 w-8 h-8" />
-                  <p className="text-lg text-nowrap text-slate-600 font-bold">
+                  <PiUserListBold className="text-sky-400 w-6 h-6" />
+                  <p className="text-base text-nowrap text-slate-600 font-bold">
                     나의 게시글
                   </p>
                   <Link
                     to={"/community"}
-                    className="ml-auto text-base text-slate-400 hover:text-amber-400 hover:font-bold"
+                    className="ml-auto text-sm text-slate-400 hover:font-bold"
                   >
                     커뮤니티 &rarr;
                   </Link>
