@@ -55,17 +55,14 @@ function CommunityDetail() {
       {data?.data?.item && (
         <section className="p-2 bg-white drop-shadow-lg rounded-xl flex flex-col gap-2 flex-nowrap">
           <header className="flex gap-2">
-            {data?.data?.item.user.profile ? (
-              <img
-                src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item.user.profile}`}
-                className="rounded-full border-2 w-12 h-12"
-              />
-            ) : (
-              <img
-                src="/mainlogin.svg"
-                className="rounded-full border w-12 h-12"
-              />
-            )}
+            <img
+              src={
+                data?.data?.item.user.profile
+                  ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item.user.profile}`
+                  : "/mainlogin.svg"
+              }
+              className="rounded-full border-2 w-12 h-12"
+            />
             <div className="grow">
               <h1 className="text-base font-bold">
                 {data?.data?.item.user.name}
