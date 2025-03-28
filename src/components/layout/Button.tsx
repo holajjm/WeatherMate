@@ -16,6 +16,7 @@ const buttonColor = {
   gray: "slate-300",
   amber: "amber-200",
   red: "red-500",
+  lightRed: "red-300",
   white: "white",
   black: "[#2D2D2D]",
 };
