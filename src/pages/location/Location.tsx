@@ -10,6 +10,7 @@ import Loading from "@components/layout/Loading";
 // import Button from '@components/layout/Button';
 
 import { motion } from "framer-motion";
+import Button from "@components/layout/Button";
 
 const LocationAPIKEY = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
@@ -153,7 +154,7 @@ function Location() {
           duration: 0.25 * (i + 2),
         }}
         key={i}
-        className="flex flex-col p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:scale-105 hover:border-blue-400 duration-200"
+        className="flex flex-col gap-1 p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:scale-105 hover:border-blue-400 duration-200"
       >
         <LocationItem item={e} />
       </motion.section>
@@ -163,30 +164,30 @@ function Location() {
     <div className="flex flex-col gap-4 mx-auto p-2 min-h-screen bg-slate-50">
       <header className="flex gap-2 text-nowrap">
         <input
-          className="w-full font-bold p-2 border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-gray-500 focus:ring-2 focus:ring-slate-500"
+          className="w-full h-10 font-bold p-2 box-border text-sm border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-gray-500 focus:ring-2 focus:ring-slate-500"
           placeholder="지역,장소 검색"
           type="text"
           value={keyword}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
         />
-        <button
-          // text={'검색하기'}
+        <Button
+          text="검색하기"
+          textColor="white"
+          bgColor="sky"
+          width="1/4"
           onClick={handleClick}
-          className="w-1/4 p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-sky-400 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-        >
-          검색하기
-        </button>
-        <button
-          // text={'새로 고침'}
+        ></Button>
+        <Button
+          text="초기화"
+          textColor="gray"
+          bgColor="gray"
+          width="1/4"
           onClick={() => window.location.reload()}
-          className="w-1/4 p-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-        >
-          초기화
-        </button>
+        ></Button>
       </header>
 
-      <aside className="grid grid-cols-4 sm:flex gap-1 justify-center items-center">
+      <aside className="flex gap-1 justify-center items-center">
         {options.map(option => (
           <div className="w-full" key={option.id}>
             <LocationKeywords
@@ -202,7 +203,7 @@ function Location() {
       {isLoading ? (
         <Loading />
       ) : (
-        <main className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative">
+        <main className="grid grid-cols-2 gap-1 relative">
           {locationItemList}
         </main>
       )}

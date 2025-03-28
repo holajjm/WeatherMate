@@ -90,7 +90,7 @@ function LocationItem({ item }: { item: LocationMainData }) {
     // >
     <>
       <Link
-        to={`/location/${item.contentid}`}
+        to={`${import.meta.env.VITE_APP_TITLE}/location/${item.contentid}`}
         className="grow flex flex-col gap-1"
       >
         <header className="flex h-2/3">
@@ -104,20 +104,20 @@ function LocationItem({ item }: { item: LocationMainData }) {
         <main className="flex gap-2">
           <div className="grow">
             <div className="flex">
-              <p className="text-lg text-slate-400 font-SSRONETHandwritten">
+              <p className="text-xs text-slate-400 font-Pretendard">
                 {getCategoryText(item.contenttypeid)}
               </p>
-              <div className="ml-auto bg-amber-300 flex items-center h-6 rounded-lg font-RubikBubbles">
-                <FiMapPin />
-                <p className="text-sm">
+              <div className="ml-auto bg-amber-300 flex items-center rounded-lg font-Pretendard">
+                <FiMapPin className="text-sm" />
+                <p className="text-xs">
                   {isNaN(parseFloat(item.dist))
                     ? "10km 이상"
                     : formatDistance(parseFloat(item.dist))}
                 </p>
               </div>
             </div>
-            <div className="flex flex-col gap-1 font-bold font-UhBeeKangJa">
-              <h2 className="text-xl">{item.title}</h2>
+            <div className="flex flex-col gap-1 font-bold font-Pretendard">
+              <h2 className="text-lg">{item.title}</h2>
               <p className="text-sm text-slate-500">{item.addr1}</p>
             </div>
           </div>
@@ -131,7 +131,7 @@ function LocationItem({ item }: { item: LocationMainData }) {
             onClick={() => {
               removeBookMark(item.contentid);
             }}
-            className="flex justify-center items-center gap-1 text-sm cursor-pointer"
+            className="flex justify-center items-center gap-1 text-xs cursor-pointer"
           >
             <BsBookmarks className="text-blue-300 aspect-square" />
             <p>북마크 제거하기</p>
@@ -141,7 +141,7 @@ function LocationItem({ item }: { item: LocationMainData }) {
             onClick={() => {
               handleBookMark(item.contentid);
             }}
-            className="flex justify-center items-center gap-1 text-sm cursor-pointer"
+            className="flex justify-center items-center gap-1 text-xs cursor-pointer"
           >
             <BsBookmarksFill className="text-blue-300 aspect-square" />
             <p>북마크 추가하기</p>
