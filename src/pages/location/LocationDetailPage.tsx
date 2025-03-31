@@ -15,7 +15,6 @@ import { MdFreeBreakfast } from "react-icons/md";
 import { FaDog } from "react-icons/fa";
 import { RiGlobalFill } from "react-icons/ri";
 
-
 function LocationDetailPage() {
   const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
   const { id } = useParams();
@@ -69,8 +68,8 @@ function LocationDetailPage() {
   if (!detailData || loading) {
     return <Loading />;
   }
-  // console.log(detailData);
-  // console.log(superDetail);
+  console.log(detailData);
+  console.log(superDetail);
 
   return (
     <div className="max-w-[600px] min-w-[320px] m-auto">
@@ -91,20 +90,24 @@ function LocationDetailPage() {
         <div className="flex flex-col gap-2">
           <div>
             <img
-              src={detailData.firstimage}
+              src={
+                detailData.firstimage
+                  ? detailData.firstimage
+                  : "/readyforimage.jpeg"
+              }
               alt="이미지1"
-              className="w-full rounded-lg"
+              className="w-full h-80 rounded-lg"
             />
           </div>
           <div className="flex gap-2">
-            <table className="w-1/2 bg-slate-100 p-2 rounded-lg">
+            <table className="w-1/2 flex text-sm bg-slate-100 p-2 rounded-lg">
               {superDetail && detailData && (
-                <tbody>
+                <tbody className="w-full grow flex flex-col justify-between">
                   <tr className="flex items-center">
                     <td className="text-center p-2 w-1/6 flex justify-center">
                       <FaLocationDot />
                     </td>
-                    <td className="p-2 grow">
+                    <td className="p-2 w-full">
                       {detailData.addr1}
                       {detailData.addr2 ? detailData.addr2 : ""}
                     </td>
@@ -113,7 +116,7 @@ function LocationDetailPage() {
                     <td className="text-center p-2 w-1/6 flex justify-center">
                       <BsTelephoneFill />
                     </td>
-                    <td className="p-2 grow">
+                    <td className="p-2 w-full">
                       {superDetail[0].infocenter
                         ? superDetail[0].infocenter.replace(/<br>/g, " / ")
                         : "-"}
@@ -123,7 +126,7 @@ function LocationDetailPage() {
                     <td className="text-center p-2 w-1/6 flex justify-center">
                       <FaParking />
                     </td>
-                    <td className="p-2 grow">
+                    <td className="p-2 w-full">
                       {superDetail[0].parking
                         ? superDetail[0].parking.replace(/<br>/g, " / ")
                         : "불가"}
@@ -133,7 +136,7 @@ function LocationDetailPage() {
                     <td className="text-center p-2 w-1/6 flex justify-center">
                       <FaClock />
                     </td>
-                    <td className="p-2 grow">
+                    <td className="p-2 w-full">
                       {" "}
                       {superDetail[0].usetime ? superDetail[0].usetime : "-"}
                     </td>
@@ -142,7 +145,7 @@ function LocationDetailPage() {
                     <td className="text-center p-2 w-1/6 flex justify-center">
                       <MdFreeBreakfast />
                     </td>
-                    <td className="p-2 grow">
+                    <td className="p-2 w-full">
                       {superDetail[0].restdate
                         ? superDetail[0].restdate.replace(/<br>/g, " / ")
                         : "-"}
@@ -152,7 +155,7 @@ function LocationDetailPage() {
                     <td className="text-center p-2 w-1/6 flex justify-center">
                       <FaDog />
                     </td>
-                    <td className="p-2 grow">
+                    <td className="p-2 w-full">
                       {superDetail[0].chkpet ? superDetail[0].chkpet : "불가"}
                     </td>
                   </tr>
@@ -160,11 +163,12 @@ function LocationDetailPage() {
                     <td className="text-center p-2 w-1/6 flex justify-center">
                       <RiGlobalFill />
                     </td>
-                    <td className="p-2 grow hover:text-indigo-500">
+                    <td className="p-2 w-full hover:text-indigo-500">
                       <button
                         onClick={() => window.open(homepageUrls[0], "_blank")}
                       >
-                        {homepageUrls ? homepageUrls[0] : "없음"}
+                        {/* {homepageUrls ? homepageUrls[0] : "없음"} */}
+                        홈페이지 이동
                       </button>
                     </td>
                   </tr>
