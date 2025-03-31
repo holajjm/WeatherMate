@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
 import useCurrentLocation from "@hooks/useCurrentLocation";
 import { useDebounce } from "@hooks/useDebounce";
-
+import Loading from "@components/layout/Loading";
+import Button from "@components/layout/Button";
 import { LocationMainData } from "type";
+
 import LocationKeywords from "@pages/location/LocationKeyword";
 import LocationItem from "@pages/location/LocationItem";
-import Loading from "@components/layout/Loading";
-// import Button from '@components/layout/Button';
-
 import { motion } from "framer-motion";
-import Button from "@components/layout/Button";
 
 const LocationAPIKEY = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
@@ -147,14 +146,14 @@ function Location() {
     locationData &&
     locationData.map((e, i) => (
       <motion.section
-        initial={{ translateY: 200, opacity: 0 }}
-        animate={{ translateY: 0, opacity: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{
           ease: "easeInOut",
-          duration: 0.25 * (i + 2),
+          duration: 1,
         }}
         key={i}
-        className="flex flex-col gap-1 p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:scale-105 hover:border-blue-400 duration-200"
+        className="flex flex-col gap-1 p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:border-blue-400 duration-200"
       >
         <LocationItem item={e} />
       </motion.section>
