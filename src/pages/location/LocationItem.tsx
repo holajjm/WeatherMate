@@ -90,7 +90,7 @@ function LocationItem({ item }: { item: LocationMainData }) {
     // >
     <>
       <Link
-        to={`${import.meta.env.VITE_APP_TITLE}/location/${item.contentid}`}
+        to={`/location/${item.contentid}`}
         className="grow flex flex-col gap-1"
       >
         <header className="flex h-2/3">
