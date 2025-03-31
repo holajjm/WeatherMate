@@ -79,7 +79,7 @@ function HeaderCategory() {
         className="w-full"
       >
         <Link
-          to={"/user/mypage"}
+          to={"/mbti"}
           className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-sky-400"
         >
           🌤️날씨 성격 테스트
@@ -95,7 +95,7 @@ function HeaderCategory() {
         className="w-full"
       >
         <Link
-          to={"/user/mypage"}
+          to={"/allcity"}
           className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-sky-400"
         >
           🌤️전국의 날씨
