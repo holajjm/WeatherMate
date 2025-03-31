@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+
 import { memberState } from "@recoil/atom";
 import { LocationMainData } from "type";
 
-import { motion } from "framer-motion";
 import { FiMapPin } from "react-icons/fi";
 import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 
 function LocationItem({ item }: { item: LocationMainData }) {
   // console.log(item);
-
   const user = useRecoilValue(memberState);
   const navigate = useNavigate();
   const formatDistance = (distance: number) =>
     `${(distance / 1000).toFixed(1)} km`;
-  const recoDefaultImg = "/readyforimage.jpeg";
   const getCategoryText = (contentTypeId: string) => {
     switch (contentTypeId) {
       case "14":
@@ -79,25 +77,16 @@ function LocationItem({ item }: { item: LocationMainData }) {
     }
   };
   return (
-    // <motion.section
-    //   initial={{ translateY: 200, opacity: 0 }}
-    //   animate={{ translateY: 0, opacity: 1 }}
-    //   transition={{
-    //     ease: "easeInOut",
-    //     duration: 1,
-    //   }}
-    //   className="flex flex-col p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:scale-105 hover:border-blue-400 duration-200"
-    // >
     <>
       <Link
         to={`/location/${item.contentid}`}
         className="grow flex flex-col gap-1"
       >
-        <header className="flex h-2/3">
+        <header className="flex">
           <img
-            src={item.firstimage ? item.firstimage : recoDefaultImg}
+            src={item.firstimage ? item.firstimage : "/readyforimage.jpeg"}
             alt="이미지1"
-            className="grow h-full rounded-lg "
+            className="grow h-40 rounded-lg"
           />
         </header>
 
@@ -149,7 +138,6 @@ function LocationItem({ item }: { item: LocationMainData }) {
         )}
       </footer>
     </>
-    // </motion.section>
   );
 }
 
