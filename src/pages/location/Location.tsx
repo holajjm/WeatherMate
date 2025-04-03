@@ -31,7 +31,7 @@ function Location() {
         setIsLoading(true);
         try {
           const response = await axios.get(
-            `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${LocationAPIKEY}&pageNo=1&numOfRows=6&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json `,
+            `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${LocationAPIKEY}&pageNo=1&numOfRows=8&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json `,
           );
           setLocationData(response.data.response.body.items.item);
           setIsLoading(false);
