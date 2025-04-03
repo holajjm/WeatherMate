@@ -28,7 +28,7 @@ function HeaderCategory() {
           to={"/community"}
           className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-indigo-500"
         >
-          <IoMdChatboxes className="text-2xl" />
+          <IoMdChatboxes className="text-lg" />
           커뮤니티
         </Link>
       </motion.div>
@@ -45,7 +45,7 @@ function HeaderCategory() {
           to={"/location"}
           className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-indigo-500"
         >
-          <MdLocationOn className="text-2xl" />
+          <MdLocationOn className="text-lg" />
           장소추천
         </Link>
       </motion.div>
@@ -62,7 +62,7 @@ function HeaderCategory() {
           to={"/user/mypage"}
           className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-indigo-500"
         >
-          <FaUserCircle className="text-2xl" />
+          <FaUserCircle className="text-lg" />
           마이페이지
         </Link>
       </motion.div>
