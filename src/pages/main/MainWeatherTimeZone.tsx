@@ -68,13 +68,13 @@ function MainWeatherTimeZone() {
   };
   return (
     <section className="w-full p-2 bg-white flex flex-col gap-2">
-      <h1 className="font-bold font-SSRONETHandwritten text-xl text-center text-[#2D2D2D]">
+      <h2 className="text-slate-400 text-base font-Pretendard">
         시간대별 날씨정보(3시간 기준)
-      </h1>
+      </h2>
       {data?.cod !== "200" ? (
         <MainTimeZoneSkeleton />
       ) : (
-        <div className="w-full py-1 flex gap-2 overflow-x-scroll scrollbar-hide">
+        <div className="w-full py-1 flex gap-1 rounded-lg overflow-x-scroll scrollbar-hide">
           {data &&
             data?.list?.map((item: WeatherTime) => (
               <div
