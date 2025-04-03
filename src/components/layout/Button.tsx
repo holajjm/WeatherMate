@@ -12,7 +12,7 @@ const buttonColor = {
   sky: "sky-400",
   blue: "blue-600",
   indigo: "indigo-500",
-  kakao: "#FEE500",
+  kakao: "[#FEE500]",
   gray: "slate-300",
   amber: "amber-200",
   red: "red-500",
