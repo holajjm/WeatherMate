@@ -18,18 +18,24 @@ function MainTodaysComent() {
 
   useEffect(() => {
     const getRecommendation = () => {
-      const currentTemperature = data?.main.temp - 273.15;
-      let firstTemperature = Coment[0].temperature;
-      let comentObject = Coment[0];
-      for (let i = 1; i < Coment.length; i++) {
-        if (
-          Math.abs(currentTemperature - Coment[i].temperature) <
-          Math.abs(currentTemperature - firstTemperature)
-        ) {
-          comentObject = Coment[i];
+      // const currentTemperature = data?.main.temp - 273.15;
+      // let firstTemperature = Coment[0].temperature;
+      // let comentObject = Coment[0];
+      if (Coment[0].temperature >= data?.main.temp) {
+        setComentObj(Coment[0]);
+        return;
+      } else {
+        for (let i = 0; i < Coment.length; i++) {
+          if (
+            Coment[i].temperature < data?.main.temp &&
+            Coment[i + 1].temperature >= data?.main.temp
+          ) {
+            setComentObj(Coment[i + 1]);
+            return;
+          }
         }
       }
-      setComentObj(comentObject);
+      // setComentObj(comentObject);
     };
     getRecommendation();
   }, [data]);
@@ -55,22 +61,24 @@ function MainTodaysComent() {
 
   //실제 이미지 로직
   const realImageList: WeatherImage = {
-    Clear: "./realImage/SunnyRealImage.svg", //text-slate-700
-    Clouds: "./realImage/CloudyRealImage.svg", //text-slate-200
-    Rain: "./realImage/RainyRealImage.svg", //text-slate-200
-    Drizzle: "./realImage/RainyRealImage.svg", //text-slate-200
-    Thunderstorm: "./realImage/RainyRealImage.svg", //text-slate-200
-    Snow: "./realImage/SnowRealImage.svg", //text-slate-200
-    Haze: "./realImage/HazeRealImage.svg", //text-slate-700
-    Mist: "./realImage/HazeRealImage.svg", //text-slate-700
-    Smoke: "./realImage/HazeRealImage.svg", //text-slate-700
-    Dust: "./realImage/HazeRealImage.svg", //text-slate-700
-    overcastClouds: "./realImage/SunnyRealImage.svg", //text-slate-700
+    Clear: "./realImage/SunnyRealImage.svg",
+    Clouds: "./realImage/CloudyRealImage.svg",
+    Rain: "./realImage/RainyRealImage.svg",
+    Drizzle: "./realImage/RainyRealImage.svg",
+    Thunderstorm: "./realImage/RainyRealImage.svg",
+    Snow: "./realImage/SnowRealImage.svg",
+    Haze: "./realImage/HazeRealImage.svg",
+    Mist: "./realImage/HazeRealImage.svg",
+    Smoke: "./realImage/HazeRealImage.svg",
+    Dust: "./realImage/HazeRealImage.svg",
+    overcastClouds: "./realImage/SunnyRealImage.svg",
   };
   const realImage =
     data && data.weather
       ? realImageList[data.weather[0].main as keyof WeatherImage]
       : null;
+  // console.log(data);
+  // console.log(comentObj);
 
   return (
     <article className="p-2 flex flex-col gap-2 bg-slate-50 font-TTLaundryGothicB h-full fade-in">
@@ -98,12 +106,12 @@ function MainTodaysComent() {
           </div>
         </aside> */}
       </section>
-      {comentObj ? (
+      {data ? (
         <section
           style={{ backgroundImage: `url(${realImage})` }}
           className="relative w-full p-2 box-border flex flex-col gap-2 justify-between rounded-lg text-center grow bg-center bg-no-repeat bg-cover ml-auto"
         >
-          {/* <div className="absolute top-0 left-0 w-full h-full bg-white opacity-25 z-10"></div> */}
+          <div className="absolute top-0 left-0 w-full h-full bg-white opacity-25 z-10"></div>
           <p className="h-8 font-SSRONETHandwritten text-amber-500 font-bold rounded-lg bg-amber-200 p-1 z-20 shadow-md shadow-slate-500">
             {comentObj?.recommendation}
           </p>
@@ -111,9 +119,9 @@ function MainTodaysComent() {
             <div
               className={`w-full flex flex-col justify-center gap-2 rounded-lg text-center shadow-md shadow-slate-500  ${["Clouds", "Rain", "Drizzle", "Thunderstorm", "Snow"].includes(data?.weather[0].main) ? "text-white" : "text-[#2d2d2d]"} z-20`}
             >
-              <p className="">{data.name}</p>
-              <p className="text-4xl">{data.main.temp.toFixed(1)}°C</p>
-              <p className="">{data.weather[0].description}</p>
+              <p className="">{data?.name}</p>
+              <p className="text-4xl">{data?.main.temp.toFixed(1)}°C</p>
+              <p className="">{data?.weather[0].description}</p>
             </div>
             <div className="w-1/4 bg-slate-50 rounded-lg p-2 shadow-md shadow-slate-500">
               <img
