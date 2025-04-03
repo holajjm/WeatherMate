@@ -6,7 +6,7 @@ function NavigationBar() {
   return (
     <nav className="max-w-[600px] min-w-[320px] m-auto border-b-[1px] border-slate-300 flex text-white text-lg h-18 items-center gap-4 font-bold bg-white sticky top-0 z-20 shadow-inner font-SSRONETHandwritten">
       <Link
-        to="/main"
+        to="/"
         className={`w-full flex flex-col gap-1 items-center p-1 ${
           location.pathname === "/main" || location.pathname === "/"
             ? "text-indigo-500"
