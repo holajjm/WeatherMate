@@ -63,8 +63,8 @@ function MainWeatherTimeZone() {
   const unixTime = (time: number) => {
     const date = new Date(time * 1000);
     const hour = date.getHours() % 12 || 12;
-    const ampm = date.getHours() >= 12 ? "오후" : "오전";
-    return `${ampm}${hour}시`;
+    const ampm = date.getHours() >= 12 ? "PM" : "AM";
+    return `${ampm} ${hour}`;
   };
   return (
     <section className="w-full p-2 bg-white flex flex-col gap-2">
@@ -79,7 +79,7 @@ function MainWeatherTimeZone() {
             data?.list?.map((item: WeatherTime) => (
               <div
                 key={item.dt}
-                className="h-24 w-full p-1 box-border border-[1px] shadow-md shadow-slate-300 bg-white rounded-lg flex flex-col items-center justify-center text-nowrap"
+                className="h-24 min-w-14 p-1 box-border border-[1px] shadow-md shadow-slate-300 bg-white rounded-lg flex flex-col items-center justify-center text-nowrap"
               >
                 <p className="text-xs text-center text-slate-600">
                   {unixTime(item.dt)}
