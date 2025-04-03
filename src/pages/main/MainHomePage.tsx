@@ -52,7 +52,7 @@ function MainHomePage() {
   }
 
   return (
-    <main className="max-w-[600px] min-w-[320px] m-auto flex flex-col gap-8">
+    <main className="max-w-[600px] min-w-[320px] m-auto flex flex-col gap-4">
       <motion.section
         initial={{ translateY: -50, opacity: 0 }}
         animate={{ translateY: 0, opacity: 1 }}
@@ -63,26 +63,32 @@ function MainHomePage() {
       >
         <MainTodaysComent />
       </motion.section>
-      <motion.section
-        initial={{ translateY: -100, opacity: 0 }}
-        animate={{ translateY: 0, opacity: 1 }}
-        transition={{
-          ease: "easeInOut",
-          duration: 0.75,
-        }}
-      >
-        <MainMyLocationWeather />
-      </motion.section>
-      <motion.section
-        initial={{ translateY: -150, opacity: 0 }}
-        animate={{ translateY: 0, opacity: 1 }}
-        transition={{
-          ease: "easeInOut",
-          duration: 1,
-        }}
-      >
-        <MainWeatherTimeZone />
-      </motion.section>
+      <div className="flex flex-col gap-2">
+        <h1 className="font-black text-lg text-[#2D2D2D] px-2 box-border">
+          <span className="text-xl text-blue-600">웨더메이트</span>가 알려주는
+          상세 날씨 정보
+        </h1>
+        <motion.section
+          initial={{ translateY: -100, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1 }}
+          transition={{
+            ease: "easeInOut",
+            duration: 0.75,
+          }}
+        >
+          <MainWeatherTimeZone />
+        </motion.section>
+        <motion.section
+          initial={{ translateY: -150, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1 }}
+          transition={{
+            ease: "easeInOut",
+            duration: 1,
+          }}
+        >
+          <MainMyLocationWeather />
+        </motion.section>
+      </div>
       <ToTheTopButton />
     </main>
   );
