@@ -101,13 +101,13 @@ function MainTodaysComent() {
       {comentObj ? (
         <section
           style={{ backgroundImage: `url(${realImage})` }}
-          className="relative w-full p-2 box-border flex flex-col gap-2 rounded-lg text-center grow bg-center bg-no-repeat bg-cover ml-auto"
+          className="relative w-full p-2 box-border flex flex-col gap-2 justify-between rounded-lg text-center grow bg-center bg-no-repeat bg-cover ml-auto"
         >
-          <div className="absolute top-0 left-0 w-full h-full bg-white opacity-25 z-10"></div>
-          <p className="h-10 font-SSRONETHandwritten text-amber-500 text-lg font-bold rounded-lg bg-amber-200 p-2 z-20 shadow-md shadow-slate-500">
+          {/* <div className="absolute top-0 left-0 w-full h-full bg-white opacity-25 z-10"></div> */}
+          <p className="h-8 font-SSRONETHandwritten text-amber-500 font-bold rounded-lg bg-amber-200 p-1 z-20 shadow-md shadow-slate-500">
             {comentObj?.recommendation}
           </p>
-          <div className="w-full flex gap-2 z-20">
+          <div className="w-full h-32 flex gap-2 z-20">
             <div
               className={`w-full flex flex-col justify-center gap-2 rounded-lg text-center shadow-md shadow-slate-500  ${["Clouds", "Rain", "Drizzle", "Thunderstorm", "Snow"].includes(data?.weather[0].main) ? "text-white" : "text-[#2d2d2d]"} z-20`}
             >
