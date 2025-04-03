@@ -3,8 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
-
-// import Button from '@components/layout/Button';
+import Button from "@components/layout/Button";
 
 function UserValidLogin() {
   usePageTitle("Login");
@@ -34,36 +33,36 @@ function UserValidLogin() {
             <img className="w-1/3" src="/mainlogin.svg" />
           </div>
           <div className="w-full grid grid-cols-2 gap-2">
-            <button
-              // text={'로그인'}
-              className="p-4 border-2 border-slate-100 rounded-lg font-SSRONETHandwritten font-bold transition-all duration-200 text-white bg-sky-400 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+            <Button
+              text={"로그인"}
+              textColor="white"
+              bgColor="sky"
+              width="full"
               onClick={() =>
                 navigate("/user/Login", { state: location.pathname })
               }
-            >
-              로그인
-            </button>
-            <button
-              // text={'회원가입'}
-              className="p-4 border-2 border-slate-100 rounded-lg font-SSRONETHandwritten font-bold transition-all duration-200 text-white bg-indigo-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+            ></Button>
+            <Button
+              text={"회원가입"}
+              textColor="white"
+              bgColor="indigo"
+              width="full"
               onClick={() => navigate("/user/SignUp")}
-            >
-              회원가입
-            </button>
-            <button
-              // text={'카카오로 시작하기'}
-              className="p-4 border-2 border-slate-100 rounded-lg font-SSRONETHandwritten font-bold transition-all duration-200 text-gray-500 text-nowrap bg-[#FEE500] hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+            ></Button>
+            <Button
+              text={"카카오로 시작하기"}
+              textColor="gray"
+              bgColor="kakao"
+              width="full"
               onClick={handleLogin}
-            >
-              카카오로 시작하기
-            </button>
-            <button
-              // text={'메인으로 돌아가기'}
-              className="p-4 border-2 border-slate-100 rounded-lg font-SSRONETHandwritten font-bold transition-all duration-200 text-gray-500 text-nowrap bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+            ></Button>
+            <Button
+              text={"메인으로 돌아가기"}
+              textColor="gray"
+              bgColor="gray"
+              width="full"
               onClick={() => navigate("/")}
-            >
-              메인으로 돌아가기
-            </button>
+            ></Button>
           </div>
         </div>
       </div>
