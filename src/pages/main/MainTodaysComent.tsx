@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { memberState } from "@recoil/atom.ts";
 
 import { WeatherImage } from "type";
 import { Coment } from "../../assets/Coment.ts";
+
 import MainComentSkeleton from "@components/skeleton/MainComentSkeleton.tsx";
 
 interface ComentObj {
@@ -74,14 +73,14 @@ function MainTodaysComent() {
       : null;
 
   return (
-    <article className="p-2 flex flex-col gap-2 items-center bg-slate-50 font-TTLaundryGothicB h-full fade-in">
+    <article className="p-2 flex flex-col gap-2 bg-slate-50 font-TTLaundryGothicB h-full fade-in">
       <section className="w-full flex justify-between text-left text-lg font-bold text-wrap">
         <h1 className="text-base text-[#2D2D2D]">
           환영해요! <br /> WeatherMate입니다!
         </h1>
-        <aside
+        {/* <aside
           style={{ backgroundImage: `url(${realImage})` }}
-          className={`border-2 w-1/2 h-32 text-base text-nowrap ${["Clouds", "Rain", "Drizzle", "Thunderstorm", "Snow"].includes(data?.weather[0].main) ? "text-slate-200" : "text-slate-700"} flex gap-4 rounded-xl p-4 box-border bg-white bg-cover bg-no-repeat bg-center relative`}
+          className={`border-2 w-1/2 h-32 text-base text-nowrap ${["Clouds", "Rain", "Drizzle", "Thunderstorm", "Snow"].includes(data?.weather[0].main) ? "text-slate-200" : "text-slate-700"} flex gap-4 rounded-lg p-4 box-border bg-white bg-cover bg-no-repeat bg-center relative`}
         >
           <div className="absolute top-0 left-0 w-full h-full opacity-25 bg-white z-10"></div>
           <div className="w-2/3 flex flex-col gap-1 justify-between absolute top-0 left-0 p-2 z-40 text-[#2D2D2D]">
@@ -97,18 +96,33 @@ function MainTodaysComent() {
             <p>강수량</p>
             <p>{data?.rain ? data?.rain?.["1h"] : "00"}mm</p>
           </div>
-        </aside>
+        </aside> */}
       </section>
       {comentObj ? (
-        <section className="w-full text-center grow">
-          <p className="font-SSRONETHandwritten text-amber-500 text-lg font-bold rounded-xl bg-amber-200 p-2">
+        <section
+          style={{ backgroundImage: `url(${realImage})` }}
+          className="relative w-full p-2 box-border flex flex-col gap-2 rounded-lg text-center grow bg-center bg-no-repeat bg-cover ml-auto"
+        >
+          <div className="absolute top-0 left-0 w-full h-full bg-white opacity-25 z-10"></div>
+          <p className="h-10 font-SSRONETHandwritten text-amber-500 text-lg font-bold rounded-lg bg-amber-200 p-2 z-20 shadow-md shadow-slate-500">
             {comentObj?.recommendation}
           </p>
-          <img
-            src={comentObj?.CLOTHES_IMG}
-            alt="coment-img"
-            className="w-40 m-auto"
-          />
+          <div className="w-full flex gap-2 z-20">
+            <div
+              className={`w-full flex flex-col justify-center gap-2 rounded-lg text-center shadow-md shadow-slate-500  ${["Clouds", "Rain", "Drizzle", "Thunderstorm", "Snow"].includes(data?.weather[0].main) ? "text-white" : "text-[#2d2d2d]"} z-20`}
+            >
+              <p className="">{data.name}</p>
+              <p className="text-4xl">{data.main.temp.toFixed(1)}°C</p>
+              <p className="">{data.weather[0].description}</p>
+            </div>
+            <div className="w-1/4 bg-slate-50 rounded-lg p-2 shadow-md shadow-slate-500">
+              <img
+                src={comentObj?.CLOTHES_IMG}
+                alt="coment-img"
+                className="w-40 h-full m-auto"
+              />
+            </div>
+          </div>
         </section>
       ) : (
         <MainComentSkeleton />
