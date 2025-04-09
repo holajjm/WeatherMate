@@ -25,19 +25,19 @@ function MainWeatherDetail() {
         <article className="grow flex flex-col w-full h-full justify-center items-center gap-1 font-TTLaundryGothicB text-sm">
           <section className="w-full flex gap-1 justify-between">
             <div className="bg-white w-full h-24 text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
-              <img src="sunrise.svg" className="w-8" alt="일출" />
+              <img src="sunrise.webp" className="w-8" alt="일출" />
               <p className="text-slate-600">일출</p>
               <hr className="border-[1px] border-slate-400 w-5/6" />
               <p className="text-slate-700">{unixTime(data.sys.sunrise)}</p>
             </div>
             <div className="bg-white w-full h-24 text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
-              <img src="sunset.svg" className="w-8" alt="일몰" />
+              <img src="sunset.webp" className="w-8" alt="일몰" />
               <p className="text-slate-600">일몰</p>
               <hr className="border-[1px] border-slate-400 w-5/6" />
               <p className="text-slate-700">{unixTime(data.sys.sunset)}</p>
             </div>
             <div className="bg-white w-full h-24 text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
-              <img src="hightemperature.svg" className="w-8" alt="최고 온도" />
+              <img src="hightemperature.webp" className="w-8" alt="최고 온도" />
               <p className="text-slate-600">최고 온도</p>
               <hr className="border-[1px] border-slate-400 w-5/6" />
               <p className="text-slate-700">
@@ -47,7 +47,7 @@ function MainWeatherDetail() {
           </section>
           <section className="w-full flex gap-1 justify-between">
             <div className="bg-white w-full h-24 text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
-              <img src="lowtemperature.svg" className="w-8" alt="최저 온도" />
+              <img src="lowtemperature.webp" className="w-8" alt="최저 온도" />
               <p className="text-slate-600">최저 온도</p>
               <hr className="border-[1px] border-slate-400 w-5/6" />
               <p className="text-slate-700">
@@ -55,13 +55,13 @@ function MainWeatherDetail() {
               </p>
             </div>
             <div className="bg-white w-full h-24 text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
-              <img src="humidity.svg" className="w-8" alt="습도" />
+              <img src="humidity.webp" className="w-8" alt="습도" />
               <p className="text-slate-600">습도</p>
               <hr className="border-[1px] border-slate-400 w-5/6" />
               <p className="text-slate-700">{data.main.humidity}%</p>
             </div>
             <div className="bg-white w-full h-24 text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
-              <img src="feelslike.svg" className="w-8" alt="체감온도" />
+              <img src="feelslike.webp" className="w-8" alt="체감온도" />
               <p className="text-slate-600">체감온도</p>
               <hr className="border-[1px] border-slate-400 w-5/6" />
               <p className="text-slate-700">
@@ -71,19 +71,19 @@ function MainWeatherDetail() {
           </section>
           <section className="w-full flex gap-1 justify-between">
             <div className="bg-white w-full h-24 text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
-              <img src="WeatherIconWind.svg" className="w-8" alt="풍속" />
+              <img src="WeatherIconWind.webp" className="w-8" alt="풍속" />
               <p className="text-slate-600">풍속</p>
               <hr className="border-[1px] border-slate-400 w-5/6" />
               <p className="text-slate-700">{data.wind.speed}m/s</p>
             </div>
             <div className="bg-white w-full h-24 text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
-              <img src="WeatherIconSun.svg" className="w-8" alt="자외선" />
+              <img src="WeatherIconSun.webp" className="w-8" alt="자외선" />
               <p className="text-slate-600">자외선</p>
               <hr className="border-[1px] border-slate-400 w-5/6" />
               <p className="text-slate-700">{getWindStatus(data.wind.speed)}</p>
             </div>
             <div className="bg-white w-full h-24 text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
-              <img src="WeatherIconRain.svg" className="w-8" alt="강수량" />
+              <img src="WeatherIconRain.webp" className="w-8" alt="강수량" />
               <p className="text-slate-600">강수량</p>
               <hr className="border-[1px] border-slate-400 w-5/6" />
               <p className="text-slate-700">

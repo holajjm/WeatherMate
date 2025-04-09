@@ -52,7 +52,7 @@ function Header() {
       </AnimatePresence>
       <Link to="/" className="flex justify-center">
         <img
-          src="/weatherMateLogo.svg"
+          src="/weatherMateLogo.webp"
           alt="weathermate logo"
           className="w-10"
           onClick={handleRefresh}
