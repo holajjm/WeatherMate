@@ -30,7 +30,7 @@ function UserValidLogin() {
             <p className="text-slate-600 text-lg font-SSRONETHandwritten">
               원활한 서비스 사용을 위해 로그인을 해주세요!
             </p>
-            <img className="w-1/3" src="/mainlogin.svg" />
+            <img className="w-1/3" src="/mainlogin.svg" alt="SampleImg" width={120} height={150} loading="lazy" fetchPriority="high" decoding="async"/>
           </div>
           <div className="w-full grid grid-cols-2 gap-2">
             <Button
