@@ -52,7 +52,7 @@ function MainHomePage() {
   }
 
   return (
-    <main className="max-w-[600px] min-w-[320px] m-auto flex flex-col gap-4">
+    <main className="max-w-[600px] min-w-[320px] h-screen m-auto flex flex-col gap-4">
       <motion.section
         initial={{ translateY: -50, opacity: 0 }}
         animate={{ translateY: 0, opacity: 1 }}
