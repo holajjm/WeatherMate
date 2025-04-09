@@ -18,9 +18,6 @@ function MainTodaysComent() {
 
   useEffect(() => {
     const getRecommendation = () => {
-      // const currentTemperature = data?.main.temp - 273.15;
-      // let firstTemperature = Coment[0].temperature;
-      // let comentObject = Coment[0];
       if (Coment[0].temperature >= data?.main.temp) {
         setComentObj(Coment[0]);
         return;
@@ -35,24 +32,23 @@ function MainTodaysComent() {
           }
         }
       }
-      // setComentObj(comentObject);
     };
     getRecommendation();
   }, [data]);
 
   //날씨 이모티콘 로직
   const weatherIconList: WeatherImage = {
-    Clear: "/uvi.svg",
-    Clouds: "/manyClouds.svg",
-    Rain: "/rain.svg",
-    Drizzle: "/rain.svg",
-    Thunderstorm: "/thunderStorm.svg",
-    Snow: "/mainSnow.svg",
-    Haze: "/Haze.svg",
-    Mist: "/Mist.svg",
-    Smoke: "/manyClouds.svg",
-    Dust: "/manyClouds.svg",
-    overcastClouds: "/sun.svg",
+    Clear: "/sun.webp",
+    Clouds: "/manyClouds.webp",
+    Rain: "/rain.webp",
+    Drizzle: "/rain.webp",
+    Thunderstorm: "/thunderStorm.webp",
+    Snow: "/mainSnow.webp",
+    Haze: "/Haze.webp",
+    Mist: "/Mist.webp",
+    Smoke: "/manyClouds.webp",
+    Dust: "/manyClouds.webp",
+    overcastClouds: "/sun.webp",
   };
   const weatherImage =
     !data || !data.weather
@@ -61,17 +57,17 @@ function MainTodaysComent() {
 
   //실제 이미지 로직
   const realImageList: WeatherImage = {
-    Clear: "./realImage/SunnyRealImage.svg",
-    Clouds: "./realImage/CloudyRealImage.svg",
-    Rain: "./realImage/RainyRealImage.svg",
-    Drizzle: "./realImage/RainyRealImage.svg",
-    Thunderstorm: "./realImage/RainyRealImage.svg",
-    Snow: "./realImage/SnowRealImage.svg",
-    Haze: "./realImage/HazeRealImage.svg",
-    Mist: "./realImage/HazeRealImage.svg",
-    Smoke: "./realImage/HazeRealImage.svg",
-    Dust: "./realImage/HazeRealImage.svg",
-    overcastClouds: "./realImage/SunnyRealImage.svg",
+    Clear: "./realImage/SunnyRealImage.webp",
+    Clouds: "./realImage/CloudyRealImage.webp",
+    Rain: "./realImage/RainyRealImage.webp",
+    Drizzle: "./realImage/RainyRealImage.webp",
+    Thunderstorm: "./realImage/RainyRealImage.webp",
+    Snow: "./realImage/SnowRealImage.webp",
+    Haze: "./realImage/HazeRealImage.webp",
+    Mist: "./realImage/HazeRealImage.webp",
+    Smoke: "./realImage/HazeRealImage.webp",
+    Dust: "./realImage/HazeRealImage.webp",
+    overcastClouds: "./realImage/SunnyRealImage.webp",
   };
   const realImage =
     data && data.weather
@@ -86,25 +82,6 @@ function MainTodaysComent() {
         <h1 className="text-base text-[#2D2D2D]">
           환영해요! <br /> WeatherMate입니다!
         </h1>
-        {/* <aside
-          style={{ backgroundImage: `url(${realImage})` }}
-          className={`border-2 w-1/2 h-32 text-base text-nowrap ${["Clouds", "Rain", "Drizzle", "Thunderstorm", "Snow"].includes(data?.weather[0].main) ? "text-slate-200" : "text-slate-700"} flex gap-4 rounded-lg p-4 box-border bg-white bg-cover bg-no-repeat bg-center relative`}
-        >
-          <div className="absolute top-0 left-0 w-full h-full opacity-25 bg-white z-10"></div>
-          <div className="w-2/3 flex flex-col gap-1 justify-between absolute top-0 left-0 p-2 z-40 text-[#2D2D2D]">
-            <p>
-              {String(new Date()).slice(4, 7)},{String(new Date()).slice(8, 11)}
-              {String(new Date()).slice(0, 3)}
-            </p>
-            <p></p>
-            <p>{data?.weather && data.weather[0].description}</p>
-            <p>{data && String(data.main?.temp).slice(0, 3)}°C</p>
-          </div>
-          <div className="w-1/3 text-center flex flex-col gap-1 absolute top-0 right-0 p-2 z-40 text-[#2D2D2D]">
-            <p>강수량</p>
-            <p>{data?.rain ? data?.rain?.["1h"] : "00"}mm</p>
-          </div>
-        </aside> */}
       </section>
       {data ? (
         <section
@@ -112,22 +89,27 @@ function MainTodaysComent() {
           className="relative w-full p-2 box-border flex flex-col gap-2 justify-between rounded-lg text-center grow bg-center bg-no-repeat bg-cover ml-auto"
         >
           <div className="absolute top-0 left-0 w-full h-full bg-white opacity-25 z-10"></div>
-          <p className="h-8 font-SSRONETHandwritten text-amber-500 font-bold rounded-lg bg-amber-200 p-1 z-20 shadow-md shadow-slate-500">
-            {comentObj?.recommendation}
-          </p>
-          <div className="w-full h-32 flex gap-2 z-20">
+          <div className="w-full h-40 flex gap-2 z-20">
             <div
               className={`w-full flex flex-col justify-center gap-2 rounded-lg text-center shadow-md shadow-slate-500  ${["Clouds", "Rain", "Drizzle", "Thunderstorm", "Snow"].includes(data?.weather[0].main) ? "text-white" : "text-[#2d2d2d]"} z-20`}
             >
-              <p className="">{data?.name}</p>
+              <p className="h-8 font-SSRONETHandwritten text-amber-500 font-bold rounded-lg bg-amber-200 p-1 z-20 shadow-md shadow-slate-500">
+                {comentObj?.recommendation}
+              </p>
+              <p>{data?.name}</p>
               <p className="text-4xl">{data?.main.temp.toFixed(1)}°C</p>
-              <p className="">{data?.weather[0].description}</p>
+              <p>{data?.weather[0].description}</p>
             </div>
-            <div className="w-1/4 bg-slate-50 rounded-lg p-2 shadow-md shadow-slate-500">
+            <div className="bg-slate-50 rounded-lg p-2 shadow-md shadow-slate-500">
               <img
                 src={comentObj?.CLOTHES_IMG}
-                alt="coment-img"
-                className="w-40 h-full m-auto"
+                alt="Today's Clothes"
+                loading="lazy"
+                fetchPriority="high"
+                decoding="async"
+                width={160}
+                height={144}
+                className="w-40 h-36 m-auto"
               />
             </div>
           </div>
