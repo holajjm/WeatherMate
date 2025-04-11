@@ -71,6 +71,7 @@ function UserEdit() {
       }
       setPassword(updatedData.password);
       alert("회원 정보가 성공적으로 수정되었습니다.");
+      navigate('/user/mypage')
     } catch (error) {
       console.error(error);
       alert("회원 정보 수정에 실패했습니다.");
