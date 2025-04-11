@@ -1,13 +1,12 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { memberState } from "../../recoil/atom.js";
 import { useForm } from "react-hook-form";
-import useCustomAxios from "@hooks/useCustomAxios.js";
-import { LoginMainData } from "type";
+import { useSetRecoilState } from "recoil";
+import { memberState } from "@recoil/atom.js";
 
-// import Submit from '@components/layout/Submit.tsx';
-// import Button from '@components/layout/Button';
+import useCustomAxios from "@hooks/useCustomAxios.js";
+import Button from "@components/layout/Button";
+import { LoginMainData } from "type";
 
 function UserLogin() {
   const location = useLocation();
@@ -55,7 +54,9 @@ function UserLogin() {
     }
   };
   const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
-  const REDIRECT_URI = "http://localhost:5173/auth/kakao";
+  const REDIRECT_URI = `${import.meta.env.VITE_APP_TITLE}/auth`;
+  // 개발 환경 redirect uri
+  // const REDIRECT_URI = "http://localhost:5173/auth/kakao";
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const handleLogin = () => {
     window.location.href = kakaoURL;
@@ -82,7 +83,7 @@ function UserLogin() {
             onSubmit={handleSubmit(onSubmit)}
             className="grow flex flex-col gap-2"
           >
-            <div>
+            <div className="relative">
               <label htmlFor="email" className="sr-only">
                 이메일
               </label>
@@ -100,15 +101,13 @@ function UserLogin() {
                   },
                 })}
               />
-              {errors.email ? (
-                <p className="p-1 text-sm text-red-500">
+              {errors.email && (
+                <p className="absolute top-1/2 right-2 -translate-y-1/2 text-sm font-bold font-Pretendard text-red-500">
                   {errors.email.message}
                 </p>
-              ) : (
-                <p className="p-2"></p>
               )}
             </div>
-            <div>
+            <div className="relative">
               <label htmlFor="password" className="sr-only">
                 비밀번호
               </label>
@@ -121,33 +120,39 @@ function UserLogin() {
                   required: "비밀번호를 입력하세요",
                 })}
               />
-              {errors.password ? (
-                <p className="p-1 text-sm text-red-500">
+              {errors.password && (
+                <p className="absolute top-1/2 right-2 -translate-y-1/2 text-sm font-bold font-Pretendard text-red-500">
                   {errors.password.message}
                 </p>
-              ) : (
-                <p className="p-2"></p>
               )}
             </div>
             <div className="flex flex-col items-center gap-4">
               <div className="flex gap-2 w-full">
-                <button
-                  // text={'로그인'}
-                  className="w-full p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-sky-400 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                >
-                  로그인
-                </button>
-                <button
-                  // text={'카카오로 시작하기'}
-                  className="w-full p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-gray-500 text-nowrap bg-[#FEE500] hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+                <Button
+                  text={"로그인"}
+                  textColor="white"
+                  bgColor="sky"
+                  width="full"
+                  onClick={() => {}}
+                ></Button>
+                <Button
+                  text={"카카오로 시작하기"}
+                  textColor="gray"
+                  bgColor="kakao"
+                  width="full"
                   onClick={handleLogin}
-                >
-                  카카오 로그인
-                </button>
+                ></Button>
               </div>
             </div>
           </form>
-          <img className="w-1/4 h-1/4 m-auto" src="/logo.svg" />
+          <img
+            className="m-auto"
+            src="/logo.webp"
+            width={80}
+            height={80}
+            loading="lazy"
+            decoding="async"
+          />
         </nav>
       </div>
     </div>
