@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
 import { memberState } from "@recoil/atom";
@@ -83,9 +83,9 @@ function LocationItem({ item }: { item: LocationMainData }) {
     }
   };
   return (
-    <>
-      <Link
-        to={`/location/${item.contentid}`}
+    <div>
+      <div
+        onClick={() => navigate(`/location/${item.contentid}`)}
         className="grow flex flex-col gap-1"
       >
         <header className="flex">
@@ -122,7 +122,7 @@ function LocationItem({ item }: { item: LocationMainData }) {
             </div>
           </div>
         </main>
-      </Link>
+      </div>
       <footer>
         {(localStorage.getItem("bookmarks") as string)?.includes(
           item.contentid,
@@ -148,7 +148,7 @@ function LocationItem({ item }: { item: LocationMainData }) {
           </div>
         )}
       </footer>
-    </>
+    </div>
   );
 }
 
