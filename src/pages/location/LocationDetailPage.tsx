@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -16,6 +16,12 @@ import { FaDog } from "react-icons/fa";
 import { RiGlobalFill } from "react-icons/ri";
 
 function LocationDetailPage() {
+  const imgRef = useRef<HTMLImageElement>(null);
+  useEffect(() => {
+    if (imgRef.current) {
+      imgRef.current.setAttribute("fetchpriority", "high");
+    }
+  }, []);
   const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
   const { id } = useParams();
   const [detailData, setDetailData] = useState<LocationDetailData>();
@@ -30,6 +36,8 @@ function LocationDetailPage() {
         const response = await axios.get(
           `https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ETC&MobileApp=testweb&contentId=${id}&serviceKey=${apiKey}&_type=json&defaultYN=Y&firstImageYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`,
         );
+        // console.log(response.data.response.body.items.item[0]);
+        
         setDetailData(response.data.response.body.items.item[0]);
         // URL 추출 부분
         const regex = /(http[^"]+)/g;
@@ -49,6 +57,8 @@ function LocationDetailPage() {
         const response = await axios.get(
           `https://apis.data.go.kr/B551011/KorService1/detailIntro1?MobileOS=ETC&MobileApp=testWeb&contentId=${id}&contentTypeId=12&serviceKey=${apiKey}&_type=json`,
         );
+        // console.log(response.data.response.body.items.item);
+        
         setSuperDetail(response.data.response.body.items.item);
         setLoading(false);
       } catch (error) {
@@ -68,8 +78,8 @@ function LocationDetailPage() {
   if (!detailData || loading) {
     return <Loading />;
   }
-  console.log(detailData);
-  console.log(superDetail);
+  // console.log(detailData);
+  // console.log(superDetail);
 
   return (
     <div className="max-w-[600px] min-w-[320px] m-auto">
@@ -82,7 +92,7 @@ function LocationDetailPage() {
             width="8"
             onClick={() => window.history.back()}
           ></Button>
-          <h1 className="grow pr-8 text-xl text-center font-bold font-UhBeeKangJa">
+          <h1 className="grow pr-8 text-xl text-center font-bold font-Pretendard">
             {detailData.title}
           </h1>
         </div>
@@ -93,10 +103,15 @@ function LocationDetailPage() {
               src={
                 detailData.firstimage
                   ? detailData.firstimage
-                  : "/readyforimage.jpeg"
+                  : "/ReadyForImage.webp"
               }
               alt="이미지1"
               className="w-full h-80 rounded-lg"
+              ref={imgRef}
+              width={400}
+              height={320}
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div className="flex gap-2">
