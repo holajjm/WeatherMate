@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { WeatherImage } from "type";
 import { Coment } from "../../assets/Coment.ts";
@@ -13,6 +13,12 @@ interface ComentObj {
 
 function MainTodaysComent() {
   //코멘트 및 의상 추천 로직
+  const imgRef = useRef<HTMLImageElement>(null);
+  useEffect(() => {
+    if (imgRef.current) {
+      imgRef.current.setAttribute("fetchpriority", "high");
+    }
+  }, []);
   const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
   const [comentObj, setComentObj] = useState<ComentObj>();
 
@@ -104,6 +110,7 @@ function MainTodaysComent() {
               <img
                 src={comentObj?.CLOTHES_IMG}
                 alt="Today's Clothes"
+                ref={imgRef}
                 loading="lazy"
                 fetchPriority="high"
                 decoding="async"
