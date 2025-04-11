@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -7,8 +7,15 @@ import { memberState } from "@recoil/atom";
 import { NewReply, ReplyData } from "type";
 
 import useCustomAxios from "@hooks/useCustomAxios.js";
+import Button from "@components/layout/Button";
 
 function ReplyItem({ item }: { item: ReplyData }) {
+  const imgRef = useRef<HTMLImageElement>(null);
+  useEffect(() => {
+    if (imgRef.current) {
+      imgRef.current.setAttribute("fetchpriority", "high");
+    }
+  }, []);
   const [editReply, setEditReply] = useState<boolean>(false);
   const user = useRecoilValue(memberState);
   const axios = useCustomAxios();
@@ -45,17 +52,19 @@ function ReplyItem({ item }: { item: ReplyData }) {
     <div className="p-2 bg-slate-100 flex flex-col gap-2 rounded-lg">
       <div className="flex justify-center items-center gap-2">
         <div>
-          {item?.user.profile ? (
-            <img
-              src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.user.profile}`}
-              className="rounded-full border w-12 h-12"
-            />
-          ) : (
-            <img
-              src="/mainlogin.svg"
-              className="rounded-full border w-12 h-12"
-            />
-          )}
+          <img
+            src={
+              item?.user.profile
+                ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.user.profile}`
+                : "/mainlogin.webp"
+            }
+            className="rounded-full border w-12 h-12"
+            ref={imgRef}
+            width={48}
+            height={48}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div className="grow flex flex-col justify-between gap-1">
           <div className="flex">
@@ -68,27 +77,30 @@ function ReplyItem({ item }: { item: ReplyData }) {
               {user._id === item?.user._id ? (
                 editReply ? (
                   <div className="ml-auto flex">
-                    <button
+                    <Button
+                      text={"취소"}
+                      textColor="white"
+                      bgColor="gray"
+                      width="full"
                       onClick={() => setEditReply(!editReply)}
-                      className="w-full px-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-slate-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                    >
-                      취소
-                    </button>
+                    ></Button>
                   </div>
                 ) : (
                   <div className="ml-auto flex">
-                    <button
+                    <Button
+                      text={"수정"}
+                      textColor="white"
+                      bgColor="indigo"
+                      width="full"
                       onClick={() => setEditReply(!editReply)}
-                      className="w-full px-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-indigo-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                    >
-                      수정
-                    </button>
-                    <button
+                    ></Button>
+                    <Button
+                      text={"삭제"}
+                      textColor="white"
+                      bgColor="red"
+                      width="full"
                       onClick={() => handleDelete(item?._id)}
-                      className="w-full px-2 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-red-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                    >
-                      삭제
-                    </button>
+                    ></Button>
                   </div>
                 )
               ) : null}
@@ -113,13 +125,13 @@ function ReplyItem({ item }: { item: ReplyData }) {
                     {errors.comment.message as string}
                   </p>
                 )}
-                <button
-                  // text={'수정'}
-                  type="submit"
-                  className="w-1/6 p-1 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-indigo-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                >
-                  수정
-                </button>
+                <Button
+                  text={"수정"}
+                  textColor="white"
+                  bgColor="indigo"
+                  width="1/6"
+                  onClick={() => {}}
+                ></Button>
               </form>
             ) : (
               <div className="border-2 rounded-lg p-1 text-base text-slate-600 bg-white border-gray-200">
