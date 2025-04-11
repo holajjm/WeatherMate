@@ -35,7 +35,7 @@ function LocationKeywords({
       datatype={label}
       className={`flex flex-col justify-center items-center font-UhBeeKangJa bg-slate-200 p-2 rounded-lg transition-all duration-100 hover:bg-blue-300 hover:cursor-pointer ${click ? "border-2 border-black" : "border-none"}`}
     >
-      <img src={img_src} alt={label} className="w-6" />
+      <img src={img_src} alt={label} className="w-6" width={24} height={24} loading="lazy" fetchPriority="high" decoding="async"/>
       <p className="text-nowrap text-sm">{label}</p>
       {/* <p>{id}</p> */}
     </div>
