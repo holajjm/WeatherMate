@@ -40,7 +40,7 @@ function UserLogin() {
       });
 
       alert(res.data.item.name + "님 반갑습니다");
-      navigate(location.state ? `${location.state}` : "/main");
+      navigate(location.state ? `${location.state}` : "/");
       console.log(res.data.item);
     } catch (err: any) {
       console.log(err);
