@@ -64,7 +64,7 @@ function MainHomePage() {
         <MainTodaysComent />
       </motion.section>
       <div className="flex flex-col gap-2">
-        <h1 className="font-black text-lg text-[#2D2D2D] px-2 box-border">
+        <h1 className="font-bold text-lg text-[#2D2D2D] px-2 box-border">
           <span className="text-xl text-blue-600">웨더메이트</span>가 알려주는
           상세 날씨 정보
         </h1>
