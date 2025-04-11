@@ -130,14 +130,14 @@ function Location() {
   }, [locationData]);
 
   const options = [
-    { id: "12", label: "전체", img_src: "all.svg" },
-    { id: "14", label: "문화", img_src: "communityplace.svg" },
-    { id: "15", label: "행사", img_src: "festival.svg" },
-    { id: "25", label: "여행지", img_src: "travel.svg" },
-    { id: "28", label: "레포츠", img_src: "reports.svg" },
-    { id: "32", label: "숙박", img_src: "hotel.svg" },
-    { id: "38", label: "쇼핑", img_src: "shopping.svg" },
-    { id: "39", label: "음식점", img_src: "food.svg" },
+    { id: "12", label: "전체", img_src: "all.webp" },
+    { id: "14", label: "문화", img_src: "communityplace.webp" },
+    { id: "15", label: "행사", img_src: "festival.webp" },
+    { id: "25", label: "여행지", img_src: "travel.webp" },
+    { id: "28", label: "레포츠", img_src: "reports.webp" },
+    { id: "32", label: "숙박", img_src: "hotel.webp" },
+    { id: "38", label: "쇼핑", img_src: "shopping.webp" },
+    { id: "39", label: "음식점", img_src: "food.webp" },
   ];
 
   // console.log(locationData);
