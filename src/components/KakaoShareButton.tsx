@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-
-import kakaoLogo from "/kakaoLogo.svg";
+import React from "react";
+import Button from "./layout/Button";
 
 const { Kakao } = window as any;
 interface Result {
@@ -44,13 +43,13 @@ function KakaoShareButton(data: Result) {
     });
   };
   return (
-    <button
+    <Button
+      text={"카카오톡 공유하기"}
+      textColor="gray"
+      bgColor="kakao"
+      width="full"
       onClick={shareKakao}
-      className="flex justify-center items-center gap-2 w-full p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-gray-500 text-nowrap bg-[#FEE500] hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-    >
-      <img src={kakaoLogo} alt="kakao logo" className="w-5 h-5" />
-      <p>공유하기</p>
-    </button>
+    ></Button>
   );
 }
 
