@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
@@ -10,6 +10,12 @@ import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 
 function LocationItem({ item }: { item: LocationMainData }) {
   // console.log(item);
+  const imgRef = useRef<HTMLImageElement>(null);
+  useEffect(() => {
+    if (imgRef.current) {
+      imgRef.current.setAttribute("fetchpriority", "high");
+    }
+  }, []);
   const user = useRecoilValue(memberState);
   const navigate = useNavigate();
   const formatDistance = (distance: number) =>
@@ -84,9 +90,14 @@ function LocationItem({ item }: { item: LocationMainData }) {
       >
         <header className="flex">
           <img
-            src={item.firstimage ? item.firstimage : "/readyforimage.jpeg"}
+            src={item.firstimage ? item.firstimage : "/ReadyForImage.webp"}
             alt="이미지1"
             className="grow h-40 rounded-lg"
+            ref={imgRef}
+            width={200}
+            height={160}
+            loading="lazy"
+            decoding="async"
           />
         </header>
 
@@ -105,8 +116,8 @@ function LocationItem({ item }: { item: LocationMainData }) {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col gap-1 font-bold font-Pretendard">
-              <h2 className="text-lg">{item.title}</h2>
+            <div className="flex flex-col gap-1 font-Pretendard">
+              <h2 className="text-lg font-bold">{item.title}</h2>
               <p className="text-sm text-slate-500">{item.addr1}</p>
             </div>
           </div>
