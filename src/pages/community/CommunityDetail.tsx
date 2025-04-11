@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
@@ -16,6 +16,12 @@ import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 function CommunityDetail() {
   useScrollTop();
+  const imgRef = useRef<HTMLImageElement>(null);
+  useEffect(() => {
+    if (imgRef.current) {
+      imgRef.current.setAttribute("fetchpriority", "high");
+    }
+  }, []);
   const navigate = useNavigate();
   const user = useRecoilValue(memberState);
   const { _id } = useParams();
@@ -59,9 +65,14 @@ function CommunityDetail() {
               src={
                 data?.data?.item.user.profile
                   ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item.user.profile}`
-                  : "/mainlogin.svg"
+                  : "/mainlogin.webp"
               }
               className="rounded-full border-2 w-12 h-12"
+              ref={imgRef}
+              width={48}
+              height={48}
+              loading="lazy"
+              decoding="async"
             />
             <div className="grow">
               <h1 className="text-base font-bold">
@@ -75,8 +86,13 @@ function CommunityDetail() {
               {data?.data?.item.title && (
                 <img
                   className="w-10 h-10 rounded-full p-1"
-                  src={`/WeatherIcon${data?.data?.item.title}.svg`}
+                  src={`/WeatherIcon${data?.data?.item.title}.webp`}
                   alt="weather"
+                  ref={imgRef}
+                  width={40}
+                  height={40}
+                  loading="lazy"
+                  decoding="async"
                 />
               )}
             </div>
@@ -93,7 +109,12 @@ function CommunityDetail() {
                       : `/readyforimage.jpeg`
                 }
                 alt="Content Image"
-                className="w-full h-full object-contain aspect-square"
+                className="w-full h-full object-scale-down aspect-square"
+                ref={imgRef}
+                width={300}
+                height={240}
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <p className="bg-slate-100 text-slate-600 rounded-md p-2 box-border grow font-UhBeeKangJa">

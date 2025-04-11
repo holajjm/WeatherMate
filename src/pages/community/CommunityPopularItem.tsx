@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
@@ -6,6 +6,12 @@ import useCustomAxios from "@hooks/useCustomAxios";
 import { CommunityData } from "type";
 
 function CommunityPopularItem() {
+  const imgRef = useRef<HTMLImageElement>(null);
+  useEffect(() => {
+    if (imgRef.current) {
+      imgRef.current.setAttribute("fetchpriority", "high");
+    }
+  }, []);
   const navigate = useNavigate();
   const axios = useCustomAxios();
   const { data } = useQuery({
@@ -35,9 +41,12 @@ function CommunityPopularItem() {
               src={
                 item.image
                   ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.image}`
-                  : `./clothes-m-1.svg`
+                  : `./ReadyForImage.webp`
               }
               alt="image"
+              ref={imgRef}
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <p className="font-SSRONETHandwritten font-bold">{item.user?.name}</p>
