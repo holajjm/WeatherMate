@@ -3,7 +3,7 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 
 import MbtiQuestionData from "../../assets/MbtiQuestionData";
 import mbtiStart from "@assets/mbti/mbtiimg/mbtiStart.png";
-// import Button from '@components/layout/Button';
+import Button from "@components/layout/Button";
 
 function MbtiQuestion() {
   const navigate = useNavigate();
@@ -58,16 +58,16 @@ function MbtiQuestion() {
     <>
       <div
         style={{ backgroundImage: `url(${mbtiStart})` }}
-        className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-cover bg-center"
+        className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-cover bg-center font-Pretendard"
       >
-        <section className="w-full p-4 flex flex-col gap-8 bg-slate-50 rounded-xl">
+        <section className="w-full p-2 flex flex-col gap-4 bg-slate-50 rounded-lg">
           <header className="flex flex-col gap-4">
-            <h1 className="text-2xl text-center font-bold font-TTLaundryGothicB">
+            <h1 className="text-xl text-center font-bold font-Pretendard">
               다음 상황에서 당신의 선택은?
             </h1>
-            <div className="w-full bg-gray-200 rounded-full ">
+            <div className="w-full bg-gray-200 rounded-lg">
               <div
-                className="bg-blue-300 text-lg font-SSRONETHandwritten text-white text-center p-1 rounded-full"
+                className="bg-blue-300 text-base font-SSRONETHandwritten font-bold text-white text-center p-1 rounded-lg"
                 style={{ width: `${progress * 100}%` }}
               >
                 {`${questionNo + 1}/${MbtiQuestionData.length}`}
@@ -75,47 +75,47 @@ function MbtiQuestion() {
             </div>
           </header>
 
-          <main className="p-8 text-center font-SSRONETHandwritten text-amber-500 text-2xl font-bold rounded-xl bg-amber-200">
+          <main className="p-4 text-center font-SSRONETHandwritten text-amber-500 text-xl font-bold rounded-lg bg-amber-200">
             {MbtiQuestionData[questionNo].title}
           </main>
 
-          <section className="flex flex-col gap-8 font-bold">
-            <div className="flex flex-col gap-4">
-              <button
-                // text={`${MbtiQuestionData[questionNo].answer1}`}
+          <section className="flex flex-col gap-4 font-bold">
+            <div className="flex flex-col gap-2">
+              <Button
+                text={`${MbtiQuestionData[questionNo].answer1}`}
+                textColor="black"
+                bgColor="gray"
+                width="full"
                 onClick={() =>
                   handleClickButton(1, MbtiQuestionData[questionNo].type)
                 }
-                className="w-full p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400 hover:bg-amber-200"
-              >
-                {`${MbtiQuestionData[questionNo].answer1}`}
-              </button>
-              <button
-                // text={`${MbtiQuestionData[questionNo].answer2}`}
+              ></Button>
+              <Button
+                text={`${MbtiQuestionData[questionNo].answer2}`}
+                textColor="black"
+                bgColor="gray"
+                width="full"
                 onClick={() =>
                   handleClickButton(0, MbtiQuestionData[questionNo].type)
                 }
-                className="w-full p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400 hover:bg-amber-200"
-              >
-                {`${MbtiQuestionData[questionNo].answer2}`}
-              </button>
-              <div className="flex gap-2">
+              ></Button>
+              <div className="flex items-center justify-center gap-2">
                 {questionNo > 0 && (
-                  <button
-                    // text={"이전 문제 다시 풀기"}
+                  <Button
+                    text={"이전 문제 다시 풀기"}
+                    textColor="gray"
+                    bgColor="white"
+                    width="1/2"
                     onClick={handleback}
-                    className="w-full p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-gray-500 text-nowrap bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400 hover:bg-red-300"
-                  >
-                    &larr; 이전 문제
-                  </button>
+                  ></Button>
                 )}
-                <button
-                  // text={'Mbti 메인으로 가기'}
+                <Button
+                  text={"Mbti 메인으로 가기"}
+                  textColor="gray"
+                  bgColor="white"
+                  width="1/2"
                   onClick={() => navigate("/mbti")}
-                  className="w-full p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-white bg-indigo-500 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
-                >
-                  메인으로
-                </button>
+                ></Button>
               </div>
             </div>
           </section>
