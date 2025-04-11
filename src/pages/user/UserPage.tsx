@@ -69,9 +69,11 @@ function UserPage() {
                     src={
                       user?.profile
                         ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${user?.profile}`
-                        : "/mainlogin.svg"
+                        : "/mainlogin.webp"
                     }
                     alt="Profile"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="flex-grow">
                     <p className="text-lg font-Pretendard font-bold text-sky-500">
@@ -94,7 +96,7 @@ function UserPage() {
                     <Button
                       text={"로그아웃"}
                       textColor="white"
-                      bgColor="lightRed"
+                      bgColor="red"
                       width="full"
                       onClick={handleLogout}
                     ></Button>
