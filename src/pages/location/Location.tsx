@@ -10,10 +10,12 @@ import { LocationMainData } from "type";
 import LocationKeywords from "@pages/location/LocationKeyword";
 import LocationItem from "@pages/location/LocationItem";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const LocationAPIKEY = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
 function Location() {
+  const navigate = useNavigate();
   const { latitude, longitude } = useCurrentLocation();
   const [locationData, setLocationData] = useState<LocationMainData[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
@@ -158,7 +160,6 @@ function Location() {
         <LocationItem item={e} />
       </motion.section>
     ));
-
   return (
     <div className="flex flex-col gap-4 mx-auto p-2 min-h-screen bg-slate-50">
       <header className="flex gap-2 text-nowrap">
@@ -182,7 +183,9 @@ function Location() {
           textColor="gray"
           bgColor="gray"
           width="1/4"
-          onClick={() => window.location.reload()}
+          onClick={() => {
+            navigate("/location"), window.location.reload();
+          }}
         ></Button>
       </header>
 
