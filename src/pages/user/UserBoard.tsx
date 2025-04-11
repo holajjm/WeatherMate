@@ -14,7 +14,7 @@ function UserBoard({ item }: { item: ExpandCommunityData }) {
           src={
             item?.user.profile
               ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item?.user.profile}`
-              : "/mainlogin.svg"
+              : "/mainlogin.webp"
           }
           className="rounded-full border-2 w-10 h-10"
         />
@@ -26,7 +26,7 @@ function UserBoard({ item }: { item: ExpandCommunityData }) {
           {item.title && (
             <img
               className="w-8 h-8 rounded-full"
-              src={`/WeatherIcon${item.title}.svg`}
+              src={`/WeatherIcon${item.title}.webp`}
               alt="weatherIcon"
             />
           )}
@@ -58,7 +58,7 @@ function UserBoard({ item }: { item: ExpandCommunityData }) {
         <Button
           text="삭제하기"
           textColor="white"
-          bgColor="lightRed"
+          bgColor="red"
           width="full"
           onClick={() => {}}
         ></Button>
