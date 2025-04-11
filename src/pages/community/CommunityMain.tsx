@@ -119,7 +119,7 @@ function CommunityMain() {
               ></Button>
             </div>
           </section>
-          <main className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <main className="flex flex-col gap-4">
             {isLoading && <p>로딩중...</p>}
             {error && <p>{error.message}</p>}
             {sortItemList(select)}
