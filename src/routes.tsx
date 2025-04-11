@@ -22,7 +22,6 @@ import MbtiHome from "@pages/Mbti/MbtiHome";
 import UserLogin from "@pages/user/UserLogin";
 import UserValidLogin from "@pages/user/UserValidLogin";
 import UserOAuth from "@pages/user/UserOAuth";
-import UserSetting from "@pages/user/UserSetting";
 import UserSignUp from "@pages/user/UserSignUp";
 import UserPage from "@pages/user/UserPage";
 import UserEdit from "@pages/user/UserEdit";
@@ -105,10 +104,6 @@ const router = createBrowserRouter([
           {
             path: "auth",
             element: <UserOAuth />,
-          },
-          {
-            path: "user/setting",
-            element: <UserSetting />,
           },
           {
             path: "user/signup",
