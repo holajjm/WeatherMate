@@ -39,15 +39,15 @@ function LocationKeywords({
         // console.log(id);
       }}
       datatype={label}
-      className={`flex flex-col justify-center items-center font-Pretendard bg-slate-200 p-2 rounded-lg transition-all duration-100 hover:bg-blue-300 hover:cursor-pointer ${click ? "border-2 border-black" : "border-none"}`}
+      className={`flex flex-col justify-center items-center font-Pretendard bg-slate-200 p-1 rounded-lg transition-all duration-100 hover:bg-blue-300 hover:cursor-pointer ${click ? "border-2 border-black" : "border-none"}`}
     >
       <img
         src={img_src}
         alt={label}
         ref={imgRef}
-        className="w-6"
-        width={24}
-        height={24}
+        className="w-5"
+        width={20}
+        height={20}
         loading="lazy"
         decoding="async"
       />
