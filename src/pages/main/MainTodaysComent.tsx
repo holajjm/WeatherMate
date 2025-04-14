@@ -1,18 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 
+import { ModalPortal } from "@hooks/modalPortal";
+import MainModal from "@components/modal/MainModal";
 import { WeatherImage } from "type";
-import { Coment } from "../../assets/Coment.ts";
 
 import MainComentSkeleton from "@components/skeleton/MainComentSkeleton.tsx";
-
-interface ComentObj {
-  temperature: number;
-  recommendation: string;
-  CLOTHES_IMG: string;
-}
+import { MdDoubleArrow } from "react-icons/md";
 
 function MainTodaysComent() {
-  //코멘트 및 의상 추천 로직
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+  const handleClose = () => {
+    setIsOpen(false);
+  };
   const imgRef = useRef<HTMLImageElement>(null);
   useEffect(() => {
     if (imgRef.current) {
@@ -20,48 +22,6 @@ function MainTodaysComent() {
     }
   }, []);
   const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
-  const [comentObj, setComentObj] = useState<ComentObj>();
-
-  useEffect(() => {
-    const getRecommendation = () => {
-      if (Coment[0].temperature >= data?.main.temp) {
-        setComentObj(Coment[0]);
-        return;
-      } else {
-        for (let i = 0; i < Coment.length; i++) {
-          if (
-            Coment[i].temperature < data?.main.temp &&
-            Coment[i + 1].temperature >= data?.main.temp
-          ) {
-            setComentObj(Coment[i + 1]);
-            return;
-          }
-        }
-      }
-    };
-    getRecommendation();
-  }, [data]);
-
-  //날씨 이모티콘 로직
-  const weatherIconList: WeatherImage = {
-    Clear: "/sun.webp",
-    Clouds: "/manyClouds.webp",
-    Rain: "/rain.webp",
-    Drizzle: "/rain.webp",
-    Thunderstorm: "/thunderStorm.webp",
-    Snow: "/mainSnow.webp",
-    Haze: "/Haze.webp",
-    Mist: "/Mist.webp",
-    Smoke: "/manyClouds.webp",
-    Dust: "/manyClouds.webp",
-    overcastClouds: "/sun.webp",
-  };
-  const weatherImage =
-    !data || !data.weather
-      ? weatherIconList["Clear"]
-      : weatherIconList[data.weather[0].main as keyof WeatherImage];
-
-  //실제 이미지 로직
   const realImageList: WeatherImage = {
     Clear: "./realImage/SunnyRealImage.webp",
     Clouds: "./realImage/CloudyRealImage.webp",
@@ -73,54 +33,54 @@ function MainTodaysComent() {
     Mist: "./realImage/HazeRealImage.webp",
     Smoke: "./realImage/HazeRealImage.webp",
     Dust: "./realImage/HazeRealImage.webp",
-    overcastClouds: "./realImage/SunnyRealImage.webp",
+    overcastClouds: "./realImage/CloudyRealImage.webp",
   };
   const realImage =
     data && data.weather
       ? realImageList[data.weather[0].main as keyof WeatherImage]
       : null;
-  // console.log(data);
-  // console.log(comentObj);
-
   return (
-    <article className="p-2 flex flex-col gap-2 bg-slate-50 font-TTLaundryGothicB h-full fade-in">
-      <section className="w-full flex justify-between text-left text-lg font-bold text-wrap">
-        <h1 className="text-base text-[#2D2D2D]">
-          환영해요! <br /> WeatherMate입니다!
+    <article className="p-2 flex flex-col gap-2 font-Pretendard h-full fade-in">
+      {isOpen && (
+        <ModalPortal>
+          <MainModal handleClose={handleClose} />
+        </ModalPortal>
+      )}
+      <div className="flex items-center justify-between">
+        <h1 className="font-bold text-base text-[#2D2D2D]">
+          <span className="text-lg text-blue-600">웨더메이트</span>가 알려주는
+          날씨 정보
         </h1>
-      </section>
-      {data ? (
-        <section
-          style={{ backgroundImage: `url(${realImage})` }}
-          className="relative w-full p-2 box-border flex flex-col gap-2 justify-between rounded-lg text-center grow bg-center bg-no-repeat bg-cover ml-auto"
+        <button
+          className="flex gap-1 items-center justify-center border-2 border-slate-300 w-32 h-10 rounded-lg bg-white text-sm hover:bg-slate-100 hover:scale-105 duration-100 ease-in-out"
+          onClick={handleOpen}
         >
-          <div className="absolute top-0 left-0 w-full h-full bg-white opacity-25 z-10"></div>
-          <div className="w-full h-40 flex gap-2 z-20">
-            <div
-              className={`w-full flex flex-col justify-center gap-2 rounded-lg text-center shadow-md shadow-slate-500  ${["Clouds", "Rain", "Drizzle", "Thunderstorm", "Snow"].includes(data?.weather[0].main) ? "text-white" : "text-[#2d2d2d]"} z-20`}
-            >
-              <p className="h-8 font-SSRONETHandwritten text-amber-500 font-bold rounded-lg bg-amber-200 p-1 z-20 shadow-md shadow-slate-500">
-                {comentObj?.recommendation}
-              </p>
-              <p>{data?.name}</p>
-              <p className="text-4xl">{data?.main.temp.toFixed(1)}°C</p>
-              <p>{data?.weather[0].description}</p>
-            </div>
-            <div className="bg-slate-50 rounded-lg p-2 shadow-md shadow-slate-500">
-              <img
-                src={comentObj?.CLOTHES_IMG}
-                alt="Today's Clothes"
-                ref={imgRef}
-                loading="lazy"
-                fetchPriority="high"
-                decoding="async"
-                width={160}
-                height={144}
-                className="w-40 h-36 m-auto"
-              />
-            </div>
+          오늘의 추천 보기
+          <MdDoubleArrow />
+        </button>
+      </div>
+      {data ? (
+        <div className="relative w-full h-40 flex gap-2">
+          {realImage && (
+            <img
+              className="absolute w-full h-40 object-cover rounded-lg"
+              src={realImage}
+              alt="today"
+              ref={imgRef}
+              width={520}
+              height={160}
+              fetchPriority="high"
+              decoding="async"
+            />
+          )}
+          <div
+            className={`w-full flex flex-col justify-center gap-2 rounded-lg text-center font-bold shadow-md shadow-slate-500  ${["Clouds", "Rain", "Drizzle", "Thunderstorm", "Snow"].includes(data?.weather[0].main) ? "text-white" : "text-[#2d2d2d]"} z-20`}
+          >
+            <p>{data?.name}</p>
+            <p className="text-4xl">{data?.main.temp.toFixed(1)}°C</p>
+            <p>{data?.weather[0].description}</p>
           </div>
-        </section>
+        </div>
       ) : (
         <MainComentSkeleton />
       )}
