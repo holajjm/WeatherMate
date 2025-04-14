@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { LocationState } from "@recoil/atom";
 
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
+import { ModalPortal } from "@hooks/modalPortal";
 import { motion } from "framer-motion";
 
 import MainTodaysComent from "@pages/main/MainTodaysComent";
 import MainMyLocationWeather from "@pages/main/MainMyLocationWeather";
 import MainWeatherTimeZone from "@pages/main/MainWeatherTimeZone";
 import ToTheTopButton from "@components/layout/ToTheTopButton";
+import MainModal from "@components/modal/MainModal";
 
 function MainHomePage() {
   usePageTitle("WeatherMate");
@@ -52,7 +54,12 @@ function MainHomePage() {
   }
 
   return (
-    <main className="max-w-[600px] min-w-[320px] h-screen m-auto flex flex-col gap-4">
+    <main className="max-w-[600px] min-w-[320px] h-screen m-auto flex flex-col gap-2 bg-slate-50 font-Pretendard">
+      <section className="w-full flex items-center justify-center p-2 box-border">
+        <h1 className="w-full text-center text-xl font-bold text-[#2D2D2D]">
+          환영해요! WeatherMate입니다!
+        </h1>
+      </section>
       <motion.section
         initial={{ translateY: -50, opacity: 0 }}
         animate={{ translateY: 0, opacity: 1 }}
@@ -63,32 +70,26 @@ function MainHomePage() {
       >
         <MainTodaysComent />
       </motion.section>
-      <div className="flex flex-col gap-2">
-        <h1 className="font-bold text-lg text-[#2D2D2D] px-2 box-border">
-          <span className="text-xl text-blue-600">웨더메이트</span>가 알려주는
-          상세 날씨 정보
-        </h1>
-        <motion.section
-          initial={{ translateY: -100, opacity: 0 }}
-          animate={{ translateY: 0, opacity: 1 }}
-          transition={{
-            ease: "easeInOut",
-            duration: 0.75,
-          }}
-        >
-          <MainWeatherTimeZone />
-        </motion.section>
-        <motion.section
-          initial={{ translateY: -150, opacity: 0 }}
-          animate={{ translateY: 0, opacity: 1 }}
-          transition={{
-            ease: "easeInOut",
-            duration: 1,
-          }}
-        >
-          <MainMyLocationWeather />
-        </motion.section>
-      </div>
+      <motion.section
+        initial={{ translateY: -100, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        transition={{
+          ease: "easeInOut",
+          duration: 0.75,
+        }}
+      >
+        <MainWeatherTimeZone />
+      </motion.section>
+      <motion.section
+        initial={{ translateY: -150, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        transition={{
+          ease: "easeInOut",
+          duration: 1,
+        }}
+      >
+        <MainMyLocationWeather />
+      </motion.section>
       <ToTheTopButton />
     </main>
   );
