@@ -83,7 +83,7 @@ function LocationItem({ item }: { item: LocationMainData }) {
     }
   };
   return (
-    <div>
+    <>
       <div
         onClick={() => navigate(`/location/${item.contentid}`)}
         className="grow flex flex-col gap-1"
@@ -148,7 +148,7 @@ function LocationItem({ item }: { item: LocationMainData }) {
           </div>
         )}
       </footer>
-    </div>
+    </>
   );
 }
 
