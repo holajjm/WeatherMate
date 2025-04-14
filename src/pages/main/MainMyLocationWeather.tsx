@@ -7,7 +7,7 @@ const MainMyLocationWeather = () => {
   const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
 
   return (
-    <article className="bg-white flex flex-col gap-2 px-2">
+    <article className="bg-slate-50 flex flex-col gap-2 px-2">
       <header>
         <h2 className="text-slate-400 text-base">
           오늘의 상세 날씨를 알려드려요!
