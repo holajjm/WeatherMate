@@ -3,7 +3,6 @@ import axios from "axios";
 
 import useCurrentLocation from "@hooks/useCurrentLocation";
 import { useDebounce } from "@hooks/useDebounce";
-import Loading from "@components/layout/Loading";
 import Button from "@components/layout/Button";
 import { LocationMainData } from "type";
 
@@ -11,6 +10,7 @@ import LocationKeywords from "@pages/location/LocationKeyword";
 import LocationItem from "@pages/location/LocationItem";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import LocationItemSkeleton from "@components/skeleton/LocationItemSkeleton";
 
 const LocationAPIKEY = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
@@ -155,7 +155,7 @@ function Location() {
           duration: 1,
         }}
         key={i}
-        className="flex flex-col gap-1 p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:border-blue-400 duration-200"
+        className="flex flex-col justify-between p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:border-blue-400 duration-200"
       >
         <LocationItem item={e} />
       </motion.section>
@@ -203,7 +203,7 @@ function Location() {
       </aside>
 
       {isLoading ? (
-        <Loading />
+        <LocationItemSkeleton />
       ) : (
         <main className="grid grid-cols-2 gap-1 relative">
           {locationItemList}
