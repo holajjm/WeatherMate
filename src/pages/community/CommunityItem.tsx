@@ -94,6 +94,7 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
             width={300}
             height={240}
             ref={imgRef}
+            fetchPriority="high"
             loading="lazy"
             decoding="async"
           />
