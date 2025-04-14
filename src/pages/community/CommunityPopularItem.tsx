@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import useCustomAxios from "@hooks/useCustomAxios";
 import { CommunityData } from "type";
+import CommunityPopularSkeleton from "@components/skeleton/CommunityPopularSkeleton";
 
 function CommunityPopularItem() {
   const imgRef = useRef<HTMLImageElement>(null);
@@ -45,7 +46,7 @@ function CommunityPopularItem() {
               }
               alt="image"
               ref={imgRef}
-              loading="lazy"
+              fetchPriority="auto"
               decoding="async"
             />
           </div>
@@ -55,7 +56,7 @@ function CommunityPopularItem() {
 
   return (
     <div className="overflow-x-scroll scrollbar-hide flex gap-2 py-2">
-      {itemViews}
+      {data ? itemViews : <CommunityPopularSkeleton />}
     </div>
   );
 }
