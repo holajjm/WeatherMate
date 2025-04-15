@@ -12,7 +12,6 @@ import MainTodaysComent from "@pages/main/MainTodaysComent";
 import MainMyLocationWeather from "@pages/main/MainMyLocationWeather";
 import MainWeatherTimeZone from "@pages/main/MainWeatherTimeZone";
 import ToTheTopButton from "@components/layout/ToTheTopButton";
-import MainModal from "@components/modal/MainModal";
 
 function MainHomePage() {
   usePageTitle("WeatherMate");
