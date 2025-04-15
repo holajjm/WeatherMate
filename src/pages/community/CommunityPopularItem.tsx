@@ -1,12 +1,25 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 import useCustomAxios from "@hooks/useCustomAxios";
 import CommunityPopularSkeleton from "@components/skeleton/CommunityPopularSkeleton";
 import { CommunityData } from "type";
+import { ModalPortal } from "@hooks/modalPortal";
+import MainModal from "@components/modal/MainModal";
+import CommunityModal from "@components/modal/CommunityModal";
 
 function CommunityPopularItem() {
+  const [selectedItem, setSelectedItem] = useState<CommunityData | null>(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const handleOpen = (item: CommunityData) => {
+    setSelectedItem(item);
+    setIsOpen(true);
+  };
+  const handleClose = () => {
+    setIsOpen(false);
+    setSelectedItem(null);
+  };
   const imgRef = useRef<HTMLImageElement>(null);
   useEffect(() => {
     if (imgRef.current) {
@@ -34,7 +47,7 @@ function CommunityPopularItem() {
         <div
           key={item._id}
           className="text-nowrap text-center cursor-pointer"
-          onClick={() => navigate(`/community/${item._id}`)}
+          onClick={() => handleOpen(item)}
         >
           <div className="border-4 border-blue-200 box-border rounded-full w-20 h-20 hover:border-blue-400 duration-200">
             <img
@@ -46,8 +59,7 @@ function CommunityPopularItem() {
               }
               alt="image"
               ref={imgRef}
-              fetchpriority="auto"
-              decoding="async"
+              fetchpriority="high"
             />
           </div>
           <p className="font-SSRONETHandwritten font-bold">{item.user?.name}</p>
@@ -56,7 +68,18 @@ function CommunityPopularItem() {
 
   return (
     <div className="overflow-x-scroll scrollbar-hide flex gap-2 py-2">
-      {data ? itemViews : <CommunityPopularSkeleton />}
+      {data ? (
+        <>
+          {isOpen && (
+            <ModalPortal>
+              <CommunityModal handleClose={handleClose} item={selectedItem} />
+            </ModalPortal>
+          )}
+          {itemViews}
+        </>
+      ) : (
+        <CommunityPopularSkeleton />
+      )}
     </div>
   );
 }
