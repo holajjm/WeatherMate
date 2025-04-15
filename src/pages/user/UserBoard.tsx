@@ -3,9 +3,23 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "@components/layout/Button";
 import { ExpandCommunityData } from "type";
+import useCustomAxios from "@hooks/useCustomAxios";
 
 function UserBoard({ item }: { item: ExpandCommunityData }) {
   const navigate = useNavigate();
+  const axios = useCustomAxios();
+  console.log(item);
+  const deleteItem = async () => {
+    if (confirm("삭제하시겠습니까?")) {
+      try {
+        await axios.delete(`/posts/${item?._id}`);
+        alert("삭제되었습니다.");
+        window.location.reload();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
 
   return (
     <div className="h-full flex flex-col gap-4 bg-white p-4 box-border rounded-lg drop-shadow-lg text-[#2d2d2d]">
@@ -58,9 +72,9 @@ function UserBoard({ item }: { item: ExpandCommunityData }) {
         <Button
           text="삭제하기"
           textColor="white"
-          bgColor="red"
+          bgColor="lightRed"
           width="full"
-          onClick={() => {}}
+          onClick={deleteItem}
         ></Button>
       </footer>
     </div>
