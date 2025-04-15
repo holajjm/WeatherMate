@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 import useCustomAxios from "@hooks/useCustomAxios";
-import { CommunityData } from "type";
 import CommunityPopularSkeleton from "@components/skeleton/CommunityPopularSkeleton";
+import { CommunityData } from "type";
 
 function CommunityPopularItem() {
   const imgRef = useRef<HTMLImageElement>(null);
@@ -46,7 +46,7 @@ function CommunityPopularItem() {
               }
               alt="image"
               ref={imgRef}
-              fetchPriority="auto"
+              fetchpriority="auto"
               decoding="async"
             />
           </div>
