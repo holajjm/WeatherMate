@@ -69,7 +69,7 @@ function MainTodaysComent() {
               ref={imgRef}
               width={520}
               height={160}
-              fetchPriority="high"
+              fetchpriority="high"
               decoding="async"
             />
           )}

@@ -58,7 +58,7 @@ function MainWeatherTimeZone() {
     refetchIntervalInBackground: true,
     enabled: !!latitude && !!longitude,
   });
-  console.log(data);
+  // console.log(data);
 
   const unixTime = (time: number) => {
     const date = new Date(time * 1000);
@@ -88,6 +88,8 @@ function MainWeatherTimeZone() {
                   className="w-10 h-10"
                   src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
                   alt="Weather Icon"
+                  fetchpriority="high"
+                  
                 />
                 <p className="text-center text-sm font-semibold">
                   {item.main.temp.toFixed(1)}°C
