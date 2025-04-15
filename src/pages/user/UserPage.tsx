@@ -96,7 +96,7 @@ function UserPage() {
                     <Button
                       text={"로그아웃"}
                       textColor="white"
-                      bgColor="red"
+                      bgColor="lightRed"
                       width="full"
                       onClick={handleLogout}
                     ></Button>
