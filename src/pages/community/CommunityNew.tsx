@@ -96,7 +96,7 @@ function CommunityNew() {
                 className="flex items-center justify-between gap-1"
               >
                 {["Sun", "Cloud", "Rain", "Foggy", "Snow", "Wind"].map(id => (
-                  <figure key={id} className="rounded-lg w-full">
+                  <figure key={id} className="rounded-lg w-full cursor-pointer hover:ring-2">
                     <input
                       className="hidden"
                       type="radio"
@@ -106,11 +106,13 @@ function CommunityNew() {
                         required: "날씨를 선택해주세요",
                       })}
                     />
-                    <label htmlFor={"title"} className={`rounded-lg w-full`}>
+                    <label htmlFor={"title"} className={`rounded-lg w-full flex items-center justify-center cursor-pointer`}>
                       <img
-                        className="w-full h-12 rounded-lg cursor-pointer hover:ring-2"
-                        src={`/WeatherIcon${id}.svg`}
+                        className="w-12 h-12 rounded-lg cursor-pointer"
+                        src={`/WeatherIcon${id}.webp`}
                         alt="WeatherIcon"
+                        width={48}
+                        height={48}
                       />
                     </label>
                   </figure>
