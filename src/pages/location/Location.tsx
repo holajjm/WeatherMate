@@ -126,13 +126,13 @@ function Location() {
     }
   };
 
-  const handleSubmit = () => {
+  const handleClick = () => {
     if (searchKeyword) {
       fetchLocationSearchData();
       setKeyword("");
     }
   };
-  const handleClick = () => {
+  const handleSubmit = () => {
     if (searchKeyword) {
       fetchLocationSearchData();
       setKeyword("");
