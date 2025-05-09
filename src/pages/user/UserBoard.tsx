@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "@components/layout/Button";
 import { ExpandCommunityData } from "type";
 import useCustomAxios from "@hooks/useCustomAxios";
+import { toast } from "react-toastify";
 
 function UserBoard({ item }: { item: ExpandCommunityData }) {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ function UserBoard({ item }: { item: ExpandCommunityData }) {
     if (confirm("삭제하시겠습니까?")) {
       try {
         await axios.delete(`/posts/${item?._id}`);
-        alert("삭제되었습니다.");
+        toast("삭제되었습니다.");
         window.location.reload();
       } catch (error) {
         console.error(error);

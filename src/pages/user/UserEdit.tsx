@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import { memberState } from "../../recoil/atom";
 import { useNavigate } from "react-router-dom";
 import useCustomAxios from "@hooks/useCustomAxios";
+import { toast } from "react-toastify";
 import { UserMainData } from "type";
 
 function UserEdit() {
@@ -45,7 +46,7 @@ function UserEdit() {
       }
 
       if (!updated) {
-        alert("변경된 정보가 없습니다.");
+        toast("변경된 정보가 없습니다.");
         return;
       }
 
@@ -70,11 +71,11 @@ function UserEdit() {
         setEmail(updatedData.email);
       }
       setPassword(updatedData.password);
-      alert("회원 정보가 성공적으로 수정되었습니다.");
+      toast("회원 정보가 성공적으로 수정되었습니다.");
       navigate('/user/mypage')
     } catch (error) {
       console.error(error);
-      alert("회원 정보 수정에 실패했습니다.");
+      toast("회원 정보 수정에 실패했습니다.");
     }
   };
 

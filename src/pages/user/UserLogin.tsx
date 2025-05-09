@@ -6,6 +6,7 @@ import { memberState } from "@recoil/atom.js";
 
 import useCustomAxios from "@hooks/useCustomAxios.js";
 import Button from "@components/layout/Button";
+import { toast } from "react-toastify";
 import { LoginMainData } from "type";
 
 function UserLogin() {
@@ -39,7 +40,7 @@ function UserLogin() {
         token: res.data.item.token,
       });
 
-      alert(res.data.item.name + "님 반갑습니다");
+      toast(res.data.item.name + "님 반갑습니다");
       navigate(location.state ? `${location.state}` : "/");
       console.log(res.data.item);
     } catch (err: any) {
