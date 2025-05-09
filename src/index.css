@@ -56,16 +56,3 @@
 /* * {
   font-family: "Pretendard-Regular";
 } */
-
-.custom-before::before {
-  content: "/";
-  position: absolute;
-  left: 0;
-  color: #b8bcc0;
-}
-.custom-after::after {
-  content: "\\";
-  position: absolute;
-  left: 0;
-  color: #b8bcc0;
-}
