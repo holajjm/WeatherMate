@@ -118,7 +118,6 @@ function LocationItem({ item }: { item: InitialData }) {
             ref={imgRef}
             width={200}
             height={160}
-            loading="lazy"
             decoding="async"
           />
         </header>
