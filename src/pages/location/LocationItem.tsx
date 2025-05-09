@@ -7,8 +7,33 @@ import { LocationMainData } from "type";
 
 import { FiMapPin } from "react-icons/fi";
 import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
+import { toast } from "react-toastify";
 
-function LocationItem({ item }: { item: LocationMainData }) {
+interface InitialData {
+  addr1: string;
+  addr2: string;
+  areacode: string;
+  booktour: string;
+  cat1: string;
+  cat2: string;
+  cat3: string;
+  contentid: string;
+  contenttypeid: string;
+  cpyrhtDivCd: string;
+  createdtime: string;
+  dist: string;
+  firstimage: string;
+  firstimage2: string;
+  mapx: string;
+  mapy: string;
+  mlevel: string;
+  modifiedtime: string;
+  sigungucode: string;
+  tel: string;
+  title: string;
+}
+
+function LocationItem({ item }: { item: InitialData }) {
   // console.log(item);
   const imgRef = useRef<HTMLImageElement>(null);
   useEffect(() => {
@@ -42,13 +67,10 @@ function LocationItem({ item }: { item: LocationMainData }) {
   };
   //북마크 기능 구현
   const [click, setClick] = useState<boolean>(false);
-  const [bookmark, setBookmark] = useState<string | null>();
   useEffect(() => {
     const bookmarks = localStorage.getItem("bookmarks") || null;
     // console.log(bookmarks);
-    setBookmark(bookmarks);
   }, [click]);
-  // console.log(bookmark);
   // console.log(user);
 
   const handleBookMark = (contentId: string) => {
@@ -62,7 +84,7 @@ function LocationItem({ item }: { item: LocationMainData }) {
           JSON.parse(localStorage.getItem("bookmarks") as string) || [];
         bookmarks.push(contentId);
         localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-        alert("북마크 저장됨");
+        toast("북마크 저장됨");
         setClick(!click);
         console.log("북마크 추가 성공:", contentId);
       } catch (error) {
@@ -75,7 +97,7 @@ function LocationItem({ item }: { item: LocationMainData }) {
       let bookmarks = JSON.parse(localStorage.getItem("bookmarks") as string);
       let newBookmarks = bookmarks.filter((e: string) => e !== contentid);
       localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
-      alert("북마크 삭제됨");
+      toast("북마크 삭제됨");
       setClick(!click);
       console.log("북마크 제거 성공:", contentid);
     } catch (error) {
