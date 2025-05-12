@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -20,6 +20,12 @@ function Header() {
   const handleCategoryOpen = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    if (location.pathname !== location?.state?.from) {
+      setOpen(false);
+    }
+  }, [location.pathname]);
 
   return (
     <header className="max-w-[600px] min-w-[320px] h-14 m-auto sticky top-0 z-50 flex items-center justify-center bg-blue-200">

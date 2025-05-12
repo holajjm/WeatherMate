@@ -26,6 +26,7 @@ function HeaderCategory() {
       >
         <Link
           to={"/community"}
+          state={{ from: location.pathname }}
           className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-indigo-500"
         >
           <IoMdChatboxes className="text-lg" />
@@ -43,6 +44,7 @@ function HeaderCategory() {
       >
         <Link
           to={"/location"}
+          state={{ from: location.pathname }}
           className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-indigo-500"
         >
           <MdLocationOn className="text-lg" />
@@ -60,6 +62,7 @@ function HeaderCategory() {
       >
         <Link
           to={"/user/mypage"}
+          state={{ from: location.pathname }}
           className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-indigo-500"
         >
           <FaUserCircle className="text-lg" />
@@ -80,6 +83,7 @@ function HeaderCategory() {
       >
         <Link
           to={"/mbti"}
+          state={{ from: location.pathname }}
           className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-sky-400"
         >
           🌤️날씨 성격 테스트
@@ -96,6 +100,7 @@ function HeaderCategory() {
       >
         <Link
           to={"/allcity"}
+          state={{ from: location.pathname }}
           className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-sky-400"
         >
           🌤️전국의 날씨
