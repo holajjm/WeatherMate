@@ -7,3 +7,8 @@ declare module "react" {
 interface Window {
   KaKao: any;
 }
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
