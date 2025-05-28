@@ -13,8 +13,6 @@ import LocationKeywords from "@pages/location/LocationKeyword";
 import LocationItem from "@pages/location/LocationItem";
 import LocationItemSkeleton from "@components/skeleton/LocationItemSkeleton";
 
-const LocationAPIKEY = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
-
 interface InitialData {
   addr1: string;
   addr2: string;
@@ -51,43 +49,38 @@ interface QueryData {
 }
 
 function Location() {
+  const locationAPIKEY = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
   const navigate = useNavigate();
   const { latitude, longitude } = useCurrentLocation();
   const [contentID, setContentID] = useState<string>("12");
   const radius = "100000";
 
   //사용자 위치 정보에 따른 기본 데이터 호출 로직
-  const getLocationData = async (page: number = 1) => {
+  const getLocationData = async (page: number) => {
     const response = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${LocationAPIKEY}&pageNo=${page}&numOfRows=8&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json `,
+      `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${locationAPIKEY}&pageNo=${page}&numOfRows=8&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json `,
     );
-    // console.log(page);
-
     return response?.data?.response?.body;
   };
   //무한 스크롤에 따른 데이터 호출 구현
-  const { data, isLoading, fetchNextPage } = useInfiniteQuery<
-    QueryData,
-    unknown,
-    QueryData
-  >({
+  const { data, isLoading, fetchNextPage } = useInfiniteQuery({
     queryKey: [
       "InfiniteData",
-      LocationAPIKEY,
+      locationAPIKEY,
       longitude,
       latitude,
       radius,
       contentID,
     ],
-    queryFn: ({ pageParam = 1 }: { pageParam?: number }) =>
+    queryFn: ({ pageParam = 0 }: { pageParam?: number }) =>
       getLocationData(pageParam),
     getNextPageParam: (lastPage: Data) => {
       // console.log(lastPage);
       return lastPage?.pageNo + 1;
     },
-    initialPageParam: 1
+    initialPageParam: 0,
   });
-  const mergedItems: InitialData[] =
+  const mergedItems: InitialData[] | undefined =
     data && data?.pages?.length === 1
       ? data?.pages[0]?.items?.item
       : data?.pages?.flatMap(page => page?.items?.item);
@@ -116,7 +109,7 @@ function Location() {
   const fetchLocationSearchData = async () => {
     try {
       const response = await axios.get(
-        `https://apis.data.go.kr/B551011/KorService1/searchKeyword1?MobileOS=ETC&MobileApp=testweb&serviceKey=${LocationAPIKEY}&keyword=${searchKeyword}&_type=json&contentTypeId=${contentID}`,
+        `https://apis.data.go.kr/B551011/KorService1/searchKeyword1?MobileOS=ETC&MobileApp=testweb&serviceKey=${locationAPIKEY}&keyword=${searchKeyword}&_type=json&contentTypeId=${contentID}`,
       );
     } catch (error) {
       console.error(
@@ -143,42 +136,6 @@ function Location() {
       handleSubmit();
     }
   };
-
-  //페이지네이션 구현
-  // const fetchNextPage = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${LocationAPIKEY}&pageNo=${currentPage + 1}&numOfRows=10&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json`,
-  //     );
-  //     setLocationData(prevData => [
-  //       ...prevData,
-  //       ...response.data.response.body.items.item,
-  //     ]);
-  //     setCurrentPage(prevPage => prevPage + 1);
-  //   } catch (error) {
-  //     console.error(
-  //       "데이터를 원활하게 가져오는데 오류가 발생하였습니다.",
-  //       error,
-  //     );
-  //   }
-  // };
-
-  // const handleScroll = () => {
-  //   const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-  //   if (
-  //     locationData.length > 0 &&
-  //     scrollTop + clientHeight >= scrollHeight - 5
-  //   ) {
-  //     fetchNextPage();
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, [locationData]);
 
   const options = [
     { id: "12", label: "전체", img_src: "all.webp" },
@@ -254,7 +211,7 @@ function Location() {
           <main className="grid grid-cols-2 gap-1 relative">
             {locationItemList}
           </main>
-          <p ref={ref} className="w-full text-center bg-slate-300">
+          <p ref={ref} className="w-full text-center">
             더 불러오기
           </p>
         </>
