@@ -3,35 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
 import { memberState } from "@recoil/atom";
-import { LocationMainData } from "type";
 
 import { FiMapPin } from "react-icons/fi";
 import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 import { toast } from "react-toastify";
 
-interface InitialData {
-  addr1: string;
-  addr2: string;
-  areacode: string;
-  booktour: string;
-  cat1: string;
-  cat2: string;
-  cat3: string;
-  contentid: string;
-  contenttypeid: string;
-  cpyrhtDivCd: string;
-  createdtime: string;
-  dist: string;
-  firstimage: string;
-  firstimage2: string;
-  mapx: string;
-  mapy: string;
-  mlevel: string;
-  modifiedtime: string;
-  sigungucode: string;
-  tel: string;
-  title: string;
-}
+type InitialData = {
+  [key: string]: string;
+};
 
 function LocationItem({ item }: { item: InitialData }) {
   // console.log(item);
@@ -107,12 +86,12 @@ function LocationItem({ item }: { item: InitialData }) {
   return (
     <>
       <div
-        onClick={() => navigate(`/location/${item.contentid}`)}
+        onClick={() => navigate(`/location/${item?.contentid}`)}
         className="grow flex flex-col gap-1"
       >
         <header className="flex">
           <img
-            src={item.firstimage ? item.firstimage : "/ReadyForImage.webp"}
+            src={item?.firstimage ? item?.firstimage : "/ReadyForImage.webp"}
             alt="이미지1"
             className="grow h-40 rounded-lg"
             ref={imgRef}
@@ -126,31 +105,31 @@ function LocationItem({ item }: { item: InitialData }) {
           <div className="grow">
             <div className="flex">
               <p className="text-xs text-slate-400 font-Pretendard">
-                {getCategoryText(item.contenttypeid)}
+                {getCategoryText(item?.contenttypeid)}
               </p>
               <div className="ml-auto bg-amber-300 flex items-center rounded-lg font-Pretendard">
                 <FiMapPin className="text-sm" />
                 <p className="text-xs">
-                  {isNaN(parseFloat(item.dist))
+                  {isNaN(parseFloat(item?.dist))
                     ? "10km 이상"
-                    : formatDistance(parseFloat(item.dist))}
+                    : formatDistance(parseFloat(item?.dist))}
                 </p>
               </div>
             </div>
             <div className="flex flex-col gap-1 font-Pretendard">
-              <h2 className="text-lg font-bold">{item.title}</h2>
-              <p className="text-sm text-slate-500">{item.addr1}</p>
+              <h2 className="text-lg font-bold">{item?.title}</h2>
+              <p className="text-sm text-slate-500">{item?.addr1}</p>
             </div>
           </div>
         </main>
       </div>
       <footer>
         {(localStorage.getItem("bookmarks") as string)?.includes(
-          item.contentid,
+          item?.contentid,
         ) ? (
           <div
             onClick={() => {
-              removeBookMark(item.contentid);
+              removeBookMark(item?.contentid);
             }}
             className="flex justify-center items-center gap-1 text-xs cursor-pointer"
           >
@@ -160,7 +139,7 @@ function LocationItem({ item }: { item: InitialData }) {
         ) : (
           <div
             onClick={() => {
-              handleBookMark(item.contentid);
+              handleBookMark(item?.contentid);
             }}
             className="flex justify-center items-center gap-1 text-xs cursor-pointer"
           >
