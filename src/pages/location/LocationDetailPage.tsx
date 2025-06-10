@@ -37,7 +37,7 @@ function LocationDetailPage() {
           `https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ETC&MobileApp=testweb&contentId=${id}&serviceKey=${apiKey}&_type=json&defaultYN=Y&firstImageYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`,
         );
         // console.log(response.data.response.body.items.item[0]);
-        
+
         setDetailData(response.data.response.body.items.item[0]);
         // URL 추출 부분
         const regex = /(http[^"]+)/g;
@@ -58,7 +58,7 @@ function LocationDetailPage() {
           `https://apis.data.go.kr/B551011/KorService1/detailIntro1?MobileOS=ETC&MobileApp=testWeb&contentId=${id}&contentTypeId=12&serviceKey=${apiKey}&_type=json`,
         );
         // console.log(response.data.response.body.items.item);
-        
+
         setSuperDetail(response.data.response.body.items.item);
         setLoading(false);
       } catch (error) {
@@ -93,7 +93,7 @@ function LocationDetailPage() {
             onClick={() => window.history.back()}
           ></Button>
           <h1 className="grow pr-8 text-xl text-center font-bold font-Pretendard">
-            {detailData.title}
+            {detailData?.title}
           </h1>
         </div>
 
@@ -101,8 +101,8 @@ function LocationDetailPage() {
           <div>
             <img
               src={
-                detailData.firstimage
-                  ? detailData.firstimage
+                detailData?.firstimage
+                  ? detailData?.firstimage
                   : "/ReadyForImage.webp"
               }
               alt="이미지1"
@@ -123,8 +123,8 @@ function LocationDetailPage() {
                       <FaLocationDot />
                     </td>
                     <td className="p-2 w-full">
-                      {detailData.addr1}
-                      {detailData.addr2 ? detailData.addr2 : ""}
+                      {detailData?.addr1}
+                      {detailData?.addr2 ? detailData?.addr2 : ""}
                     </td>
                   </tr>
                   <tr className="flex items-center">
@@ -132,8 +132,8 @@ function LocationDetailPage() {
                       <BsTelephoneFill />
                     </td>
                     <td className="p-2 w-full">
-                      {superDetail[0].infocenter
-                        ? superDetail[0].infocenter.replace(/<br>/g, " / ")
+                      {superDetail[0]?.infocenter
+                        ? superDetail[0]?.infocenter.replace(/<br>/g, " / ")
                         : "-"}
                     </td>
                   </tr>
@@ -142,8 +142,8 @@ function LocationDetailPage() {
                       <FaParking />
                     </td>
                     <td className="p-2 w-full">
-                      {superDetail[0].parking
-                        ? superDetail[0].parking.replace(/<br>/g, " / ")
+                      {superDetail[0]?.parking
+                        ? superDetail[0]?.parking.replace(/<br>/g, " / ")
                         : "불가"}
                     </td>
                   </tr>
@@ -153,7 +153,7 @@ function LocationDetailPage() {
                     </td>
                     <td className="p-2 w-full">
                       {" "}
-                      {superDetail[0].usetime ? superDetail[0].usetime : "-"}
+                      {superDetail[0]?.usetime ? superDetail[0]?.usetime : "-"}
                     </td>
                   </tr>
                   <tr className="flex items-center">
@@ -161,8 +161,8 @@ function LocationDetailPage() {
                       <MdFreeBreakfast />
                     </td>
                     <td className="p-2 w-full">
-                      {superDetail[0].restdate
-                        ? superDetail[0].restdate.replace(/<br>/g, " / ")
+                      {superDetail[0]?.restdate
+                        ? superDetail[0]?.restdate.replace(/<br>/g, " / ")
                         : "-"}
                     </td>
                   </tr>
@@ -171,7 +171,7 @@ function LocationDetailPage() {
                       <FaDog />
                     </td>
                     <td className="p-2 w-full">
-                      {superDetail[0].chkpet ? superDetail[0].chkpet : "불가"}
+                      {superDetail[0]?.chkpet ? superDetail[0]?.chkpet : "불가"}
                     </td>
                   </tr>
                   <tr className="flex items-center">
@@ -192,9 +192,9 @@ function LocationDetailPage() {
             </table>
             <div className="w-1/2 h-full">
               <LocationMap
-                latitude={Number(detailData.mapy)}
-                longitude={Number(detailData.mapx)}
-                locationName={detailData.title}
+                latitude={Number(detailData?.mapy)}
+                longitude={Number(detailData?.mapx)}
+                locationName={detailData?.title}
               />
             </div>
           </div>
