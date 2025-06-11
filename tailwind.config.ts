@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-import type { Config } from 'tailwindcss'
-import scrollbarHide from 'tailwind-scrollbar-hide'
+import scrollbarHide from "tailwind-scrollbar-hide";
 
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
@@ -10,8 +9,6 @@ export default {
       fontFamily: {
         sans: ["Noto Sans", "sans-serif"],
         UhBeeKangJa: ["UhBeeKang-Ja", "sans-serif"], //삐뚤삐뚤 글씨체 / 버튼,제목 요소들에 사용
-        TTLaundryGothicB: ["TTLaundryGothicB", "sans-serif"], //캐주얼 문구체
-        RubikBubbles: ["Rubik Bubbles", "sans-serif"], //둥글둥글 글씨체
         SSRONETHandwritten: ["SSRONETHandwritten", "sans-serif"], //작은 애기 글씨체, 컨텐츠 요소들에 사용, text-xl 기본
         Pretendard: ["Pretendard-Regular", "sans-serif"],
         PretendardBold: ["Pretendard-Bold", "sans-serif"],
