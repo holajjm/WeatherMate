@@ -13,6 +13,8 @@ export default {
         TTLaundryGothicB: ["TTLaundryGothicB", "sans-serif"], //캐주얼 문구체
         RubikBubbles: ["Rubik Bubbles", "sans-serif"], //둥글둥글 글씨체
         SSRONETHandwritten: ["SSRONETHandwritten", "sans-serif"], //작은 애기 글씨체, 컨텐츠 요소들에 사용, text-xl 기본
+        Pretendard: ["Pretendard-Regular", "sans-serif"],
+        PretendardBold: ["Pretendard-Bold", "sans-serif"],
       },
       colors: {
         my_color: "#00FF7F",
