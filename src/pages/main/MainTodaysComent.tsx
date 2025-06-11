@@ -23,17 +23,17 @@ function MainTodaysComent() {
   }, []);
   const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
   const realImageList: WeatherImage = {
-    Clear: "./realImage/SunnyRealImage.webp",
-    Clouds: "./realImage/CloudyRealImage.webp",
-    Rain: "./realImage/RainyRealImage.webp",
-    Drizzle: "./realImage/RainyRealImage.webp",
-    Thunderstorm: "./realImage/RainyRealImage.webp",
-    Snow: "./realImage/SnowRealImage.webp",
-    Haze: "./realImage/HazeRealImage.webp",
-    Mist: "./realImage/HazeRealImage.webp",
-    Smoke: "./realImage/HazeRealImage.webp",
-    Dust: "./realImage/HazeRealImage.webp",
-    overcastClouds: "./realImage/CloudyRealImage.webp",
+    Clear: "./realImage/Sunny.webp",
+    Clouds: "./realImage/Cloudy.webp",
+    Rain: "./realImage/Rainy.webp",
+    Drizzle: "./realImage/Rainy.webp",
+    Thunderstorm: "./realImage/Rainy.webp",
+    Snow: "./realImage/Snow.webp",
+    Haze: "./realImage/Haze.webp",
+    Mist: "./realImage/Haze.webp",
+    Smoke: "./realImage/Haze.webp",
+    Dust: "./realImage/Haze.webp",
+    overcastClouds: "./realImage/Cloudy.webp",
   };
   const realImage =
     data && data.weather
@@ -67,7 +67,7 @@ function MainTodaysComent() {
               src={realImage}
               alt="today"
               ref={imgRef}
-              width={520}
+              width={580}
               height={160}
               fetchpriority="high"
               decoding="async"
