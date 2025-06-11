@@ -63,7 +63,7 @@ function Header() {
           className="w-10"
           onClick={handleRefresh}
         />
-        <p className="text-2xl text-orange-400 font-extrabold font-Pretendard">
+        <p className="text-2xl text-orange-400 font-PretendardBold">
           WeatherMate
         </p>
       </Link>
