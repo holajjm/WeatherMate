@@ -141,7 +141,7 @@ function Location() {
         duration: 1,
       }}
       key={i}
-      className="flex flex-col justify-between p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:border-blue-400 duration-200"
+      className="w-full flex flex-col justify-between p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:border-blue-400 duration-200"
     >
       <LocationItem item={e} />
     </motion.section>
@@ -191,7 +191,7 @@ function Location() {
         <LocationItemSkeleton />
       ) : (
         <>
-          <main className="grid grid-cols-2 gap-1 relative">
+          <main className="flex flex-col items-center justify-center sm:grid sm:grid-cols-2 gap-1 relative">
             {searchItemList?.length ? searchItemList : locationItemList}
           </main>
           <p ref={ref} className="w-full text-center">

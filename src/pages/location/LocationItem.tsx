@@ -89,11 +89,11 @@ function LocationItem({ item }: { item: InitialData }) {
         onClick={() => navigate(`/location/${item?.contentid}`)}
         className="grow flex flex-col gap-1"
       >
-        <header className="flex">
+        <header className="flex items-center justify-center">
           <img
             src={item?.firstimage ? item?.firstimage : "/ReadyForImage.webp"}
             alt="이미지1"
-            className="grow h-40 rounded-lg"
+            className="max-w-[320px] w-full h-40 rounded-lg"
             ref={imgRef}
             width={200}
             height={160}
