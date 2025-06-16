@@ -24,17 +24,12 @@ export default {
         kakao_lable: "#191919",
       },
       animation: {
-        slideIn: "slideIn 0.7s ease-out forwards",
-        slideOut: "slideOut 0.7s ease-in forwards",
+        shimmer: "shimmer 2s ease-in-out infinite",
       },
       keyframes: {
-        slideIn: {
-          "0%": { opacity: "0", transform: "translateX(-100%)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
-        },
-        slideOut: {
-          "0%": { opacity: "1", transform: "translateX(0)" },
-          "100%": { opacity: "0", transform: "translateX(-100%)" },
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(150%)" },
         },
       },
       height: {
