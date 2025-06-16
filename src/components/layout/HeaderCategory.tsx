@@ -11,7 +11,7 @@ import { FaUserCircle } from "react-icons/fa";
 function HeaderCategory() {
   useScrollTop();
   return (
-    <div className="max-w-[600px] min-w-[320px] m-auto h-screen flex flex-col items-center text-lg font-UhBeeKangJa bg-slate-100 drop-shadow-[10px_5px_3px_rgba(0,0,0,0.3)]">
+    <div className="min-w-[180px] m-auto h-screen flex flex-col items-center text-lg font-UhBeeKangJa bg-slate-100 drop-shadow-[10px_5px_3px_rgba(0,0,0,0.3)]">
       <h1 className="w-full font-bold font-SSRONETHandwritten px-2 text-xl flex items-center h-10 text-[#2D2D2D]">
         메인 카테고리
       </h1>
