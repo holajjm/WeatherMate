@@ -28,7 +28,7 @@ function Header() {
   }, [location.pathname]);
 
   return (
-    <header className="max-w-[600px] min-w-[320px] h-14 m-auto sticky top-0 z-50 flex items-center justify-center bg-blue-200">
+    <header className="max-w-[600px] min-w-[180px] h-14 m-auto sticky top-0 z-50 flex items-center justify-center bg-blue-200">
       {!open ? (
         <CgMenuLeftAlt
           className="text-2xl absolute left-4"
@@ -50,7 +50,7 @@ function Header() {
               ease: "easeInOut",
               duration: 0.8,
             }}
-            className={`w-2/3 h-full absolute top-14 left-0 bg-black`}
+            className={`w-1/4 sm:w-1/2 h-full absolute top-14 left-0 bg-black`}
           >
             <HeaderCategory />
           </motion.div>
