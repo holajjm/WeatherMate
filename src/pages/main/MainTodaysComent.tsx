@@ -1,20 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
-import { ModalPortal } from "@hooks/modalPortal";
-import MainModal from "@components/modal/MainModal";
 import { WeatherImage } from "type";
 
 import MainComentSkeleton from "@components/skeleton/MainComentSkeleton.tsx";
-import { MdDoubleArrow } from "react-icons/md";
 
 function MainTodaysComent() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-  const handleClose = () => {
-    setIsOpen(false);
-  };
   const imgRef = useRef<HTMLImageElement>(null);
   useEffect(() => {
     if (imgRef.current) {
@@ -41,23 +31,11 @@ function MainTodaysComent() {
       : null;
   return (
     <article className="p-2 flex flex-col gap-2 font-Pretendard h-full fade-in">
-      {isOpen && (
-        <ModalPortal>
-          <MainModal handleClose={handleClose} />
-        </ModalPortal>
-      )}
       <div className="flex items-center justify-between">
         <h1 className="font-bold text-base text-[#2D2D2D]">
           <span className="text-lg text-blue-600">웨더메이트</span>가 알려주는
           날씨 정보
         </h1>
-        <button
-          className="flex gap-1 items-center justify-center border-2 border-slate-300 w-32 h-10 rounded-lg bg-white text-sm hover:bg-slate-100 hover:scale-105 duration-100 ease-in-out"
-          onClick={handleOpen}
-        >
-          오늘의 추천 보기
-          <MdDoubleArrow />
-        </button>
       </div>
       {data ? (
         <div className="relative w-full h-40 flex gap-2">
