@@ -1,10 +1,13 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
-
 import { motion } from "framer-motion";
+
+import MainAllWeatherSkeleton from "@components/skeleton/MainAllWeatherSkeleton";
+import { AllCityData } from "type";
 
 const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
 interface Cities {
@@ -32,95 +35,54 @@ const citiesMappingData: Cities = {
   "Jeju-do": "제주도",
 };
 
-interface Data {
-  clouds: { all: number };
-  coord: { lat: number; lon: number };
-  dt: number;
-  id: number;
-  main: {
-    feels_like: number;
-    grnd_level: number;
-    humidity: number;
-    pressure: number;
-    sea_level: number;
-    temp: number;
-    temp_max: number;
-    temp_min: number;
-  };
-  name: string;
-  sys: {
-    country: string;
-    sunrise: number;
-    sunset: number;
-    timezone: number;
-  };
-  visibility: number;
-  weather: [
-    {
-      id: number;
-      main: string;
-      description: string;
-      icon: string;
-    },
-  ];
-  wind: {
-    deg: number;
-    speed: number;
-  };
-}
-
 function MainAllCitiesWeather() {
   usePageTitle("All City");
   useScrollTop();
-  const [data, setData] = useState<Data[]>([]);
-
-  useEffect(() => {
-    const getWeather = async () => {
-      const params = {
-        id: "1835847,1841610,1843125,1845106,1845105,1845789,1845788,1841597,1902028,1846265",
-        appid: apiKey,
-        lang: "kr",
-        units: "metric",
-      };
-      const res = await axios.get(
-        "https://api.openweathermap.org/data/2.5/group",
-        {
-          params,
-        },
-      );
-      setData(res.data.list);
-    };
-    getWeather();
-  }, []);
+  const params = {
+    id: "1835847,1841610,1843125,1845106,1845105,1845789,1845788,1841597,1902028,1846265",
+    appid: apiKey,
+    lang: "kr",
+    units: "metric",
+  };
+  const getWeather = async () => {
+    const res = await axios.get(
+      "https://api.openweathermap.org/data/2.5/group",
+      {
+        params,
+      },
+    );
+    return res?.data?.list;
+  };
+  const { data } = useQuery({
+    queryKey: ["AllCityData"],
+    queryFn: getWeather,
+    refetchInterval: 1000 * 60 * 30,
+  });
 
   return (
-    <div className="max-w-[600px] min-w-[320px] m-auto bg-slate-50 h-full flex flex-col gap-4 font-sans overflow-y-scroll scrollbar-hide p-8">
-      <div className="flex items-center">
-        <div className="text-xl text-nowrap font-bold flex-grow flex justify-center items-center flex-row">
-          <div className="text-center md:flex font-Ranchers">
-            <p>
-              <strong className="text-amber-400">WeatherMate</strong>의 전국날씨
-            </p>
-          </div>
-        </div>
+    <div className="max-w-[600px] min-w-[320px] m-auto bg-slate-50 h-full flex flex-col gap-2 overflow-y-scroll scrollbar-hide font-Pretendard">
+      <div className="w-full p-4 box-border flex items-center justify-center">
+        <h1 className="text-xl text-nowrap font-bold">
+          <span className="text-amber-400">WeatherMate</span>의 전국날씨
+        </h1>
       </div>
-      <div className="grid grid-cols-2 gap-4">
-        {data?.length > 0 && (
+      <div className="px-2 pb-2 grid grid-cols-1 grid-rows-10 sm:grid-rows-5 sm:grid-cols-2 gap-2">
+        {data?.length > 0 ? (
           <>
-            {data.map((item, i) => {
+            {data.map((item: AllCityData, i: number) => {
               const cityName =
                 citiesMappingData[item.name as keyof Cities] || item.name;
               const iconURL = `http://openweathermap.org/img/wn/${item.weather[0].icon}.png`;
               return (
                 <motion.div
-                  initial={{ translateX: 200, opacity: 0 }}
-                  animate={{ translateX: 0, opacity: 1 }}
+                  initial={{ translateY: 50, opacity: 0 }}
+                  animate={{ translateY: 0, opacity: 1 }}
                   transition={{
                     ease: "easeInOut",
-                    duration: 0.25 * (i + 2),
+                    duration: 0.2 * i,
                   }}
                   key={item.id}
-                  className="bg-[#E6E6FA] text-gray-600 p-4 rounded-lg shadow-lg shadow-[#b8b4ae] justify-center items-center border-white border-2"
+                  className="text-slate-600 p-2 shadow-md shadow-slate-400 justify-center items-center border-slate-200 border-2"
                 >
                   <div className="text-center">
                     <h2 className="text-md font-bold">{cityName}</h2>
@@ -128,18 +90,24 @@ function MainAllCitiesWeather() {
                       {String(item.main.temp).slice(0, 2)}°C
                     </p>
                     <div className="flex gap-2 items-center justify-center">
-                      <img src={iconURL} alt="Weather Icon" className="" />
+                      <img
+                        src={iconURL}
+                        alt="Weather Icon"
+                        className=""
+                        width={50}
+                        height={50}
+                      />
                       <p className="text-md font-bold">
                         {item.weather[0].description}
                       </p>
                     </div>
                     <div className="flex gap-2">
-                      <div className="rounded-md py-2 border border-slate-300 shadow-md shadow-slate-400 flex-grow text-nowrap">
+                      <div className="py-2 border-2 border-slate-300 shadow-md flex-grow text-nowrap">
                         <p className="text-md">
                           최고 :{String(item.main.temp_max).slice(0, 4)}°C
                         </p>
                       </div>
-                      <div className="rounded-md py-2 border border-slate-300 shadow-md shadow-slate-400 flex-grow text-nowrap">
+                      <div className="py-2 border-2 border-slate-300 shadow-md flex-grow text-nowrap">
                         <p className="text-md">
                           최저 :{String(item.main.temp_min).slice(0, 4)}°C
                         </p>
@@ -150,6 +118,8 @@ function MainAllCitiesWeather() {
               );
             })}
           </>
+        ) : (
+          <MainAllWeatherSkeleton />
         )}
       </div>
     </div>
