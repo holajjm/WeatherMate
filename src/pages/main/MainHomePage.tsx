@@ -112,20 +112,6 @@ function MainHomePage() {
                   오늘의 추천 보기
                   <MdDoubleArrow />
                 </button>
-                <div className="flex gap-1 items-center justify-center">
-                  <button
-                    onClick={() => navigate("/allcity")}
-                    className="flex gap-1 items-center justify-center border-2 border-slate-300 w-full h-10 rounded-lg bg-white text-sm hover:bg-slate-100 hover:-translate-y-1 duration-200 ease-in-out"
-                  >
-                    전국 날씨
-                  </button>
-                  <button
-                    onClick={() => navigate("/mbti")}
-                    className="flex gap-1 items-center justify-center border-2 border-slate-300 w-full h-10 rounded-lg bg-white text-sm hover:bg-slate-100 hover:-translate-y-1 duration-200 ease-in-out"
-                  >
-                    MBTI 검사
-                  </button>
-                </div>
               </div>
               <motion.section
                 initial={{ translateY: 50, opacity: 0 }}
@@ -156,6 +142,28 @@ function MainHomePage() {
                 }}
               >
                 <MainMyLocationWeather />
+              </motion.section>
+              <motion.section
+                initial={{ translateY: 200, opacity: 0 }}
+                animate={{ translateY: 0, opacity: 1 }}
+                transition={{
+                  ease: "easeInOut",
+                  duration: 1.25,
+                }}
+                className="p-2 flex gap-1 items-center justify-center"
+              >
+                <button
+                  onClick={() => navigate("/allcity")}
+                  className="flex gap-1 items-center justify-center border-2 border-slate-300 w-full h-10 rounded-lg bg-white text-sm hover:bg-slate-100 hover:-translate-y-1 duration-200 ease-in-out"
+                >
+                  전국 날씨 확인하기!
+                </button>
+                <button
+                  onClick={() => navigate("/mbti")}
+                  className="flex gap-1 items-center justify-center border-2 border-slate-300 w-full h-10 rounded-lg bg-white text-sm hover:bg-slate-100 hover:-translate-y-1 duration-200 ease-in-out"
+                >
+                  날씨 테마 MBTI 검사하기!
+                </button>
               </motion.section>
             </div>
           </motion.div>
