@@ -68,7 +68,7 @@ function MainWeatherTimeZone() {
   };
   return (
     <section className="w-full p-2 bg-slate-50 flex flex-col gap-1">
-      <h2 className="text-slate-400 text-base">
+      <h2 className="text-slate-600 text-base">
         시간대별 날씨정보(3시간 기준)
       </h2>
       {data?.cod !== "200" ? (
