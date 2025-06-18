@@ -20,17 +20,19 @@ function MainModal({ handleClose }: { handleClose: () => void }) {
 
   useEffect(() => {
     const getRecommendation = () => {
-      if (Coment[0].temperature >= data?.main.temp) {
+      if (Coment[0]?.temperature >= data?.main.temp) {
         setComentObj(Coment[0]);
         return;
       } else {
         for (let i = 0; i < Coment.length; i++) {
           if (
-            Coment[i].temperature < data?.main.temp &&
-            Coment[i + 1].temperature >= data?.main.temp
+            Coment[i]?.temperature < data?.main.temp &&
+            Coment[i + 1]?.temperature >= data?.main.temp
           ) {
             setComentObj(Coment[i + 1]);
             return;
+          } else {
+            setComentObj(Coment[Coment.length - 1]);
           }
         }
       }
