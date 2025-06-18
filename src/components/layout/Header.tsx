@@ -63,9 +63,9 @@ function Header() {
         <img
           src="/MainLogo.webp"
           alt="Main logo"
-          width={40}
-          height={32}
-          className="w-10 h-8"
+          width={200}
+          height={109}
+          className="w-10 h-6"
           onClick={handleRefresh}
         />
         <p className="text-2xl text-blue-900 font-PretendardBold">
