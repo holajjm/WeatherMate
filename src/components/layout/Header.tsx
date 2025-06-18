@@ -61,8 +61,8 @@ function Header() {
 
       <Link to="/" className="h-full flex items-center justify-center">
         <img
-          src="/weatherMateLogo.webp"
-          alt="weathermate logo"
+          src="/MainLogo.webp"
+          alt="Main logo"
           width={40}
           height={32}
           className="w-10 h-8"
