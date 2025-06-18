@@ -11,9 +11,10 @@ import router from "./routes";
 const { Kakao } = window as any;
 
 function App() {
+  const KAKAO_APP_KEY = import.meta.env.VITE_REACT_APP_KAKAO_JAVASCRIPT_KEY
   useEffect(() => {
     if (!Kakao.isInitialized()) {
-      Kakao.init("44ca17bb4cb74c64db42d774cc78f8af");
+      Kakao.init(KAKAO_APP_KEY);
     }
   }, []);
 
