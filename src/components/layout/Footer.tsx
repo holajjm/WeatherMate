@@ -6,20 +6,17 @@ import { BiLogoInstagram } from "react-icons/bi";
 
 function Footer() {
   return (
-    <footer className="max-w-[600px] min-w-[320px] m-auto p-2 flex flex-col gap-2 justify-center items-center text-slate-400 flex-wrap text-nowrap bg-slate-50">
+    <footer className="max-w-[600px] min-w-[320px] m-auto p-2 flex flex-col gap-2 justify-center items-center text-slate-600 flex-wrap text-nowrap bg-slate-50">
       <section className="flex gap-2">
         <p>이용약관</p>
         <Link to="https://github.com/FRONTENDSCHOOL9/WeatherMate">
           프로젝트
         </Link>
-        <p className="font-bold text-slate-500">개인정보처리방침</p>
+        <p className="font-bold text-slate-600">개인정보처리방침</p>
         <p>고객센터</p>
       </section>
       <section>
-        <Link
-          to="https://github.com/FRONTENDSCHOOL9/WeatherMate"
-          className="font-bold font-TTLaundryGothicB"
-        >
+        <Link to="https://github.com/FRONTENDSCHOOL9/WeatherMate">
           WeatherMate
         </Link>
       </section>
