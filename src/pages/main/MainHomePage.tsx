@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useRecoilState, useSetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
-import { LocationState } from "@recoil/atom";
 
+import { useCoordsStore } from "@store/store";
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
 import { ModalPortal } from "@hooks/modalPortal";
 import { AnimatePresence, motion } from "framer-motion";
 
-import MainTodaysComent from "@pages/main/MainTodaysComent";
+import MainNowWeather from "@pages/main/MainNowWeather";
 import MainMyLocationWeather from "@pages/main/MainMyLocationWeather";
 import MainWeatherTimeZone from "@pages/main/MainWeatherTimeZone";
 import ToTheTopButton from "@components/layout/ToTheTopButton";
 import MainModal from "@components/modal/MainModal";
+import Button from "@components/layout/Button";
 import { MdDoubleArrow } from "react-icons/md";
 
 function MainHomePage() {
   usePageTitle("WeatherMate");
   useScrollTop();
-  const coords = useRecoilState(LocationState);
-  const setCoords = useSetRecoilState(LocationState);
+  const { latitude, longitude } = useCoordsStore(state => state);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleOpen = () => {
@@ -29,19 +28,6 @@ function MainHomePage() {
   const handleClose = () => {
     setIsOpen(false);
   };
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        setCoords({
-          lat: position.coords.latitude,
-          lon: position.coords.longitude,
-        });
-      },
-      error => {
-        console.error("Error fetching location:", error.message);
-      },
-    );
-  }, []);
   const [step, setStep] = useState(0);
 
   useEffect(() => {
@@ -54,11 +40,11 @@ function MainHomePage() {
   }, [step]);
 
   const { data } = useQuery({
-    queryKey: ["weatherdata", coords[0].lat, coords[0].lon],
+    queryKey: ["weatherdata", latitude, longitude],
     queryFn: async () => {
-      if (coords[0].lat && coords[0].lon) {
+      if (latitude && longitude) {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${coords[0].lat}&lon=${coords[0].lon}&appid=${import.meta.env.VITE_REACT_APP_WEATHER_API_KEY2}&units=metric&lang=kr`,
+          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${import.meta.env.VITE_REACT_APP_WEATHER_API_KEY2}&units=metric&lang=kr`,
         );
         const data = await response.json();
         return data;
@@ -74,7 +60,7 @@ function MainHomePage() {
   }
 
   return (
-    <main className="max-w-[600px] min-w-[320px] h-screen m-auto flex flex-col gap-2 bg-slate-50 font-Pretendard">
+    <main className="relative max-w-[600px] min-w-[320px] h-screen m-auto flex flex-col gap-2 bg-slate-50 font-Pretendard">
       {isOpen && (
         <ModalPortal>
           <MainModal handleClose={handleClose} />
@@ -88,7 +74,7 @@ function MainHomePage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 1 }}
-            className="text-2xl w-full h-screen flex items-center justify-center"
+            className="text-2xl w-full h-1/2 flex items-center justify-start"
           >
             <h1 className="w-full text-center p-2 box-border font-bold text-[#2D2D2D]">
               환영해요! WeatherMate입니다!
@@ -105,13 +91,18 @@ function MainHomePage() {
           >
             <div className="w-full">
               <div className="w-full flex flex-col gap-1 p-2 box-border">
-                <button
-                  className="flex gap-1 items-center justify-center border-2 border-slate-300 w-full h-10 rounded-lg bg-white text-sm hover:bg-slate-100 hover:-translate-y-1 duration-200 ease-in-out"
+                <Button
+                  text={
+                    <>
+                      오늘의 추천 보기
+                      <MdDoubleArrow />
+                    </>
+                  }
+                  textColor="black"
+                  bgColor="gray"
+                  width="full"
                   onClick={handleOpen}
-                >
-                  오늘의 추천 보기
-                  <MdDoubleArrow />
-                </button>
+                ></Button>
               </div>
               <motion.section
                 initial={{ translateY: 50, opacity: 0 }}
@@ -121,7 +112,7 @@ function MainHomePage() {
                   duration: 0.5,
                 }}
               >
-                <MainTodaysComent />
+                <MainNowWeather />
               </motion.section>
               <motion.section
                 initial={{ translateY: 100, opacity: 0 }}
@@ -152,18 +143,20 @@ function MainHomePage() {
                 }}
                 className="p-2 flex gap-1 items-center justify-center"
               >
-                <button
+                <Button
+                  text={"전국 날씨 확인하기!"}
+                  textColor="black"
+                  bgColor="gray"
+                  width="full"
                   onClick={() => navigate("/allcity")}
-                  className="flex gap-1 items-center justify-center border-2 border-slate-300 w-full h-10 rounded-lg bg-white text-sm hover:bg-slate-100 hover:-translate-y-1 duration-200 ease-in-out"
-                >
-                  전국 날씨 확인하기!
-                </button>
-                <button
+                ></Button>
+                <Button
+                  text={"날씨 테마 MBTI 검사하기!"}
+                  textColor="black"
+                  bgColor="gray"
+                  width="full"
                   onClick={() => navigate("/mbti")}
-                  className="flex gap-1 items-center justify-center border-2 border-slate-300 w-full h-10 rounded-lg bg-white text-sm hover:bg-slate-100 hover:-translate-y-1 duration-200 ease-in-out"
-                >
-                  날씨 테마 MBTI 검사하기!
-                </button>
+                ></Button>
               </motion.section>
             </div>
           </motion.div>
