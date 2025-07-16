@@ -7,7 +7,7 @@ import useScrollTop from "@hooks/useScrollTop";
 import { motion } from "framer-motion";
 
 import MainAllWeatherSkeleton from "@components/skeleton/MainAllWeatherSkeleton";
-import { AllCityData } from "type";
+import { AllCityData } from "types/WeatherType";
 
 const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
 interface Cities {

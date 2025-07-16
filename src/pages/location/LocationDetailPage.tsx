@@ -4,7 +4,7 @@ import axios from "axios";
 
 import Button from "@components/layout/Button";
 import Loading from "@components/layout/Loading";
-import { LocationDetailData, LocationSuperDetailData } from "type";
+import { LocationDetailData, LocationSuperDetailData } from "types/type";
 
 import LocationMap from "@pages/location/LocationMap";
 import { FaLocationDot } from "react-icons/fa6";

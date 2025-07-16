@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 
-import MbtiQuestionData from "../../assets/MbtiQuestionData";
+import MbtiQuestionData from "../../constants/MbtiQuestionData";
 import mbtiStart from "@assets/mbti/mbtiimg/mbtiStart.png";
 import Button from "@components/layout/Button";
 

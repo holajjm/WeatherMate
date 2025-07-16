@@ -1,4 +1,4 @@
-import { Coment } from "../../assets/Coment.ts";
+import { Coment } from "../../constants/Coment.ts";
 import React, { useEffect, useRef, useState } from "react";
 
 interface ComentObj {

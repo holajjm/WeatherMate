@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
-import useCurrentLocation from "@hooks/useCurrentLocation";
+// import useCurrentLocation from "@hooks/useCurrentLocation";
 import Button from "@components/layout/Button";
 import { useDebounce } from "@hooks/useDebounce";
 import { motion } from "framer-motion";
@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import LocationKeywords from "@pages/location/LocationKeyword";
 import LocationItem from "@pages/location/LocationItem";
 import LocationItemSkeleton from "@components/skeleton/LocationItemSkeleton";
+import { useCoordsStore } from "@store/store";
 
 type InitialData = {
   [key: string]: string;
@@ -35,7 +36,7 @@ const options = [
 function Location() {
   const locationAPIKEY = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
   const navigate = useNavigate();
-  const { latitude, longitude } = useCurrentLocation();
+  const { latitude, longitude } = useCoordsStore((state) => state);
   const [contentID, setContentID] = useState<string>("12");
   const radius = "100000";
 

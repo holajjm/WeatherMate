@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useCustomAxios from "@hooks/useCustomAxios.js";
 import { useQuery } from "@tanstack/react-query";
-import { ReplyData } from "type";
+import { ReplyData } from "types/type";
 
 import ReplyNew from "./ReplyNew";
 import ReplyItem from "./ReplyItem";

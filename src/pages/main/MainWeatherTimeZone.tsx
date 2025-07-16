@@ -1,49 +1,13 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import useCurrentLocation from "@hooks/useCurrentLocation";
+import { useCoordsStore } from "@store/store";
 
 import MainTimeZoneSkeleton from "@components/skeleton/MainTimeZoneSkeleton";
+import { WeatherTime } from "types/WeatherType";
 
 function MainWeatherTimeZone() {
-  interface WeatherTime {
-    clouds: { all: number };
-    dt: number;
-    dt_txt: string;
-    main: {
-      feels_like: number;
-      grnd_level: number;
-      humidity: number;
-      pressure: number;
-      sea_level: number;
-      temp: number;
-      temp_max: number;
-      temp_min: number;
-    };
-    pop: number;
-    rain?: {
-      "3h": number;
-    };
-    sys: {
-      pod: string;
-    };
-    visibility: number;
-    weather: [
-      {
-        id: number;
-        main: string;
-        description: string;
-        icon: string;
-      },
-    ];
-    wind: {
-      deg: number;
-      gust: number;
-      speed: number;
-    };
-  }
-  const { latitude, longitude } = useCurrentLocation();
-
+  const { latitude, longitude } = useCoordsStore(state => state);
   const { data } = useQuery({
     queryKey: ["timeWeather", latitude, longitude],
     queryFn: async () => {
@@ -89,7 +53,6 @@ function MainWeatherTimeZone() {
                   src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
                   alt="Weather Icon"
                   fetchpriority="high"
-                  
                 />
                 <p className="text-center text-sm font-semibold">
                   {item.main.temp.toFixed(1)}°C

@@ -4,7 +4,7 @@ import axios from "axios";
 
 import Loading from "@components/layout/Loading";
 import Button from "@components/layout/Button";
-import { UserBookmarkData } from "type";
+import { UserBookmarkData } from "types/type";
 
 function UserBookMark() {
   const [bookmarks, setBookmarks] = useState([]);

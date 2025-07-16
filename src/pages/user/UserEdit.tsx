@@ -4,7 +4,7 @@ import { memberState } from "../../recoil/atom";
 import { useNavigate } from "react-router-dom";
 import useCustomAxios from "@hooks/useCustomAxios";
 import { toast } from "react-toastify";
-import { UserMainData } from "type";
+import { UserMainData } from "types/type";
 
 function UserEdit() {
   const [user, setUser] = useRecoilState<UserMainData>(memberState);
@@ -72,7 +72,7 @@ function UserEdit() {
       }
       setPassword(updatedData.password);
       toast("회원 정보가 성공적으로 수정되었습니다.");
-      navigate('/user/mypage')
+      navigate("/user/mypage");
     } catch (error) {
       console.error(error);
       toast("회원 정보 수정에 실패했습니다.");

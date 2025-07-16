@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import useCustomAxios from "@hooks/useCustomAxios";
 import Button from "@components/layout/Button";
-import { CommunityFormData } from "type";
+import { CommunityFormData } from "types/type";
 
 import { MdOutlineCameraAlt } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
@@ -96,7 +96,10 @@ function CommunityNew() {
                 className="flex items-center justify-between gap-1"
               >
                 {["Sun", "Cloud", "Rain", "Foggy", "Snow", "Wind"].map(id => (
-                  <figure key={id} className="rounded-lg w-full cursor-pointer hover:ring-2">
+                  <figure
+                    key={id}
+                    className="rounded-lg w-full cursor-pointer hover:ring-2"
+                  >
                     <input
                       className="hidden"
                       type="radio"
@@ -106,7 +109,10 @@ function CommunityNew() {
                         required: "날씨를 선택해주세요",
                       })}
                     />
-                    <label htmlFor={"title"} className={`rounded-lg w-full flex items-center justify-center cursor-pointer`}>
+                    <label
+                      htmlFor={"title"}
+                      className={`rounded-lg w-full flex items-center justify-center cursor-pointer`}
+                    >
                       <img
                         className="w-12 h-12 rounded-lg cursor-pointer"
                         src={`/WeatherIcon${id}.webp`}

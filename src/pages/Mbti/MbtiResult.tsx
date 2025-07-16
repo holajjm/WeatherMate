@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { MBTIResult } from "type";
+import { MBTIResult } from "types/type";
 
 import MbtiResultData from "../../assets/mbti/MbtiResultData";
 import KakaoShareButton from "@components/KakaoShareButton";
