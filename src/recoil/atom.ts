@@ -18,25 +18,4 @@ export const memberState = atom({
   effects: [persistAtom],
 });
 
-export const LocationState = atom({
-  key: "LocationState",
-  default: { lat: 0, lon: 0}
-})
-
-export const userWeatherState = atom({
-  key: "userWeatherState",
-  default: null,
-});
-
-export const selectedLocationState = atom({
-  key: "selectedLocationState",
-  default: { lat: null, lon: null },
-});
-
-export const likeState = atom({
-  key: "likeState",
-  default: 0,
-  effects: [persistAtom],
-});
-
 //1731559734
