@@ -8,11 +8,15 @@ function ToTheTopButton() {
   useEffect(() => {
     // 스크롤 위치에 따라 버튼을 표시 또는 숨깁니다.
     const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      const shouldBeVisible = window.scrollY > 100;
+
+      // 현재 visible 상태와 다를 때만 setState 실행
+      setIsVisible(prev => {
+        if (prev !== shouldBeVisible) {
+          return shouldBeVisible;
+        }
+        return prev; // 상태 변화 없으면 동일 값 반환
+      });
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -27,13 +31,12 @@ function ToTheTopButton() {
 
   return (
     <button
-      className={`fixed bottom-28 right-5 rounded-full z-50 p-2 w-16 h-12 shadow-xl border-2 bg-white duration-500 transition-opacity flex justify-center items-center ${
+      className={`fixed bottom-24 right-5 rounded-full z-50 w-12 h-12 shadow-xl border-2 duration-200 transition-opacity flex justify-center items-center ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
       onClick={handleClick}
     >
       <FaArrowUp className="font-bold text-2xl text-primary" />
-      TOP
     </button>
   );
 }
