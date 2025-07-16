@@ -8,12 +8,13 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Noto Sans", "sans-serif"],
-        UhBeeKangJa: ["UhBeeKang-Ja", "sans-serif"], //삐뚤삐뚤 글씨체 / 버튼,제목 요소들에 사용
-        SSRONETHandwritten: ["SSRONETHandwritten", "sans-serif"], //작은 애기 글씨체, 컨텐츠 요소들에 사용, text-xl 기본
-        Pretendard: ["Pretendard-Regular", "sans-serif"],
-        PretendardBold: ["Pretendard-Bold", "sans-serif"],
+        Suit: ["SUIT-Regular", "sans-serif"],
+        SuitBold: ["SUIT-Bold", "sans-serif"],
       },
       colors: {
+        blue_middle: "#2563eb",
+        blue_dark: "#1e3a8a",
+
         my_color: "#00FF7F",
         primary: "#81CDFF",
         primary_deep: "#21A6FF",
