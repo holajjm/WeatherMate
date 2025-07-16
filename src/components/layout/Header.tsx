@@ -65,12 +65,12 @@ function Header() {
           alt="Main logo"
           width={200}
           height={109}
-          className="w-10 h-6"
+          className="w-10 h-5"
           onClick={handleRefresh}
+          {...{ fetchpriority: "high" }}
+          decoding="async"
         />
-        <p className="text-2xl text-blue-900 font-PretendardBold">
-          WeatherMate
-        </p>
+        <p className="text-2xl text-blue_dark font-SuitBold">WeatherMate</p>
       </Link>
       <NavigationBar />
     </header>
