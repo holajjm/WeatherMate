@@ -14,6 +14,10 @@ export default defineConfig({
         find: "@components",
         replacement: path.resolve(__dirname, "src/components"),
       },
+      {
+        find: "@constants",
+        replacement: path.resolve(__dirname, "src/constants"),
+      },
       { find: "@hooks", replacement: path.resolve(__dirname, "src/hooks") },
       { find: "@pages", replacement: path.resolve(__dirname, "src/pages") },
       { find: "@community", replacement: path.resolve(__dirname, "src/community") },
@@ -22,6 +26,8 @@ export default defineConfig({
       { find: "@Mbti", replacement: path.resolve(__dirname, "src/Mbti") },
       { find: "@user", replacement: path.resolve(__dirname, "src/user") },
       { find: "@recoil", replacement: path.resolve(__dirname, "src/recoil") },
+      { find: "@store", replacement: path.resolve(__dirname, "src/store") },
+      { find: "@types", replacement: path.resolve(__dirname, "src/types") },
     ],
   },
 });
