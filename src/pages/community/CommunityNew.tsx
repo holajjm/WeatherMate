@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import useCustomAxios from "@hooks/useCustomAxios";
 import Button from "@components/layout/Button";
-import { CommunityFormData } from "@types/UserType";
+import type { CommunityFormData } from "types/CommunityType";
 
 import { MdOutlineCameraAlt } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
@@ -79,7 +79,7 @@ function CommunityNew() {
             </article>
             <div>
               {errors.image ? (
-                <p className="font-SSRONETHandwritten text-base font-bold text-red-500">
+                <p className="text-base font-bold text-red-500">
                   사진을 추가하세요.
                 </p>
               ) : (
@@ -95,7 +95,15 @@ function CommunityNew() {
                 aria-labelledby="profile-image-options"
                 className="flex items-center justify-between gap-1"
               >
-                {["Sun", "Cloud", "Rain", "Foggy", "Snow", "Wind"].map(id => (
+                {[
+                  "Sun",
+                  "Cloud",
+                  "Rain",
+                  "Foggy",
+                  "Snow",
+                  "Thunder",
+                  "Wind",
+                ].map(id => (
                   <figure
                     key={id}
                     className="rounded-lg w-full cursor-pointer hover:ring-2"
@@ -115,7 +123,7 @@ function CommunityNew() {
                     >
                       <img
                         className="w-12 h-12 rounded-lg cursor-pointer"
-                        src={`/WeatherIcon${id}.webp`}
+                        src={`/WeatherIcon/WeatherIcon${id}.webp`}
                         alt="WeatherIcon"
                         width={48}
                         height={48}
