@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
@@ -8,20 +8,13 @@ import { memberState } from "@recoil/atom";
 import useCustomAxios from "@hooks/useCustomAxios";
 import useScrollTop from "@hooks/useScrollTop";
 import Button from "@components/layout/Button";
-import { CommunityDetailData } from "@types/UserType";
+import type { CommunityDetailData } from "types/CommunityType";
 
 import ReplyMain from "./ReplyMain";
 import { FaArrowLeft, FaHeart } from "react-icons/fa";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 function CommunityDetail() {
-  useScrollTop();
-  const imgRef = useRef<HTMLImageElement>(null);
-  useEffect(() => {
-    if (imgRef.current) {
-      imgRef.current.setAttribute("fetchpriority", "high");
-    }
-  }, []);
   const navigate = useNavigate();
   const user = useRecoilValue(memberState);
   const { _id } = useParams();
@@ -65,13 +58,12 @@ function CommunityDetail() {
               src={
                 data?.data?.item.user.profile
                   ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item.user.profile}`
-                  : "/mainlogin.webp"
+                  : "/NullUser.webp"
               }
               className="rounded-full border-2 w-12 h-12"
-              ref={imgRef}
               width={48}
               height={48}
-              loading="lazy"
+              {...{ fetchpriority: "high" }}
               decoding="async"
             />
             <div className="grow">
@@ -83,15 +75,32 @@ function CommunityDetail() {
               </p>
             </div>
             <div className="flex flex-col items-center justify-center">
-              {data?.data?.item.title && (
+              {[
+                "Sun",
+                "Cloud",
+                "Rain",
+                "Foggy",
+                "Snow",
+                "Thunder",
+                "Wind",
+              ].includes(data?.data?.item?.title as string) ? (
                 <img
                   className="w-10 h-10 rounded-full p-1"
-                  src={`/WeatherIcon${data?.data?.item.title}.webp`}
+                  src={`/WeatherIcon/WeatherIcon${data?.data?.item.title}.webp`}
                   alt="weather"
-                  ref={imgRef}
                   width={40}
                   height={40}
-                  loading="lazy"
+                  {...{ fetchpriority: "high" }}
+                  decoding="async"
+                />
+              ) : (
+                <img
+                  className="w-10 h-10 rounded-full p-1"
+                  src="./MBTIImage/MBTIMain.webp"
+                  alt="weather"
+                  width={40}
+                  height={40}
+                  {...{ fetchpriority: "high" }}
                   decoding="async"
                 />
               )}
@@ -106,18 +115,17 @@ function CommunityDetail() {
                     ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item.extra.image}`
                     : data?.data?.item?.image
                       ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item?.image}`
-                      : `/readyforimage.jpeg`
+                      : `/ReadyForImage.webp`
                 }
                 alt="Content Image"
                 className="w-full h-full object-scale-down aspect-square"
-                ref={imgRef}
                 width={300}
                 height={240}
-                loading="lazy"
+                {...{ fetchpriority: "high" }}
                 decoding="async"
               />
             </div>
-            <p className="bg-slate-100 text-slate-600 rounded-md p-2 box-border grow font-UhBeeKangJa">
+            <p className="bg-slate-100 text-slate-600 rounded-md p-2 box-border grow">
               {data?.data?.item.content}
             </p>
           </main>
@@ -165,7 +173,6 @@ function CommunityDetail() {
           </footer>
         </section>
       )}
-      {/* <Outlet context={data?.data?.item} /> */}
       <ReplyMain />
     </div>
   );
