@@ -7,7 +7,7 @@ import { memberState } from "@recoil/atom.js";
 import useCustomAxios from "@hooks/useCustomAxios.js";
 import Button from "@components/layout/Button";
 import { toast } from "react-toastify";
-import { LoginMainData } from "@types/UserType";
+import type { LoginMainData } from "types/UserType";
 
 function UserLogin() {
   const location = useLocation();
@@ -148,7 +148,7 @@ function UserLogin() {
           </form>
           <img
             className="m-auto"
-            src="/logo.webp"
+            src="/MainLogo.webp"
             width={80}
             height={80}
             loading="lazy"

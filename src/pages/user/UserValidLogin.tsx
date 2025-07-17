@@ -32,7 +32,7 @@ function UserValidLogin() {
             </p>
             <img
               className="w-1/3"
-              src="/mainlogin.webp"
+              src="/MainIcon.webp"
               alt="SampleImg"
               width={120}
               height={150}
