@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "@components/layout/Button";
-import { CommunityData } from "types/type";
+import { CommunityData } from "@types/UserType";
 
 function CommunityModal({
   handleClose,

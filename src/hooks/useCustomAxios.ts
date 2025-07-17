@@ -2,7 +2,7 @@ import { memberState } from "../recoil/atom";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { UserMainData } from "types/type";
+import { UserMainData } from "@types/UserType";
 
 const API_SERVER = import.meta.env.VITE_API_SERVER;
 const REFRESH_URL = "/auth/refresh";

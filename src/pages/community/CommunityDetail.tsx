@@ -8,7 +8,7 @@ import { memberState } from "@recoil/atom";
 import useCustomAxios from "@hooks/useCustomAxios";
 import useScrollTop from "@hooks/useScrollTop";
 import Button from "@components/layout/Button";
-import { CommunityDetailData } from "types/type";
+import { CommunityDetailData } from "@types/UserType";
 
 import ReplyMain from "./ReplyMain";
 import { FaArrowLeft, FaHeart } from "react-icons/fa";

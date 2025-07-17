@@ -9,7 +9,7 @@ import useCustomAxios from "@hooks/useCustomAxios";
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
 import Button from "@components/layout/Button";
-import { CommunityMainData, ExpandCommunityData } from "types/type";
+import { CommunityMainData, ExpandCommunityData } from "@types/UserType";
 
 import UserBoard from "@pages/user/UserBoard";
 import UserBookMark from "@pages/user/UserBookmark";

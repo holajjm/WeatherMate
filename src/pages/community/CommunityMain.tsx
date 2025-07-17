@@ -5,7 +5,7 @@ import { AxiosResponse } from "axios";
 import { useRecoilState } from "recoil";
 import { memberState } from "../../recoil/atom";
 import useCustomAxios from "@hooks/useCustomAxios";
-import { CommunityMainData } from "types/type";
+import { CommunityMainData } from "@types/UserType";
 
 import Search from "@components/layout/Search";
 import ToTheTopButton from "@components/layout/ToTheTopButton";

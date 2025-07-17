@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import useCustomAxios from "@hooks/useCustomAxios";
 import CommunityPopularSkeleton from "@components/skeleton/CommunityPopularSkeleton";
-import { CommunityData } from "types/type";
+import { CommunityData } from "@types/UserType";
 import { ModalPortal } from "@hooks/modalPortal";
 import MainModal from "@components/modal/MainModal";
 import CommunityModal from "@components/modal/CommunityModal";

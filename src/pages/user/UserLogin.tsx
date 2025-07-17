@@ -7,7 +7,7 @@ import { memberState } from "@recoil/atom.js";
 import useCustomAxios from "@hooks/useCustomAxios.js";
 import Button from "@components/layout/Button";
 import { toast } from "react-toastify";
-import { LoginMainData } from "types/type";
+import { LoginMainData } from "@types/UserType";
 
 function UserLogin() {
   const location = useLocation();

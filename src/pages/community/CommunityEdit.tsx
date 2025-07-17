@@ -6,7 +6,7 @@ import { AxiosResponse } from "axios";
 
 import useCustomAxios from "@hooks/useCustomAxios.js";
 import Button from "@components/layout/Button";
-import { CommunityDetailData, CommunityFormData } from "types/type";
+import { CommunityDetailData, CommunityFormData } from "@types/UserType";
 
 function CommunityEdit() {
   const naviagte = useNavigate();

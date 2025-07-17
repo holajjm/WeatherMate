@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "@components/layout/Button";
-import { ExpandCommunityData } from "types/type";
+import { ExpandCommunityData } from "@types/UserType";
 import useCustomAxios from "@hooks/useCustomAxios";
 import { toast } from "react-toastify";
 

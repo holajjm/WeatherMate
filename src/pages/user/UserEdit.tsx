@@ -4,7 +4,7 @@ import { memberState } from "../../recoil/atom";
 import { useNavigate } from "react-router-dom";
 import useCustomAxios from "@hooks/useCustomAxios";
 import { toast } from "react-toastify";
-import { UserMainData } from "types/type";
+import { UserMainData } from "@types/UserType";
 
 function UserEdit() {
   const [user, setUser] = useRecoilState<UserMainData>(memberState);

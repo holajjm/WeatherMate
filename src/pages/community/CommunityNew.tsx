@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import useCustomAxios from "@hooks/useCustomAxios";
 import Button from "@components/layout/Button";
-import { CommunityFormData } from "types/type";
+import { CommunityFormData } from "@types/UserType";
 
 import { MdOutlineCameraAlt } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";

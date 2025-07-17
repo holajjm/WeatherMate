@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useRecoilValue } from "recoil";
 import { memberState } from "@recoil/atom";
-import { NewReply, ReplyData } from "types/type";
+import { NewReply, ReplyData } from "@types/UserType";
 
 import useCustomAxios from "@hooks/useCustomAxios.js";
 import Button from "@components/layout/Button";
