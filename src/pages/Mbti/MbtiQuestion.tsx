@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 
-import MbtiQuestionData from "../../constants/MbtiQuestionData";
-import mbtiStart from "@assets/mbti/mbtiimg/mbtiStart.png";
+import MbtiQuestionData from "@constants/MbtiQuestionData";
 import Button from "@components/layout/Button";
 
 function MbtiQuestion() {
@@ -56,10 +55,14 @@ function MbtiQuestion() {
 
   return (
     <>
-      <div
-        style={{ backgroundImage: `url(${mbtiStart})` }}
-        className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-cover bg-center font-Pretendard"
-      >
+      <div className="relative max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-cover bg-center font-Pretendard">
+        <img
+          className="absolute top-0 left-0 -z-10 h-screen object-cover"
+          src="/MBTIImage/MBTIMain.webp"
+          alt="mbti"
+          {...{ fetchpriority: "high" }}
+          decoding="async"
+        />
         <section className="w-full p-2 flex flex-col gap-4 bg-slate-50 rounded-lg">
           <header className="flex flex-col gap-4">
             <h1 className="text-xl text-center font-bold font-Pretendard">
