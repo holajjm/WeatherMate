@@ -14,6 +14,7 @@ const buttonColor = {
   indigo: "bg-indigo-500",
   kakao: "bg-[#FEE500]",
   gray: "bg-slate-300",
+  gray_light: "bg-slate-200",
   amber: "bg-amber-200",
   red: "bg-red-500",
   lightRed: "bg-red-300",
