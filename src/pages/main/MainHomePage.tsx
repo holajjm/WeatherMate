@@ -15,10 +15,12 @@ import ToTheTopButton from "@components/layout/ToTheTopButton";
 import MainModal from "@components/modal/MainModal";
 import Button from "@components/layout/Button";
 import { MdDoubleArrow } from "react-icons/md";
+import { useCoords } from "@hooks/useCoords";
 
 function MainHomePage() {
   usePageTitle("WeatherMate");
   useScrollTop();
+  useCoords();
   const { latitude, longitude } = useCoordsStore(state => state);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -58,7 +60,7 @@ function MainHomePage() {
   if (data) {
     sessionStorage.setItem("sessionWeather", JSON.stringify(data));
   }
-
+  
   return (
     <main className="relative max-w-[600px] min-w-[320px] h-screen m-auto flex flex-col gap-2 bg-slate-50 font-Pretendard">
       {isOpen && (
