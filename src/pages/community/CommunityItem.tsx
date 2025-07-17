@@ -1,18 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ExpandCommunityData } from "@types/UserType";
+import type { ExpandCommunityData } from "types/CommunityType";
 
 import { FaHeart } from "react-icons/fa";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { TimeDiff } from "@hooks/TimeDiff";
 
 function CommunityItem({ item }: { item: ExpandCommunityData }) {
-  const imgRef = useRef<HTMLImageElement>(null);
-  useEffect(() => {
-    if (imgRef.current) {
-      imgRef.current.setAttribute("fetchpriority", "high");
-    }
-  }, []);
   const navigate = useNavigate();
   const getItemTime = (createTime: string) => {
     const create = new Date(createTime).getTime();
@@ -33,45 +28,55 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
 
   return (
     <div
-      className="flex flex-col gap-3 bg-white shadow-md shadow-slate-300 p-2 box-border rounded-lg cursor-pointer"
+      className="w-full h-full flex flex-col gap-2 bg-white drop-shadow-lg p-2 box-border rounded-lg cursor-pointer"
       onClick={() => navigate(`/community/${item._id}`)}
     >
-      <header className="flex flex-col gap-3 font-TTLaundryGothicB">
+      <header className="flex flex-col gap-3">
         <section className="flex gap-3 items-center">
+          
           <div className="flex items-center justify-center rounded-full w-12 h-12 border-2">
             <img
               src={
                 item?.user.profile
                   ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.user.profile}`
-                  : "/mainlogin.webp"
+                  : "/NullUser.webp"
               }
               alt="profile"
               className="rounded-full w-12 h-12 object-contain"
-              ref={imgRef}
               width={48}
               height={48}
-              loading="lazy"
+              {...{ fetchpriority: "high" }}
               decoding="async"
             />
           </div>
+
           <div className="grow flex items-center">
             <div className="grow">
               <h1 className="text-base font-bold">{item.user?.name}</h1>
-              <p className="text-sm text-slate-500 font-sans font-medium">
-                {getItemTime(item.createdAt)}
+              <p className="text-sm text-slate-500 font-medium">
+                {TimeDiff(item.createdAt)}
               </p>
             </div>
             {item.title && (
               <img
-                className="w-10 h-10"
+                className="w-10 h-10 rounded-lg"
                 src={
-                  item?.title ? `/WeatherIcon${item.title}.webp` : "/logo.webp"
+                  [
+                    "Sun",
+                    "Cloud",
+                    "Rain",
+                    "Foggy",
+                    "Snow",
+                    "Thunder",
+                    "Wind",
+                  ].includes(item?.title)
+                    ? `./WeatherIcon/WeatherIcon${item?.title}.webp`
+                    : "./MBTIImage/MBTIMain.webp"
                 }
                 alt="weatherIcon"
-                ref={imgRef}
                 width={48}
                 height={48}
-                loading="lazy"
+                {...{ fetchpriority: "high" }}
                 decoding="async"
               />
             )}
@@ -79,7 +84,7 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
         </section>
       </header>
 
-      <main className="grow flex flex-col gap-2">
+      <article className="grow flex flex-col gap-2">
         <div className="h-full">
           <img
             className="w-full h-60 rounded-md object-scale-down"
@@ -93,24 +98,22 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
             alt="DetailImage"
             width={300}
             height={240}
-            ref={imgRef}
-            fetchpriority="high"
-            loading="lazy"
+            {...{ fetchpriority: "high" }}
             decoding="async"
           />
         </div>
         <div className="text-slate-600 bg-slate-100 rounded-md p-2 box-border grow font-UhBeeKangJa">
           {item.content}
         </div>
-      </main>
+      </article>
 
       <footer className="flex gap-4 items-center justify-between text-amber-400">
         <p className="text-slate-500">조회수 {item.views}</p>
         <section className="flex gap-2">
-          <button className="flex items-center">
+          {/* <button className="flex items-center">
             <FaHeart className=" text-2xl" />
           </button>
-          <p className="">like</p>
+          <p className="">like</p> */}
           <p className="flex items-center">
             <IoChatbubbleEllipsesOutline className=" text-2xl" />
           </p>
