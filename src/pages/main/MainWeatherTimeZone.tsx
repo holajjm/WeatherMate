@@ -2,9 +2,10 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import { useCoordsStore } from "@store/store";
+import { UnixTime } from "@hooks/UnixTime";
 
 import MainTimeZoneSkeleton from "@components/skeleton/MainTimeZoneSkeleton";
-import { WeatherTime } from "types/WeatherType";
+import type { WeatherTime } from "types/WeatherType";
 
 function MainWeatherTimeZone() {
   const { latitude, longitude } = useCoordsStore(state => state);
@@ -24,12 +25,6 @@ function MainWeatherTimeZone() {
   });
   // console.log(data);
 
-  const unixTime = (time: number) => {
-    const date = new Date(time * 1000);
-    const hour = date.getHours() % 12 || 12;
-    const ampm = date.getHours() >= 12 ? "PM" : "AM";
-    return `${ampm} ${hour}`;
-  };
   return (
     <section className="w-full p-2 bg-slate-50 flex flex-col gap-1">
       <h2 className="text-slate-600 text-base">
@@ -46,7 +41,7 @@ function MainWeatherTimeZone() {
                 className="h-24 w-full min-w-14 p-1 box-border border-[1px] shadow-md shadow-slate-300 bg-white rounded-lg flex flex-col items-center justify-center text-nowrap"
               >
                 <p className="text-xs text-center text-slate-600">
-                  {unixTime(item.dt)}
+                  {UnixTime(item.dt, "")}
                 </p>
                 <img
                   className="w-10 h-10"
