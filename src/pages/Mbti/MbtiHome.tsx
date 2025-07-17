@@ -7,8 +7,6 @@ import usePageTitle from "@hooks/usePageTitle";
 import Button from "@components/layout/Button";
 import useScrollTop from "@hooks/useScrollTop";
 
-import mbtiStart from "@assets/mbti/mbtiimg/mbtiStart.png";
-
 function MbtiHome() {
   usePageTitle("MBTI");
   useScrollTop();
@@ -17,10 +15,14 @@ function MbtiHome() {
   const [user] = useRecoilState(memberState);
 
   return (
-    <div
-      style={{ backgroundImage: `url(${mbtiStart})` }}
-      className="max-w-[600px] min-w-[320px] m-auto min-h-screen p-2 bg-cover bg-center"
-    >
+    <div className="relative max-w-[600px] min-w-[320px] m-auto min-h-screen p-2 bg-cover bg-center">
+      <img
+        className="absolute top-0 left-0 -z-10 h-screen object-cover"
+        src="./MBTIImage/MBTIMain.webp"
+        alt="mbti"
+        {...{ fetchpriority: "high" }}
+        decoding="async"
+      />
       <div className="h-full flex flex-col gap-2 items-center justify-center text-nowrap">
         <div className="w-full pt-10 flex flex-col gap-2 text-center items-center justift-center">
           <h1 className="text-xl font-bold font-Pretendard">
@@ -31,7 +33,7 @@ function MbtiHome() {
             src="/mainlogin.webp"
             width={120}
             loading="lazy"
-            // fetchPriority="high"
+            {...{ fetchpriority: "high" }}
             decoding="async"
           />
           <div className="text-base font-bold text-slate-600 opacity-80 font-SSRONETHandwritten">
