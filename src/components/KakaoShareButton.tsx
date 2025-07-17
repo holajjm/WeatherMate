@@ -1,20 +1,10 @@
 import React from "react";
 import Button from "./layout/Button";
+import { KakaoShareData } from "../types/MbtiType";
 
 const { Kakao } = window as any;
-interface Result {
-  data:
-    | {
-        desc: string;
-        id: number;
-        image: string;
-        title: string;
-        type: string;
-      }
-    | undefined;
-}
 
-function KakaoShareButton(data: Result) {
+function KakaoShareButton(data: KakaoShareData) {
   const url = import.meta.env.VITE_APP_TITLE;
   const resultUrl = window.location.href;
   // console.log(data);
@@ -25,7 +15,7 @@ function KakaoShareButton(data: Result) {
       content: {
         title: "🌤️날씨 성격 테스트🌤️",
         description: ` ${data.data?.title}`,
-        imageUrl: `url + data.data.image`,
+        imageUrl: `/MBTIImage/${data?.type}.webp`,
         link: {
           mobileWebUrl: resultUrl,
           webUrl: resultUrl,
