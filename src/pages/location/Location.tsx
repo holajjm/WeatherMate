@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
-// import useCurrentLocation from "@hooks/useCurrentLocation";
 import Button from "@components/layout/Button";
 import { useDebounce } from "@hooks/useDebounce";
 import { motion } from "framer-motion";
