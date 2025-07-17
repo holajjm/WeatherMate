@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 function LocationKeywords({
@@ -12,18 +12,13 @@ function LocationKeywords({
   onClick: React.Dispatch<React.SetStateAction<string>>;
   img_src: string;
 }) {
-  const imgRef = useRef<HTMLImageElement>(null);
-  useEffect(() => {
-    if (imgRef.current) {
-      imgRef.current.setAttribute("fetchpriority", "high");
-    }
-  }, []);
   const [click, setClick] = useState<boolean>(false);
   const [searchParams, setSearchParams] = useSearchParams();
   // console.log(searchParams.get("id"));
   // useEffect(() => {
   //   setSearchParams({ id: "12" });
   // }, []);
+  
   return (
     <div
       onClick={e => {
@@ -42,13 +37,12 @@ function LocationKeywords({
       className={`flex flex-col justify-center items-center font-Pretendard bg-slate-200 p-1 rounded-lg transition-all duration-100 hover:bg-blue-300 hover:cursor-pointer ${click ? "border-2 border-black" : "border-none"}`}
     >
       <img
-        src={img_src}
+        src={`/Location/Location_${img_src}.webp`}
         alt={label}
-        ref={imgRef}
         className="w-5"
         width={20}
         height={20}
-        loading="lazy"
+        {...{ fetchpriority: "high" }}
         decoding="async"
       />
       <p className="text-nowrap text-sm">{label}</p>

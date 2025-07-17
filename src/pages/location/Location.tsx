@@ -23,14 +23,14 @@ interface PageData {
   totalCount: number;
 }
 const options = [
-  { id: "12", label: "전체", img_src: "all.webp" },
-  { id: "14", label: "문화", img_src: "communityplace.webp" },
-  { id: "15", label: "행사", img_src: "festival.webp" },
-  { id: "25", label: "여행지", img_src: "travel.webp" },
-  { id: "28", label: "레포츠", img_src: "reports.webp" },
-  { id: "32", label: "숙박", img_src: "hotel.webp" },
-  { id: "38", label: "쇼핑", img_src: "shopping.webp" },
-  { id: "39", label: "음식점", img_src: "food.webp" },
+  { id: "12", label: "전체", img_src: "All" },
+  { id: "14", label: "문화", img_src: "Culture" },
+  { id: "15", label: "행사", img_src: "Festival" },
+  { id: "25", label: "여행지", img_src: "Travel" },
+  { id: "28", label: "스포츠", img_src: "Sports" },
+  { id: "32", label: "숙박", img_src: "Hotel" },
+  { id: "38", label: "쇼핑", img_src: "Shopping" },
+  { id: "39", label: "음식점", img_src: "Food" },
 ];
 function Location() {
   const locationAPIKEY = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
