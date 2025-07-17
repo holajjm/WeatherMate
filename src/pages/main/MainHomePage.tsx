@@ -60,7 +60,7 @@ function MainHomePage() {
   if (data) {
     sessionStorage.setItem("sessionWeather", JSON.stringify(data));
   }
-  
+
   return (
     <main className="relative max-w-[600px] min-w-[320px] h-screen m-auto flex flex-col gap-2 bg-slate-50 font-Pretendard">
       {isOpen && (
@@ -76,8 +76,18 @@ function MainHomePage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 1 }}
-            className="text-2xl w-full h-1/2 flex items-center justify-start"
+            className="text-2xl w-full h-1/2 flex flex-col items-center justify-start"
           >
+            <div>
+              <img
+                src="./MainIcon.webp"
+                alt="MainIcon"
+                decoding="async"
+                {...{ fetchpriority: "high" }}
+                width={160}
+                className="w-40"
+              />
+            </div>
             <h1 className="w-full text-center p-2 box-border font-bold text-[#2D2D2D]">
               환영해요! WeatherMate입니다!
             </h1>
@@ -101,7 +111,7 @@ function MainHomePage() {
                     </>
                   }
                   textColor="black"
-                  bgColor="gray"
+                  bgColor="gray_light"
                   width="full"
                   onClick={handleOpen}
                 ></Button>
@@ -148,14 +158,14 @@ function MainHomePage() {
                 <Button
                   text={"전국 날씨 확인하기!"}
                   textColor="black"
-                  bgColor="gray"
+                  bgColor="gray_light"
                   width="full"
                   onClick={() => navigate("/allcity")}
                 ></Button>
                 <Button
                   text={"날씨 테마 MBTI 검사하기!"}
                   textColor="black"
-                  bgColor="gray"
+                  bgColor="gray_light"
                   width="full"
                   onClick={() => navigate("/mbti")}
                 ></Button>
