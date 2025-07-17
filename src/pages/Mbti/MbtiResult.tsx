@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { MBTIResult } from "types/type";
+import { MBTIResult } from "types/MbtiType";
 
-import MbtiResultData from "../../assets/mbti/MbtiResultData";
+import MbtiResultData from "@constants/MbtiResultData";
 import KakaoShareButton from "@components/KakaoShareButton";
 import Button from "@components/layout/Button";
 
@@ -27,8 +27,9 @@ function MbtiResult() {
       </header>
       <div className="mt-4 relative border-4 rounded-lg p-4 text-pretty">
         <img
-          src={resultData?.image}
-          className="absolute -top-20 left-1/2 -translate-x-1/2 border-8 border-white w-36 h-36 rounded-full bg-white"
+          src={`/MBTIImage/${resultData?.type}.webp`}
+          alt="result"
+          className="absolute -top-20 left-1/2 -translate-x-1/2 w-36 h-36 rounded-full bg-white"
         />
         <div className="mt-12 flex flex-col gap-2">
           <p className="text-lg font-bold text-center text-amber-500">{`"${resultData?.title}"`}</p>
