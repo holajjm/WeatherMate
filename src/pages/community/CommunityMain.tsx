@@ -3,9 +3,9 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 import { useRecoilState } from "recoil";
-import { memberState } from "../../recoil/atom";
+import { memberState } from "@recoil/atom";
 import useCustomAxios from "@hooks/useCustomAxios";
-import { CommunityMainData } from "@types/UserType";
+import type { CommunityMainData } from "types/CommunityType";
 
 import Search from "@components/layout/Search";
 import ToTheTopButton from "@components/layout/ToTheTopButton";
@@ -100,7 +100,7 @@ function CommunityMain() {
             <Search onClick={handleSearch}></Search>
             <div className="flex gap-2">
               <select
-                className="h-10 border-2 border-slate-300 rounded-md font-SSRONETHandwritten text-xl font-bold text-slate-700"
+                className="h-10 border-2 border-slate-300 rounded-md text-base font-bold text-slate-700"
                 value={select}
                 onChange={selectValue}
               >
@@ -119,7 +119,7 @@ function CommunityMain() {
               ></Button>
             </div>
           </section>
-          <main className="flex flex-col gap-4">
+          <main className="flex flex-col items-center justify-center sm:grid sm:grid-cols-2 gap-2">
             {isLoading && <p>로딩중...</p>}
             {error && <p>{error.message}</p>}
             {sortItemList(select)}
