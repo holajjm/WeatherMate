@@ -1,17 +1,3 @@
-//Mbti Data Type
-export interface MBTIResult {
-  desc: string;
-  id: number;
-  image: string;
-  title: string;
-  type: string;
-}
-
-//Kakao Data Type
-export interface KakaoShareData extends MBTIResult {
-  data: MBTIResult | undefined;
-}
-
 //Location Data Type
 export interface LocationMainData {
   addr1: string;
