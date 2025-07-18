@@ -1,35 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
-import { useCoordsStore } from "@store/store";
+import MainModal from "@components/modal/MainModal";
+import ToTheTopButton from "@components/layout/ToTheTopButton";
+import Button from "@components/layout/Button";
+import { useWeatherQuery } from "@features/weather/useWeatherQuery";
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
 import { ModalPortal } from "@hooks/modalPortal";
-import { AnimatePresence, motion } from "framer-motion";
-
+import { useCoords } from "@hooks/useCoords";
 import MainNowWeather from "@pages/main/MainNowWeather";
 import MainMyLocationWeather from "@pages/main/MainMyLocationWeather";
 import MainWeatherTimeZone from "@pages/main/MainWeatherTimeZone";
-import ToTheTopButton from "@components/layout/ToTheTopButton";
-import MainModal from "@components/modal/MainModal";
-import Button from "@components/layout/Button";
+import { useCoordsStore, useModalStore } from "@store/store";
+
+import { AnimatePresence, motion } from "framer-motion";
 import { MdDoubleArrow } from "react-icons/md";
-import { useCoords } from "@hooks/useCoords";
 
 function MainHomePage() {
+  const navigate = useNavigate();
+  const latitude = useCoordsStore(state => state.latitude);
+  const longitude = useCoordsStore(state => state.longitude);
+  const modal = useModalStore(state => state.modal);
+  const modalOpen = useModalStore(state => state.modalOpen);
   usePageTitle("WeatherMate");
   useScrollTop();
   useCoords();
-  const { latitude, longitude } = useCoordsStore(state => state);
-  const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+  useWeatherQuery(latitude, longitude);
   const [step, setStep] = useState(0);
 
   useEffect(() => {
@@ -41,31 +38,11 @@ function MainHomePage() {
     }
   }, [step]);
 
-  const { data } = useQuery({
-    queryKey: ["weatherdata", latitude, longitude],
-    queryFn: async () => {
-      if (latitude && longitude) {
-        const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${import.meta.env.VITE_REACT_APP_WEATHER_API_KEY2}&units=metric&lang=kr`,
-        );
-        const data = await response.json();
-        return data;
-      }
-      return null;
-    },
-    staleTime: 1000 * 60 * 60,
-    refetchInterval: 1000 * 60 * 60,
-    refetchIntervalInBackground: true,
-  });
-  if (data) {
-    sessionStorage.setItem("sessionWeather", JSON.stringify(data));
-  }
-
   return (
     <main className="relative max-w-[600px] min-w-[320px] h-screen m-auto flex flex-col gap-2 bg-slate-50 font-Pretendard">
-      {isOpen && (
+      {modal && (
         <ModalPortal>
-          <MainModal handleClose={handleClose} />
+          <MainModal />
         </ModalPortal>
       )}
       <AnimatePresence mode="wait">
@@ -113,7 +90,7 @@ function MainHomePage() {
                   textColor="black"
                   bgColor="gray_light"
                   width="full"
-                  onClick={handleOpen}
+                  onClick={() => modalOpen()}
                 ></Button>
               </div>
               <motion.section
