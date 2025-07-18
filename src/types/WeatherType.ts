@@ -1,32 +1,55 @@
 //Weather Data Type
 export interface WeatherImage {
-  Clear: string;
-  Clouds: string;
-  Rain: string;
-  Drizzle: string;
-  Thunderstorm: string;
-  Snow: string;
-  Haze: string;
-  Mist: string;
-  Smoke: string;
-  Dust: string;
-  overcastClouds: string;
+  [key: string]: string;
+  // Clear: string;
+  // Clouds: string;
+  // Rain: string;
+  // Drizzle: string;
+  // Thunderstorm: string;
+  // Snow: string;
+  // Haze: string;
+  // Mist: string;
+  // Smoke: string;
+  // Dust: string;
+  // overcastClouds: string;
 }
-export interface AllCityData {
-  clouds: { all: number };
-  coord: { lat: number; lon: number };
-  dt: number;
+
+export interface WeatherCondition {
   id: number;
-  main: {
-    feels_like: number;
-    grnd_level: number;
-    humidity: number;
-    pressure: number;
-    sea_level: number;
-    temp: number;
-    temp_max: number;
-    temp_min: number;
-  };
+  main: string;
+  description: string;
+  icon: string;
+}
+
+export interface TemperatureInfo {
+  feels_like: number;
+  grnd_level: number;
+  humidity: number;
+  pressure: number;
+  sea_level: number;
+  temp: number;
+  temp_max: number;
+  temp_min: number;
+}
+
+export interface WindInfo {
+  deg: number;
+  speed: number;
+  gust?: number;
+}
+
+export interface BaseWeather {
+  clouds: { all: number };
+  dt: number;
+  main: TemperatureInfo;
+  visibility: number;
+  weather: WeatherCondition[];
+  wind: WindInfo;
+}
+
+export interface AllCityData extends BaseWeather {
+  coord: { lat: number; lon: number };
+  id: number;
   name: string;
   sys: {
     country: string;
@@ -34,34 +57,10 @@ export interface AllCityData {
     sunset: number;
     timezone: number;
   };
-  visibility: number;
-  weather: [
-    {
-      id: number;
-      main: string;
-      description: string;
-      icon: string;
-    },
-  ];
-  wind: {
-    deg: number;
-    speed: number;
-  };
 }
-export interface WeatherTime {
-  clouds: { all: number };
-  dt: number;
+
+export interface WeatherTime extends BaseWeather {
   dt_txt: string;
-  main: {
-    feels_like: number;
-    grnd_level: number;
-    humidity: number;
-    pressure: number;
-    sea_level: number;
-    temp: number;
-    temp_max: number;
-    temp_min: number;
-  };
   pop: number;
   rain?: {
     "3h": number;
@@ -69,18 +68,96 @@ export interface WeatherTime {
   sys: {
     pod: string;
   };
-  visibility: number;
-  weather: [
-    {
-      id: number;
-      main: string;
-      description: string;
-      icon: string;
-    },
-  ];
-  wind: {
-    deg: number;
-    gust: number;
-    speed: number;
-  };
 }
+
+export interface TimeWeather {
+  city: {
+    coords: {
+      lat: number;
+      lon: number;
+    };
+    country: string;
+    id: number;
+    name: string;
+    population: number;
+    sunrise: number;
+    sunset: number;
+    timezone: number;
+  };
+  cnt: number;
+  cod: string;
+  list: WeatherTime[];
+  message: number;
+}
+// export interface AllCityData {
+//   clouds: { all: number };
+//   coord: { lat: number; lon: number };
+//   dt: number;
+//   id: number;
+//   main: {
+//     feels_like: number;
+//     grnd_level: number;
+//     humidity: number;
+//     pressure: number;
+//     sea_level: number;
+//     temp: number;
+//     temp_max: number;
+//     temp_min: number;
+//   };
+//   name: string;
+//   sys: {
+//     country: string;
+//     sunrise: number;
+//     sunset: number;
+//     timezone: number;
+//   };
+//   visibility: number;
+//   weather: [
+//     {
+//       id: number;
+//       main: string;
+//       description: string;
+//       icon: string;
+//     },
+//   ];
+//   wind: {
+//     deg: number;
+//     speed: number;
+//   };
+// }
+// export interface WeatherTime {
+//   clouds: { all: number };
+//   dt: number;
+//   dt_txt: string;
+//   main: {
+//     feels_like: number;
+//     grnd_level: number;
+//     humidity: number;
+//     pressure: number;
+//     sea_level: number;
+//     temp: number;
+//     temp_max: number;
+//     temp_min: number;
+//   };
+//   pop: number;
+//   rain?: {
+//     "3h": number;
+//   };
+//   sys: {
+//     pod: string;
+//   };
+//   visibility: number;
+//   weather: [
+//     {
+//       id: number;
+//       main: string;
+//       description: string;
+//       icon: string;
+//     },
+//   ];
+//   wind: {
+//     deg: number;
+//     gust: number;
+//     speed: number;
+//   };
+// }
