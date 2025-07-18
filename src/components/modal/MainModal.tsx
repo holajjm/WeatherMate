@@ -1,5 +1,6 @@
+import { useModalStore } from "@store/store.ts";
 import { Coment } from "../../constants/Coment.ts";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface ComentObj {
   temperature: number;
@@ -8,15 +9,10 @@ interface ComentObj {
   CLOTHES_IMG: string;
 }
 
-function MainModal({ handleClose }: { handleClose: () => void }) {
-  const imgRef = useRef<HTMLImageElement>(null);
-  useEffect(() => {
-    if (imgRef.current) {
-      imgRef.current.setAttribute("fetchpriority", "high");
-    }
-  }, []);
+function MainModal() {
   const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
   const [comentObj, setComentObj] = useState<ComentObj>();
+  const modalClose = useModalStore(state => state.modalClose);
 
   useEffect(() => {
     const getRecommendation = () => {
@@ -42,11 +38,11 @@ function MainModal({ handleClose }: { handleClose: () => void }) {
 
   return (
     <div
-      onClick={handleClose}
+      onClick={modalClose}
       className="w-full h-screen p-2 box-border text-[#2d2d2d] bg-black absolute top-0 left-0 z-50 opacity-95 flex items-center justify-center font-Pretendard"
     >
       <div className="max-w-[600px] min-w-[320px] h-84 flex flex-col justify-between p-2 box-border rounded-lg bg-slate-200">
-        <button onClick={handleClose} className="ml-auto">
+        <button onClick={modalClose} className="ml-auto">
           X
         </button>
         <section className="w-full h-full flex flex-col gap-2 justify-between rounded-lg text-center grow bg-center bg-no-repeat bg-cover ml-auto">
@@ -73,8 +69,7 @@ function MainModal({ handleClose }: { handleClose: () => void }) {
                 <img
                   src={comentObj?.CLOTHES_IMG}
                   alt="Today's Clothes"
-                  ref={imgRef}
-                  fetchpriority="high"
+                  {...{ fetchpriority: "high" }}
                   decoding="async"
                   width={96}
                   height={160}
