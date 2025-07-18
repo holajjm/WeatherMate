@@ -11,6 +11,7 @@
       "@assets": ["assets/*"],
       "@components/*": ["components/*"],
       "@constants/*": ["constants/*"],
+      "@features/*": ["features/*"],
       "@hooks/*": ["hooks/*"],
       "@pages/*": ["pages/*"],
       "@community/*": ["community/*"],

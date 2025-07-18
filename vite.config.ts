@@ -18,6 +18,10 @@ export default defineConfig({
         find: "@constants",
         replacement: path.resolve(__dirname, "src/constants"),
       },
+      {
+        find: "@features",
+        replacement: path.resolve(__dirname, "src/features"),
+      },
       { find: "@hooks", replacement: path.resolve(__dirname, "src/hooks") },
       { find: "@pages", replacement: path.resolve(__dirname, "src/pages") },
       { find: "@community", replacement: path.resolve(__dirname, "src/community") },
