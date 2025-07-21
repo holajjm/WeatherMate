@@ -1,6 +1,7 @@
-import { useModalStore } from "@store/store.ts";
-import { Coment } from "../../constants/Coment.ts";
 import React, { useEffect, useState } from "react";
+
+import { Coment } from "@constants/Coment.ts";
+import { useModalStore } from "@store/store.ts";
 
 interface ComentObj {
   temperature: number;
@@ -12,7 +13,7 @@ interface ComentObj {
 function MainModal() {
   const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
   const [comentObj, setComentObj] = useState<ComentObj>();
-  const modalClose = useModalStore(state => state.modalClose);
+  const modalClose = useModalStore((state) => state.modalClose);
 
   useEffect(() => {
     const getRecommendation = () => {
@@ -53,7 +54,7 @@ function MainModal() {
                 <h2 className="text-sm text-left font-medium text-slate-800">
                   오늘의 한마디
                 </h2>
-                <p className="font-SSRONETHandwritten text-amber-500 font-bold rounded-lg bg-amber-200 p-1 shadow-md shadow-slate-500">
+                <p className="font-SSRONETHandwritten text-blue_dark font-bold rounded-lg bg-blue_light p-1 shadow-md shadow-slate-500">
                   {comentObj?.recommendation}
                 </p>
               </div>
@@ -61,11 +62,11 @@ function MainModal() {
                 <h2 className="text-sm text-left font-medium text-slate-800">
                   오늘의 추천 의상
                 </h2>
-                <p className="font-SSRONETHandwritten text-amber-500 font-bold rounded-lg bg-amber-200 p-1 shadow-md shadow-slate-500">
+                <p className="font-SSRONETHandwritten text-blue_dark font-bold rounded-lg bg-blue_light p-1 shadow-md shadow-slate-500">
                   {comentObj?.clothes}
                 </p>
               </div>
-              <div className="bg-slate-50 rounded-lg shadow-md shadow-slate-500">
+              <div className="bg-slate-100 rounded-lg shadow-md shadow-slate-500">
                 <img
                   src={comentObj?.CLOTHES_IMG}
                   alt="Today's Clothes"
