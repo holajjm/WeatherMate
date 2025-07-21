@@ -138,99 +138,138 @@ PW: 11111111
 
 ```
 📦WeatherMate
+ ┣ 📂.vercel
+ ┣ 📂dist
+ ┣ 📂node_modules
  ┣ 📂public
+ ┃ ┣ 📂Clothes
+ ┃ ┣ 📂icon
+ ┃ ┣ 📂Location
+ ┃ ┣ 📂MBTIImage
+ ┃ ┣ 📂realImage
+ ┃ ┣ 📂WeatherIcon
+ ┃ ┣ 📂WeatherInfo
+ ┃ ┣ 📜robots.txt
+ ┃ ┗ 📜sitemap.xml
  ┣ 📂src
  ┃ ┣ 📂assets
- ┃ ┃ ┣ 📂mbti
- ┃ ┃ ┃ ┣ 📂mbtiimg
- ┃ ┃ ┃ ┃
- ┃ ┃ ┃ ┗ 📜MbtiResultData.js
- ┃ ┃ ┣ 📜MbtiQuestionData.js
- ┃ ┃ ┣ 📜WeatherData.js
- ┃ ┃ ┗ 📜react.svg
  ┃ ┣ 📂components
  ┃ ┃ ┣ 📂layout
- ┃ ┃ ┃ ┣ 📜Button.jsx
- ┃ ┃ ┃ ┣ 📜DetailPageHeader.jsx
- ┃ ┃ ┃ ┣ 📜Footer.jsx
- ┃ ┃ ┃ ┣ 📜Landing.jsx
- ┃ ┃ ┃ ┣ 📜Loading.jsx
- ┃ ┃ ┃ ┣ 📜Loading2.jsx
- ┃ ┃ ┃ ┣ 📜NavigationBarTop.jsx
- ┃ ┃ ┃ ┣ 📜NavigationBarbottom.jsx
- ┃ ┃ ┃ ┣ 📜Search.jsx
- ┃ ┃ ┃ ┣ 📜Submit.jsx
- ┃ ┃ ┃ ┣ 📜ToTheTopButton.jsx
- ┃ ┃ ┃ ┗ 📜index.jsx
- ┃ ┃ ┗ 📜KakaoShareButton.jsx
+ ┃ ┃ ┃ ┣ 📜Button.tsx
+ ┃ ┃ ┃ ┣ 📜DetailPageHeader.tsx
+ ┃ ┃ ┃ ┣ 📜Footer.tsx
+ ┃ ┃ ┃ ┣ 📜Header.tsx
+ ┃ ┃ ┃ ┣ 📜HeaderCategory.tsx
+ ┃ ┃ ┃ ┣ 📜Index.tsx
+ ┃ ┃ ┃ ┣ 📜Loading.tsx
+ ┃ ┃ ┃ ┣ 📜LocatioLoading.tsx
+ ┃ ┃ ┃ ┣ 📜NavigationBar.tsx
+ ┃ ┃ ┃ ┣ 📜Search.tsx
+ ┃ ┃ ┃ ┣ 📜Submit.tsx
+ ┃ ┃ ┃ ┗ 📜ToTheTopButton.tsx
+ ┃ ┃ ┣ 📂modal
+ ┃ ┃ ┃ ┣ 📜CommunityModal.tsx
+ ┃ ┃ ┃ ┣ 📜MainModal.tsx
+ ┃ ┃ ┣ 📂skeleton
+ ┃ ┃ ┃ ┣ 📜CommunityPopularSkeleton.tsx
+ ┃ ┃ ┃ ┣ 📜LocationItemSkeleton.tsx
+ ┃ ┃ ┃ ┣ 📜MainAllWeatherSkeleton.tsx
+ ┃ ┃ ┃ ┣ 📜MainComentSkeleton.tsx
+ ┃ ┃ ┃ ┣ 📜MainLocationWeatherSkeleton.tsx
+ ┃ ┃ ┃ ┣ 📜MainTimeZoneSkeleton.tsx
+ ┃ ┃ ┗ 📜KakaoShareButton.tsx
+ ┃ ┣ 📂constants
+ ┃ ┃ ┣ 📜Coment.ts
+ ┃ ┃ ┣ 📜env.ts
+ ┃ ┃ ┣ 📜MbtiQuestionData.ts
+ ┃ ┃ ┣ 📜MbtiResultData.ts
+ ┃ ┃ ┣ 📜WeatherRealImage.ts
+ ┃ ┣ 📂features
+ ┃ ┃ ┣ 📂weather
+ ┃ ┃ ┣ 📜useWeatherQuery.ts
+ ┃ ┃ ┣ 📜useWeatherTimeQuery.ts
  ┃ ┣ 📂hooks
- ┃ ┃ ┣ 📜useCurrentLocation.js
- ┃ ┃ ┣ 📜useCustomAxios.mjs
- ┃ ┃ ┗ 📜useDebounce.js
+ ┃ ┃ ┣ 📜EnvCheck.ts
+ ┃ ┃ ┣ 📜modalPortal.ts
+ ┃ ┃ ┣ 📜TimeDiff.ts
+ ┃ ┃ ┣ 📜UnixTime.ts
+ ┃ ┃ ┣ 📜useCoords.ts
+ ┃ ┃ ┣ 📜useCustomAxios.ts
+ ┃ ┃ ┣ 📜useDebounce.ts
+ ┃ ┃ ┣ 📜usePageTitle.ts
+ ┃ ┃ ┗ 📜useScrollTop.ts
  ┃ ┣ 📂pages
- ┃ ┃ ┣ 📂Mbti
- ┃ ┃ ┃ ┣ 📜MbtiHome.jsx
- ┃ ┃ ┃ ┣ 📜MbtiQuestion.jsx
- ┃ ┃ ┃ ┣ 📜MbtiResult.jsx
- ┃ ┃ ┃ ┗ 📜MbtiTest.jsx
  ┃ ┃ ┣ 📂community
- ┃ ┃ ┃ ┣ 📜CommunityDetail.jsx
- ┃ ┃ ┃ ┣ 📜CommunityHeader.jsx
- ┃ ┃ ┃ ┣ 📜CommunityItem.jsx
- ┃ ┃ ┃ ┣ 📜CommunityMain.jsx
- ┃ ┃ ┃ ┣ 📜CommunityNew.jsx
- ┃ ┃ ┃ ┣ 📜CommunityPopularItem.jsx
- ┃ ┃ ┃ ┣ 📜ReplyEdit.jsx
- ┃ ┃ ┃ ┣ 📜ReplyItem.jsx
- ┃ ┃ ┃ ┣ 📜ReplyList.jsx
- ┃ ┃ ┃ ┗ 📜ReplyNew.jsx
+ ┃ ┃ ┃ ┣ 📜CommunityDetail.tsx
+ ┃ ┃ ┃ ┣ 📜CommunityEdit.tsx
+ ┃ ┃ ┃ ┣ 📜CommunityItem.tsx
+ ┃ ┃ ┃ ┣ 📜CommunityMain.tsx
+ ┃ ┃ ┃ ┣ 📜CommunityNew.tsx
+ ┃ ┃ ┃ ┣ 📜CommunityPopularItem.tsx
+ ┃ ┃ ┃ ┣ 📜ReplyItem.tsx
+ ┃ ┃ ┃ ┣ 📜ReplyMain.tsx
+ ┃ ┃ ┃ ┗ 📜ReplyNew.tsx
  ┃ ┃ ┣ 📂location
- ┃ ┃ ┃ ┣ 📜Location.jsx
- ┃ ┃ ┃ ┣ 📜LocationBookmark.jsx
- ┃ ┃ ┃ ┣ 📜LocationDetailPage.jsx
- ┃ ┃ ┃ ┣ 📜LocationKeyword.jsx
- ┃ ┃ ┃ ┣ 📜LocationMainPage.jsx
- ┃ ┃ ┃ ┣ 📜LocationMap.jsx
- ┃ ┃ ┃ ┣ 📜SearchLocation.jsx
- ┃ ┃ ┃ ┗ 📜noResultMsg.jsx
+ ┃ ┃ ┃ ┣ 📜Location.tsx
+ ┃ ┃ ┃ ┣ 📜LocationDetailPage.tsx
+ ┃ ┃ ┃ ┣ 📜LocationItem.tsx
+ ┃ ┃ ┃ ┣ 📜LocationKeyword.tsx
+ ┃ ┃ ┃ ┣ 📜LocationMainPage.tsx
+ ┃ ┃ ┃ ┣ 📜LocationMap.tsx
+ ┃ ┃ ┃ ┣ 📜LocationSearch.tsx
+ ┃ ┃ ┃ ┗ 📜noResultMsg.tsx
  ┃ ┃ ┣ 📂main
- ┃ ┃ ┃ ┣ 📜AllCitiesWeather.jsx
- ┃ ┃ ┃ ┣ 📜MainPage.jsx
- ┃ ┃ ┃ ┣ 📜MyLocationWeather.jsx
- ┃ ┃ ┃ ┣ 📜PreviewMbti.jsx
- ┃ ┃ ┃ ┣ 📜RecommendationPreview.jsx
- ┃ ┃ ┃ ┣ 📜TodaysComent.jsx
- ┃ ┃ ┃ ┣ 📜WeatherByTimeZone.jsx
- ┃ ┃ ┃ ┗ 📜weatherDetail.jsx
+ ┃ ┃ ┃ ┣ 📜MainAllCitiesWeather.tsx
+ ┃ ┃ ┃ ┣ 📜MainHomePage.tsx
+ ┃ ┃ ┃ ┣ 📜MainMyLocationWeather.tsx
+ ┃ ┃ ┃ ┣ 📜MainNowWeather.tsx
+ ┃ ┃ ┃ ┣ 📜MainWeatherDetail.tsx
+ ┃ ┃ ┃ ┗ 📜MainWeatherTimeZone.tsx
+ ┃ ┃ ┣ 📂Mbti
+ ┃ ┃ ┃ ┣ 📜MbtiHome.tsx
+ ┃ ┃ ┃ ┣ 📜MbtiQuestion.tsx
+ ┃ ┃ ┃ ┗ 📜MbtiResult.tsx
  ┃ ┃ ┣ 📂user
- ┃ ┃ ┃ ┣ 📜Edit.jsx
- ┃ ┃ ┃ ┣ 📜EnvCheck.jsx
- ┃ ┃ ┃ ┣ 📜Login.jsx
- ┃ ┃ ┃ ┣ 📜MainLogin.jsx
- ┃ ┃ ┃ ┣ 📜Oauth.jsx
- ┃ ┃ ┃ ┣ 📜Setting.jsx
- ┃ ┃ ┃ ┣ 📜SignUp.jsx
- ┃ ┃ ┃ ┣ 📜UserBoard.jsx
- ┃ ┃ ┃ ┣ 📜UserEdit.jsx
- ┃ ┃ ┃ ┣ 📜UserPage.jsx
- ┃ ┃ ┃ ┗ 📜UserPost.jsx
- ┃ ┃ ┗ 📜ErrorPage.jsx
+ ┃ ┃ ┃ ┣ 📜UserBoard.tsx
+ ┃ ┃ ┃ ┣ 📜UserBookmark.tsx
+ ┃ ┃ ┃ ┣ 📜UserEdit.tsx
+ ┃ ┃ ┃ ┣ 📜UserLogin.tsx
+ ┃ ┃ ┃ ┣ 📜UserOauth.tsx
+ ┃ ┃ ┃ ┣ 📜UserPage.tsx
+ ┃ ┃ ┃ ┣ 📜UserSignUp.tsx
+ ┃ ┃ ┃ ┗ 📜UserValidLogin.tsx
+ ┃ ┃ ┗ 📜ErrorPage.tsx
  ┃ ┣ 📂recoil
- ┃ ┃ ┗ 📜atom.mjs
+ ┃ ┃ ┗ 📜atom.ts
+ ┃ ┣ 📂store
+ ┃ ┃ ┗ 📜store.ts
+ ┃ ┣ 📂types
+ ┃ ┃ ┃ 📜CommunityType.ts
+ ┃ ┃ ┃ 📜LocationType.ts
+ ┃ ┃ ┃ 📜MbtiType.ts
+ ┃ ┃ ┃ 📜UserType.ts
+ ┃ ┃ ┗ 📜WeatherType.ts
  ┃ ┣ 📜App.css
- ┃ ┣ 📜App.jsx
+ ┃ ┣ 📜App.tsx
+ ┃ ┣ 📜env.d.ts
+ ┃ ┣ 📜global.d.ts
  ┃ ┣ 📜index.css
- ┃ ┣ 📜main.jsx
- ┃ ┗ 📜routes.jsx
- ┣ 📜.DS_Store
- ┣ 📜README.md
- ┣ 📜jsconfig.json
- ┣ 📜netlify.toml
+ ┃ ┣ 📜index.d.ts
+ ┃ ┣ 📜main.tsx
+ ┃ ┗ 📜routes.tsx
+ ┣ 📜.env
+ ┣ 📜.eslintrc.cjs
+ ┣ 📜.gitignore
+ ┣ 📜.prettierrc.cjs
+ ┣ 📜index.html
  ┣ 📜package-lock.json
  ┣ 📜package.json
- ┣ 📜postcss.config.js
- ┣ 📜tailwind.config.js
- ┗ 📜vite.config.js
+ ┣ 📜postcss.config.ts
+ ┣ 📜README.md
+ ┣ 📜tailwind.config.ts
+ ┣ 📜tsconfig.json
+ ┣ 📜vercel.json
+ ┗ 📜vite.config.ts
 ```
 
 ## 5. UI 미리보기
