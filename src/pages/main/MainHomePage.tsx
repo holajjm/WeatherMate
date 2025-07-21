@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import MainModal from "@components/modal/MainModal";
 import ToTheTopButton from "@components/layout/ToTheTopButton";
 import Button from "@components/layout/Button";
-import { useWeatherQuery } from "@features/weather/useWeatherQuery";
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
 import { ModalPortal } from "@hooks/modalPortal";
@@ -12,21 +11,18 @@ import { useCoords } from "@hooks/useCoords";
 import MainNowWeather from "@pages/main/MainNowWeather";
 import MainMyLocationWeather from "@pages/main/MainMyLocationWeather";
 import MainWeatherTimeZone from "@pages/main/MainWeatherTimeZone";
-import { useCoordsStore, useModalStore } from "@store/store";
+import { useModalStore } from "@store/store";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { MdDoubleArrow } from "react-icons/md";
 
 function MainHomePage() {
   const navigate = useNavigate();
-  const latitude = useCoordsStore(state => state.latitude);
-  const longitude = useCoordsStore(state => state.longitude);
-  const modal = useModalStore(state => state.modal);
-  const modalOpen = useModalStore(state => state.modalOpen);
+  const modal = useModalStore((state) => state.modal);
+  const modalOpen = useModalStore((state) => state.modalOpen);
   usePageTitle("WeatherMate");
   useScrollTop();
   useCoords();
-  useWeatherQuery(latitude, longitude);
   const [step, setStep] = useState(0);
 
   useEffect(() => {
