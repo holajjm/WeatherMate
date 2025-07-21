@@ -16,9 +16,7 @@ function MainWeatherTimeZone() {
       <h2 className="text-slate-600 text-base flex justify-between">
         시간대별 날씨정보(3시간 기준)
       </h2>
-      {isFetching ? (
-        <MainTimeZoneSkeleton />
-      ) : (
+      {!isFetching ? (
         <div className="w-full py-1 flex gap-1 rounded-lg overflow-x-scroll scrollbar-hide">
           {timeWeather?.list?.map((item: WeatherTime) => (
             <div
@@ -41,6 +39,8 @@ function MainWeatherTimeZone() {
             </div>
           ))}
         </div>
+      ) : (
+        <MainTimeZoneSkeleton />
       )}
     </section>
   );

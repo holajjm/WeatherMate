@@ -2,10 +2,12 @@ import React from "react";
 
 import MainWeatherDetail from "@pages/main/MainWeatherDetail";
 import MainLocationWeatherSkeleton from "@components/skeleton/MainLocationWeatherSkeleton";
+import { useWeatherQuery } from "@features/weather/useWeatherQuery";
+import ErrorPage from "@pages/ErrorPage";
 
 const MainMyLocationWeather = () => {
-  const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
-
+  const { isError, isFetching } = useWeatherQuery();
+  if (isError) return <ErrorPage />;
   return (
     <article className="bg-slate-50 flex flex-col gap-2 px-2">
       <header>
@@ -14,7 +16,7 @@ const MainMyLocationWeather = () => {
         </h2>
       </header>
       <section className="flex flex-col gap-4 items-center justify-center h-full bg-contain bg-center bg-no-repeat border-slate-200">
-        {data ? <MainWeatherDetail /> : <MainLocationWeatherSkeleton />}
+        {!isFetching ? <MainWeatherDetail /> : <MainLocationWeatherSkeleton />}
       </section>
     </article>
   );

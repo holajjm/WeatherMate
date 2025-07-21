@@ -1,12 +1,15 @@
 import React from "react";
 
 import { UnixTime } from "@hooks/UnixTime";
+import { useWeatherQuery } from "@features/weather/useWeatherQuery";
+import ErrorPage from "@pages/ErrorPage";
 
 function MainWeatherDetail() {
   const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
-
-  function getWindStatus(speed: number) {
-    if (speed > 1 && speed < 3) {
+  const { isError, isFetching } = useWeatherQuery();
+  if (isError) return <ErrorPage />;
+  const getUVStatus = (speed: number) => {
+    if (speed < 3) {
       return "보통";
     } else if (speed >= 4) {
       return "위험";
@@ -16,7 +19,7 @@ function MainWeatherDetail() {
   }
   return (
     <>
-      {data && (
+      {!isFetching && (
         <article className="grow flex flex-col w-full h-full justify-center items-center gap-1 font-TTLaundryGothicB text-sm">
           <section className="w-full flex gap-1 justify-between">
             <div className="bg-white w-full h-24 text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
@@ -115,7 +118,9 @@ function MainWeatherDetail() {
               />
               <p className="text-slate-600">풍속</p>
               <hr className="border-[1px] border-slate-400 w-5/6" />
-              <p className="text-slate-700">{data.wind.speed}m/s</p>
+              <p className="text-slate-700">
+                {data.wind.speed}m/s({getUVStatus(data.wind.speed)})
+              </p>
             </div>
             <div className="bg-white w-full h-24 text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
               <img
@@ -127,7 +132,7 @@ function MainWeatherDetail() {
               />
               <p className="text-slate-600">자외선</p>
               <hr className="border-[1px] border-slate-400 w-5/6" />
-              <p className="text-slate-700">{getWindStatus(data.wind.speed)}</p>
+              <p className="text-slate-700">{getUVStatus(data.wind.speed)}</p>
             </div>
             <div className="bg-white w-full h-24 text-center text-nowrap flex flex-col gap-1 items-center justify-center p-1 border-[1px] shadow-lg shadow-slate-200 rounded-lg">
               <img
