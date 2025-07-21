@@ -12,9 +12,13 @@ export default {
         SuitBold: ["SUIT-Bold", "sans-serif"],
       },
       colors: {
+        blue_light: "#93c5fd",
         blue_middle: "#2563eb",
         blue_dark: "#1e3a8a",
-
+        slate_light: "#f1f5f9",
+        slate_middle: "64748b",
+        slate_dark: "#1e293b",
+        
         my_color: "#00FF7F",
         primary: "#81CDFF",
         primary_deep: "#21A6FF",
