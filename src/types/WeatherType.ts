@@ -46,7 +46,21 @@ export interface BaseWeather {
   weather: WeatherCondition[];
   wind: WindInfo;
 }
-
+export interface MainData extends BaseWeather {
+  base: string;
+  cod: number;
+  name: string;
+  sys: {
+    country: string;
+    id: number;
+    sunrise: number;
+    sunset: number;
+    type: number;
+  };
+  rain?: {
+    "1h": number;
+  };
+}
 export interface AllCityData extends BaseWeather {
   coord: { lat: number; lon: number };
   id: number;
