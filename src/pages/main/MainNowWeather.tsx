@@ -1,15 +1,19 @@
 import React from "react";
 
-import { WeatherImage } from "types/WeatherType";
 import { realImageList } from "@constants/WeatherRealImages";
 import MainComentSkeleton from "@components/skeleton/MainComentSkeleton.tsx";
+import { useWeatherQuery } from "@features/weather/useWeatherQuery";
+import ErrorPage from "@pages/ErrorPage";
+
+import { WeatherImage } from "types/WeatherType";
 
 function MainNowWeather() {
   const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
-  const realImage =
-    data && data.weather
-      ? realImageList[data.weather[0].main as keyof WeatherImage]
-      : null;
+  const { isError, isFetching } = useWeatherQuery();
+  if (isError) return <ErrorPage />;
+  const realImage = data?.weather
+    ? realImageList[data.weather[0].main as keyof WeatherImage]
+    : null;
   return (
     <article className="p-2 flex flex-col gap-2 font-Pretendard h-full fade-in">
       <div className="flex items-center justify-between">
@@ -18,19 +22,17 @@ function MainNowWeather() {
           알려주는 날씨 정보
         </h1>
       </div>
-      {data ? (
+      {!isFetching ? (
         <div className="relative w-full h-40 flex gap-2">
-          {realImage && (
-            <img
-              className="absolute w-full h-40 object-cover rounded-lg"
-              src={realImage}
-              alt="today"
-              width={580}
-              height={160}
-              {...{ fetchpriority: "high" }}
-              decoding="async"
-            />
-          )}
+          <img
+            className="absolute w-full h-40 object-cover rounded-lg"
+            src={realImage ? realImage : "./Loading_Cloud.gif"}
+            alt="today"
+            width={580}
+            height={160}
+            {...{ fetchpriority: "high" }}
+            decoding="async"
+          />
           <div
             className={`w-full flex flex-col justify-center gap-2 rounded-lg text-center font-bold shadow-md shadow-slate-500  ${["Clouds", "Rain", "Drizzle", "Thunderstorm", "Snow"].includes(data?.weather[0].main) ? "text-white" : "text-[#2d2d2d]"} z-20`}
           >
