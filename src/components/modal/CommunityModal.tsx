@@ -1,7 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { ENV } from "@constants/env";
 import Button from "@components/layout/Button";
+
 import type { CommunityData } from "types/CommunityType";
 
 function CommunityModal({
@@ -27,7 +29,7 @@ function CommunityModal({
             <img
               src={
                 item?.user.profile
-                  ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.user.profile}`
+                  ? `${ENV.API_SERVER}/files/07-WeatherMate/${item.user.profile}`
                   : "/NullUser.webp"
               }
               alt="profile"
@@ -47,7 +49,7 @@ function CommunityModal({
           <img
             src={
               item?.image
-                ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item?.image}`
+                ? `${ENV.API_SERVER}/files/07-WeatherMate/${item?.image}`
                 : `/ReadyForImage.webp`
             }
             alt="img"
