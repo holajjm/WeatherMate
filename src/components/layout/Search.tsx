@@ -1,8 +1,9 @@
 import React from "react";
 import { ChangeEvent, useState } from "react";
 
+import Button from "@components/layout/Button";
+
 import { IoSearch } from "react-icons/io5";
-import Button from "./Button";
 
 function Search({ onClick }: { onClick: (keyword: string) => void }) {
   const [keyword, setKeyword] = useState("");
