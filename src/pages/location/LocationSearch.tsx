@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useDebounce } from "../../hooks/useDebounce";
 
-import Location from "./Location";
+import { useDebounce } from "@hooks/useDebounce";
+import Location from "@pages/location/Location";
+
 import { FaSearch } from "react-icons/fa";
 
 // 장소추천 자식 컴포넌트 (검색 | 보여주기)

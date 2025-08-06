@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { MBTIResult } from "types/MbtiType";
 
 import MbtiResultData from "@constants/MbtiResultData";
 import KakaoShareButton from "@components/KakaoShareButton";
 import Button from "@components/layout/Button";
+
+import type { MBTIResult } from "types/MbtiType";
 
 function MbtiResult() {
   const navigate = useNavigate();

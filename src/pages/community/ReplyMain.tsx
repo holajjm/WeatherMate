@@ -2,10 +2,11 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useCustomAxios from "@hooks/useCustomAxios.js";
 import { useQuery } from "@tanstack/react-query";
-import { ReplyData } from "@types/UserType";
 
-import ReplyNew from "./ReplyNew";
-import ReplyItem from "./ReplyItem";
+import ReplyNew from "@pages/community/ReplyNew";
+import ReplyItem from "@pages/community/ReplyItem";
+
+import type { ReplyData } from "types/CommunityType";
 
 function ReplyMain() {
   const { _id } = useParams();

@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-
 import { memberState } from "@recoil/atom";
 
+import { toast } from "react-toastify";
 import { FiMapPin } from "react-icons/fi";
 import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
-import { toast } from "react-toastify";
 
 type InitialData = {
   [key: string]: string;

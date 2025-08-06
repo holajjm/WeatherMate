@@ -5,7 +5,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import useCustomAxios from "@hooks/useCustomAxios";
 import Button from "@components/layout/Button";
-import { NewReply } from "@types/UserType";
+
+import type { NewReply } from "types/CommunityType";
 
 function ReplyNew() {
   const axios = useCustomAxios();

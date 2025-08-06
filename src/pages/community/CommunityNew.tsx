@@ -2,12 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import useCustomAxios from "@hooks/useCustomAxios";
 import Button from "@components/layout/Button";
-import type { CommunityFormData } from "types/CommunityType";
+import useCustomAxios from "@hooks/useCustomAxios";
 
 import { MdOutlineCameraAlt } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
+import type { CommunityFormData } from "types/CommunityType";
 
 function CommunityNew() {
   const navigate = useNavigate();

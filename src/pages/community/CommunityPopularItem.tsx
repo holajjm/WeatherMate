@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import useCustomAxios from "@hooks/useCustomAxios";
 import CommunityPopularSkeleton from "@components/skeleton/CommunityPopularSkeleton";
-import type { CommunityData } from "types/CommunityType";
-import { ModalPortal } from "@hooks/modalPortal";
 import CommunityModal from "@components/modal/CommunityModal";
+import useCustomAxios from "@hooks/useCustomAxios";
+import { ModalPortal } from "@hooks/modalPortal";
+
+import type { CommunityData } from "types/CommunityType";
 
 function CommunityPopularItem() {
   const [selectedItem, setSelectedItem] = useState<CommunityData | null>(null);

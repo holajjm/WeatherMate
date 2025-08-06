@@ -1,30 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import type { ExpandCommunityData } from "types/CommunityType";
-
-import { FaHeart } from "react-icons/fa";
-import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { ENV } from "@constants/env";
 import { TimeDiff } from "@hooks/TimeDiff";
+
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import type { ExpandCommunityData } from "types/CommunityType";
 
 function CommunityItem({ item }: { item: ExpandCommunityData }) {
   const navigate = useNavigate();
-  const getItemTime = (createTime: string) => {
-    const create = new Date(createTime).getTime();
-    const nowTime = new Date().getTime();
-    const diff = nowTime - create;
-    const diffMonth = diff / (1000 * 60 * 60 * 24 * 12);
-    const diffDay = diff / (1000 * 60 * 60 * 24);
-    const diffHour = diff / (1000 * 60 * 60);
-    const diffMin = diff / (1000 * 60);
-    return diffMin < 60
-      ? `${diffMin.toFixed(0)}분 전`
-      : diffHour < 24
-        ? `${diffHour.toFixed(0)}시간 전`
-        : diffDay < 32
-          ? `${diffDay.toFixed(0)}일 전`
-          : `${diffMonth.toFixed(0)}개월 전`;
-  };
 
   return (
     <div
@@ -33,12 +17,11 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
     >
       <header className="flex flex-col gap-3">
         <section className="flex gap-3 items-center">
-          
           <div className="flex items-center justify-center rounded-full w-12 h-12 border-2">
             <img
               src={
                 item?.user.profile
-                  ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.user.profile}`
+                  ? `${ENV.API_SERVER}/files/07-WeatherMate/${item.user.profile}`
                   : "/NullUser.webp"
               }
               alt="profile"

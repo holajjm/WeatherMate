@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
+import { ENV } from "@constants/env";
 import Button from "@components/layout/Button";
 import Loading from "@components/layout/Loading";
-import { LocationDetailData, LocationSuperDetailData } from "@types/UserType";
-
 import LocationMap from "@pages/location/LocationMap";
+
 import { FaLocationDot } from "react-icons/fa6";
 import { BsTelephoneFill } from "react-icons/bs";
 import { FaArrowLeft, FaParking } from "react-icons/fa";
@@ -14,6 +14,10 @@ import { FaClock } from "react-icons/fa";
 import { MdFreeBreakfast } from "react-icons/md";
 import { FaDog } from "react-icons/fa";
 import { RiGlobalFill } from "react-icons/ri";
+import type {
+  LocationDetailData,
+  LocationSuperDetailData,
+} from "types/LocationType";
 
 function LocationDetailPage() {
   const imgRef = useRef<HTMLImageElement>(null);
@@ -22,7 +26,6 @@ function LocationDetailPage() {
       imgRef.current.setAttribute("fetchpriority", "high");
     }
   }, []);
-  const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
   const { id } = useParams();
   const [detailData, setDetailData] = useState<LocationDetailData>();
   const [homepageUrls, setHomepageUrls] = useState<string[]>([]);
@@ -34,7 +37,7 @@ function LocationDetailPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ETC&MobileApp=testweb&contentId=${id}&serviceKey=${apiKey}&_type=json&defaultYN=Y&firstImageYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`,
+          `https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ETC&MobileApp=testweb&contentId=${id}&serviceKey=${ENV.LOCATION_API_KEY}&_type=json&defaultYN=Y&firstImageYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`
         );
         // console.log(response.data.response.body.items.item[0]);
 
@@ -47,7 +50,7 @@ function LocationDetailPage() {
       } catch (error) {
         console.error(
           "데이터를 원활하게 가져오는데 오류가 발생하였습니다.",
-          error,
+          error
         );
       }
     };
@@ -55,7 +58,7 @@ function LocationDetailPage() {
     const fetchSuperDetail = async () => {
       try {
         const response = await axios.get(
-          `https://apis.data.go.kr/B551011/KorService1/detailIntro1?MobileOS=ETC&MobileApp=testWeb&contentId=${id}&contentTypeId=12&serviceKey=${apiKey}&_type=json`,
+          `https://apis.data.go.kr/B551011/KorService1/detailIntro1?MobileOS=ETC&MobileApp=testWeb&contentId=${id}&contentTypeId=12&serviceKey=${ENV.LOCATION_API_KEY}&_type=json`
         );
         // console.log(response.data.response.body.items.item);
 

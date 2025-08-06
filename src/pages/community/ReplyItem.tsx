@@ -1,21 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { useRecoilValue } from "recoil";
 import { memberState } from "@recoil/atom";
-import { NewReply, ReplyData } from "@types/UserType";
 
-import useCustomAxios from "@hooks/useCustomAxios.js";
+import { ENV } from "@constants/env";
 import Button from "@components/layout/Button";
+import useCustomAxios from "@hooks/useCustomAxios.ts";
+
+import type { NewReply, ReplyData } from "types/CommunityType";
 
 function ReplyItem({ item }: { item: ReplyData }) {
-  const imgRef = useRef<HTMLImageElement>(null);
-  useEffect(() => {
-    if (imgRef.current) {
-      imgRef.current.setAttribute("fetchpriority", "high");
-    }
-  }, []);
   const [editReply, setEditReply] = useState<boolean>(false);
   const user = useRecoilValue(memberState);
   const axios = useCustomAxios();
@@ -55,14 +51,13 @@ function ReplyItem({ item }: { item: ReplyData }) {
           <img
             src={
               item?.user.profile
-                ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.user.profile}`
+                ? `${ENV.API_SERVER}/files/07-WeatherMate/${item.user.profile}`
                 : "/mainlogin.webp"
             }
             className="rounded-full border w-12 h-12"
-            ref={imgRef}
             width={48}
             height={48}
-            loading="lazy"
+            {...{ fetchpriority: "high" }}
             decoding="async"
           />
         </div>

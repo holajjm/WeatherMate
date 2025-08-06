@@ -1,9 +1,9 @@
 import React from "react";
 
+import ToTheTopButton from "@components/layout/ToTheTopButton";
 import Location from "@pages/location/Location";
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
-import ToTheTopButton from "@components/layout/ToTheTopButton";
 
 function LocationMainPage() {
   usePageTitle("Location");

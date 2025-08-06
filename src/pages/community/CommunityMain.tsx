@@ -4,17 +4,18 @@ import { useQuery } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 import { useRecoilState } from "recoil";
 import { memberState } from "@recoil/atom";
-import useCustomAxios from "@hooks/useCustomAxios";
-import type { CommunityMainData } from "types/CommunityType";
 
+import Button from "@components/layout/Button";
 import Search from "@components/layout/Search";
 import ToTheTopButton from "@components/layout/ToTheTopButton";
+import useCustomAxios from "@hooks/useCustomAxios";
 import usePageTitle from "@hooks/usePageTitle";
 import CommunityItem from "@pages/community/CommunityItem";
 import CommunityPopularItem from "@pages/community/CommunityPopularItem";
 import UserValidLogin from "@pages/user/UserValidLogin";
 import useScrollTop from "@hooks/useScrollTop";
-import Button from "@components/layout/Button";
+
+import type { CommunityMainData } from "types/CommunityType";
 
 function CommunityMain() {
   usePageTitle("Community");
