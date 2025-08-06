@@ -1,7 +1,13 @@
 export const ENV = {
   // Weather API
+  WEATHER_MAIN: import.meta.env.VITE_REACT_APP_WEATHER_MAIN_KEY,
+  WEATHER_SERVE: import.meta.env.VITE_REACT_APP_WEATHER_SERVE_KEY,
   // KAKAO API
-  // Production
+  KAKAO_LOGIN_API_KEY: import.meta.env.VITE_KAKAO_LOGIN_API_KEY,
+  // LOCATION
+  LOCATION_API_KEY: import.meta.env.VITE_REACT_APP_LOCATION_API_KEY,
   // SERVER
-  API_SRVER: import.meta.env.VITE_API_SERVER
-}
+  API_SRVER: import.meta.env.VITE_API_SERVER,
+  // PRODUCTION
+  APP_PRODUCTION: import.meta.env.VITE_APP_PRODUCTION,
+};
