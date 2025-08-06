@@ -7,7 +7,7 @@ export const ENV = {
   // LOCATION
   LOCATION_API_KEY: import.meta.env.VITE_REACT_APP_LOCATION_API_KEY,
   // SERVER
-  API_SRVER: import.meta.env.VITE_API_SERVER,
+  API_SERVER: import.meta.env.VITE_API_SERVER,
   // PRODUCTION
   APP_PRODUCTION: import.meta.env.VITE_APP_PRODUCTION,
 };
