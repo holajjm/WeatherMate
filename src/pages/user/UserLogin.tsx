@@ -4,8 +4,10 @@ import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 import { memberState } from "@recoil/atom.js";
 
-import useCustomAxios from "@hooks/useCustomAxios.js";
+import { ENV } from "@constants/env";
 import Button from "@components/layout/Button";
+import useCustomAxios from "@hooks/useCustomAxios.js";
+
 import { toast } from "react-toastify";
 import type { LoginMainData } from "types/UserType";
 
@@ -47,18 +49,16 @@ function UserLogin() {
       console.log(err);
       if (err.response?.data.errors) {
         err.response?.data.errors.forEach((error: any) =>
-          setError(error.path, { message: error.msg }),
+          setError(error.path, { message: error.msg })
         );
       } else if (err.response?.data.message) {
         alert(err.response?.data.message);
       }
     }
   };
-  const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
-  const REDIRECT_URI = `${import.meta.env.VITE_APP_TITLE}/auth`;
+  // const REDIRECT_URI = `${import.meta.env.VITE_APP_TITLE}/auth`;
   // 개발 환경 redirect uri
-  // const REDIRECT_URI = "http://localhost:5173/auth/kakao";
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${ENV.KAKAO_LOGIN_API_KEY}&redirect_uri=${ENV.APP_PRODUCTION}/auth&response_type=code`;
   const handleLogin = () => {
     window.location.href = kakaoURL;
   };

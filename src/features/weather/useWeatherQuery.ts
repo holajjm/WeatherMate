@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
+import { ENV } from "@constants/env";
 import { useCoordsStore } from "@store/store";
 
 import type { MainData } from "types/WeatherType";
@@ -12,7 +13,7 @@ export function useWeatherQuery() {
     queryFn: async () => {
       if (!latitude || !longitude) return null;
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${import.meta.env.VITE_REACT_APP_WEATHER_API_KEY2}&units=metric&lang=kr`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${ENV.WEATHER_MAIN}&units=metric&lang=kr`
       );
       const data = await response.json();
       if (data) {

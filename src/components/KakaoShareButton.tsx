@@ -1,11 +1,13 @@
 import React from "react";
-import Button from "./layout/Button";
-import { KakaoShareData } from "../types/MbtiType";
+
+import { ENV } from "@constants/env";
+import Button from "@components/layout/Button";
+
+import type { KakaoShareData } from "types/MbtiType";
 
 const { Kakao } = window as any;
 
 function KakaoShareButton(data: KakaoShareData) {
-  const url = import.meta.env.VITE_APP_TITLE;
   const resultUrl = window.location.href;
   // console.log(data);
 
@@ -25,8 +27,8 @@ function KakaoShareButton(data: KakaoShareData) {
         {
           title: "나도 테스트하러가기",
           link: {
-            mobileWebUrl: url,
-            webUrl: url,
+            mobileWebUrl: ENV.APP_PRODUCTION,
+            webUrl: ENV.APP_PRODUCTION,
           },
         },
       ],
