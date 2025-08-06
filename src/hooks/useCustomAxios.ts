@@ -1,10 +1,12 @@
-import { memberState } from "../recoil/atom";
+import { useRecoilState } from "recoil";
+import { memberState } from "@recoil/atom";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { UserMainData } from "@types/UserType";
 
-const API_SERVER = import.meta.env.VITE_API_SERVER;
+import { ENV } from "@constants/env";
+
+import type { UserMainData } from "types/UserType";
+
 const REFRESH_URL = "/auth/refresh";
 
 function useCustomAxios() {
@@ -16,7 +18,7 @@ function useCustomAxios() {
 
   // Axios 인스턴스 생성
   const instance = axios.create({
-    baseURL: API_SERVER,
+    baseURL: ENV.API_SERVER,
     timeout: 1000 * 20,
     headers: {
       "content-type": "application/json", // 요청 데이터 유형
@@ -38,7 +40,7 @@ function useCustomAxios() {
   }
 
   // 요청 인터셉터
-  instance.interceptors.request.use(config => {
+  instance.interceptors.request.use((config) => {
     if (user && user.token && user.token.accessToken) {
       let token = user.token.accessToken;
       if (config.url === REFRESH_URL) {
@@ -51,15 +53,15 @@ function useCustomAxios() {
 
   // 응답 인터셉터
   instance.interceptors.response.use(
-    res => res,
-    async err => {
+    (res) => res,
+    async (err) => {
       const { config, response } = err;
       if (response?.status === 401) {
         // 인증되지 않음
         if (config.url === REFRESH_URL) {
           // 리프레시 토큰 인증 실패
           const gotoLogin = confirm(
-            "로그인 후 이용 가능합니다.\n로그인 페이지로 이동하시겠습니까?",
+            "로그인 후 이용 가능합니다.\n로그인 페이지로 이동하시겠습니까?"
           );
           gotoLogin &&
             navigate("/users/login", { state: { from: location.pathname } });
@@ -67,7 +69,7 @@ function useCustomAxios() {
           // 리프레시 토큰으로 액세스 토큰 요청
           const accessToken = await getAccessToken(instance);
           if (accessToken) {
-            setUser(prevUser => ({
+            setUser((prevUser) => ({
               ...prevUser,
               token: {
                 ...prevUser.token,
@@ -82,7 +84,7 @@ function useCustomAxios() {
       } else {
         return Promise.reject(err);
       }
-    },
+    }
   );
 
   return instance;
