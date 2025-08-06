@@ -4,14 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
+import { ENV } from "@constants/env";
 import Button from "@components/layout/Button";
+import LocationItemSkeleton from "@components/skeleton/LocationItemSkeleton";
 import { useDebounce } from "@hooks/useDebounce";
-import { motion } from "framer-motion";
-
+import { useThrottle } from "@hooks/useThrottle";
 import LocationKeywords from "@pages/location/LocationKeyword";
 import LocationItem from "@pages/location/LocationItem";
-import LocationItemSkeleton from "@components/skeleton/LocationItemSkeleton";
 import { useCoordsStore } from "@store/store";
+
+import { motion } from "framer-motion";
 
 type InitialData = {
   [key: string]: string;
@@ -33,7 +35,6 @@ const options = [
   { id: "39", label: "음식점", img_src: "Food" },
 ];
 function Location() {
-  const locationAPIKEY = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
   const navigate = useNavigate();
   const { latitude, longitude } = useCoordsStore((state) => state);
   const [contentID, setContentID] = useState<string>("12");
@@ -42,7 +43,7 @@ function Location() {
   //초기 데이터 호출 로직
   const getLocationData = async (page: number) => {
     const response = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${locationAPIKEY}&pageNo=${page}&numOfRows=8&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json `,
+      `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${ENV.LOCATION_API_KEY}&pageNo=${page}&numOfRows=8&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json `
     );
     return response?.data?.response?.body;
   };
@@ -55,7 +56,7 @@ function Location() {
   } = useInfiniteQuery({
     queryKey: [
       "InfiniteData",
-      locationAPIKEY,
+      ENV.LOCATION_API_KEY,
       longitude,
       latitude,
       radius,
@@ -74,15 +75,19 @@ function Location() {
   const mergedItems: InitialData[] | undefined =
     InitialData && InitialData?.pages?.length === 1
       ? InitialData?.pages[0]?.items?.item
-      : InitialData?.pages?.flatMap(page => page?.items?.item);
+      : InitialData?.pages?.flatMap((page) => page?.items?.item);
   // console.log(mergedItems);
+
+  const throttledFetchNextPage = useThrottle(() => {
+    fetchNextPage();
+  }, 500);
 
   const { ref, inView } = useInView();
   useEffect(() => {
     if (inView) {
-      fetchNextPage();
+      throttledFetchNextPage();
     }
-  }, [inView]);
+  }, [inView, throttledFetchNextPage]);
 
   //검색 로직
   const [keyword, setKeyword] = useState("");
@@ -102,7 +107,7 @@ function Location() {
   const getFilteredData = async (searchKeyword: string) => {
     try {
       const response = await axios.get(
-        `https://apis.data.go.kr/B551011/KorService1/searchKeyword1?MobileOS=ETC&MobileApp=testweb&serviceKey=${locationAPIKEY}&keyword=${searchKeyword}&_type=json&contentTypeId=${contentID}`,
+        `https://apis.data.go.kr/B551011/KorService1/searchKeyword1?MobileOS=ETC&MobileApp=testweb&serviceKey=${ENV.LOCATION_API_KEY}&keyword=${searchKeyword}&_type=json&contentTypeId=${contentID}`
       );
       setResult(response?.data?.response?.body?.items?.item);
       return response;
@@ -175,7 +180,7 @@ function Location() {
       </header>
 
       <aside className="flex gap-1 justify-center items-center">
-        {options.map(option => (
+        {options.map((option) => (
           <div className="w-full" key={option.id}>
             <LocationKeywords
               id={option.id}
