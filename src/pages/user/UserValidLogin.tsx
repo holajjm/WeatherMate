@@ -4,19 +4,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
 import Button from "@components/layout/Button";
+import { ENV } from "@constants/env";
 
 function UserValidLogin() {
   usePageTitle("Login");
   useScrollTop();
   const navigate = useNavigate();
   const location = useLocation();
-  const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
-  const REDIRECT_URI = `${import.meta.env.VITE_APP_TITLE}/auth`;
-  // 개발 환경 redirect uri
-  // const REDIRECT_URI = "http://localhost:5173/auth/kakao";
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const handleLogin = () => {
-    window.location.href = kakaoURL;
+    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${ENV.KAKAO_LOGIN_API_KEY}&redirect_uri=${ENV.APP_PRODUCTION}/auth&response_type=code`;
   };
 
   return (
@@ -46,9 +42,7 @@ function UserValidLogin() {
               textColor="white"
               bgColor="sky"
               width="full"
-              onClick={() =>
-                navigate("/user/Login", { state: location.state })
-              }
+              onClick={() => navigate("/user/Login", { state: location.state })}
             ></Button>
             <Button
               text={"회원가입"}

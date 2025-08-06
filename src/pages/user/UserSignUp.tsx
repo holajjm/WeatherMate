@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+
 import useCustomAxios from "@hooks/useCustomAxios";
-import { SignUpMainData } from "@types/UserType";
+
+import type { SignUpMainData } from "types/UserType";
 
 function UserSignUp() {
   const axios = useCustomAxios();

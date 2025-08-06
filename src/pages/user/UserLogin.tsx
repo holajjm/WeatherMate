@@ -56,11 +56,9 @@ function UserLogin() {
       }
     }
   };
-  // const REDIRECT_URI = `${import.meta.env.VITE_APP_TITLE}/auth`;
-  // 개발 환경 redirect uri
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${ENV.KAKAO_LOGIN_API_KEY}&redirect_uri=${ENV.APP_PRODUCTION}/auth&response_type=code`;
+
   const handleLogin = () => {
-    window.location.href = kakaoURL;
+    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${ENV.KAKAO_LOGIN_API_KEY}&redirect_uri=${ENV.APP_PRODUCTION}/auth&response_type=code`;
   };
   return (
     <div className="max-w-[600px] min-w-[320px] m-auto h-screen bg-slate-50">

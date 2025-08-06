@@ -5,17 +5,17 @@ import { AxiosResponse } from "axios";
 import { memberState } from "@recoil/atom";
 import { useRecoilState } from "recoil";
 
+import Button from "@components/layout/Button";
 import useCustomAxios from "@hooks/useCustomAxios";
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
-import Button from "@components/layout/Button";
-import { CommunityMainData, ExpandCommunityData } from "@types/UserType";
-
 import UserBoard from "@pages/user/UserBoard";
 import UserBookMark from "@pages/user/UserBookmark";
 import ValidLogin from "@pages/user/UserValidLogin";
+
 import { BsBookmarkStarFill } from "react-icons/bs";
 import { PiUserListBold } from "react-icons/pi";
+import type { CommunityMainData, ExpandCommunityData } from "types/CommunityType";
 
 function UserPage() {
   usePageTitle("MyPage");
