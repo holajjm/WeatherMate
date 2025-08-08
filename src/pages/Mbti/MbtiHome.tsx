@@ -30,7 +30,7 @@ function MbtiHome() {
           </h1>
           <img
             className=""
-            src="/mainlogin.webp"
+            src="/MainIcon.webp"
             width={120}
             loading="lazy"
             {...{ fetchpriority: "high" }}
