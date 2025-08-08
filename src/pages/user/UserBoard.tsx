@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { ENV } from "@constants/env";
 import Button from "@components/layout/Button";
 import useCustomAxios from "@hooks/useCustomAxios";
 
@@ -29,7 +30,7 @@ function UserBoard({ item }: { item: ExpandCommunityData }) {
         <img
           src={
             item?.user.profile
-              ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item?.user.profile}`
+              ? `${ENV.API_SERVER}/files/07-WeatherMate/${item?.user.profile}`
               : "/mainlogin.webp"
           }
           className="rounded-full border-2 w-10 h-10"
@@ -54,7 +55,7 @@ function UserBoard({ item }: { item: ExpandCommunityData }) {
           className="w-full h-2/3"
           src={
             item.image
-              ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.image}`
+              ? `${ENV.API_SERVER}/files/07-WeatherMate/${item.image}`
               : "/readyforimage.jpeg"
           }
           alt="image"

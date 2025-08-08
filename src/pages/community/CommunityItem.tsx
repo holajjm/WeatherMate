@@ -73,9 +73,9 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
             className="w-full h-60 rounded-md object-scale-down"
             src={
               item.extra
-                ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.extra.image}`
+                ? `${ENV.API_SERVER}/files/07-WeatherMate/${item.extra.image}`
                 : item?.image
-                  ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item?.image}`
+                  ? `${ENV.API_SERVER}/files/07-WeatherMate/${item?.image}`
                   : `/ReadyForImage.webp`
             }
             alt="DetailImage"

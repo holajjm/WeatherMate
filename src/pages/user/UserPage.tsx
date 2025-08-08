@@ -5,6 +5,7 @@ import { AxiosResponse } from "axios";
 import { memberState } from "@recoil/atom";
 import { useRecoilState } from "recoil";
 
+import { ENV } from "@constants/env";
 import Button from "@components/layout/Button";
 import useCustomAxios from "@hooks/useCustomAxios";
 import usePageTitle from "@hooks/usePageTitle";
@@ -68,7 +69,7 @@ function UserPage() {
                     className="w-12 h-12 rounded-full"
                     src={
                       user?.profile
-                        ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${user?.profile}`
+                        ? `${ENV.API_SERVER}/files/07-WeatherMate/${user?.profile}`
                         : "/mainlogin.webp"
                     }
                     alt="Profile"

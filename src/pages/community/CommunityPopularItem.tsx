@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
+import { ENV } from "@constants/env";
 import CommunityPopularSkeleton from "@components/skeleton/CommunityPopularSkeleton";
 import CommunityModal from "@components/modal/CommunityModal";
 import useCustomAxios from "@hooks/useCustomAxios";
@@ -45,7 +46,7 @@ function CommunityPopularItem() {
             className="w-full h-full rounded-full"
             src={
               item.image
-                ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item?.image}`
+                ? `${ENV.API_SERVER}/files/07-WeatherMate/${item?.image}`
                 : `./ReadyForImage.webp`
             }
             alt="image"

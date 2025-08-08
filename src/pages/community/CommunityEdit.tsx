@@ -4,8 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { AxiosResponse } from "axios";
 
-import useCustomAxios from "@hooks/useCustomAxios.js";
+import { ENV } from "@constants/env";
 import Button from "@components/layout/Button";
+import useCustomAxios from "@hooks/useCustomAxios.js";
+
 import type { CommunityDetailData, CommunityFormData } from "types/CommunityType";
 
 function CommunityEdit() {
@@ -116,7 +118,7 @@ function CommunityEdit() {
                       src={
                         imagePreview
                           ? imagePreview
-                          : `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item.image}`
+                          : `${ENV.API_SERVER}/files/07-WeatherMate/${data?.data?.item.image}`
                       }
                       alt="Content Image"
                       className="h-full object-contain rounded-md shadow-md cursor-pointer"

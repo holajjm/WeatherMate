@@ -2,14 +2,14 @@ import React, { memo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
+import { ENV } from "@constants/env";
+import MainAllWeatherSkeleton from "@components/skeleton/MainAllWeatherSkeleton";
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
-import { motion } from "framer-motion";
 
-import MainAllWeatherSkeleton from "@components/skeleton/MainAllWeatherSkeleton";
+import { motion } from "framer-motion";
 import { AllCityData } from "types/WeatherType";
 
-const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
 interface Cities {
   Seoul: string;
   "Gyeonggi-do": string;
@@ -40,7 +40,7 @@ function MainAllCitiesWeather() {
   useScrollTop();
   const params = {
     id: "1835847,1841610,1843125,1845106,1845105,1845789,1845788,1841597,1902028,1846265",
-    appid: apiKey,
+    appid: ENV.WEATHER_MAIN,
     lang: "kr",
     units: "metric",
   };

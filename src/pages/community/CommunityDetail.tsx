@@ -5,16 +5,18 @@ import { AxiosResponse } from "axios";
 import { useRecoilValue } from "recoil";
 import { memberState } from "@recoil/atom";
 
+import { ENV } from "@constants/env";
+import Button from "@components/layout/Button";
 import useCustomAxios from "@hooks/useCustomAxios";
 import useScrollTop from "@hooks/useScrollTop";
-import Button from "@components/layout/Button";
-import type { CommunityDetailData } from "types/CommunityType";
+import ReplyMain from "@pages/community/ReplyMain";
 
-import ReplyMain from "./ReplyMain";
 import { FaArrowLeft, FaHeart } from "react-icons/fa";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import type { CommunityDetailData } from "types/CommunityType";
 
 function CommunityDetail() {
+  useScrollTop();
   const navigate = useNavigate();
   const user = useRecoilValue(memberState);
   const { _id } = useParams();
@@ -57,7 +59,7 @@ function CommunityDetail() {
             <img
               src={
                 data?.data?.item.user.profile
-                  ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item.user.profile}`
+                  ? `${ENV.API_SERVER}/files/07-WeatherMate/${data?.data?.item.user.profile}`
                   : "/NullUser.webp"
               }
               className="rounded-full border-2 w-12 h-12"
@@ -112,9 +114,9 @@ function CommunityDetail() {
               <img
                 src={
                   data?.data?.item.extra
-                    ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item.extra.image}`
+                    ? `${ENV.API_SERVER}/files/07-WeatherMate/${data?.data?.item.extra.image}`
                     : data?.data?.item?.image
-                      ? `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${data?.data?.item?.image}`
+                      ? `${ENV.API_SERVER}/files/07-WeatherMate/${data?.data?.item?.image}`
                       : `/ReadyForImage.webp`
                 }
                 alt="Content Image"
