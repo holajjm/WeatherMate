@@ -2,34 +2,36 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import Layout from "@components/layout/index";
-import ErrorPage from "@pages/ErrorPage";
+export const ErrorPage = React.lazy(() => import("@pages/ErrorPage"));
 // MainPage
 import MainHomePage from "@pages/main/MainHomePage";
 import MainAllCitiesWeather from "@pages/main/MainAllCitiesWeather";
 // Community
-import CommunityNew from "@pages/community/CommunityNew";
-import CommunityDetail from "@pages/community/CommunityDetail";
-import CommunityMain from "@pages/community/CommunityMain";
-import CommunityEdit from "@pages/community/CommunityEdit";
+export const CommunityNew = React.lazy(() => import("@pages/community/CommunityNew"));
+export const CommunityDetail = React.lazy(() => import("@pages/community/CommunityDetail"));
+export const CommunityMain = React.lazy(() => import("@pages/community/CommunityMain"));
+export const CommunityEdit = React.lazy(() => import("@pages/community/CommunityEdit"));
 // Location
-import LocationDetailPage from "@pages/location/LocationDetailPage";
-import LocationMainPage from "@pages/location/LocationMainPage";
+export const LocationDetailPage = React.lazy(() => import("@pages/location/LocationDetailPage"));
+export const LocationMainPage = React.lazy(() => import("@pages/location/LocationMainPage"));
 // Mbti
-import MbtiQuestion from "@pages/Mbti/MbtiQuestion";
-import MbtiResult from "@pages/Mbti/MbtiResult";
-import MbtiHome from "@pages/Mbti/MbtiHome";
+export const MbtiQuestion = React.lazy(() => import("@pages/Mbti/MbtiQuestion"));
+export const MbtiResult = React.lazy(() => import("@pages/Mbti/MbtiResult"));
+export const MbtiHome = React.lazy(() => import("@pages/Mbti/MbtiHome"));
 // User
-import UserLogin from "@pages/user/UserLogin";
-import UserValidLogin from "@pages/user/UserValidLogin";
-import UserOAuth from "@pages/user/UserOAuth";
-import UserSignUp from "@pages/user/UserSignUp";
-import UserPage from "@pages/user/UserPage";
-import UserEdit from "@pages/user/UserEdit";
+export const UserLogin = React.lazy(() => import("@pages/user/UserLogin"));
+export const UserValidLogin = React.lazy(() => import("@pages/user/UserValidLogin"));
+export const UserOAuth = React.lazy(() => import("@pages/user/UserOAuth"));
+export const UserSignUp = React.lazy(() => import("@pages/user/UserSignUp"));
+export const UserPage = React.lazy(() => import("@pages/user/UserPage"));
+export const UserEdit = React.lazy(() => import("@pages/user/UserEdit"));
+
+import WithSuspense from "@components/WithSuspense";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    errorElement: <ErrorPage />,
+    errorElement: WithSuspense(<ErrorPage />),
     children: [
       {
         path: "/",
@@ -53,69 +55,69 @@ const router = createBrowserRouter([
           // Community
           {
             path: "community",
-            element: <CommunityMain />,
+            element: WithSuspense(<CommunityMain />),
           },
           {
             path: "community/new",
-            element: <CommunityNew />,
+            element: WithSuspense(<CommunityNew />),
           },
           {
             path: "community/:_id/edit",
-            element: <CommunityEdit />,
+            element: WithSuspense(<CommunityEdit />),
           },
           {
             path: "community/:_id",
-            element: <CommunityDetail />,
+            element: WithSuspense(<CommunityDetail />),
           },
 
           // Location
           {
             path: "location",
-            element: <LocationMainPage />,
+            element: WithSuspense(<LocationMainPage />),
           },
           {
             path: "location/:id",
-            element: <LocationDetailPage />,
+            element: WithSuspense(<LocationDetailPage />),
           },
 
           // Mbti
           {
             path: "mbti",
-            element: <MbtiHome />,
+            element: WithSuspense(<MbtiHome />),
           },
           {
             path: "mbti/question",
-            element: <MbtiQuestion />,
+            element: WithSuspense(<MbtiQuestion />),
           },
           {
             path: "mbti/result",
-            element: <MbtiResult />,
+            element: WithSuspense(<MbtiResult />),
           },
 
           // User
           {
             path: "user/login",
-            element: <UserLogin />,
+            element: WithSuspense(<UserLogin />),
           },
           {
             path: "mainlogin",
-            element: <UserValidLogin />,
+            element: WithSuspense(<UserValidLogin />),
           },
           {
             path: "auth",
-            element: <UserOAuth />,
+            element: WithSuspense(<UserOAuth />),
           },
           {
             path: "user/signup",
-            element: <UserSignUp />,
+            element: WithSuspense(<UserSignUp />),
           },
           {
             path: "user/mypage",
-            element: <UserPage />,
+            element: WithSuspense(<UserPage />),
           },
           {
             path: "user/edit",
-            element: <UserEdit />,
+            element: WithSuspense(<UserEdit />),
           },
         ],
       },
