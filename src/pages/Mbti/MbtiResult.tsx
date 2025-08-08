@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import MbtiResultData from "@constants/MbtiResultData";
+import { MbtiResultData } from "@constants/MbtiResultData";
 import KakaoShareButton from "@components/KakaoShareButton";
 import Button from "@components/layout/Button";
 
@@ -11,14 +11,12 @@ function MbtiResult() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const mbti = searchParams.get("mbti");
-  const [resultData, setResultData] = useState<MBTIResult | undefined>(
-    undefined,
-  );
+  const [resultData, setResultData] = useState<MBTIResult>({desc:"",id:0,title:"",type:""});
   console.log(resultData);
 
   useEffect(() => {
-    const result = MbtiResultData.find(s => s.type === mbti);
-    setResultData(result);
+    const result = MbtiResultData.find((s) => s.type === mbti);
+    setResultData({...result});
   }, [mbti]);
 
   return (
@@ -32,9 +30,10 @@ function MbtiResult() {
           alt="result"
           className="absolute -top-20 left-1/2 -translate-x-1/2 w-36 h-36 rounded-full bg-white"
         />
-        <div className="mt-12 flex flex-col gap-2">
-          <p className="text-lg font-bold text-center text-amber-500">{`"${resultData?.title}"`}</p>
-          <p className="text-sm">{resultData?.desc}</p>
+        <div className="mt-5 flex flex-col gap-2">
+          <p className="w-1/3 h-full text-left">MBTI: <span className="text-2xl font-bold text-blue-500">{resultData?.type}</span></p>
+          <p className="text-lg font-bold text-center text-amber-500">{resultData?.title}</p>
+          <p className="text-sm text-pretty">{resultData?.desc}</p>
         </div>
       </div>
 
@@ -46,7 +45,7 @@ function MbtiResult() {
           width="full"
           onClick={() => navigate("/mbti")}
         ></Button>
-        <KakaoShareButton data={resultData} />
+        <KakaoShareButton resultData={resultData} />
         <Button
           text={"메인으로 돌아가기"}
           textColor="white"
