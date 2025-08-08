@@ -14,6 +14,7 @@ import LocationItem from "@pages/location/LocationItem";
 import { useCoordsStore } from "@store/store";
 
 import { motion } from "framer-motion";
+import { useCoords } from "@hooks/useCoords";
 
 type InitialData = {
   [key: string]: string;
@@ -39,7 +40,7 @@ function Location() {
   const { latitude, longitude } = useCoordsStore((state) => state);
   const [contentID, setContentID] = useState<string>("12");
   const radius = "100000";
-
+  useCoords();
   //초기 데이터 호출 로직
   const getLocationData = async (page: number) => {
     const response = await axios.get(
