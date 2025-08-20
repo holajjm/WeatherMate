@@ -41,6 +41,7 @@ function CommunityDetail() {
       }
     }
   };
+  // console.log(data?.data?.item);
 
   return (
     <div className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-slate-50 overflow-y-scroll scrollbar-hide flex flex-col gap-1">
@@ -77,35 +78,27 @@ function CommunityDetail() {
               </p>
             </div>
             <div className="flex flex-col items-center justify-center">
-              {[
-                "Sun",
-                "Cloud",
-                "Rain",
-                "Foggy",
-                "Snow",
-                "Thunder",
-                "Wind",
-              ].includes(data?.data?.item?.title as string) ? (
-                <img
-                  className="w-10 h-10 rounded-full p-1"
-                  src={`/WeatherIcon/WeatherIcon${data?.data?.item.title}.webp`}
-                  alt="weather"
-                  width={40}
-                  height={40}
-                  {...{ fetchpriority: "high" }}
-                  decoding="async"
-                />
-              ) : (
-                <img
-                  className="w-10 h-10 rounded-full p-1"
-                  src="./MBTIImage/MBTIMain.webp"
-                  alt="weather"
-                  width={40}
-                  height={40}
-                  {...{ fetchpriority: "high" }}
-                  decoding="async"
-                />
-              )}
+              <img
+                className="w-10 h-10 rounded-full p-1"
+                src={
+                  [
+                    "Sun",
+                    "Cloud",
+                    "Rain",
+                    "Foggy",
+                    "Snow",
+                    "Thunder",
+                    "Wind",
+                  ].includes(data?.data?.item?.title as string)
+                    ? `/WeatherIcon/WeatherIcon${data?.data?.item.title}.webp`
+                    : "/MBTIImage/MBTIMain.webp"
+                }
+                alt="weather"
+                width={40}
+                height={40}
+                {...{ fetchpriority: "high" }}
+                decoding="async"
+              />
             </div>
           </header>
 
