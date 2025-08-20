@@ -52,7 +52,7 @@ function ReplyItem({ item }: { item: ReplyData }) {
             src={
               item?.user.profile
                 ? `${ENV.API_SERVER}/files/07-WeatherMate/${item.user.profile}`
-                : "/mainlogin.webp"
+                : "/NullUser.webp"
             }
             className="rounded-full border w-12 h-12"
             width={48}
