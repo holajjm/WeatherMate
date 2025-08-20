@@ -37,7 +37,8 @@ const options = [
 ];
 function Location() {
   const navigate = useNavigate();
-  const { latitude, longitude } = useCoordsStore((state) => state);
+  const latitude = useCoordsStore((state) => state.latitude);
+  const longitude = useCoordsStore((state) => state.longitude);
   const [contentID, setContentID] = useState<string>("12");
   const radius = "100000";
   useCoords();
@@ -66,18 +67,18 @@ function Location() {
     queryFn: ({ pageParam = 0 }: { pageParam?: number }) =>
       getLocationData(pageParam),
     getNextPageParam: (lastPage: PageData) => {
-      // console.log(lastPage);
+      console.log(lastPage);
       return lastPage?.pageNo + 1;
     },
     initialPageParam: 0,
   });
-  // console.log(InitialData);
+  console.log(InitialData);
 
   const mergedItems: InitialData[] | undefined =
     InitialData && InitialData?.pages?.length === 1
       ? InitialData?.pages[0]?.items?.item
       : InitialData?.pages?.flatMap((page) => page?.items?.item);
-  // console.log(mergedItems);
+  console.log(mergedItems);
 
   const throttledFetchNextPage = useThrottle(() => {
     fetchNextPage();
