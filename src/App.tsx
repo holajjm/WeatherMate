@@ -2,19 +2,20 @@ import React, { Suspense, useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 
+import { ENV } from "@constants/env";
+import Loading from "@components/layout/Loading";
+
+import router from "./routes";
 import { ToastContainer } from "react-toastify";
 
-import Loading from "@components/layout/Loading";
-import router from "./routes";
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const { Kakao } = window as any;
 
 function App() {
-  const KAKAO_APP_KEY = import.meta.env.VITE_REACT_APP_KAKAO_JAVASCRIPT_KEY
   useEffect(() => {
     if (!Kakao.isInitialized()) {
-      Kakao.init(KAKAO_APP_KEY);
+      Kakao.init(ENV.KAKAO_JS_KEY);
     }
   }, []);
 
