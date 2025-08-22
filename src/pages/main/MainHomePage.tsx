@@ -11,10 +11,10 @@ import { useCoords } from "@hooks/useCoords";
 import MainNowWeather from "@pages/main/MainNowWeather";
 import MainMyLocationWeather from "@pages/main/MainMyLocationWeather";
 import MainWeatherTimeZone from "@pages/main/MainWeatherTimeZone";
+import MainAllCitiesWeather from "@pages/main/MainAllCitiesWeather";
 import { useModalStore } from "@store/store";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { MdDoubleArrow } from "react-icons/md";
 
 function MainHomePage() {
   const navigate = useNavigate();
@@ -75,20 +75,44 @@ function MainHomePage() {
             transition={{ duration: 1 }}
           >
             <div className="w-full">
-              <div className="w-full flex flex-col gap-1 p-2 box-border">
-                <Button
-                  text={
-                    <>
-                      오늘의 추천 보기
-                      <MdDoubleArrow />
-                    </>
-                  }
-                  textColor="black"
-                  bgColor="gray_light"
-                  width="full"
-                  onClick={() => modalOpen()}
-                ></Button>
+              <div className="w-full flex flex-col gap-2 p-2 box-border">
+                <div className="flex gap-1">
+                  <Button
+                    text={
+                      <>
+                        오늘의 추천 보기
+                        <svg
+                          className="w-5 h-5 ml-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 -1 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            // d="M15 191-7-7 7-7"
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </>
+                    }
+                    textColor="black"
+                    bgColor="gray_light"
+                    width="1/2"
+                    onClick={() => modalOpen()}
+                  ></Button>
+                  <Button
+                    text={"날씨 테마 MBTI 검사하기!"}
+                    textColor="black"
+                    bgColor="gray_light"
+                    width="1/2"
+                    onClick={() => navigate("/mbti")}
+                  ></Button>
+                </div>
+                <MainAllCitiesWeather />
               </div>
+
               <motion.section
                 initial={{ translateY: 50, opacity: 0 }}
                 animate={{ translateY: 0, opacity: 1 }}
@@ -99,6 +123,7 @@ function MainHomePage() {
               >
                 <MainNowWeather />
               </motion.section>
+
               <motion.section
                 initial={{ translateY: 100, opacity: 0 }}
                 animate={{ translateY: 0, opacity: 1 }}
@@ -109,6 +134,7 @@ function MainHomePage() {
               >
                 <MainWeatherTimeZone />
               </motion.section>
+
               <motion.section
                 initial={{ translateY: 150, opacity: 0 }}
                 animate={{ translateY: 0, opacity: 1 }}
@@ -118,30 +144,6 @@ function MainHomePage() {
                 }}
               >
                 <MainMyLocationWeather />
-              </motion.section>
-              <motion.section
-                initial={{ translateY: 200, opacity: 0 }}
-                animate={{ translateY: 0, opacity: 1 }}
-                transition={{
-                  ease: "easeInOut",
-                  duration: 1.25,
-                }}
-                className="p-2 flex gap-1 items-center justify-center"
-              >
-                <Button
-                  text={"전국 날씨 확인하기!"}
-                  textColor="black"
-                  bgColor="gray_light"
-                  width="full"
-                  onClick={() => navigate("/allcity")}
-                ></Button>
-                <Button
-                  text={"날씨 테마 MBTI 검사하기!"}
-                  textColor="black"
-                  bgColor="gray_light"
-                  width="full"
-                  onClick={() => navigate("/mbti")}
-                ></Button>
               </motion.section>
             </div>
           </motion.div>
