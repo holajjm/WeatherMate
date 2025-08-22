@@ -5,7 +5,7 @@ import Layout from "@components/layout/index";
 export const ErrorPage = React.lazy(() => import("@pages/ErrorPage"));
 // MainPage
 import MainHomePage from "@pages/main/MainHomePage";
-import MainAllCitiesWeather from "@pages/main/MainAllCitiesWeather";
+// import MainAllCitiesWeather from "@pages/main/MainAllCitiesWeather";
 // Community
 export const CommunityNew = React.lazy(() => import("@pages/community/CommunityNew"));
 export const CommunityDetail = React.lazy(() => import("@pages/community/CommunityDetail"));
@@ -47,10 +47,10 @@ const router = createBrowserRouter([
             path: "/",
             element: <MainHomePage />,
           },
-          {
-            path: "allcity",
-            element: <MainAllCitiesWeather />,
-          },
+          // {
+          //   path: "allcity",
+          //   element: <MainAllCitiesWeather />,
+          // },
 
           // Community
           {
