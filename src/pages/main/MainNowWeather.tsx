@@ -5,14 +5,13 @@ import MainComentSkeleton from "@components/skeleton/MainComentSkeleton.tsx";
 import { useWeatherQuery } from "@features/weather/useWeatherQuery";
 import ErrorPage from "@pages/ErrorPage";
 
-import { WeatherImage } from "types/WeatherType";
+import type { WeatherImage } from "types/WeatherType";
 
 function MainNowWeather() {
-  const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
-  const { isError, isFetching } = useWeatherQuery();
+  const { data: weatherData, isError, isFetching } = useWeatherQuery();
   if (isError) return <ErrorPage />;
-  const realImage = data?.weather
-    ? realImageList[data.weather[0].main as keyof WeatherImage]
+  const realImage = weatherData?.weather
+    ? realImageList[weatherData.weather[0].main as keyof WeatherImage]
     : null;
   return (
     <article className="p-2 flex flex-col gap-2 font-Pretendard h-full fade-in">
@@ -25,7 +24,7 @@ function MainNowWeather() {
       {!isFetching ? (
         <div className="relative w-full h-40 flex gap-2">
           <img
-            className="absolute w-full h-40 object-cover rounded-lg"
+            className="absolute w-full h-full object-fill rounded-xl"
             src={realImage ? realImage : "./Loading_Cloud.gif"}
             alt="today"
             width={580}
@@ -34,11 +33,11 @@ function MainNowWeather() {
             decoding="async"
           />
           <div
-            className={`w-full flex flex-col justify-center gap-2 rounded-lg text-center font-bold shadow-md shadow-slate-500  ${["Clouds", "Rain", "Drizzle", "Thunderstorm", "Snow"].includes(data?.weather[0].main) ? "text-white" : "text-[#2d2d2d]"} z-20`}
+            className={`w-full flex flex-col justify-center gap-2 rounded-xl text-center font-bold shadow-md shadow-slate-500  ${["Clouds", "Rain", "Drizzle", "Thunderstorm", "Snow"].includes(weatherData?.weather[0].main as string) ? "text-white" : "text-[#2d2d2d]"} z-20`}
           >
-            <p>{data?.name}</p>
-            <p className="text-4xl">{data?.main.temp.toFixed(1)}°C</p>
-            <p>{data?.weather[0].description}</p>
+            <p>{weatherData?.name}</p>
+            <p className="text-4xl">{weatherData?.main.temp.toFixed(1)}°C</p>
+            <p>{weatherData?.weather[0].description}</p>
           </div>
         </div>
       ) : (
