@@ -21,7 +21,7 @@ function MainWeatherTimeZone() {
           {timeWeather?.list?.map((item: WeatherTime) => (
             <div
               key={item.dt}
-              className="h-24 w-full min-w-14 p-1 box-border border-[1px] shadow-md shadow-slate-300 bg-white rounded-lg flex flex-col items-center justify-center text-nowrap"
+              className="h-24 w-full min-w-14 p-1 box-border border-[1px] shadow-md shadow-slate-300 bg-white rounded-xl flex flex-col items-center justify-center text-nowrap"
             >
               <p className="text-xs text-center text-slate-600">
                 {UnixTime(item.dt, "")}
