@@ -1,15 +1,13 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
-import useCustomAxios from "@hooks/useCustomAxios";
 import Button from "@components/layout/Button";
+import useReplyCreate from "@features/community/useReplyCreate";
 
 import type { NewReply } from "types/CommunityType";
 
 function ReplyNew() {
-  const axios = useCustomAxios();
   const { _id } = useParams();
   const {
     register,
@@ -18,32 +16,21 @@ function ReplyNew() {
     reset,
   } = useForm<NewReply>();
 
-  const { refetch } = useQuery({
-    queryKey: ["posts", _id, "replies"],
-    queryFn: () => axios.get(`/posts/${_id}/replies`),
-  });
-
-  const onSubmit: SubmitHandler<NewReply> = async (formData: NewReply) => {
-    await axios.post(`/posts/${_id}/replies`, formData);
-    console.log(formData);
-    refetch();
-    reset();
-  };
+  const { mutate: onSubmit } = useReplyCreate({ _id, reset });
   return (
     <div>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit((formData) => onSubmit(formData))}
         className="flex flex-col gap-2 rounded-lg"
       >
         <div className="flex gap-2">
-          <textarea
+          <input
             {...register("comment", {
               required: "내용을 입력하세요",
             })}
-            rows={1}
             placeholder="댓글을 입력하세요"
             className="p-2 w-full text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-          ></textarea>
+          />
           <Button
             text="등록"
             textColor="amber"
