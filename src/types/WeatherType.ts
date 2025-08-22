@@ -103,6 +103,9 @@ export interface TimeWeather {
   list: WeatherTime[];
   message: number;
 }
+export interface Cities {
+  [key: string]: string;
+}
 // export interface AllCityData {
 //   clouds: { all: number };
 //   coord: { lat: number; lon: number };
