@@ -3,7 +3,7 @@ import { RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 
 import { ENV } from "@constants/env";
-import Loading from "@components/layout/Loading";
+// import Loading from "@components/layout/Loading";
 
 import router from "./routes";
 import { ToastContainer } from "react-toastify";
@@ -22,7 +22,7 @@ function App() {
   return (
     <>
       <RecoilRoot>
-        <Suspense fallback={<Loading />}>
+        {/* <Suspense fallback={<Loading />}> */}
           <ToastContainer
             position="top-right"
             limit={2}
@@ -30,7 +30,7 @@ function App() {
             autoClose={5000}
           />
           <RouterProvider router={router} />
-        </Suspense>
+        {/* </Suspense> */}
       </RecoilRoot>
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </>
