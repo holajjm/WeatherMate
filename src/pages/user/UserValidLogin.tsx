@@ -1,14 +1,10 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import usePageTitle from "@hooks/usePageTitle";
-import useScrollTop from "@hooks/useScrollTop";
-import Button from "@components/layout/Button";
 import { ENV } from "@constants/env";
+import Button from "@components/layout/Button";
 
 function UserValidLogin() {
-  usePageTitle("Login");
-  useScrollTop();
   const navigate = useNavigate();
   const location = useLocation();
   const handleLogin = () => {
@@ -20,10 +16,10 @@ function UserValidLogin() {
       <div className="p-4 flex justify-center drop-shadow-md">
         <div className="bg-white flex flex-col w-full p-4 rounded-xl gap-4">
           <div className="flex flex-col justify-center items-center gap-4">
-            <h2 className="text-xl font-black text-sky-400 font-UhBeeKangJa">
+            <h2 className="text-xl font-bold text-blue_middle font-UhBeeKangJa">
               로그인 후 이용할 수 있어요!
             </h2>
-            <p className="text-slate-600 text-lg font-SSRONETHandwritten">
+            <p className="text-sub_text font-SSRONETHandwritten">
               원활한 서비스 사용을 위해 로그인을 해주세요!
             </p>
             <img
@@ -32,7 +28,7 @@ function UserValidLogin() {
               alt="SampleImg"
               width={120}
               height={150}
-              loading="lazy"
+              {...{ fetchpriority: "high" }}
               decoding="async"
             />
           </div>
