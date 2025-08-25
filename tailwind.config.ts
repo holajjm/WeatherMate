@@ -18,8 +18,10 @@ export default {
         slate_light: "#f1f5f9",
         slate_middle: "64748b",
         slate_dark: "#1e293b",
+
+        // text
+        sub_text: "#475569",
         
-        my_color: "#00FF7F",
         primary: "#81CDFF",
         primary_deep: "#21A6FF",
         sub_yel: "#FFF387",
