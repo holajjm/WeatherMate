@@ -5,7 +5,7 @@ function Loading() {
     <div className="max-w-[600px] min-w-[320px] w-full h-screen m-auto relative flex items-center justify-center bg-white">
       <div className="text-center w-full h-full flex flex-col items-center justify-center inset-0 bg-white ">
         <img
-          src="../gif/loading.gif"
+          src="/Loading_Cloud.gif"
           alt="로딩중..."
           className="mx-auto w-16"
         />
