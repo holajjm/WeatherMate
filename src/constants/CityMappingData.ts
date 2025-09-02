@@ -1,7 +1,7 @@
 import type { Cities } from "types/WeatherType";
 
-export const citysData: Cities = {
-  Seoul: "서울",
+export const citiesData: Cities = {
+  "Seoul": "서울",
   "Gyeonggi-do": "경기도",
   "Gangwon-do": "강원도",
   "North Chungcheong": "충청북도",
@@ -12,3 +12,10 @@ export const citysData: Cities = {
   "Gyeongsangnam-do": "경상남도",
   "Jeju-do": "제주도",
 };
+
+export const citiesDesc:Cities = {
+  "clear sky": "맑음",
+  "few clouds": "구름 적음",
+  "overcast clouds": "흐림",
+  
+}
