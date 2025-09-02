@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 
-import { citysData } from "@constants/CityMappingData";
+import { citiesData, citiesDesc } from "@constants/CityMappingData";
 import MainAllWeatherSkeleton from "@components/skeleton/MainAllWeatherSkeleton";
 import useCityQuery from "@features/weather/useCityQuery";
 import useScrollTop from "@hooks/useScrollTop";
@@ -16,7 +16,8 @@ import "swiper/css/navigation";
 function MainAllCitiesWeather() {
   useScrollTop();
   const { data: cityWeather } = useCityQuery();
-
+  // console.log(cityWeather);
+  
   return (
     <>
       <Swiper
@@ -34,28 +35,25 @@ function MainAllCitiesWeather() {
         modules={[Autoplay, Pagination, Navigation]}
         className="h-12 w-full pb-2"
       >
-        {cityWeather?.length > 0 ? (
+        {cityWeather?.length ? (
           <>
             {cityWeather.map((item: AllCityData, i: number) => {
-              const cityName =
-                citysData[item.name as keyof Cities] || item.name;
-              const iconURL = `http://openweathermap.org/img/wn/${item.weather[0].icon}.png`;
               return (
                 <SwiperSlide
                   key={item?.id}
-                  className="flex w-full items-center justify-around gap-2 rounded-xl border-2 border-white bg-blue-300 p-2 text-center font-bold text-[#2d2d2d] shadow-md shadow-slate-300"
+                  className="flex w-full items-center justify-around gap-2 rounded-xl bg-blue-300 p-2 text-center font-bold text-[#2d2d2d] shadow-md shadow-slate-300"
                 >
-                  <p className="grow">{cityName}</p>
+                  <p className="grow">{citiesData[item.name as keyof Cities]}</p>
                   <div className="flex items-center justify-center gap-4">
                     <img
-                      src={iconURL}
+                      src={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
                       alt="Weather Icon"
                       className="h-10 w-10 rounded-xl"
                       width={40}
                       height={40}
                     />
                     <p className="font-normal">
-                      {item?.weather[0]?.description}
+                      {citiesDesc[item?.weather[0]?.description as keyof Cities]}
                     </p>
                     <p className="">{String(item.main.temp).slice(0, 2)}°C</p>
                     <p className="font-normal">{item?.main?.humidity}%</p>
