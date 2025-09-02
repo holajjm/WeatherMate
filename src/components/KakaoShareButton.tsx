@@ -7,7 +7,7 @@ import type { MBTIResult } from "types/MbtiType";
 
 const { Kakao } = window as any;
 
-function KakaoShareButton({resultData}:{resultData: MBTIResult}) {
+function KakaoShareButton({ resultData }: { resultData: MBTIResult }) {
   const resultUrl = window.location.href;
   // console.log(data);
 

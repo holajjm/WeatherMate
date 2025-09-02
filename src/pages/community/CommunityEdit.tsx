@@ -8,7 +8,10 @@ import { ENV } from "@constants/env";
 import Button from "@components/layout/Button";
 import useCustomAxios from "@hooks/useCustomAxios.js";
 
-import type { CommunityDetailData, CommunityFormData } from "types/CommunityType";
+import type {
+  CommunityDetailData,
+  CommunityFormData,
+} from "types/CommunityType";
 
 function CommunityEdit() {
   const naviagte = useNavigate();
@@ -99,20 +102,20 @@ function CommunityEdit() {
   return (
     <form
       onSubmit={handleSubmit(handleEdit)}
-      className="max-w-[600px] min-w-[320px] m-auto h-screen flex flex-col gap-4 overflow-y-scroll scrollbar-hide p-2 bg-slate-50"
+      className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-4 overflow-y-scroll bg-slate-50 p-2 scrollbar-hide"
     >
-      <h1 className="font-SSRONETHandwritten text-2xl font-bold text-center">
+      <h1 className="font-SSRONETHandwritten text-center text-2xl font-bold">
         수정하기
       </h1>
       {data?.data?.item && (
-        <section className="p-2 bg-white drop-shadow-lg rounded-xl flex flex-col gap-2 flex-nowrap">
+        <section className="flex flex-col flex-nowrap gap-2 rounded-xl bg-white p-2 drop-shadow-lg">
           <main className="flex flex-col gap-4">
             {data?.data?.item.image && (
-              <section className="flex flex-col h-full">
-                <div className="h-full flex flex-col gap-2">
+              <section className="flex h-full flex-col">
+                <div className="flex h-full flex-col gap-2">
                   <label
                     htmlFor="file"
-                    className="border-2 border-slate-200 rounded-md p-2 box-border"
+                    className="box-border rounded-md border-2 border-slate-200 p-2"
                   >
                     <img
                       src={
@@ -121,7 +124,7 @@ function CommunityEdit() {
                           : `${ENV.API_SERVER}/files/07-WeatherMate/${data?.data?.item.image}`
                       }
                       alt="Content Image"
-                      className="h-full object-contain rounded-md shadow-md cursor-pointer"
+                      className="h-full cursor-pointer rounded-md object-contain shadow-md"
                       onMouseEnter={() =>
                         setTooltip(prev => ({ ...prev, visible: true }))
                       }
@@ -149,7 +152,7 @@ function CommunityEdit() {
                   )}
                   {tooltip.visible && (
                     <div
-                      className={`absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black text-white px-2 py-2 rounded-md font-[14px] pointer-events-none whitespace-nowrap `}
+                      className={`pointer-events-none absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-md bg-black px-2 py-2 font-[14px] text-white`}
                     >
                       클릭 시 이미지 수정
                     </div>
@@ -157,7 +160,7 @@ function CommunityEdit() {
                 </div>
               </section>
             )}
-            <section className="w-full h-full drop-shadow-md">
+            <section className="h-full w-full drop-shadow-md">
               <fieldset className="flex flex-col gap-2">
                 <div
                   role="radiogroup"
@@ -165,7 +168,7 @@ function CommunityEdit() {
                   className="flex items-center justify-between gap-1"
                 >
                   {["Sun", "Cloud", "Rain", "Foggy", "Snow", "Wind"].map(id => (
-                    <figure key={id} className="rounded-lg w-full">
+                    <figure key={id} className="w-full rounded-lg">
                       <input
                         className="hidden"
                         type="radio"
@@ -175,9 +178,9 @@ function CommunityEdit() {
                           required: "날씨를 선택해주세요",
                         })}
                       />
-                      <label htmlFor={id} className={`rounded-lg w-full`}>
+                      <label htmlFor={id} className={`w-full rounded-lg`}>
                         <img
-                          className="w-full h-12 rounded-lg cursor-pointer hover:ring-2"
+                          className="h-12 w-full cursor-pointer rounded-lg hover:ring-2"
                           src={`/WeatherIcon${id}.svg`}
                           alt="WeatherIcon"
                         />
@@ -200,7 +203,7 @@ function CommunityEdit() {
               <input
                 type="text"
                 placeholder="내용을 입력하세요."
-                className="w-full bg-slate-200 text-black rounded-lg p-2"
+                className="w-full rounded-lg bg-slate-200 p-2 text-black"
                 {...register("content", { required: "내용을 입력해주세요" })}
               />
               {errors.content ? (
@@ -215,7 +218,7 @@ function CommunityEdit() {
 
           <footer className="flex items-center">
             {data.data.item && (
-              <div className="ml-auto w-1/2 flex gap-2">
+              <div className="ml-auto flex w-1/2 gap-2">
                 <Button
                   text="수정"
                   textColor="white"

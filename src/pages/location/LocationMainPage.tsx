@@ -9,7 +9,7 @@ function LocationMainPage() {
   usePageTitle("Location");
   useScrollTop();
   return (
-    <div className="max-w-[600px] min-w-[320px] m-auto">
+    <div className="m-auto min-w-[320px] max-w-[600px]">
       <ToTheTopButton />
       <Location />
     </div>

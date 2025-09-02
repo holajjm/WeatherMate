@@ -30,7 +30,7 @@ const fontColor = {
 function Button({ text, textColor, bgColor, width, onClick }: ButtonProps) {
   return (
     <button
-      className={`${buttonColor[bgColor]} ${fontColor[textColor]} w-${width} h-10 text-sm p-2 box-border flex items-center justify-center rounded-xl font-Pretendard font-bold transition-all duration-200 text-nowrap`}
+      className={`${buttonColor[bgColor]} ${fontColor[textColor]} w-${width} font-Pretendard box-border flex h-10 items-center justify-center text-nowrap rounded-xl p-2 text-sm font-bold transition-all duration-200`}
       onClick={onClick}
     >
       {text}

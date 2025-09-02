@@ -6,20 +6,36 @@ export const ErrorPage = React.lazy(() => import("@pages/ErrorPage"));
 // MainPage
 import MainHomePage from "@pages/main/MainHomePage";
 // Community
-export const CommunityNew = React.lazy(() => import("@pages/community/CommunityNew"));
-export const CommunityDetail = React.lazy(() => import("@pages/community/CommunityDetail"));
-export const CommunityMain = React.lazy(() => import("@pages/community/CommunityMain"));
-export const CommunityEdit = React.lazy(() => import("@pages/community/CommunityEdit"));
+export const CommunityNew = React.lazy(
+  () => import("@pages/community/CommunityNew"),
+);
+export const CommunityDetail = React.lazy(
+  () => import("@pages/community/CommunityDetail"),
+);
+export const CommunityMain = React.lazy(
+  () => import("@pages/community/CommunityMain"),
+);
+export const CommunityEdit = React.lazy(
+  () => import("@pages/community/CommunityEdit"),
+);
 // Location
-export const LocationDetailPage = React.lazy(() => import("@pages/location/LocationDetailPage"));
-export const LocationMainPage = React.lazy(() => import("@pages/location/LocationMainPage"));
+export const LocationDetailPage = React.lazy(
+  () => import("@pages/location/LocationDetailPage"),
+);
+export const LocationMainPage = React.lazy(
+  () => import("@pages/location/LocationMainPage"),
+);
 // Mbti
-export const MbtiQuestion = React.lazy(() => import("@pages/Mbti/MbtiQuestion"));
+export const MbtiQuestion = React.lazy(
+  () => import("@pages/Mbti/MbtiQuestion"),
+);
 export const MbtiResult = React.lazy(() => import("@pages/Mbti/MbtiResult"));
 export const MbtiHome = React.lazy(() => import("@pages/Mbti/MbtiHome"));
 // User
 export const UserLogin = React.lazy(() => import("@pages/user/UserLogin"));
-export const UserValidLogin = React.lazy(() => import("@pages/user/UserValidLogin"));
+export const UserValidLogin = React.lazy(
+  () => import("@pages/user/UserValidLogin"),
+);
 export const UserOAuth = React.lazy(() => import("@pages/user/UserOAuth"));
 export const UserSignUp = React.lazy(() => import("@pages/user/UserSignUp"));
 export const UserPage = React.lazy(() => import("@pages/user/UserPage"));

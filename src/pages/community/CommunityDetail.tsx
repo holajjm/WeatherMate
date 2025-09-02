@@ -44,7 +44,7 @@ function CommunityDetail() {
   // console.log(data?.data?.item);
 
   return (
-    <div className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-slate-50 overflow-y-scroll scrollbar-hide flex flex-col gap-1">
+    <div className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-1 overflow-y-scroll bg-slate-50 p-2 scrollbar-hide">
       <div className="w-full">
         <Button
           text={<FaArrowLeft />}
@@ -55,7 +55,7 @@ function CommunityDetail() {
         />
       </div>
       {data?.data?.item && (
-        <section className="p-2 bg-white drop-shadow-lg rounded-xl flex flex-col gap-2 flex-nowrap">
+        <section className="flex flex-col flex-nowrap gap-2 rounded-xl bg-white p-2 drop-shadow-lg">
           <header className="flex gap-2">
             <img
               src={
@@ -63,7 +63,7 @@ function CommunityDetail() {
                   ? `${ENV.API_SERVER}/files/07-WeatherMate/${data?.data?.item.user.profile}`
                   : "/NullUser.webp"
               }
-              className="rounded-full border-2 w-12 h-12"
+              className="h-12 w-12 rounded-full border-2"
               width={48}
               height={48}
               {...{ fetchpriority: "high" }}
@@ -79,7 +79,7 @@ function CommunityDetail() {
             </div>
             <div className="flex flex-col items-center justify-center">
               <img
-                className="w-10 h-10 rounded-full p-1"
+                className="h-10 w-10 rounded-full p-1"
                 src={
                   [
                     "Sun",
@@ -102,8 +102,8 @@ function CommunityDetail() {
             </div>
           </header>
 
-          <main className="flex flex-col flex-grow">
-            <div className="w-full h-96 flex justify-center items-center border-2 border-slate-200 rounded-md">
+          <main className="flex flex-grow flex-col">
+            <div className="flex h-96 w-full items-center justify-center rounded-md border-2 border-slate-200">
               <img
                 src={
                   data?.data?.item.extra
@@ -113,30 +113,30 @@ function CommunityDetail() {
                       : `/ReadyForImage.webp`
                 }
                 alt="Content Image"
-                className="w-full h-full object-scale-down aspect-square"
+                className="aspect-square h-full w-full object-scale-down"
                 width={300}
                 height={240}
                 {...{ fetchpriority: "high" }}
                 decoding="async"
               />
             </div>
-            <p className="bg-slate-100 text-slate-600 rounded-md p-2 box-border grow">
+            <p className="box-border grow rounded-md bg-slate-100 p-2 text-slate-600">
               {data?.data?.item.content}
             </p>
           </main>
 
-          <footer className="flex items-center mt-auto">
+          <footer className="mt-auto flex items-center">
             <div>
               <p className="text-md font-semibold text-slate-400">
                 조회수 {data?.data?.item.views}
               </p>
               <div className="flex gap-2">
-                <div className="flex gap-1 items-center">
-                  <FaHeart className="text-amber-400 text-2xl" />
+                <div className="flex items-center gap-1">
+                  <FaHeart className="text-2xl text-amber-400" />
                   <p className="text-orange-300">좋아요</p>
                 </div>
-                <div className="flex gap-1 items-center">
-                  <IoChatbubbleEllipsesOutline className="text-orange-300 text-2xl" />
+                <div className="flex items-center gap-1">
+                  <IoChatbubbleEllipsesOutline className="text-2xl text-orange-300" />
                   <p className="text-orange-300">
                     댓글{" "}
                     {data?.data?.item && data?.data?.item.replies
@@ -148,7 +148,7 @@ function CommunityDetail() {
               </div>
             </div>
             {data.data.item.user.name === user.name ? (
-              <section className="ml-auto w-1/2 flex gap-2">
+              <section className="ml-auto flex w-1/2 gap-2">
                 <Button
                   text="수정"
                   textColor="white"

@@ -25,7 +25,7 @@ function UserBoard({ item }: { item: ExpandCommunityData }) {
   };
 
   return (
-    <div className="h-full flex flex-col gap-4 bg-white p-4 box-border rounded-lg drop-shadow-lg text-[#2d2d2d]">
+    <div className="box-border flex h-full flex-col gap-4 rounded-lg bg-white p-4 text-[#2d2d2d] drop-shadow-lg">
       <header className="flex gap-2">
         <img
           src={
@@ -33,16 +33,16 @@ function UserBoard({ item }: { item: ExpandCommunityData }) {
               ? `${ENV.API_SERVER}/files/07-WeatherMate/${item?.user.profile}`
               : "/mainlogin.webp"
           }
-          className="rounded-full border-2 w-10 h-10"
+          className="h-10 w-10 rounded-full border-2"
         />
-        <div className="grow flex gap-2 items-center">
+        <div className="flex grow items-center gap-2">
           <div className="grow">
             <h1 className="text-base font-bold">{item.user?.name}</h1>
             <p className="text-xs">조회수 {item.views}</p>
           </div>
           {item.title && (
             <img
-              className="w-8 h-8 rounded-full"
+              className="h-8 w-8 rounded-full"
               src={`/WeatherIcon${item.title}.webp`}
               alt="weatherIcon"
             />
@@ -50,9 +50,9 @@ function UserBoard({ item }: { item: ExpandCommunityData }) {
         </div>
       </header>
       <hr className="border-slate-400" />
-      <main className="grow flex flex-col gap-2">
+      <main className="flex grow flex-col gap-2">
         <img
-          className="w-full h-2/3"
+          className="h-2/3 w-full"
           src={
             item.image
               ? `${ENV.API_SERVER}/files/07-WeatherMate/${item.image}`
@@ -60,7 +60,7 @@ function UserBoard({ item }: { item: ExpandCommunityData }) {
           }
           alt="image"
         />
-        <div className="grow bg-gray-100 rounded-lg p-2 box-border">
+        <div className="box-border grow rounded-lg bg-gray-100 p-2">
           {item.content}
         </div>
       </main>

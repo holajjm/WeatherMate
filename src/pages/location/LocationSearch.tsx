@@ -22,17 +22,17 @@ function LocationSearch() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="mt-4 px-8 flex justify-end items-center w-1/2 ml-auto min-w-[220px]">
+      <div className="ml-auto mt-4 flex w-1/2 min-w-[220px] items-center justify-end px-8">
         <form onSubmit={handleSubmit} className="relative w-full">
           <input
-            className="w-full h-10 font-bold px-2 border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-gray-500 focus:ring-2 focus:ring-slate-500"
+            className="h-10 w-full rounded-md border border-gray-300 px-2 font-bold focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-slate-500 dark:bg-gray-700"
             placeholder="지역,장소 검색"
             type="text"
             value={keyword}
             onChange={handleChange}
           />
-          <button type="submit" className="absolute right-2 top-3 ">
-            <FaSearch className="text-slate-300 focus:outline-none hover:scale-125 transition-all duration-500" />
+          <button type="submit" className="absolute right-2 top-3">
+            <FaSearch className="text-slate-300 transition-all duration-500 hover:scale-125 focus:outline-none" />
           </button>
         </form>
       </div>

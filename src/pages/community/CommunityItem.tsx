@@ -12,12 +12,12 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
 
   return (
     <div
-      className="w-full h-[25rem] flex flex-col gap-1 bg-white drop-shadow-lg box-border rounded-md cursor-pointer"
+      className="box-border flex h-[25rem] w-full cursor-pointer flex-col gap-1 rounded-md bg-white drop-shadow-lg"
       onClick={() => navigate(`/community/${item._id}`)}
     >
       <header className="h-12 p-2">
-        <section className="flex gap-3 items-center">
-          <div className="flex items-center justify-center rounded-full w-10 h-10 border-2">
+        <section className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full border-2">
             <img
               src={
                 item?.user.profile
@@ -25,7 +25,7 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
                   : "/NullUser.webp"
               }
               alt="profile"
-              className="rounded-full w-10 h-10 object-contain"
+              className="h-10 w-10 rounded-full object-contain"
               width={48}
               height={48}
               {...{ fetchpriority: "high" }}
@@ -33,16 +33,16 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
             />
           </div>
 
-          <div className="grow flex items-center">
+          <div className="flex grow items-center">
             <div className="grow">
-              <h1 className="text-[#2d2d2d] text-sm font-bold">
+              <h1 className="text-sm font-bold text-[#2d2d2d]">
                 {item.user?.name}
               </h1>
-              <p className="text-[#2d2d2d] text-xs">조회수 {item.views}</p>
+              <p className="text-xs text-[#2d2d2d]">조회수 {item.views}</p>
             </div>
             {item.title && (
               <img
-                className="w-8 h-8 rounded-sm"
+                className="h-8 w-8 rounded-sm"
                 src={
                   [
                     "Sun",
@@ -67,10 +67,10 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
         </section>
       </header>
 
-      <section className="grow flex flex-col gap-1 h-60">
+      <section className="flex h-60 grow flex-col gap-1">
         <div className="h-full">
           <img
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
             src={
               item.extra
                 ? `${ENV.API_SERVER}/files/07-WeatherMate/${item.extra.image}`
@@ -86,20 +86,20 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
           />
         </div>
       </section>
-      
+
       <section>
-        <p className="px-2 h-12 text-[#2d2d2d] text-sm rounded-md grow overflow-scroll scrollbar-hide">
+        <p className="h-12 grow overflow-scroll rounded-md px-2 text-sm text-[#2d2d2d] scrollbar-hide">
           {item.content}
         </p>
       </section>
 
-      <footer className="p-2 flex gap-4 items-center justify-between text-amber-400">
-        <p className="text-xs text-slate-400 font-medium">
+      <footer className="flex items-center justify-between gap-4 p-2 text-amber-400">
+        <p className="text-xs font-medium text-slate-400">
           {TimeDiff(item.createdAt)}
         </p>
         <section className="flex items-center justify-center gap-2">
           <p className="flex items-center">
-            <IoChatbubbleEllipsesOutline className=" text-xl" />
+            <IoChatbubbleEllipsesOutline className="text-xl" />
           </p>
           <p className="text-sm">{item.repliesCount}</p>
         </section>

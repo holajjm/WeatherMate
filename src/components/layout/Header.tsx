@@ -29,15 +29,20 @@ function Header() {
   }, [location.pathname]);
 
   return (
-    <header className="max-w-[600px] min-w-[180px] h-24 m-auto sticky top-0 z-50 flex flex-col items-center justify-center bg-blue-200">
+    <header
+      className={`
+        sticky top-0 z-50 m-auto flex h-24 min-w-[180px] max-w-[600px] flex-col
+        items-center justify-center bg-blue-200
+      `}
+    >
       {!open ? (
         <CgMenuLeftAlt
-          className="text-2xl absolute top-5 left-4"
+          className="absolute left-4 top-5 text-2xl"
           onClick={handleCategoryOpen}
         />
       ) : (
         <IoIosArrowDropleft
-          className="text-2xl absolute top-5 left-4"
+          className="absolute left-4 top-5 text-2xl"
           onClick={handleCategoryOpen}
         />
       )}
@@ -52,25 +57,28 @@ function Header() {
               ease: "easeInOut",
               duration: 0.8,
             }}
-            className={`w-1/4 sm:w-1/2 h-full absolute top-24 left-0 bg-black`}
+            className={`
+              absolute left-0 top-24 h-full w-1/4 bg-black
+              sm:w-1/2
+            `}
           >
             <HeaderCategory />
           </motion.div>
         )}
       </AnimatePresence>
 
-      <Link to="/" className="h-full flex items-center justify-center">
+      <Link to="/" className="flex h-full items-center justify-center">
         <img
           src="/MainLogo.webp"
           alt="Main logo"
           width={200}
           height={109}
-          className="w-10 h-5"
+          className="h-5 w-10"
           onClick={handleRefresh}
           {...{ fetchpriority: "high" }}
           decoding="async"
         />
-        <p className="text-2xl text-blue_dark font-SuitBold">WeatherMate</p>
+        <p className="font-SuitBold text-2xl text-blue_dark">WeatherMate</p>
       </Link>
       <NavigationBar />
     </header>

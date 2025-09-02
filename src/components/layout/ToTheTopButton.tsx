@@ -31,12 +31,16 @@ function ToTheTopButton() {
 
   return (
     <button
-      className={`fixed bottom-24 right-5 rounded-full z-50 w-12 h-12 shadow-xl border-2 duration-200 transition-opacity flex justify-center items-center ${
+      className={`
+        fixed bottom-24 right-5 z-50 flex h-12 w-12 items-center justify-center
+        rounded-full border-2 shadow-xl transition-opacity duration-200
+        ${
         isVisible ? "opacity-100" : "opacity-0"
-      }`}
+      }
+      `}
       onClick={handleClick}
     >
-      <FaArrowUp className="font-bold text-2xl text-primary" />
+      <FaArrowUp className="text-2xl font-bold text-primary" />
     </button>
   );
 }

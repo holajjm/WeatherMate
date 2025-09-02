@@ -11,8 +11,19 @@ import { FaUserCircle } from "react-icons/fa";
 function HeaderCategory() {
   useScrollTop();
   return (
-    <div className="min-w-[180px] m-auto h-screen flex flex-col items-center text-lg font-UhBeeKangJa bg-slate-100 drop-shadow-[10px_5px_3px_rgba(0,0,0,0.3)]">
-      <h1 className="w-full font-bold font-SSRONETHandwritten px-2 text-xl flex items-center h-10 text-[#2D2D2D]">
+    <div
+      className={`
+        font-UhBeeKangJa m-auto flex h-screen min-w-[180px] flex-col
+        items-center bg-slate-100 text-lg
+        drop-shadow-[10px_5px_3px_rgba(0,0,0,0.3)]
+      `}
+    >
+      <h1
+        className={`
+          font-SSRONETHandwritten flex h-10 w-full items-center px-2 text-xl
+          font-bold text-[#2D2D2D]
+        `}
+      >
         메인 카테고리
       </h1>
       <motion.div
@@ -27,7 +38,10 @@ function HeaderCategory() {
         <Link
           to={"/community"}
           state={{ from: location.pathname }}
-          className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-indigo-500"
+          className={`
+            flex w-full items-center gap-1 border-[1px] bg-white p-2 text-base
+            hover:bg-indigo-500
+          `}
         >
           <IoMdChatboxes className="text-lg" />
           커뮤니티
@@ -45,7 +59,10 @@ function HeaderCategory() {
         <Link
           to={"/location"}
           state={{ from: location.pathname }}
-          className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-indigo-500"
+          className={`
+            flex w-full items-center gap-1 border-[1px] bg-white p-2 text-base
+            hover:bg-indigo-500
+          `}
         >
           <MdLocationOn className="text-lg" />
           장소추천
@@ -63,13 +80,21 @@ function HeaderCategory() {
         <Link
           to={"/user/mypage"}
           state={{ from: location.pathname }}
-          className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-indigo-500"
+          className={`
+            flex w-full items-center gap-1 border-[1px] bg-white p-2 text-base
+            hover:bg-indigo-500
+          `}
         >
           <FaUserCircle className="text-lg" />
           마이페이지
         </Link>
       </motion.div>
-      <h1 className="w-full font-bold font-SSRONETHandwritten px-2 text-xl flex items-center h-10 text-[#2D2D2D]">
+      <h1
+        className={`
+          font-SSRONETHandwritten flex h-10 w-full items-center px-2 text-xl
+          font-bold text-[#2D2D2D]
+        `}
+      >
         기타 카테고리
       </h1>
       <motion.div
@@ -84,7 +109,10 @@ function HeaderCategory() {
         <Link
           to={"/mbti"}
           state={{ from: location.pathname }}
-          className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-sky-400"
+          className={`
+            flex w-full items-center gap-1 border-[1px] bg-white p-2 text-base
+            hover:bg-sky-400
+          `}
         >
           🌤️날씨 성격 테스트
         </Link>
@@ -101,7 +129,10 @@ function HeaderCategory() {
         <Link
           to={"/allcity"}
           state={{ from: location.pathname }}
-          className="w-full flex items-center border-[1px] gap-1 bg-white p-2 text-base hover:bg-sky-400"
+          className={`
+            flex w-full items-center gap-1 border-[1px] bg-white p-2 text-base
+            hover:bg-sky-400
+          `}
         >
           🌤️전국의 날씨
         </Link>

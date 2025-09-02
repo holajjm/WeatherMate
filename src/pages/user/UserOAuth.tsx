@@ -50,11 +50,11 @@ const UserOAuth = () => {
   });
 
   return (
-    <div className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-slate-50">
+    <div className="m-auto h-screen min-w-[320px] max-w-[600px] bg-slate-50 p-2">
       {loading ? (
         <div className="flex flex-col items-center justify-center">
           <img className="w-60" src="/error.svg" alt="Loading" />
-          <h1 className="text-xl font-semibold font-TTLaundryGothicB">
+          <h1 className="font-TTLaundryGothicB text-xl font-semibold">
             Loading
           </h1>
         </div>

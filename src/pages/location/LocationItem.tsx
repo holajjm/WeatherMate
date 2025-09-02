@@ -86,13 +86,13 @@ function LocationItem({ item }: { item: InitialData }) {
     <>
       <div
         onClick={() => navigate(`/location/${item?.contentid}`)}
-        className="grow flex flex-col gap-1"
+        className="flex grow flex-col gap-1"
       >
         <header className="flex items-center justify-center">
           <img
             src={item?.firstimage ? item?.firstimage : "/ReadyForImage.webp"}
             alt="이미지1"
-            className="max-w-[320px] w-full h-40 rounded-lg"
+            className="h-40 w-full max-w-[320px] rounded-lg"
             ref={imgRef}
             width={200}
             height={160}
@@ -103,10 +103,10 @@ function LocationItem({ item }: { item: InitialData }) {
         <main className="flex gap-2">
           <div className="grow">
             <div className="flex">
-              <p className="text-xs text-slate-400 font-Pretendard">
+              <p className="font-Pretendard text-xs text-slate-400">
                 {getCategoryText(item?.contenttypeid)}
               </p>
-              <div className="ml-auto bg-amber-300 flex items-center rounded-lg font-Pretendard">
+              <div className="font-Pretendard ml-auto flex items-center rounded-lg bg-amber-300">
                 <FiMapPin className="text-sm" />
                 <p className="text-xs">
                   {isNaN(parseFloat(item?.dist))
@@ -115,7 +115,7 @@ function LocationItem({ item }: { item: InitialData }) {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col gap-1 font-Pretendard">
+            <div className="font-Pretendard flex flex-col gap-1">
               <h2 className="text-lg font-bold">{item?.title}</h2>
               <p className="text-sm text-slate-500">{item?.addr1}</p>
             </div>
@@ -130,9 +130,9 @@ function LocationItem({ item }: { item: InitialData }) {
             onClick={() => {
               removeBookMark(item?.contentid);
             }}
-            className="flex justify-center items-center gap-1 text-xs cursor-pointer"
+            className="flex cursor-pointer items-center justify-center gap-1 text-xs"
           >
-            <BsBookmarks className="text-blue-300 aspect-square" />
+            <BsBookmarks className="aspect-square text-blue-300" />
             <p>북마크 제거하기</p>
           </div>
         ) : (
@@ -140,9 +140,9 @@ function LocationItem({ item }: { item: InitialData }) {
             onClick={() => {
               handleBookMark(item?.contentid);
             }}
-            className="flex justify-center items-center gap-1 text-xs cursor-pointer"
+            className="flex cursor-pointer items-center justify-center gap-1 text-xs"
           >
-            <BsBookmarksFill className="text-blue-300 aspect-square" />
+            <BsBookmarksFill className="aspect-square text-blue-300" />
             <p>북마크 추가하기</p>
           </div>
         )}

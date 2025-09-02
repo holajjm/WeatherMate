@@ -32,7 +32,7 @@ function MainAllCitiesWeather() {
         // }}
         // navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="w-full h-12 pb-2"
+        className="h-12 w-full pb-2"
       >
         {cityWeather?.length > 0 ? (
           <>
@@ -43,14 +43,14 @@ function MainAllCitiesWeather() {
               return (
                 <SwiperSlide
                   key={item?.id}
-                  className="w-full rounded-xl shadow-md shadow-slate-300 bg-blue-300 border-white border-2 p-2 flex items-center justify-around gap-2 text-center text-[#2d2d2d] font-bold"
+                  className="flex w-full items-center justify-around gap-2 rounded-xl border-2 border-white bg-blue-300 p-2 text-center font-bold text-[#2d2d2d] shadow-md shadow-slate-300"
                 >
                   <p className="grow">{cityName}</p>
-                  <div className="flex gap-4 items-center justify-center">
+                  <div className="flex items-center justify-center gap-4">
                     <img
                       src={iconURL}
                       alt="Weather Icon"
-                      className="w-10 h-10 rounded-xl"
+                      className="h-10 w-10 rounded-xl"
                       width={40}
                       height={40}
                     />

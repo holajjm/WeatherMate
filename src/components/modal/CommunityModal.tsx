@@ -17,9 +17,9 @@ function CommunityModal({
   return (
     <div
       onClick={handleClose}
-      className="w-full h-screen p-2 box-border text-[#2d2d2d] bg-black absolute top-0 left-0 z-50 opacity-95 flex items-center justify-center font-Pretendard"
+      className="font-Pretendard absolute left-0 top-0 z-50 box-border flex h-screen w-full items-center justify-center bg-black p-2 text-[#2d2d2d] opacity-95"
     >
-      <div className="w-80 h-84 flex flex-col gap-1 justify-between p-2 box-border rounded-lg bg-slate-200">
+      <div className="h-84 box-border flex w-80 flex-col justify-between gap-1 rounded-lg bg-slate-200 p-2">
         <button onClick={handleClose} className="ml-auto">
           X
         </button>
@@ -33,7 +33,7 @@ function CommunityModal({
                   : "/NullUser.webp"
               }
               alt="profile"
-              className="rounded-full w-10 h-10 object-contain"
+              className="h-10 w-10 rounded-full object-contain"
               width={40}
               height={40}
               loading="lazy"
@@ -53,7 +53,7 @@ function CommunityModal({
                 : `/ReadyForImage.webp`
             }
             alt="img"
-            className="w-60 h-36 object-contain"
+            className="h-36 w-60 object-contain"
             width={240}
             height={144}
             loading="lazy"

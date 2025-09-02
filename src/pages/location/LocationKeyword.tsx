@@ -18,7 +18,7 @@ function LocationKeywords({
   // useEffect(() => {
   //   setSearchParams({ id: "12" });
   // }, []);
-  
+
   return (
     <div
       onClick={e => {
@@ -34,7 +34,7 @@ function LocationKeywords({
         // console.log(id);
       }}
       datatype={label}
-      className={`flex flex-col justify-center items-center font-Pretendard bg-slate-200 p-1 rounded-lg transition-all duration-100 hover:bg-blue-300 hover:cursor-pointer ${click ? "border-2 border-black" : "border-none"}`}
+      className={`font-Pretendard flex flex-col items-center justify-center rounded-lg bg-slate-200 p-1 transition-all duration-100 hover:cursor-pointer hover:bg-blue-300 ${click ? "border-2 border-black" : "border-none"}`}
     >
       <img
         src={`/Location/Location_${img_src}.webp`}

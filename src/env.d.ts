@@ -15,8 +15,8 @@ interface ImportMetaEnv {
   // Production
   readonly VITE_APP_PRODUCTION: string;
   // ----------------------------------------
-  readonly VITE_REACT_APP_KAKAO_NATIVE_API_KEY: string,
-  readonly VITE_REACT_APP_KAKAO_REST_API_KEY: string,
-  readonly VITE_REACT_APP_KAKAO_JAVASCRIPT_KEY: string,
-  readonly VITE_REACT_APP_KAKAO_ADMIN_KEY: string,
+  readonly VITE_REACT_APP_KAKAO_NATIVE_API_KEY: string;
+  readonly VITE_REACT_APP_KAKAO_REST_API_KEY: string;
+  readonly VITE_REACT_APP_KAKAO_JAVASCRIPT_KEY: string;
+  readonly VITE_REACT_APP_KAKAO_ADMIN_KEY: string;
 }

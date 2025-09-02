@@ -37,15 +37,15 @@ const options = [
 ];
 function Location() {
   const navigate = useNavigate();
-  const latitude = useCoordsStore((state) => state.latitude);
-  const longitude = useCoordsStore((state) => state.longitude);
+  const latitude = useCoordsStore(state => state.latitude);
+  const longitude = useCoordsStore(state => state.longitude);
   const [contentID, setContentID] = useState<string>("12");
   const radius = "100000";
   useCoords();
   //초기 데이터 호출 로직
   const getLocationData = async (page: number) => {
     const response = await axios.get(
-      `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${ENV.LOCATION_API_KEY}&pageNo=${page}&numOfRows=8&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json `
+      `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${ENV.LOCATION_API_KEY}&pageNo=${page}&numOfRows=8&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json `,
     );
     return response?.data?.response?.body;
   };
@@ -77,7 +77,7 @@ function Location() {
   const mergedItems: InitialData[] | undefined =
     InitialData && InitialData?.pages?.length === 1
       ? InitialData?.pages[0]?.items?.item
-      : InitialData?.pages?.flatMap((page) => page?.items?.item);
+      : InitialData?.pages?.flatMap(page => page?.items?.item);
   // console.log(mergedItems);
 
   const throttledFetchNextPage = useThrottle(() => {
@@ -109,7 +109,7 @@ function Location() {
   const getFilteredData = async (searchKeyword: string) => {
     try {
       const response = await axios.get(
-        `https://apis.data.go.kr/B551011/KorService1/searchKeyword1?MobileOS=ETC&MobileApp=testweb&serviceKey=${ENV.LOCATION_API_KEY}&keyword=${searchKeyword}&_type=json&contentTypeId=${contentID}`
+        `https://apis.data.go.kr/B551011/KorService1/searchKeyword1?MobileOS=ETC&MobileApp=testweb&serviceKey=${ENV.LOCATION_API_KEY}&keyword=${searchKeyword}&_type=json&contentTypeId=${contentID}`,
       );
       setResult(response?.data?.response?.body?.items?.item);
       return response;
@@ -133,7 +133,7 @@ function Location() {
         duration: 1,
       }}
       key={e?.modifiedtime}
-      className="flex flex-col justify-between p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:border-blue-400 duration-200"
+      className="flex flex-col justify-between rounded-lg border-2 border-slate-200 p-2 shadow-lg duration-200 hover:border-blue-400"
     >
       <LocationItem item={e} />
     </motion.section>
@@ -148,16 +148,16 @@ function Location() {
         duration: 1,
       }}
       key={i}
-      className="w-full flex flex-col justify-between p-2 rounded-lg shadow-lg border-2 border-slate-200 hover:border-blue-400 duration-200"
+      className="flex w-full flex-col justify-between rounded-lg border-2 border-slate-200 p-2 shadow-lg duration-200 hover:border-blue-400"
     >
       <LocationItem item={e} />
     </motion.section>
   ));
   return (
-    <div className="flex flex-col gap-4 mx-auto p-2 min-h-screen bg-slate-50">
+    <div className="mx-auto flex min-h-screen flex-col gap-4 bg-slate-50 p-2">
       <header className="flex gap-2 text-nowrap">
         <input
-          className="w-full h-10 font-bold p-2 box-border text-sm border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-gray-500 focus:ring-2 focus:ring-slate-500"
+          className="box-border h-10 w-full rounded-md border border-gray-300 p-2 text-sm font-bold focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-slate-500 dark:bg-gray-700"
           placeholder="지역,장소 검색"
           type="text"
           value={keyword}
@@ -176,13 +176,13 @@ function Location() {
           bgColor="gray"
           width="1/4"
           onClick={() => {
-            navigate("/location"), window.location.reload();
+            (navigate("/location"), window.location.reload());
           }}
         ></Button>
       </header>
 
-      <aside className="flex gap-1 justify-center items-center">
-        {options.map((option) => (
+      <aside className="flex items-center justify-center gap-1">
+        {options.map(option => (
           <div className="w-full" key={option.id}>
             <LocationKeywords
               id={option.id}
@@ -198,7 +198,7 @@ function Location() {
         <LocationItemSkeleton />
       ) : (
         <>
-          <main className="flex flex-col items-center justify-center sm:grid sm:grid-cols-2 gap-1 relative">
+          <main className="relative flex flex-col items-center justify-center gap-1 sm:grid sm:grid-cols-2">
             {searchItemList?.length ? searchItemList : locationItemList}
           </main>
           <p ref={ref} className="w-full text-center">

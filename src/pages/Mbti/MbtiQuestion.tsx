@@ -55,22 +55,22 @@ function MbtiQuestion() {
 
   return (
     <>
-      <div className="relative max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-cover bg-center font-Pretendard">
+      <div className="font-Pretendard relative m-auto h-screen min-w-[320px] max-w-[600px] bg-cover bg-center p-2">
         <img
-          className="absolute top-0 left-0 -z-10 h-screen object-cover"
+          className="absolute left-0 top-0 -z-10 h-screen object-cover"
           src="/MBTIImage/MBTIMain.webp"
           alt="mbti"
           {...{ fetchpriority: "high" }}
           decoding="async"
         />
-        <section className="w-full p-2 flex flex-col gap-4 bg-slate-50 rounded-lg">
+        <section className="flex w-full flex-col gap-4 rounded-lg bg-slate-50 p-2">
           <header className="flex flex-col gap-4">
-            <h1 className="text-xl text-center font-bold font-Pretendard">
+            <h1 className="font-Pretendard text-center text-xl font-bold">
               다음 상황에서 당신의 선택은?
             </h1>
-            <div className="w-full bg-gray-200 rounded-lg">
+            <div className="w-full rounded-lg bg-gray-200">
               <div
-                className="bg-blue-300 text-base font-SSRONETHandwritten font-bold text-white text-center p-1 rounded-lg"
+                className="font-SSRONETHandwritten rounded-lg bg-blue-300 p-1 text-center text-base font-bold text-white"
                 style={{ width: `${progress * 100}%` }}
               >
                 {`${questionNo + 1}/${MbtiQuestionData.length}`}
@@ -78,7 +78,7 @@ function MbtiQuestion() {
             </div>
           </header>
 
-          <main className="p-4 text-center font-SSRONETHandwritten text-amber-500 text-xl font-bold rounded-lg bg-amber-200">
+          <main className="font-SSRONETHandwritten rounded-lg bg-amber-200 p-4 text-center text-xl font-bold text-amber-500">
             {MbtiQuestionData[questionNo].title}
           </main>
 

@@ -10,18 +10,18 @@ export interface UserMainData {
   };
 }
 export interface UserBookmarkData {
-  booktour:string
-  contentid: string
-  contenttypeid: string
-  cpyrhtDivCd: string
-  createdtime: string
-  firstimage: string
-  firstimage2: string
-  homepage: string
-  modifiedtime: string
-  tel: string
-  telname: string
-  title: string
+  booktour: string;
+  contentid: string;
+  contenttypeid: string;
+  cpyrhtDivCd: string;
+  createdtime: string;
+  firstimage: string;
+  firstimage2: string;
+  homepage: string;
+  modifiedtime: string;
+  tel: string;
+  telname: string;
+  title: string;
 }
 
 //Login Data Type

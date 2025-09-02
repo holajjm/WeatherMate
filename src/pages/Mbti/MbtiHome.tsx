@@ -15,17 +15,31 @@ function MbtiHome() {
   const [user] = useRecoilState(memberState);
 
   return (
-    <div className="relative max-w-[600px] min-w-[320px] m-auto min-h-screen p-2 bg-cover bg-center">
+    <div
+      className={`
+        relative m-auto min-h-screen min-w-[320px] max-w-[600px] bg-cover
+        bg-center p-2
+      `}
+    >
       <img
-        className="absolute top-0 left-0 -z-10 h-screen object-cover"
+        className="absolute left-0 top-0 -z-10 h-screen object-cover"
         src="./MBTIImage/MBTIMain.webp"
         alt="mbti"
         {...{ fetchpriority: "high" }}
         decoding="async"
       />
-      <div className="h-full flex flex-col gap-2 items-center justify-center text-nowrap">
-        <div className="w-full pt-10 flex flex-col gap-2 text-center items-center justift-center">
-          <h1 className="text-xl font-bold font-Pretendard">
+      <div
+        className={`
+          flex h-full flex-col items-center justify-center gap-2 text-nowrap
+        `}
+      >
+        <div
+          className={`
+            justift-center flex w-full flex-col items-center gap-2 pt-10
+            text-center
+          `}
+        >
+          <h1 className="font-Pretendard text-xl font-bold">
             날씨 성격 테스트
           </h1>
           <img
@@ -36,11 +50,16 @@ function MbtiHome() {
             {...{ fetchpriority: "high" }}
             decoding="async"
           />
-          <div className="text-base font-bold text-slate-600 opacity-80 font-SSRONETHandwritten">
+          <div
+            className={`
+              font-SSRONETHandwritten text-base font-bold text-slate-600
+              opacity-80
+            `}
+          >
             <p>날씨별 상황에 따라 내 행동을 골라보자!</p>
             <p>나는 어떤 날씨와 어울릴까?</p>
           </div>
-          <div className="w-full flex gap-4">
+          <div className="flex w-full gap-4">
             <Button
               text={"테스트 시작하기"}
               textColor="white"

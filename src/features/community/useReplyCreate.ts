@@ -21,11 +21,11 @@ export default function useReplyCreate({
         console.log(error);
       }
     },
-    onSuccess: (data) => {
+    onSuccess: data => {
       queryClient.invalidateQueries({ queryKey: ["replys"] });
       reset();
     },
-    onError: (error) => {
+    onError: error => {
       console.error(error);
     },
   });

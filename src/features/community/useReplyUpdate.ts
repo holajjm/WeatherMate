@@ -21,7 +21,7 @@ export default function useReplyUpdate({
         try {
           const response = await axios.patch(
             `/posts/${_id}/replies/${replyId}`,
-            formData
+            formData,
           );
           console.log(response?.data);
           return response?.data;
@@ -30,11 +30,11 @@ export default function useReplyUpdate({
         }
       }
     },
-    onSuccess: (data) => {
+    onSuccess: data => {
       queryClient.invalidateQueries({ queryKey: ["replys"] });
       reset();
     },
-    onError: (error) => {
+    onError: error => {
       console.error(error);
     },
   });

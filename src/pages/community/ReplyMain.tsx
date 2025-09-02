@@ -11,7 +11,7 @@ function ReplyMain() {
   const { _id } = useParams();
   const { data: replyData } = useReplyQuery(_id);
   return (
-    <div className="p-2 bg-white rounded-lg drop-shadow-md flex flex-col gap-2">
+    <div className="flex flex-col gap-2 rounded-lg bg-white p-2 drop-shadow-md">
       <ReplyNew />
       <div className="grid gap-2">
         {replyData &&

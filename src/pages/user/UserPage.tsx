@@ -16,7 +16,10 @@ import ValidLogin from "@pages/user/UserValidLogin";
 
 import { BsBookmarkStarFill } from "react-icons/bs";
 import { PiUserListBold } from "react-icons/pi";
-import type { CommunityMainData, ExpandCommunityData } from "types/CommunityType";
+import type {
+  CommunityMainData,
+  ExpandCommunityData,
+} from "types/CommunityType";
 
 function UserPage() {
   usePageTitle("MyPage");
@@ -60,13 +63,13 @@ function UserPage() {
   return (
     <>
       {user && user.name ? (
-        <div className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-slate-50 overflow-y-scroll scrollbar-hide">
-          <main className=" w-full h-screen drop-shadow-md">
-            <section className="bg-white w-full overflow-y-scroll scrollbar-hide rounded-xl p-6 flex flex-col gap-4">
+        <div className="m-auto h-screen min-w-[320px] max-w-[600px] overflow-y-scroll bg-slate-50 p-2 scrollbar-hide">
+          <main className="h-screen w-full drop-shadow-md">
+            <section className="flex w-full flex-col gap-4 overflow-y-scroll rounded-xl bg-white p-6 scrollbar-hide">
               <header className="flex flex-col gap-4">
-                <div className="flex gap-2 md:gap-4 items-center">
+                <div className="flex items-center gap-2 md:gap-4">
                   <img
-                    className="w-12 h-12 rounded-full"
+                    className="h-12 w-12 rounded-full"
                     src={
                       user?.profile
                         ? `${ENV.API_SERVER}/files/07-WeatherMate/${user?.profile}`
@@ -77,10 +80,10 @@ function UserPage() {
                     decoding="async"
                   />
                   <div className="flex-grow">
-                    <p className="text-lg font-Pretendard font-bold text-sky-500">
+                    <p className="font-Pretendard text-lg font-bold text-sky-500">
                       {user.name}님
                     </p>
-                    <p className="text-base text-nowrap font-semibold font-SSRONETHandwritten text-slate-600">
+                    <p className="font-SSRONETHandwritten text-nowrap text-base font-semibold text-slate-600">
                       오늘 날씨 어때요?
                     </p>
                   </div>
@@ -105,10 +108,10 @@ function UserPage() {
                 </div>
               </header>
 
-              <main className="flex flex-col gap-4 h-full">
-                <div className="flex gap-2 items-center">
-                  <BsBookmarkStarFill className="text-sky-400 w-4 h-4" />
-                  <p className="text-base text-nowrap text-slate-600 font-bold">
+              <main className="flex h-full flex-col gap-4">
+                <div className="flex items-center gap-2">
+                  <BsBookmarkStarFill className="h-4 w-4 text-sky-400" />
+                  <p className="text-nowrap text-base font-bold text-slate-600">
                     저장한 장소
                   </p>
                   <Link
@@ -121,10 +124,10 @@ function UserPage() {
                 <UserBookMark />
               </main>
 
-              <main className="flex flex-col gap-4 h-full">
-                <div className="flex gap-2 items-center">
-                  <PiUserListBold className="text-sky-400 w-6 h-6" />
-                  <p className="text-base text-nowrap text-slate-600 font-bold">
+              <main className="flex h-full flex-col gap-4">
+                <div className="flex items-center gap-2">
+                  <PiUserListBold className="h-6 w-6 text-sky-400" />
+                  <p className="text-nowrap text-base font-bold text-slate-600">
                     나의 게시글
                   </p>
                   <Link
@@ -134,7 +137,7 @@ function UserPage() {
                     커뮤니티 &rarr;
                   </Link>
                 </div>
-                <div className="h-96 grid grid-cols-1 sm:grid-cols-2 gap-2 border-t-2 border-b-2 drop-shadow-md py-4 overflow-y-scroll scrollbar-hide bg-slate-100 p-4 rounded-xl">
+                <div className="grid h-96 grid-cols-1 gap-2 overflow-y-scroll rounded-xl border-b-2 border-t-2 bg-slate-100 p-4 py-4 drop-shadow-md scrollbar-hide sm:grid-cols-2">
                   {itemList}
                 </div>
               </main>

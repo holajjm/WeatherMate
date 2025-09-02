@@ -23,13 +23,13 @@ function App() {
     <>
       <RecoilRoot>
         {/* <Suspense fallback={<Loading />}> */}
-          <ToastContainer
-            position="top-right"
-            limit={2}
-            closeButton={true}
-            autoClose={5000}
-          />
-          <RouterProvider router={router} />
+        <ToastContainer
+          position="top-right"
+          limit={2}
+          closeButton={true}
+          autoClose={5000}
+        />
+        <RouterProvider router={router} />
         {/* </Suspense> */}
       </RecoilRoot>
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}

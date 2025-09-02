@@ -37,7 +37,7 @@ function LocationDetailPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ETC&MobileApp=testweb&contentId=${id}&serviceKey=${ENV.LOCATION_API_KEY}&_type=json&defaultYN=Y&firstImageYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`
+          `https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ETC&MobileApp=testweb&contentId=${id}&serviceKey=${ENV.LOCATION_API_KEY}&_type=json&defaultYN=Y&firstImageYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`,
         );
         // console.log(response.data.response.body.items.item[0]);
 
@@ -50,7 +50,7 @@ function LocationDetailPage() {
       } catch (error) {
         console.error(
           "데이터를 원활하게 가져오는데 오류가 발생하였습니다.",
-          error
+          error,
         );
       }
     };
@@ -58,7 +58,7 @@ function LocationDetailPage() {
     const fetchSuperDetail = async () => {
       try {
         const response = await axios.get(
-          `https://apis.data.go.kr/B551011/KorService1/detailIntro1?MobileOS=ETC&MobileApp=testWeb&contentId=${id}&contentTypeId=12&serviceKey=${ENV.LOCATION_API_KEY}&_type=json`
+          `https://apis.data.go.kr/B551011/KorService1/detailIntro1?MobileOS=ETC&MobileApp=testWeb&contentId=${id}&contentTypeId=12&serviceKey=${ENV.LOCATION_API_KEY}&_type=json`,
         );
         // console.log(response.data.response.body.items.item);
 
@@ -85,8 +85,8 @@ function LocationDetailPage() {
   // console.log(superDetail);
 
   return (
-    <div className="max-w-[600px] min-w-[320px] m-auto">
-      <div className="p-2 flex flex-col gap-4">
+    <div className="m-auto min-w-[320px] max-w-[600px]">
+      <div className="flex flex-col gap-4 p-2">
         <div className="flex items-center">
           <Button
             text={<FaArrowLeft />}
@@ -95,7 +95,7 @@ function LocationDetailPage() {
             width="8"
             onClick={() => window.history.back()}
           ></Button>
-          <h1 className="grow pr-8 text-xl text-center font-bold font-Pretendard">
+          <h1 className="font-Pretendard grow pr-8 text-center text-xl font-bold">
             {detailData?.title}
           </h1>
         </div>
@@ -109,7 +109,7 @@ function LocationDetailPage() {
                   : "/ReadyForImage.webp"
               }
               alt="이미지1"
-              className="w-full h-80 rounded-lg"
+              className="h-80 w-full rounded-lg"
               ref={imgRef}
               width={400}
               height={320}
@@ -118,70 +118,70 @@ function LocationDetailPage() {
             />
           </div>
           <div className="flex gap-2">
-            <table className="w-1/2 flex text-sm bg-slate-100 p-2 rounded-lg">
+            <table className="flex w-1/2 rounded-lg bg-slate-100 p-2 text-sm">
               {superDetail && detailData && (
-                <tbody className="w-full grow flex flex-col justify-between">
+                <tbody className="flex w-full grow flex-col justify-between">
                   <tr className="flex items-center">
-                    <td className="text-center p-2 w-1/6 flex justify-center">
+                    <td className="flex w-1/6 justify-center p-2 text-center">
                       <FaLocationDot />
                     </td>
-                    <td className="p-2 w-full">
+                    <td className="w-full p-2">
                       {detailData?.addr1}
                       {detailData?.addr2 ? detailData?.addr2 : ""}
                     </td>
                   </tr>
                   <tr className="flex items-center">
-                    <td className="text-center p-2 w-1/6 flex justify-center">
+                    <td className="flex w-1/6 justify-center p-2 text-center">
                       <BsTelephoneFill />
                     </td>
-                    <td className="p-2 w-full">
+                    <td className="w-full p-2">
                       {superDetail[0]?.infocenter
                         ? superDetail[0]?.infocenter.replace(/<br>/g, " / ")
                         : "-"}
                     </td>
                   </tr>
                   <tr className="flex items-center">
-                    <td className="text-center p-2 w-1/6 flex justify-center">
+                    <td className="flex w-1/6 justify-center p-2 text-center">
                       <FaParking />
                     </td>
-                    <td className="p-2 w-full">
+                    <td className="w-full p-2">
                       {superDetail[0]?.parking
                         ? superDetail[0]?.parking.replace(/<br>/g, " / ")
                         : "불가"}
                     </td>
                   </tr>
                   <tr className="flex items-center">
-                    <td className="text-center p-2 w-1/6 flex justify-center">
+                    <td className="flex w-1/6 justify-center p-2 text-center">
                       <FaClock />
                     </td>
-                    <td className="p-2 w-full">
+                    <td className="w-full p-2">
                       {" "}
                       {superDetail[0]?.usetime ? superDetail[0]?.usetime : "-"}
                     </td>
                   </tr>
                   <tr className="flex items-center">
-                    <td className="text-center p-2 w-1/6 flex justify-center">
+                    <td className="flex w-1/6 justify-center p-2 text-center">
                       <MdFreeBreakfast />
                     </td>
-                    <td className="p-2 w-full">
+                    <td className="w-full p-2">
                       {superDetail[0]?.restdate
                         ? superDetail[0]?.restdate.replace(/<br>/g, " / ")
                         : "-"}
                     </td>
                   </tr>
                   <tr className="flex items-center">
-                    <td className="text-center p-2 w-1/6 flex justify-center">
+                    <td className="flex w-1/6 justify-center p-2 text-center">
                       <FaDog />
                     </td>
-                    <td className="p-2 w-full">
+                    <td className="w-full p-2">
                       {superDetail[0]?.chkpet ? superDetail[0]?.chkpet : "불가"}
                     </td>
                   </tr>
                   <tr className="flex items-center">
-                    <td className="text-center p-2 w-1/6 flex justify-center">
+                    <td className="flex w-1/6 justify-center p-2 text-center">
                       <RiGlobalFill />
                     </td>
-                    <td className="p-2 w-full hover:text-indigo-500">
+                    <td className="w-full p-2 hover:text-indigo-500">
                       <button
                         onClick={() => window.open(homepageUrls[0], "_blank")}
                       >
@@ -193,7 +193,7 @@ function LocationDetailPage() {
                 </tbody>
               )}
             </table>
-            <div className="w-1/2 h-full">
+            <div className="h-full w-1/2">
               <LocationMap
                 latitude={Number(detailData?.mapy)}
                 longitude={Number(detailData?.mapx)}

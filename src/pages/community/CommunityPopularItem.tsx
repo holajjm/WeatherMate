@@ -38,12 +38,12 @@ function CommunityPopularItem() {
     .map((item: CommunityData) => (
       <div
         key={item._id}
-        className="text-nowrap text-center cursor-pointer"
+        className="cursor-pointer text-nowrap text-center"
         onClick={() => handleOpen(item)}
       >
-        <div className="border-4 border-blue-200 box-border rounded-full w-20 h-20 hover:border-blue-400 duration-200">
+        <div className="box-border h-20 w-20 rounded-full border-4 border-blue-200 duration-200 hover:border-blue-400">
           <img
-            className="w-full h-full rounded-full"
+            className="h-full w-full rounded-full"
             src={
               item.image
                 ? `${ENV.API_SERVER}/files/07-WeatherMate/${item?.image}`
@@ -59,7 +59,7 @@ function CommunityPopularItem() {
     ));
 
   return (
-    <div className="overflow-x-scroll scrollbar-hide flex gap-2 py-2">
+    <div className="flex gap-2 overflow-x-scroll py-2 scrollbar-hide">
       {data ? (
         <>
           {isOpen && (

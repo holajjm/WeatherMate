@@ -75,7 +75,7 @@ function LocationMap({
     infowindow.open(map, marker);
   }, [latitude, longitude, locationName]);
 
-  return <div id="map" className="w-full h-80 rounded-lg"></div>;
+  return <div id="map" className="h-80 w-full rounded-lg"></div>;
 }
 
 export default LocationMap;

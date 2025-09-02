@@ -17,7 +17,7 @@ export default function useCityQuery() {
         "https://api.openweathermap.org/data/2.5/group",
         {
           params,
-        }
+        },
       );
       // console.log(res);
       return res?.data?.list;

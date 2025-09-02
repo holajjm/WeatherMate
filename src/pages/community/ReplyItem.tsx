@@ -28,8 +28,8 @@ function ReplyItem({ item }: { item: ReplyData }) {
   const { mutate: handleDelete } = useReplyDelete({ item, _id });
   const [menu, setMenu] = useState<boolean>(false);
   return (
-    <div className="p-2 bg-slate-100 flex flex-col gap-2 rounded-lg">
-      <div className="flex justify-center items-center gap-2">
+    <div className="flex flex-col gap-2 rounded-lg bg-slate-100 p-2">
+      <div className="flex items-center justify-center gap-2">
         <div>
           <img
             src={
@@ -37,71 +37,73 @@ function ReplyItem({ item }: { item: ReplyData }) {
                 ? `${ENV.API_SERVER}/files/07-WeatherMate/${item.user.profile}`
                 : "/NullUser.webp"
             }
-            className="rounded-full border w-12 h-12"
+            className="h-12 w-12 rounded-full border"
             width={48}
             height={48}
             {...{ fetchpriority: "high" }}
             decoding="async"
           />
         </div>
-        <div className="grow flex flex-col justify-between gap-1">
+        <div className="flex grow flex-col justify-between gap-1">
           <div className="flex">
-            <div className="grow flex items-center gap-2">
+            <div className="flex grow items-center gap-2">
               <div className="text-base">{item?.user.name}</div>
               <p className="text-sm text-stone-500">
                 {item?.createdAt.substring(5, 16)}
               </p>
               <div
-                className="ml-auto relative cursor-pointer"
+                className="relative ml-auto cursor-pointer"
                 onClick={() => setMenu(!menu)}
               >
                 <BsThreeDots className="h-full" />
-                {menu && <div className="absolute top-5 right-0">
-                  {user._id === item?.user._id ? (
-                    editReply ? (
-                      <div className="ml-auto flex">
-                        <Button
-                          text={"취소"}
-                          textColor="white"
-                          bgColor="gray"
-                          width="full"
-                          onClick={() => setEditReply(!editReply)}
-                        ></Button>
-                      </div>
-                    ) : (
-                      <div className="ml-auto flex">
-                        <Button
-                          text={"수정"}
-                          textColor="white"
-                          bgColor="indigo"
-                          width="full"
-                          onClick={() => setEditReply(!editReply)}
-                        ></Button>
-                        <Button
-                          text={"삭제"}
-                          textColor="white"
-                          bgColor="red"
-                          width="full"
-                          onClick={() => handleDelete()}
-                        ></Button>
-                      </div>
-                    )
-                  ) : null}
-                </div>}
+                {menu && (
+                  <div className="absolute right-0 top-5">
+                    {user._id === item?.user._id ? (
+                      editReply ? (
+                        <div className="ml-auto flex">
+                          <Button
+                            text={"취소"}
+                            textColor="white"
+                            bgColor="gray"
+                            width="full"
+                            onClick={() => setEditReply(!editReply)}
+                          ></Button>
+                        </div>
+                      ) : (
+                        <div className="ml-auto flex">
+                          <Button
+                            text={"수정"}
+                            textColor="white"
+                            bgColor="indigo"
+                            width="full"
+                            onClick={() => setEditReply(!editReply)}
+                          ></Button>
+                          <Button
+                            text={"삭제"}
+                            textColor="white"
+                            bgColor="red"
+                            width="full"
+                            onClick={() => handleDelete()}
+                          ></Button>
+                        </div>
+                      )
+                    ) : null}
+                  </div>
+                )}
               </div>
             </div>
           </div>
           <div>
             {editReply ? (
               <form
-                className="w-full flex gap-2"
-                onSubmit={handleSubmit((formData) => onUpdate(formData))}
+                className="flex w-full gap-2"
+                onSubmit={handleSubmit(formData => onUpdate(formData))}
               >
                 <input
                   {...register("comment", {
                     required: "내용을 입력하세요",
                   })}
-                  className="grow p-2 w-full text-sm border rounded-lg border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                  className="w-full grow rounded-lg border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                   placeholder="내용을 입력하세요."
                 />
                 {errors.comment && (
@@ -118,7 +120,7 @@ function ReplyItem({ item }: { item: ReplyData }) {
                 ></Button>
               </form>
             ) : (
-              <div className="border-2 rounded-lg p-1 text-base text-slate-600 bg-white border-gray-200">
+              <div className="rounded-lg border-2 border-gray-200 bg-white p-1 text-base text-slate-600">
                 {item?.comment}
               </div>
             )}

@@ -13,7 +13,7 @@ interface ComentObj {
 function MainModal() {
   const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
   const [comentObj, setComentObj] = useState<ComentObj>();
-  const modalClose = useModalStore((state) => state.modalClose);
+  const modalClose = useModalStore(state => state.modalClose);
 
   useEffect(() => {
     const getRecommendation = () => {
@@ -40,33 +40,33 @@ function MainModal() {
   return (
     <div
       onClick={modalClose}
-      className="w-full h-screen p-2 box-border text-[#2d2d2d] bg-black absolute top-0 left-0 z-50 opacity-95 flex items-center justify-center font-Pretendard"
+      className="font-Pretendard absolute left-0 top-0 z-50 box-border flex h-screen w-full items-center justify-center bg-black p-2 text-[#2d2d2d] opacity-95"
     >
-      <div className="max-w-[600px] min-w-[320px] h-84 flex flex-col justify-between p-2 box-border rounded-lg bg-slate-200">
+      <div className="h-84 box-border flex min-w-[320px] max-w-[600px] flex-col justify-between rounded-lg bg-slate-200 p-2">
         <button onClick={modalClose} className="ml-auto">
           X
         </button>
-        <section className="w-full h-full flex flex-col gap-2 justify-between rounded-lg text-center grow bg-center bg-no-repeat bg-cover ml-auto">
-          <div className="grow w-full flex flex-col justify-between z-20">
+        <section className="ml-auto flex h-full w-full grow flex-col justify-between gap-2 rounded-lg bg-cover bg-center bg-no-repeat text-center">
+          <div className="z-20 flex w-full grow flex-col justify-between">
             <h1 className="text-xl font-bold">오늘의 추천</h1>
             <div className="flex flex-col gap-2">
               <div>
-                <h2 className="text-sm text-left font-medium text-slate-800">
+                <h2 className="text-left text-sm font-medium text-slate-800">
                   오늘의 한마디
                 </h2>
-                <p className="font-SSRONETHandwritten text-blue_dark font-bold rounded-lg bg-blue_light p-1 shadow-md shadow-slate-500">
+                <p className="font-SSRONETHandwritten rounded-lg bg-blue_light p-1 font-bold text-blue_dark shadow-md shadow-slate-500">
                   {comentObj?.recommendation}
                 </p>
               </div>
               <div>
-                <h2 className="text-sm text-left font-medium text-slate-800">
+                <h2 className="text-left text-sm font-medium text-slate-800">
                   오늘의 추천 의상
                 </h2>
-                <p className="font-SSRONETHandwritten text-blue_dark font-bold rounded-lg bg-blue_light p-1 shadow-md shadow-slate-500">
+                <p className="font-SSRONETHandwritten rounded-lg bg-blue_light p-1 font-bold text-blue_dark shadow-md shadow-slate-500">
                   {comentObj?.clothes}
                 </p>
               </div>
-              <div className="bg-slate-100 rounded-lg shadow-md shadow-slate-500">
+              <div className="rounded-lg bg-slate-100 shadow-md shadow-slate-500">
                 <img
                   src={comentObj?.CLOTHES_IMG}
                   alt="Today's Clothes"
@@ -74,7 +74,7 @@ function MainModal() {
                   decoding="async"
                   width={96}
                   height={160}
-                  className="w-24 h-40 m-auto"
+                  className="m-auto h-40 w-24"
                 />
               </div>
             </div>

@@ -2,8 +2,8 @@ import React from "react";
 
 function NoResultsMessage() {
   return (
-    <div className="flex justify-center items-center h-full">
-      <p className="text-gray-500 text-xl">검색 결과가 없습니다.</p>
+    <div className="flex h-full items-center justify-center">
+      <p className="text-xl text-gray-500">검색 결과가 없습니다.</p>
     </div>
   );
 }

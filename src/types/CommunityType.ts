@@ -2,7 +2,7 @@
 export interface CommunityData {
   content: string;
   createdAt: string;
-  extra?: {image: string}
+  extra?: { image: string };
   image: string;
   replies?: ReplyData[];
   seller_id: string | null;
@@ -39,10 +39,10 @@ export interface CommunityMainData {
 }
 export interface CommunityFormData {
   content: string;
-  image: FileList
+  image: FileList;
   title: string;
   type: string;
-  tag:string
+  tag: string;
 }
 export interface ReplyMainData {
   item: ReplyData[];

@@ -64,14 +64,14 @@ function UserBookMark() {
   };
 
   return (
-    <div className="h-96 overflow-y-scroll scrollbar-hide bg-slate-100 p-4 rounded-xl">
+    <div className="h-96 overflow-y-scroll rounded-xl bg-slate-100 p-4 scrollbar-hide">
       {loading ? (
         <Loading />
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {bookmarkData.map((item, index) => (
             <div key={index} className="flex">
-              <div className="h-full flex flex-col gap-4 bg-white p-4 box-border rounded-lg drop-shadow-lg">
+              <div className="box-border flex h-full flex-col gap-4 rounded-lg bg-white p-4 drop-shadow-lg">
                 <div className="flex h-full">
                   <img
                     src={item.firstimage ? item.firstimage : "/01.svg"}
@@ -80,7 +80,7 @@ function UserBookMark() {
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <p className="text-base text-center font-normal font-TTLaundryGothicB">
+                  <p className="font-TTLaundryGothicB text-center text-base font-normal">
                     {item.title}
                   </p>
                   <div className="flex gap-1">

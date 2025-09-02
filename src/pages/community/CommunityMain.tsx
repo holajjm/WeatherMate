@@ -93,7 +93,7 @@ function CommunityMain() {
   return (
     <>
       {user && user[0]?.name ? (
-        <div className="max-w-[600px] min-w-[320px] m-auto h-screen flex flex-col gap-4 overflow-y-scroll scrollbar-hide p-2 bg-slate-50">
+        <div className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-4 overflow-y-scroll bg-slate-50 p-2 scrollbar-hide">
           <aside>
             <CommunityPopularItem />
           </aside>
@@ -101,7 +101,7 @@ function CommunityMain() {
             <Search onClick={handleSearch}></Search>
             <div className="flex gap-2">
               <select
-                className="h-10 border-2 border-slate-300 rounded-md text-base font-bold text-slate-700"
+                className="h-10 rounded-md border-2 border-slate-300 text-base font-bold text-slate-700"
                 value={select}
                 onChange={selectValue}
               >
@@ -120,7 +120,7 @@ function CommunityMain() {
               ></Button>
             </div>
           </section>
-          <main className="flex flex-col items-center justify-center sm:grid sm:grid-cols-2 gap-2">
+          <main className="flex flex-col items-center justify-center gap-2 sm:grid sm:grid-cols-2">
             {isLoading && <p>로딩중...</p>}
             {error && <p>{error.message}</p>}
             {sortItemList(select)}

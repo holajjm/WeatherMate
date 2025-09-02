@@ -27,17 +27,17 @@ function EnvCheck() {
     }
   };
 
-  REQUIRED_ENV_VARS.forEach((key) => {
+  REQUIRED_ENV_VARS.forEach(key => {
     const value = import.meta.env[key];
     if (!value) {
       alert(
-        "예상치 못한 환경 변수 오류가 발생했습니다. 다시 접속해주시기 바랍니다."
+        "예상치 못한 환경 변수 오류가 발생했습니다. 다시 접속해주시기 바랍니다.",
       );
       throw new Error(`❌ Missing environment variable: ${key}`);
     }
     if (key === "VITE_API_SERVER" && !isValidURL(value)) {
       alert(
-        "예상치 못한 환경 변수 오류가 발생했습니다. 다시 접속해주시기 바랍니다."
+        "예상치 못한 환경 변수 오류가 발생했습니다. 다시 접속해주시기 바랍니다.",
       );
       throw new Error(`❌ Invalid URL format in environment variable: ${key}`);
     }

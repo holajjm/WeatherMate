@@ -20,7 +20,7 @@ function ReplyNew() {
   return (
     <div>
       <form
-        onSubmit={handleSubmit((formData) => onSubmit(formData))}
+        onSubmit={handleSubmit(formData => onSubmit(formData))}
         className="flex flex-col gap-2 rounded-lg"
       >
         <div className="flex gap-2">
@@ -29,7 +29,7 @@ function ReplyNew() {
               required: "내용을 입력하세요",
             })}
             placeholder="댓글을 입력하세요"
-            className="p-2 w-full text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+            className="w-full rounded-lg border border-gray-300 bg-gray-50 p-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
           />
           <Button
             text="등록"

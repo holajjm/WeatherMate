@@ -12,14 +12,14 @@ function UserValidLogin() {
   };
 
   return (
-    <div className="max-w-[600px] min-w-[320px] m-auto h-screen bg-gray-100">
-      <div className="p-4 flex justify-center drop-shadow-md">
-        <div className="bg-white flex flex-col w-full p-4 rounded-xl gap-4">
-          <div className="flex flex-col justify-center items-center gap-4">
-            <h2 className="text-xl font-bold text-blue_middle font-UhBeeKangJa">
+    <div className="m-auto h-screen min-w-[320px] max-w-[600px] bg-gray-100">
+      <div className="flex justify-center p-4 drop-shadow-md">
+        <div className="flex w-full flex-col gap-4 rounded-xl bg-white p-4">
+          <div className="flex flex-col items-center justify-center gap-4">
+            <h2 className="font-UhBeeKangJa text-xl font-bold text-blue_middle">
               로그인 후 이용할 수 있어요!
             </h2>
-            <p className="text-sub_text font-SSRONETHandwritten">
+            <p className="font-SSRONETHandwritten text-sub_text">
               원활한 서비스 사용을 위해 로그인을 해주세요!
             </p>
             <img
@@ -32,7 +32,7 @@ function UserValidLogin() {
               decoding="async"
             />
           </div>
-          <div className="w-full grid grid-cols-2 gap-2">
+          <div className="grid w-full grid-cols-2 gap-2">
             <Button
               text={"로그인"}
               textColor="white"

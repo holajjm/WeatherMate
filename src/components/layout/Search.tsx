@@ -13,10 +13,10 @@ function Search({ onClick }: { onClick: (keyword: string) => void }) {
   };
 
   return (
-    <form className="w-full flex items-center gap-2">
+    <form className="flex w-full items-center gap-2">
       <p className="text-nowrap font-bold">검색하기</p>
       <input
-        className="w-full p-2 h-8 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+        className="h-8 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
         type="text"
         value={keyword}
         onChange={handleChange}

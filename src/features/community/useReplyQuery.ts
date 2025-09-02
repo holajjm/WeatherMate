@@ -8,6 +8,6 @@ export function useReplyQuery(_id: string | undefined) {
     queryKey: ["replys", _id],
     queryFn: () => axios.get(`/posts/${_id}/replies`),
     enabled: !!_id,
-    select: (data) => data?.data?.item,
+    select: data => data?.data?.item,
   });
 }

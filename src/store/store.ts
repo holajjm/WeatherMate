@@ -14,7 +14,7 @@ export const useCoordsStore = create<CoordsState>()(
     set => ({
       latitude: 0,
       longitude: 0,
-      setCoords: ({ latitude, longitude }:Coords) => {
+      setCoords: ({ latitude, longitude }: Coords) => {
         set(() => ({ latitude, longitude }));
       },
     }),
@@ -27,12 +27,12 @@ export const useCoordsStore = create<CoordsState>()(
 
 // 모달 여닫힘 상태
 interface ModalState {
-  modal: boolean,
-  modalOpen: () =>  void,
-  modalClose: () =>  void,
+  modal: boolean;
+  modalOpen: () => void;
+  modalClose: () => void;
 }
-export const useModalStore = create<ModalState>((set) => ({
+export const useModalStore = create<ModalState>(set => ({
   modal: false,
-  modalOpen: () => set({modal: true}),
-  modalClose: () => set({modal: false})
-}))
+  modalOpen: () => set({ modal: true }),
+  modalClose: () => set({ modal: false }),
+}));

@@ -82,9 +82,9 @@ function UserEdit() {
   };
 
   return (
-    <nav className="max-w-[600px] min-w-[320px] m-auto h-screen p-2 bg-slate-50">
-      <div className="bg-white flex flex-col gap-4 rounded-xl p-4 w-full drop-shadow-lg">
-        <h1 className="font-bold text-2xl p-4 h-16 font-UhBeeKangJa m-auto">
+    <nav className="m-auto h-screen min-w-[320px] max-w-[600px] bg-slate-50 p-2">
+      <div className="flex w-full flex-col gap-4 rounded-xl bg-white p-4 drop-shadow-lg">
+        <h1 className="font-UhBeeKangJa m-auto h-16 p-4 text-2xl font-bold">
           회원 정보 수정
         </h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-2">
@@ -94,7 +94,7 @@ function UserEdit() {
             placeholder="수정할 이름을 입력하세요"
             value={name}
             onChange={e => setName(e.target.value)}
-            className="p-4 rounded-xl bg-slate-100 border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent w-full"
+            className="w-full rounded-xl border-gray-300 bg-slate-100 p-4 focus:border-transparent focus:ring-2 focus:ring-primary"
           />
           <input
             id="phone"
@@ -102,7 +102,7 @@ function UserEdit() {
             placeholder="수정할 번호을 입력하세요"
             value={phone}
             onChange={e => setPhone(e.target.value)}
-            className="p-4 rounded-xl bg-slate-100 border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent w-full"
+            className="w-full rounded-xl border-gray-300 bg-slate-100 p-4 focus:border-transparent focus:ring-2 focus:ring-primary"
           />
           <input
             id="email"
@@ -110,7 +110,7 @@ function UserEdit() {
             placeholder="새로운 이메일을 입력하세요"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            className="p-4 rounded-xl bg-slate-100 border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent w-full"
+            className="w-full rounded-xl border-gray-300 bg-slate-100 p-4 focus:border-transparent focus:ring-2 focus:ring-primary"
           />
           <input
             id="password"
@@ -118,19 +118,19 @@ function UserEdit() {
             placeholder="새로운 비밀번호 입력하세요"
             value={password}
             onChange={e => setPassword(e.target.value)}
-            className="p-4 rounded-xl bg-slate-100 border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent w-full"
+            className="w-full rounded-xl border-gray-300 bg-slate-100 p-4 focus:border-transparent focus:ring-2 focus:ring-primary"
           />
           <div className="flex gap-2">
             <button
               onClick={() => navigate("/user/mypage")}
               type="button"
-              className="w-full p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-gray-500 bg-slate-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+              className="font-UhBeeKangJa w-full text-nowrap rounded-lg border-2 border-slate-100 bg-slate-200 p-4 text-gray-500 transition-all duration-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
             >
               취소하기
             </button>
             <button
               type="submit"
-              className="w-full p-4 border-2 border-slate-100 rounded-lg font-UhBeeKangJa transition-all duration-200 text-nowrap text-white bg-sky-400 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
+              className="font-UhBeeKangJa w-full text-nowrap rounded-lg border-2 border-slate-100 bg-sky-400 p-4 text-white transition-all duration-200 hover:shadow-[0_4px_8px_1px] hover:shadow-slate-400"
             >
               수정하기
             </button>
