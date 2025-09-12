@@ -17,7 +17,7 @@ export default function useCityQuery() {
       const weatherData = await Promise.all(
         Object.keys(citiesData).map(async (city) => {
           const res = await axios.get(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ENV.WEATHER_SERVE}`,
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ENV.WEATHER_MAIN}&units=metric&lang=kr`,
           );
           return res?.data;
         })
