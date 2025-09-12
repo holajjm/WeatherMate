@@ -9,9 +9,8 @@ import useScrollTop from "@hooks/useScrollTop";
 import { ModalPortal } from "@hooks/modalPortal";
 import { useCoords } from "@hooks/useCoords";
 import MainNowWeather from "@pages/main/MainNowWeather";
-import MainMyLocationWeather from "@pages/main/MainMyLocationWeather";
 import MainWeatherTimeZone from "@pages/main/MainWeatherTimeZone";
-import MainAllCitiesWeather from "@pages/main/MainAllCitiesWeather";
+import MainWeatherListDays from "@pages/main/MainWeatherListDays";
 import { useModalStore } from "@store/store";
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -35,12 +34,7 @@ function MainHomePage() {
   }, [step]);
 
   return (
-    <main
-      className={`
-        font-Pretendard relative m-auto flex h-screen min-w-[320px]
-        max-w-[600px] flex-col gap-2 bg-slate-50
-      `}
-    >
+    <main className="relative m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-2 bg-slate-50 text-toss-black">
       {modal && (
         <ModalPortal>
           <MainModal />
@@ -54,25 +48,19 @@ function MainHomePage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 1 }}
-            className={`
-              flex h-1/2 w-full flex-col items-center justify-start text-2xl
-            `}
+            className={`flex h-1/2 w-full flex-col items-center justify-start text-2xl`}
           >
             <div>
               <img
                 src="./MainIcon.webp"
                 alt="MainIcon"
-                decoding="async"
                 {...{ fetchpriority: "high" }}
+                decoding="async"
                 width={160}
                 className="w-40"
               />
             </div>
-            <h1
-              className={`
-                box-border w-full p-2 text-center font-bold text-[#2D2D2D]
-              `}
-            >
+            <h1 className={`box-border w-full p-2 text-center font-bold`}>
               환영해요! WeatherMate입니다!
             </h1>
           </motion.div>
@@ -121,7 +109,6 @@ function MainHomePage() {
                     onClick={() => navigate("/mbti")}
                   ></Button>
                 </div>
-                <MainAllCitiesWeather />
               </div>
 
               <motion.section
@@ -129,7 +116,7 @@ function MainHomePage() {
                 animate={{ translateY: 0, opacity: 1 }}
                 transition={{
                   ease: "easeInOut",
-                  duration: 0.5,
+                  duration: 0.5
                 }}
               >
                 <MainNowWeather />
@@ -140,21 +127,21 @@ function MainHomePage() {
                 animate={{ translateY: 0, opacity: 1 }}
                 transition={{
                   ease: "easeInOut",
-                  duration: 0.75,
+                  duration: 0.75
                 }}
               >
                 <MainWeatherTimeZone />
               </motion.section>
 
               <motion.section
-                initial={{ translateY: 150, opacity: 0 }}
+                initial={{ translateY: 100, opacity: 0 }}
                 animate={{ translateY: 0, opacity: 1 }}
                 transition={{
                   ease: "easeInOut",
-                  duration: 1,
+                  duration: 0.75
                 }}
               >
-                <MainMyLocationWeather />
+                <MainWeatherListDays />
               </motion.section>
             </div>
           </motion.div>
