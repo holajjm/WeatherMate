@@ -12,10 +12,3 @@ export const citiesData: Cities = {
   "Gyeongsangnam-do": "경상남도",
   "Jeju-do": "제주도",
 };
-
-export const citiesDesc:Cities = {
-  "clear sky": "맑음",
-  "few clouds": "구름 적음",
-  "overcast clouds": "흐림",
-  
-}
