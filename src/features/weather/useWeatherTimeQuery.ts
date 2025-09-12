@@ -13,7 +13,7 @@ export function useWeatherTimeQuery() {
     queryFn: async () => {
       if (!latitude || !longitude) return null;
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${ENV.WEATHER_SERVE}&units=metric&cnt=8`,
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${ENV.WEATHER_MAIN}&units=metric&cnt=8`,
       );
       const data = await response.json();
       return data;
