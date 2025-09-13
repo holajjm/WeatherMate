@@ -1,7 +1,6 @@
 import React from "react";
 
-import { weatherDetails } from "@constants/WeatherDetailDatas";
-import { useWeatherQuery } from "@features/weather/useWeatherQuery";
+import { useWeatherDetailDatas } from "@hooks/useWeatherDetailDatas";
 import ErrorPage from "@pages/ErrorPage";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,7 +10,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 function MainWeatherDetail() {
-  const { isError, isFetching } = useWeatherQuery();
+  const { weatherDetails, isError, isFetching } = useWeatherDetailDatas();
+  // console.log(weatherDetails);
   if (isError) return <ErrorPage />;
 
   return (
