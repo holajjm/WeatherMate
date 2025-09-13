@@ -1,7 +1,5 @@
 import React from "react";
 
-import Header from "@components/layout/Header";
-import Footer from "@components/layout/Footer";
 import Button from "@components/layout/Button";
 import { useNavigate } from "react-router-dom";
 
@@ -9,9 +7,8 @@ function ErrorPage() {
   const router = useNavigate();
   return (
     <>
-      {/* <Header /> */}
       <section
-        className={`m-auto flex flex-col gap-2 h-screen min-w-[320px] max-w-[600px] items-center justify-center bg-slate-100 p-2`}
+        className={`m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col items-center justify-center gap-2 bg-slate-100 p-2`}
       >
         <div
           className={`flex h-1/2 w-full flex-col items-center justify-center gap-8 rounded-xl bg-white text-center drop-shadow-lg`}
@@ -39,7 +36,6 @@ function ErrorPage() {
           onClick={() => router("/")}
         ></Button>
       </section>
-      {/* <Footer /> */}
     </>
   );
 }
