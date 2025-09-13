@@ -22,6 +22,9 @@ function MainAllCitiesWeather() {
     <>
       {!isFetching && (
         <Swiper
+          key={"all-cities"}
+          observer={true}
+          observeParents={true}
           // direction="vertical"
           spaceBetween={100}
           centeredSlides={true}
@@ -38,7 +41,7 @@ function MainAllCitiesWeather() {
           modules={[Autoplay, Pagination, Navigation]}
           className="h-36 w-1/6 text-center text-caption font-bold text-toss-black"
         >
-          {cityWeather?.length ? (
+          {cityWeather?.length && (
             <>
               {cityWeather.map((item: AllCityData, i: number) => {
                 return (
@@ -53,7 +56,7 @@ function MainAllCitiesWeather() {
                       <img
                         src={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
                         alt="Weather Icon"
-                        className="bg-toss-lightblue w-10 rounded-button"
+                        className="w-10 rounded-button bg-toss-lightblue"
                         width={40}
                         height={40}
                       />
@@ -71,8 +74,6 @@ function MainAllCitiesWeather() {
                 );
               })}
             </>
-          ) : (
-            <MainAllWeatherSkeleton />
           )}
         </Swiper>
       )}

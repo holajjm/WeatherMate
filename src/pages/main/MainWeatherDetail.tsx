@@ -18,6 +18,9 @@ function MainWeatherDetail() {
     <>
       {!isFetching && (
         <Swiper
+          key={"weather-detail"}
+          observer={true}
+          observeParents={true}
           // direction="vertical"
           spaceBetween={100}
           centeredSlides={true}
@@ -42,7 +45,7 @@ function MainWeatherDetail() {
               <p className="text-body text-toss-gray">{item.title}</p>
               <img
                 src={item.icon}
-                className="bg-toss-lightblue w-10 rounded-button p-1"
+                className="w-10 rounded-button bg-toss-lightblue p-1"
                 alt={item.alt}
                 {...{ fetchpriority: "high" }}
                 decoding="async"
