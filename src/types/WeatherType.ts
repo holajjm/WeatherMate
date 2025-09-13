@@ -99,6 +99,6 @@ export interface WeatherDetailItem {
   id: number;
   title: string;
   icon: string;
-  value: string;
+  value: string | undefined;
   alt: string;
 }
