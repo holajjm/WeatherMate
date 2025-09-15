@@ -35,14 +35,16 @@ function MainWeatherDetail() {
           // }}
           // navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
-          className="h-36 w-1/6 text-caption"
+          className="h-36 w-1/4 rounded-button text-caption"
         >
           {weatherDetails.map(item => (
             <SwiperSlide
               key={item.id}
-              className="flex w-full grow flex-col items-center justify-around gap-2 text-nowrap rounded-button border-[1px] bg-white px-2 py-1 text-center shadow-lg shadow-slate-200"
+              className="flex w-full grow flex-col items-center justify-around gap-1 text-nowrap rounded-button border-[1px] bg-white px-2 py-1 text-center shadow-lg shadow-slate-200"
             >
-              <p className="text-body text-toss-gray">{item.title}</p>
+              <h2 className="text-body text-toss-gray">상세 날씨</h2>
+              <hr className="w-11/12 border-toss-gray" />
+              <p className="text-caption text-toss-black">{item.title}</p>
               <img
                 src={item.icon}
                 className="w-10 rounded-button bg-toss-lightblue p-1"

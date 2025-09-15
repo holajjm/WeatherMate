@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 
 import { citiesData } from "@constants/CityMappingData";
-import MainAllWeatherSkeleton from "@components/skeleton/MainAllWeatherSkeleton";
 import useCityQuery from "@features/weather/useCityQuery";
 import useScrollTop from "@hooks/useScrollTop";
 
@@ -39,7 +38,7 @@ function MainAllCitiesWeather() {
           // }}
           // navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
-          className="h-36 w-1/6 text-center text-caption font-bold text-toss-black"
+          className="h-36 w-1/4 rounded-button text-center text-caption font-bold text-toss-black"
         >
           {cityWeather?.length && (
             <>
@@ -47,28 +46,27 @@ function MainAllCitiesWeather() {
                 return (
                   <SwiperSlide
                     key={item?.id}
-                    className="flex w-full flex-col items-center justify-around gap-1 rounded-xl border-[1px] bg-white p-2 shadow-lg shadow-slate-200"
+                    className="flex w-full grow flex-col items-center justify-around gap-1 text-nowrap rounded-button border-[1px] bg-white px-2 py-1 text-center shadow-lg shadow-slate-200"
                   >
-                    <p className="text-body text-toss-gray">
+                    <h2 className="text-body text-toss-gray">
                       {citiesData[item.name as keyof Cities]}
+                    </h2>
+                    <hr className="w-11/12 border-toss-gray" />
+                    <img
+                      src={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
+                      alt="Weather Icon"
+                      className="w-10 rounded-button bg-toss-lightblue"
+                      width={40}
+                      height={40}
+                    />
+                    <p className="font-normal">
+                      {item?.weather[0]?.description as keyof Cities}
                     </p>
-                    <div className="flex w-full flex-col items-center justify-center gap-1">
-                      <img
-                        src={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
-                        alt="Weather Icon"
-                        className="w-10 rounded-button bg-toss-lightblue"
-                        width={40}
-                        height={40}
-                      />
-                      <p className="font-normal">
-                        {item?.weather[0]?.description as keyof Cities}
+                    <div className="flex w-full items-center justify-center gap-4 text-caption font-bold">
+                      <p className="text-toss-lightred">
+                        {String(item.main.temp).slice(0, 2)}°C
                       </p>
-                      <div className="flex w-full items-center justify-around text-caption font-bold">
-                        <p className="">
-                          {String(item.main.temp).slice(0, 2)}°C
-                        </p>
-                        <p className="">{item?.main?.humidity}%</p>
-                      </div>
+                      <p className="text-toss-blue">{item?.main?.humidity}%</p>
                     </div>
                   </SwiperSlide>
                 );
