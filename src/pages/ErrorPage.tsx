@@ -33,6 +33,7 @@ function ErrorPage() {
           textColor="white"
           bgColor="gray"
           width="32"
+          height="10"
           onClick={() => router("/")}
         ></Button>
       </section>
