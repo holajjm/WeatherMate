@@ -41,7 +41,7 @@ function CommunityPopularItem() {
         className="cursor-pointer text-nowrap text-center"
         onClick={() => handleOpen(item)}
       >
-        <div className="box-border h-20 w-20 rounded-full border-4 border-blue-200 duration-200 hover:border-blue-400">
+        <div className="box-border h-20 w-20 rounded-full border-4 border-toss-lightblue duration-150 hover:border-toss-blue">
           <img
             className="h-full w-full rounded-full"
             src={

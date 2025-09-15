@@ -101,7 +101,7 @@ function CommunityMain() {
             <Search onClick={handleSearch}></Search>
             <div className="flex gap-2">
               <select
-                className="h-10 rounded-md border-2 border-slate-300 text-base font-bold text-slate-700"
+                className="h-8 rounded-md border-2 border-slate-300 text-caption font-bold text-toss-gray"
                 value={select}
                 onChange={selectValue}
               >
@@ -113,9 +113,10 @@ function CommunityMain() {
               </select>
               <Button
                 text="글 작성하기"
-                textColor="amber"
-                bgColor="amber"
+                textColor="white"
+                bgColor="blue"
                 width="full"
+                height="10"
                 onClick={handleWrite}
               ></Button>
             </div>

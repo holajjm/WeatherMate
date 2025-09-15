@@ -13,7 +13,7 @@ function ReplyNew() {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
+    reset
   } = useForm<NewReply>();
 
   const { mutate: onSubmit } = useReplyCreate({ _id, reset });
@@ -21,29 +21,28 @@ function ReplyNew() {
     <div>
       <form
         onSubmit={handleSubmit(formData => onSubmit(formData))}
-        className="flex flex-col gap-2 rounded-lg"
+        className="relative flex gap-2 rounded-lg"
       >
-        <div className="flex gap-2">
-          <input
-            {...register("comment", {
-              required: "내용을 입력하세요",
-            })}
-            placeholder="댓글을 입력하세요"
-            className="w-full rounded-lg border border-gray-300 bg-gray-50 p-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
-          />
-          <Button
-            text="등록"
-            textColor="amber"
-            bgColor="amber"
-            width="1/6"
-            onClick={() => {}}
-          ></Button>
-        </div>
+        <input
+          {...register("comment", {
+            required: "내용을 입력하세요"
+          })}
+          placeholder="댓글을 입력하세요"
+          className="w-full rounded-button border-2 border-toss-lightgray p-2 text-caption focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+        />
         {errors.comment && (
-          <p className="text-sm text-red-500">
+          <p className="absolute top-2.5 right-16 text-caption text-red-500">
             {errors.comment.message as string}
           </p>
         )}
+        <Button
+          text="등록"
+          textColor="white"
+          bgColor="blue"
+          width="12"
+          height="9"
+          onClick={() => {}}
+        ></Button>
       </form>
     </div>
   );

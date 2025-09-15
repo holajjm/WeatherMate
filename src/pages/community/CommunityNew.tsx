@@ -15,7 +15,7 @@ function CommunityNew() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<CommunityFormData>();
 
   const onSubmit = async (formData: CommunityFormData) => {
@@ -24,9 +24,9 @@ function CommunityNew() {
     const files = await axios("/files", {
       method: "post",
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "multipart/form-data"
       },
-      data: imageFormData,
+      data: imageFormData
     });
     formData.image = files.data.item[0]?.name;
     formData.type = "community";
@@ -44,30 +44,35 @@ function CommunityNew() {
   };
 
   return (
-    <div className="m-auto h-screen min-w-[320px] max-w-[600px] bg-slate-50 p-2">
+    <div className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-2 bg-slate-50 p-2">
       <header className="relative flex items-center justify-center">
-        <Button
-          text={<FaArrowLeft />}
-          textColor="gray"
-          bgColor="gray"
-          width="8"
-          onClick={() => navigate("/community")}
-        ></Button>
-        <h1 className="font-Pretendard m-auto py-4 pr-8 text-xl font-bold">
-          새 게시글
-        </h1>
+        <svg
+          className="h-5 w-5 cursor-pointer hover:scale-110"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          onClick={() => window.history.back()}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+        <h1 className="m-auto pr-5 text-title font-bold">새 게시글</h1>
       </header>
+
       <main>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <section className="flex h-56 w-full flex-col gap-2 drop-shadow-md">
-            {/* <h2 className="text-center text-lg font-UhBeeKangJa">사진 추가</h2> */}
-            <article className="flex h-full w-full items-center justify-center rounded-xl border-2 bg-white p-4">
+            <article className="flex h-full w-full items-center justify-center rounded-button bg-white p-4">
               <label
                 htmlFor="file"
-                className="font-UhBeeKangJa flex h-full w-1/2 cursor-pointer flex-col items-center justify-center rounded-xl bg-sky-400 p-2 text-white"
+                className="flex h-full w-1/2 cursor-pointer flex-col items-center justify-center rounded-button bg-toss-blue p-2 text-white"
               >
                 <MdOutlineCameraAlt className="text-3xl" />
-                <p className="text-sm">사진 추가</p>
+                <p className="text-caption">사진 추가</p>
               </label>
               <input
                 className="flex w-1/2 cursor-pointer p-2"
@@ -79,9 +84,7 @@ function CommunityNew() {
             </article>
             <div>
               {errors.image ? (
-                <p className="text-base font-bold text-red-500">
-                  사진을 추가하세요.
-                </p>
+                <p className="text-body text-red-500">사진을 추가하세요.</p>
               ) : (
                 <p className="h-4"></p>
               )}
@@ -89,7 +92,6 @@ function CommunityNew() {
           </section>
           <section className="h-full w-full drop-shadow-md">
             <fieldset className="flex flex-col gap-2">
-              {/* <legend className="text-center text-lg font-UhBeeKangJa mb-2">날씨 선택</legend> */}
               <div
                 role="radiogroup"
                 aria-labelledby="profile-image-options"
@@ -102,11 +104,11 @@ function CommunityNew() {
                   "Foggy",
                   "Snow",
                   "Thunder",
-                  "Wind",
+                  "Wind"
                 ].map(id => (
                   <figure
                     key={id}
-                    className="w-full cursor-pointer rounded-lg hover:ring-2"
+                    className="w-full cursor-pointer rounded-button hover:ring-2"
                   >
                     <input
                       className="hidden"
@@ -114,15 +116,15 @@ function CommunityNew() {
                       id={"title"}
                       value={id}
                       {...register("title", {
-                        required: "날씨를 선택해주세요",
+                        required: "날씨를 선택해주세요"
                       })}
                     />
                     <label
                       htmlFor={"title"}
-                      className={`flex w-full cursor-pointer items-center justify-center rounded-lg`}
+                      className={`flex w-full cursor-pointer items-center justify-center rounded-button`}
                     >
                       <img
-                        className="h-12 w-12 cursor-pointer rounded-lg"
+                        className="h-12 w-12 cursor-pointer rounded-button"
                         src={`/WeatherIcon/WeatherIcon${id}.webp`}
                         alt="WeatherIcon"
                         width={48}
@@ -134,9 +136,7 @@ function CommunityNew() {
               </div>
               <div>
                 {errors.title ? (
-                  <p className="font-SSRONETHandwritten text-base font-bold text-red-500">
-                    날씨를 선택하세요.
-                  </p>
+                  <p className="text-body text-red-500">날씨를 선택하세요.</p>
                 ) : (
                   <p className="h-4"></p>
                 )}
@@ -144,10 +144,9 @@ function CommunityNew() {
             </fieldset>
           </section>
           <section className="flex h-full w-full flex-col gap-2 drop-shadow-md">
-            {/* <h2 className="text-center text-lg font-UhBeeKangJa">글 작성</h2> */}
             <textarea
               id="content"
-              className="h-full w-full rounded-lg border-2 bg-white p-2 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-200"
+              className="relative h-full w-full rounded-button bg-white p-2 text-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-200"
               autoFocus
               cols={50}
               rows={10}
@@ -155,20 +154,19 @@ function CommunityNew() {
               {...register("content", { required: "내용을 입력하세요." })}
             />
             <div>
-              {errors.content ? (
-                <p className="font-SSRONETHandwritten text-base font-bold text-red-500">
+              {errors.content && (
+                <p className="absolute bottom-4 left-2 text-base text-red-500">
                   내용을 입력하세요.
                 </p>
-              ) : (
-                <p className="h-4"></p>
               )}
             </div>
           </section>
           <footer className="flex w-full gap-2">
             <Button
               bgColor="gray"
-              textColor="gray"
+              textColor="white"
               width="full"
+              height="10"
               text={"취소"}
               onClick={() => {
                 if (confirm("그만쓸까요?")) {
@@ -178,9 +176,10 @@ function CommunityNew() {
               }}
             ></Button>
             <Button
-              bgColor="sky"
+              bgColor="blue"
               textColor="white"
               width="full"
+              height="10"
               text={"등록"}
               onClick={() => {}}
             ></Button>

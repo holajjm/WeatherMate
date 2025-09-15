@@ -12,7 +12,7 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
 
   return (
     <div
-      className="box-border flex h-[25rem] w-full cursor-pointer flex-col gap-1 rounded-md bg-white drop-shadow-lg"
+      className="box-border flex h-[25rem] w-full cursor-pointer flex-col gap-1 rounded-button bg-white drop-shadow-lg"
       onClick={() => navigate(`/community/${item._id}`)}
     >
       <header className="h-12 p-2">
@@ -35,14 +35,14 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
 
           <div className="flex grow items-center">
             <div className="grow">
-              <h1 className="text-sm font-bold text-[#2d2d2d]">
+              <h1 className="text-sm font-bold text-black">
                 {item.user?.name}
               </h1>
-              <p className="text-xs text-[#2d2d2d]">조회수 {item.views}</p>
+              <p className="text-caption text-toss-gray">조회수 {item.views}</p>
             </div>
             {item.title && (
               <img
-                className="h-8 w-8 rounded-sm"
+                className="h-8 w-8 rounded-button"
                 src={
                   [
                     "Sun",
@@ -70,7 +70,7 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
       <section className="flex h-60 grow flex-col gap-1">
         <div className="h-full">
           <img
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover border-y-[1px] border-toss-lightgray"
             src={
               item.extra
                 ? `${ENV.API_SERVER}/files/07-WeatherMate/${item.extra.image}`
@@ -88,20 +88,20 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
       </section>
 
       <section>
-        <p className="h-12 grow overflow-scroll rounded-md px-2 text-sm text-[#2d2d2d] scrollbar-hide">
+        <p className="h-12 grow overflow-scroll px-2 text-caption text-black scrollbar-hide">
           {item.content}
         </p>
       </section>
 
       <footer className="flex items-center justify-between gap-4 p-2 text-amber-400">
-        <p className="text-xs font-medium text-slate-400">
+        <p className="text-caption font-medium text-toss-gray">
           {TimeDiff(item.createdAt)}
         </p>
-        <section className="flex items-center justify-center gap-2">
+        <section className="flex items-center justify-center gap-1">
           <p className="flex items-center">
-            <IoChatbubbleEllipsesOutline className="text-xl" />
+            <IoChatbubbleEllipsesOutline className="text-body" />
           </p>
-          <p className="text-sm">{item.repliesCount}</p>
+          <p className="text-caption">{item.repliesCount}</p>
         </section>
       </footer>
     </div>

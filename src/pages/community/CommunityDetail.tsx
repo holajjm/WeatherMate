@@ -11,8 +11,6 @@ import useCustomAxios from "@hooks/useCustomAxios";
 import useScrollTop from "@hooks/useScrollTop";
 import ReplyMain from "@pages/community/ReplyMain";
 
-import { FaArrowLeft, FaHeart } from "react-icons/fa";
-import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import type { CommunityDetailData } from "types/CommunityType";
 
 function CommunityDetail() {
@@ -24,7 +22,7 @@ function CommunityDetail() {
   const { data } = useQuery<AxiosResponse<CommunityDetailData>>({
     queryKey: ["posts", _id],
     queryFn: () => axios.get(`/posts/${_id}`),
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: false
   });
   const handleEdit = () => {
     navigate(`/community/${_id}/edit`);
@@ -44,18 +42,25 @@ function CommunityDetail() {
   // console.log(data?.data?.item);
 
   return (
-    <div className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-1 overflow-y-scroll bg-slate-50 p-2 scrollbar-hide">
-      <div className="w-full">
-        <Button
-          text={<FaArrowLeft />}
-          textColor="gray"
-          bgColor="gray"
-          width="8"
+    <div className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-4 overflow-y-scroll bg-slate-50 pt-4 scrollbar-hide">
+      <div className="w-full pl-2">
+        <svg
+          className="h-5 w-5 cursor-pointer hover:scale-110"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
           onClick={() => window.history.back()}
-        />
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
       </div>
       {data?.data?.item && (
-        <section className="flex flex-col flex-nowrap gap-2 rounded-xl bg-white p-2 drop-shadow-lg">
+        <section className="flex flex-col flex-nowrap gap-2 bg-white p-2 drop-shadow-sm">
           <header className="flex gap-2">
             <img
               src={
@@ -63,7 +68,7 @@ function CommunityDetail() {
                   ? `${ENV.API_SERVER}/files/07-WeatherMate/${data?.data?.item.user.profile}`
                   : "/NullUser.webp"
               }
-              className="h-12 w-12 rounded-full border-2"
+              className="h-10 w-10 rounded-full border-2"
               width={48}
               height={48}
               {...{ fetchpriority: "high" }}
@@ -79,7 +84,7 @@ function CommunityDetail() {
             </div>
             <div className="flex flex-col items-center justify-center">
               <img
-                className="h-10 w-10 rounded-full p-1"
+                className="h-8 w-8 rounded-button"
                 src={
                   [
                     "Sun",
@@ -88,7 +93,7 @@ function CommunityDetail() {
                     "Foggy",
                     "Snow",
                     "Thunder",
-                    "Wind",
+                    "Wind"
                   ].includes(data?.data?.item?.title as string)
                     ? `/WeatherIcon/WeatherIcon${data?.data?.item.title}.webp`
                     : "/MBTIImage/MBTIMain.webp"
@@ -103,7 +108,7 @@ function CommunityDetail() {
           </header>
 
           <main className="flex flex-grow flex-col">
-            <div className="flex h-96 w-full items-center justify-center rounded-md border-2 border-slate-200">
+            <div className="h-60 w-full object-cover">
               <img
                 src={
                   data?.data?.item.extra
@@ -120,40 +125,23 @@ function CommunityDetail() {
                 decoding="async"
               />
             </div>
-            <p className="box-border grow rounded-md bg-slate-100 p-2 text-slate-600">
+            <p className="rounded-button text-body">
               {data?.data?.item.content}
             </p>
           </main>
 
-          <footer className="mt-auto flex items-center">
-            <div>
-              <p className="text-md font-semibold text-slate-400">
-                조회수 {data?.data?.item.views}
-              </p>
-              <div className="flex gap-2">
-                <div className="flex items-center gap-1">
-                  <FaHeart className="text-2xl text-amber-400" />
-                  <p className="text-orange-300">좋아요</p>
-                </div>
-                <div className="flex items-center gap-1">
-                  <IoChatbubbleEllipsesOutline className="text-2xl text-orange-300" />
-                  <p className="text-orange-300">
-                    댓글{" "}
-                    {data?.data?.item && data?.data?.item.replies
-                      ? data?.data?.item.replies?.length
-                      : 0}
-                    개
-                  </p>
-                </div>
-              </div>
-            </div>
+          <footer className="mt-auto flex items-center justify-end">
+            <p className="text-caption text-toss-gray">
+              조회수 {data?.data?.item.views}
+            </p>
             {data.data.item.user.name === user.name ? (
               <section className="ml-auto flex w-1/2 gap-2">
                 <Button
                   text="수정"
                   textColor="white"
-                  bgColor="indigo"
+                  bgColor="blue"
                   width="full"
+                  height="10"
                   onClick={handleEdit}
                 ></Button>
                 <Button
@@ -161,6 +149,7 @@ function CommunityDetail() {
                   textColor="white"
                   bgColor="red"
                   width="full"
+                  height="10"
                   onClick={handleDelete}
                 ></Button>
               </section>

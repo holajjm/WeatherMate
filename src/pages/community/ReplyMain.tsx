@@ -11,9 +11,9 @@ function ReplyMain() {
   const { _id } = useParams();
   const { data: replyData } = useReplyQuery(_id);
   return (
-    <div className="flex flex-col gap-2 rounded-lg bg-white p-2 drop-shadow-md">
+    <div className="flex flex-col gap-4 bg-white p-2 drop-shadow-sm">
       <ReplyNew />
-      <div className="grid gap-2">
+      <div className="flex flex-col gap-2">
         {replyData &&
           replyData.map((e: ReplyData) => <ReplyItem key={e._id} item={e} />)}
       </div>
