@@ -28,6 +28,8 @@ export default {
         toss: {
           blue: '#0064FF',
           lightblue: '#dbeafe',
+          red: '#FF3B30',
+          lightred: '#FF8686',
           black: '#202632',
           gray: '#8B95A1',
           lightgray: '#e2e8f0',
