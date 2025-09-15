@@ -53,6 +53,7 @@ function MainWeatherTimeZone() {
               textColor="white"
               bgColor="gray"
               width="24"
+              height="10"
               onClick={refetch}
             ></Button>
           </div>
