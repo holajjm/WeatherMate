@@ -26,7 +26,7 @@ function MainNowWeather() {
       {/* </div> */}
       <div className="flex gap-2">
         {!isFetching ? (
-          <div className="relative flex h-36 w-2/3 gap-2">
+          <div className="relative flex h-36 w-1/2 gap-2">
             <img
               className="absolute h-full w-full rounded-button object-fill"
               src={realImage ? realImage : "./Loading_Cloud.gif"}
