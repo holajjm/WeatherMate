@@ -99,6 +99,7 @@ function MainHomePage() {
                     textColor="black"
                     bgColor="gray_light"
                     width="1/2"
+                    height="10"
                     onClick={() => modalOpen()}
                   ></Button>
                   <Button
@@ -106,6 +107,7 @@ function MainHomePage() {
                     textColor="black"
                     bgColor="gray_light"
                     width="1/2"
+                    height="10"
                     onClick={() => navigate("/mbti")}
                   ></Button>
                 </div>
