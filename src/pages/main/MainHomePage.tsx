@@ -73,8 +73,8 @@ function MainHomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            <div className="w-full">
-              <div className="box-border flex w-full flex-col gap-2 p-2">
+            <div className="flex w-full flex-col gap-2 p-4">
+              <div className="box-border">
                 <div className="flex gap-1">
                   <Button
                     text={

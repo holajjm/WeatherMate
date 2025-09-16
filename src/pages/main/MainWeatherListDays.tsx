@@ -18,7 +18,7 @@ function MainWeatherListDays() {
   // console.log(DayWeather);
 
   return (
-    <section className="flex w-full flex-col gap-1 bg-slate-50 p-2">
+    <section className="flex w-full flex-col gap-1 bg-slate-50">
       <h2 className="flex justify-between text-base text-slate-600">
         주간 날씨
       </h2>
@@ -53,6 +53,7 @@ function MainWeatherListDays() {
               textColor="white"
               bgColor="gray"
               width="24"
+              height="10"
               onClick={refetch}
             ></Button>
           </div>

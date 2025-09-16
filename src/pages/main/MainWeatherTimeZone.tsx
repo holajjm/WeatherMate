@@ -18,7 +18,7 @@ function MainWeatherTimeZone() {
   // console.log(TimeWeather);
 
   return (
-    <section className="flex w-full flex-col gap-1 bg-slate-50 p-2 text-caption">
+    <section className="flex w-full flex-col gap-1 bg-slate-50 text-caption">
       <h2 className="flex justify-between text-base text-slate-600">
         시간대별 날씨
       </h2>

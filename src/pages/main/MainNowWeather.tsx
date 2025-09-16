@@ -17,7 +17,7 @@ function MainNowWeather() {
     ? realImageList[weatherData.weather[0].main as keyof WeatherImage]
     : null;
   return (
-    <article className="font-Pretendard fade-in flex h-full flex-col gap-2 p-2">
+    <article className="font-Pretendard fade-in flex h-full flex-col gap-2">
       {/* <div className="flex items-center justify-between"> */}
       {/* <h1 className="text-base font-bold text-[#2D2D2D]">
         <span className="text-lg text-blue_middle">웨더메이트</span>가 알려주는
