@@ -154,7 +154,7 @@ function Location() {
     </motion.section>
   ));
   return (
-    <div className="mx-auto flex min-h-screen flex-col gap-4 bg-slate-50 p-2">
+    <div className="mx-auto flex min-h-screen flex-col gap-4 bg-slate-50 p-4">
       <header className="flex gap-2 text-nowrap">
         <input
           className="box-border h-10 w-full rounded-md border border-gray-300 p-2 text-sm font-bold focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-slate-500 dark:bg-gray-700"
@@ -166,15 +166,17 @@ function Location() {
         <Button
           text="검색하기"
           textColor="white"
-          bgColor="sky"
+          bgColor="blue"
           width="1/4"
+          height="10"
           onClick={handleClick}
         ></Button>
         <Button
           text="초기화"
-          textColor="gray"
+          textColor="white"
           bgColor="gray"
           width="1/4"
+          height="10"
           onClick={() => {
             (navigate("/location"), window.location.reload());
           }}
@@ -198,7 +200,7 @@ function Location() {
         <LocationItemSkeleton />
       ) : (
         <>
-          <main className="relative flex flex-col items-center justify-center gap-1 sm:grid sm:grid-cols-2">
+          <main className="relative flex flex-col items-center justify-center gap-4 sm:grid sm:grid-cols-2">
             {searchItemList?.length ? searchItemList : locationItemList}
           </main>
           <p ref={ref} className="w-full text-center">
