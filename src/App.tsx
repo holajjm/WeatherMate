@@ -1,12 +1,11 @@
-import React, { Suspense, useEffect } from "react";
+import React, { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 
 import { ENV } from "@constants/env";
-// import Loading from "@components/layout/Loading";
 
 import router from "./routes";
-import { ToastContainer } from "react-toastify";
+import { Bounce, ToastContainer } from "react-toastify";
 
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
@@ -22,15 +21,21 @@ function App() {
   return (
     <>
       <RecoilRoot>
-        {/* <Suspense fallback={<Loading />}> */}
         <ToastContainer
-          position="top-right"
-          limit={2}
-          closeButton={true}
+          position="top-center"
           autoClose={5000}
+          limit={1}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition={Bounce}
         />
         <RouterProvider router={router} />
-        {/* </Suspense> */}
       </RecoilRoot>
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </>
