@@ -36,7 +36,7 @@ function UserLogin() {
       setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
-        phone: res.data.item.phone,
+        // phone: res.data.item.phone,
         email: res.data.item.email,
         profile: res.data.item.profileImage,
         token: res.data.item.token
@@ -157,7 +157,7 @@ function UserLogin() {
                   height={40}
                   {...{ fetchpriority: "high" }}
                   decoding="async"
-                  // onClick={handleLogin}
+                  onClick={handleLogin}
                 />
               </div>
               </div>
