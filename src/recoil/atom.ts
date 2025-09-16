@@ -11,7 +11,7 @@ export const memberState = atom({
   default: {
     id: "",
     name: "",
-    phone: "",
+    // phone: "",
     email: "",
     password: "",
   },
