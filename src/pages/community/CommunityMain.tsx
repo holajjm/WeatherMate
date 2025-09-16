@@ -35,10 +35,10 @@ function CommunityMain() {
         params: {
           page,
           keyword: searchParams.get("keyword"),
-          type: "community",
-        },
+          type: "community"
+        }
       }),
-    refetchOnMount: "always",
+    refetchOnMount: "always"
   });
 
   useEffect(() => {
@@ -83,7 +83,7 @@ function CommunityMain() {
   const handleWrite = () => {
     if (!user) {
       const gotologin = confirm(
-        "로그인 후 이용 가능합니다. \n 로그인 하시겠습니까?",
+        "로그인 후 이용 가능합니다. \n 로그인 하시겠습니까?"
       );
       gotologin && navigate("/user/login");
     } else {
@@ -93,7 +93,7 @@ function CommunityMain() {
   return (
     <>
       {user && user[0]?.name ? (
-        <div className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-4 overflow-y-scroll bg-slate-50 p-2 scrollbar-hide">
+        <div className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-4 overflow-y-scroll bg-slate-50 px-4 scrollbar-hide">
           <aside>
             <CommunityPopularItem />
           </aside>
@@ -121,7 +121,7 @@ function CommunityMain() {
               ></Button>
             </div>
           </section>
-          <main className="flex flex-col items-center justify-center gap-2 sm:grid sm:grid-cols-2">
+          <main className="flex flex-col items-center justify-center gap-4 sm:grid sm:grid-cols-2">
             {isLoading && <p>로딩중...</p>}
             {error && <p>{error.message}</p>}
             {sortItemList(select)}
