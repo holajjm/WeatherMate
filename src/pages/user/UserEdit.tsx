@@ -12,7 +12,6 @@ import Button from "@components/layout/Button";
 function UserEdit() {
   const [user, setUser] = useRecoilState<UserMainData>(memberState);
   const [name, setName] = useState<string>(user.name);
-  const [phone, setPhone] = useState<string>(user.phone);
   const [email, setEmail] = useState<string>(user.email);
   const [password, setPassword] = useState<string>("");
   const axios = useCustomAxios();
@@ -24,7 +23,6 @@ function UserEdit() {
     try {
       const updatedData = {
         name,
-        phone,
         email,
         password
       };
@@ -33,10 +31,6 @@ function UserEdit() {
 
       if (name !== user.name) {
         updatedData.name = name;
-        updated = true;
-      }
-      if (phone !== user.phone) {
-        updatedData.phone = phone;
         updated = true;
       }
       if (email !== user.email) {
@@ -66,9 +60,6 @@ function UserEdit() {
       // 변경된 부분만 초기화
       if (updatedData.name) {
         setName(updatedData.name);
-      }
-      if (updatedData.phone) {
-        setPhone(updatedData.phone);
       }
       if (updatedData.email) {
         setEmail(updatedData.email);
