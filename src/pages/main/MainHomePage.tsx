@@ -16,12 +16,12 @@ import { useModalStore } from "@store/store";
 import { AnimatePresence, motion } from "framer-motion";
 
 function MainHomePage() {
-  const navigate = useNavigate();
-  const modal = useModalStore(state => state.modal);
-  const modalOpen = useModalStore(state => state.modalOpen);
   usePageTitle("WeatherMate");
   useScrollTop();
   useCoords();
+  const navigate = useNavigate();
+  const modal = useModalStore(state => state.modal);
+  const modalOpen = useModalStore(state => state.modalOpen);
   const [step, setStep] = useState(0);
 
   useEffect(() => {
@@ -73,9 +73,9 @@ function MainHomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            <div className="flex w-full flex-col gap-2 p-4">
+            <div className="flex w-full flex-col gap-4 p-4">
               <div className="box-border">
-                <div className="flex gap-1">
+                <div className="flex gap-2">
                   <Button
                     text={
                       <>
@@ -102,14 +102,14 @@ function MainHomePage() {
                     height="10"
                     onClick={() => modalOpen()}
                   ></Button>
-                  <Button
+                  {/* <Button
                     text={"날씨 테마 MBTI 검사하기!"}
                     textColor="black"
                     bgColor="lightgray"
                     width="1/2"
                     height="10"
                     onClick={() => navigate("/mbti")}
-                  ></Button>
+                  ></Button> */}
                 </div>
               </div>
 
