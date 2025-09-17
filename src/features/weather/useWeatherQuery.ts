@@ -21,8 +21,8 @@ export function useWeatherQuery() {
       }
       return data;
     },
-    staleTime: 1000 * 60 * 60,
-    refetchInterval: 1000 * 60 * 60,
+    staleTime: 1000 * 60 * 30,
+    refetchInterval: 1000 * 60 * 30,
     refetchIntervalInBackground: true,
     enabled: !!latitude && !!longitude,
   });
