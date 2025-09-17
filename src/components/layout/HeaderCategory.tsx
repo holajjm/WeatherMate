@@ -1,142 +1,82 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
+import { Coment } from "@constants/Coment.ts";
 import useScrollTop from "@hooks/useScrollTop";
-import { motion } from "framer-motion";
 
-import { IoMdChatboxes } from "react-icons/io";
-import { MdLocationOn } from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
+interface ComentObj {
+  temperature: number;
+  recommendation: string;
+  clothes: string;
+  CLOTHES_IMG: string;
+}
 
 function HeaderCategory() {
   useScrollTop();
+
+  // ---------------------------------
+  const data = JSON.parse(sessionStorage.getItem("sessionWeather") as string);
+  const [comentObj, setComentObj] = useState<ComentObj>();
+
+  useEffect(() => {
+    const getRecommendation = () => {
+      if (Coment[0]?.temperature >= data?.main.temp) {
+        setComentObj(Coment[0]);
+        return;
+      } else {
+        for (let i = 0; i < Coment.length; i++) {
+          if (
+            Coment[i]?.temperature < data?.main.temp &&
+            Coment[i + 1]?.temperature >= data?.main.temp
+          ) {
+            setComentObj(Coment[i + 1]);
+            return;
+          } else {
+            setComentObj(Coment[Coment.length - 1]);
+          }
+        }
+      }
+    };
+    getRecommendation();
+  }, [data]);
+
+  // --------------------------------
+
   return (
-    <div
-      className={`
-        font-UhBeeKangJa m-auto flex h-screen min-w-[180px] flex-col
-        items-center bg-slate-100 text-lg
-        drop-shadow-[10px_5px_3px_rgba(0,0,0,0.3)]
-      `}
-    >
-      <h1
-        className={`
-          font-SSRONETHandwritten flex h-10 w-full items-center px-2 text-xl
-          font-bold text-[#2D2D2D]
-        `}
-      >
-        메인 카테고리
-      </h1>
-      <motion.div
-        initial={{ translateX: -200, opacity: 0 }}
-        animate={{ translateX: 0, opacity: 1 }}
-        transition={{
-          ease: "easeInOut",
-          duration: 0.5,
-        }}
-        className="w-full"
-      >
-        <Link
-          to={"/community"}
-          state={{ from: location.pathname }}
-          className={`
-            flex w-full items-center gap-1 border-[1px] bg-white p-2 text-base
-            hover:bg-indigo-500
-          `}
-        >
-          <IoMdChatboxes className="text-lg" />
-          커뮤니티
-        </Link>
-      </motion.div>
-      <motion.div
-        initial={{ translateX: -200, opacity: 0 }}
-        animate={{ translateX: 0, opacity: 1 }}
-        transition={{
-          ease: "easeInOut",
-          duration: 0.75,
-        }}
-        className="w-full"
-      >
-        <Link
-          to={"/location"}
-          state={{ from: location.pathname }}
-          className={`
-            flex w-full items-center gap-1 border-[1px] bg-white p-2 text-base
-            hover:bg-indigo-500
-          `}
-        >
-          <MdLocationOn className="text-lg" />
-          장소추천
-        </Link>
-      </motion.div>
-      <motion.div
-        initial={{ translateX: -200, opacity: 0 }}
-        animate={{ translateX: 0, opacity: 1 }}
-        transition={{
-          ease: "easeInOut",
-          duration: 1,
-        }}
-        className="w-full"
-      >
-        <Link
-          to={"/user/mypage"}
-          state={{ from: location.pathname }}
-          className={`
-            flex w-full items-center gap-1 border-[1px] bg-white p-2 text-base
-            hover:bg-indigo-500
-          `}
-        >
-          <FaUserCircle className="text-lg" />
-          마이페이지
-        </Link>
-      </motion.div>
-      <h1
-        className={`
-          font-SSRONETHandwritten flex h-10 w-full items-center px-2 text-xl
-          font-bold text-[#2D2D2D]
-        `}
-      >
-        기타 카테고리
-      </h1>
-      <motion.div
-        initial={{ translateX: -200, opacity: 0 }}
-        animate={{ translateX: 0, opacity: 1 }}
-        transition={{
-          ease: "easeInOut",
-          duration: 1.25,
-        }}
-        className="w-full"
-      >
-        <Link
-          to={"/mbti"}
-          state={{ from: location.pathname }}
-          className={`
-            flex w-full items-center gap-1 border-[1px] bg-white p-2 text-base
-            hover:bg-sky-400
-          `}
-        >
-          🌤️날씨 성격 테스트
-        </Link>
-      </motion.div>
-      <motion.div
-        initial={{ translateX: -200, opacity: 0 }}
-        animate={{ translateX: 0, opacity: 1 }}
-        transition={{
-          ease: "easeInOut",
-          duration: 1.5,
-        }}
-        className="w-full"
-      >
-        <Link
-          to={"/allcity"}
-          state={{ from: location.pathname }}
-          className={`
-            flex w-full items-center gap-1 border-[1px] bg-white p-2 text-base
-            hover:bg-sky-400
-          `}
-        >
-          🌤️전국의 날씨
-        </Link>
-      </motion.div>
+    <div className="flex h-screen items-start justify-center bg-slate-100 p-4 text-lg drop-shadow-[5px_5px_3px_rgba(0,0,0,0.3)]">
+      <section className="flex h-full w-full flex-col justify-between gap-2 rounded-button text-center">
+        <div className="z-20 flex w-full flex-col gap-4 justify-between">
+          <h1 className="text-subtitle font-bold">오늘의 추천</h1>
+          <div className="flex flex-col gap-4">
+            <div>
+              <h2 className="text-left text-caption font-medium text-toss-gray">
+                오늘의 한마디
+              </h2>
+              <p className="rounded-button text-body bg-toss-lightgray p-1 font-bold text-toss-blue drop-shadow-md">
+                {comentObj?.recommendation}
+              </p>
+            </div>
+            <div>
+              <h2 className="text-left text-caption font-medium text-toss-gray">
+                오늘의 추천 의상
+              </h2>
+              <p className="rounded-button text-body bg-toss-lightgray p-1 font-bold text-toss-blue drop-shadow-md">
+                {comentObj?.clothes}
+              </p>
+            </div>
+            <div className="rounded-button bg-slate-100 drop-shadow-md">
+              <img
+                src={comentObj?.CLOTHES_IMG}
+                alt="Today's Clothes"
+                {...{ fetchpriority: "high" }}
+                decoding="async"
+                width={96}
+                height={160}
+                className="m-auto h-40 w-24"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
