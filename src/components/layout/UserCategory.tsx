@@ -11,7 +11,7 @@ function UserCategory() {
   const location = useLocation();
   useScrollTop();
   return (
-    <div className="flex h-screen items-start justify-center bg-slate-100 p-4 text-lg drop-shadow-[-10px_5px_3px_rgba(0,0,0,0.3)]">
+    <div className="flex h-screen items-start justify-center bg-slate-100 p-4 text-lg drop-shadow-[-5px_5px_3px_rgba(0,0,0,0.3)]">
       <div className="grid w-full grid-cols-2 gap-2">
         <motion.div
           initial={{ translateX: 200, opacity: 0 }}
