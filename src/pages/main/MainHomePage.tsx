@@ -102,14 +102,6 @@ function MainHomePage() {
                     height="10"
                     onClick={() => modalOpen()}
                   ></Button>
-                  {/* <Button
-                    text={"날씨 테마 MBTI 검사하기!"}
-                    textColor="black"
-                    bgColor="lightgray"
-                    width="1/2"
-                    height="10"
-                    onClick={() => navigate("/mbti")}
-                  ></Button> */}
                 </div>
               </div>
 
