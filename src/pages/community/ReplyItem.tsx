@@ -20,8 +20,13 @@ function ReplyItem({ item }: { item: ReplyData }) {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors }
-  } = useForm<NewReply>();
+  } = useForm<NewReply>({
+    defaultValues: {
+      comment: item?.comment || ""
+    }
+  });
   // 댓글 수정
   const { mutate: onUpdate } = useReplyUpdate({ item, _id, reset });
   // 댓글 삭제
@@ -70,6 +75,7 @@ function ReplyItem({ item }: { item: ReplyData }) {
                           setEditReply(!editReply);
                           setMenu(!menu);
                           setIsEdit(!isEdit);
+                          setValue("comment", item?.comment || "");
                         }}
                         className="h-8 w-20 text-caption hover:text-toss-blue"
                       >
@@ -91,7 +97,10 @@ function ReplyItem({ item }: { item: ReplyData }) {
             {isEdit ? (
               <form
                 className="relative flex w-full gap-2"
-                onSubmit={handleSubmit(formData => onUpdate(formData))}
+                onSubmit={handleSubmit(formData => {
+                  onUpdate(formData);
+                  setIsEdit(false)
+                })}
               >
                 <input
                   {...register("comment", {
@@ -120,7 +129,10 @@ function ReplyItem({ item }: { item: ReplyData }) {
                     bgColor="gray"
                     width="12"
                     height="9"
-                    onClick={() => setIsEdit(!isEdit)}
+                    onClick={() => {
+                      setIsEdit(!isEdit);
+                      reset();
+                    }}
                   ></Button>
                 </div>
               </form>
