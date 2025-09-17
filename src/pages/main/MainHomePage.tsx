@@ -97,7 +97,7 @@ function MainHomePage() {
                       </>
                     }
                     textColor="black"
-                    bgColor="gray_light"
+                    bgColor="lightgray"
                     width="1/2"
                     height="10"
                     onClick={() => modalOpen()}
@@ -105,7 +105,7 @@ function MainHomePage() {
                   <Button
                     text={"날씨 테마 MBTI 검사하기!"}
                     textColor="black"
-                    bgColor="gray_light"
+                    bgColor="lightgray"
                     width="1/2"
                     height="10"
                     onClick={() => navigate("/mbti")}
