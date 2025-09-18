@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-import HeaderCategory from "@components/layout/HeaderCategory";
+import TodaysInfo from "@components/layout/TodaysInfo";
+import UserCategory from "@components/layout/UserCategory";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { CgMenuLeftAlt } from "react-icons/cg";
 import { PiUserCircleBold } from "react-icons/pi";
-import UserCategory from "./UserCategory";
 
 function Header() {
   const location = useLocation();
-  const navigate = useNavigate();
   const handleRefresh = () => {
     sessionStorage.removeItem("userWeather");
     sessionStorage.removeItem("myPlace");
@@ -44,11 +43,11 @@ function Header() {
     <header
       className={`sticky top-0 z-50 m-auto flex h-16 min-w-[180px] max-w-[600px] flex-col items-center justify-center bg-blue-200`}
     >
+      {/* 좌측 배너 */}
       <CgMenuLeftAlt
         className="absolute left-4 top-5 cursor-pointer text-2xl"
         onMouseEnter={handleCategoryOpen}
       />
-
       <AnimatePresence>
         {categoryOpen && (
           <motion.div
@@ -59,15 +58,16 @@ function Header() {
               ease: "easeInOut",
               duration: 0.8
             }}
-            className={`absolute left-0 top-16 h-full w-1/2 bg-toss-black`}
+            className={`absolute left-0 top-16 h-full w-full bg-toss-black`}
             onMouseEnter={handleCategoryOpen}
             onMouseLeave={handleCategoryClose}
           >
-            <HeaderCategory />
+            <TodaysInfo />
           </motion.div>
         )}
       </AnimatePresence>
 
+      {/* 헤더 메인 */}
       <Link to="/" className="flex h-full items-center justify-center">
         <img
           src="/MainLogo.webp"
@@ -82,6 +82,7 @@ function Header() {
         <p className="font-SuitBold text-2xl text-blue_dark">WeatherMate</p>
       </Link>
 
+      {/* 우측 배너 */}
       <PiUserCircleBold
         className="absolute right-4 top-5 cursor-pointer text-title"
         onMouseEnter={handleUserCategoryOpen}
