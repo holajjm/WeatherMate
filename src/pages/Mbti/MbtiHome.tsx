@@ -16,10 +16,7 @@ function MbtiHome() {
 
   return (
     <div
-      className={`
-        relative m-auto min-h-screen min-w-[320px] max-w-[600px] bg-cover
-        bg-center p-2
-      `}
+      className={`relative m-auto min-h-screen min-w-[320px] max-w-[600px] bg-cover bg-center p-2`}
     >
       <img
         className="absolute left-0 top-0 -z-10 h-screen object-cover"
@@ -29,15 +26,10 @@ function MbtiHome() {
         decoding="async"
       />
       <div
-        className={`
-          flex h-full flex-col items-center justify-center gap-2 text-nowrap
-        `}
+        className={`flex h-full flex-col items-center justify-center gap-2 text-nowrap`}
       >
         <div
-          className={`
-            justift-center flex w-full flex-col items-center gap-2 pt-10
-            text-center
-          `}
+          className={`justift-center flex w-full flex-col items-center gap-2 pt-10 text-center`}
         >
           <h1 className="font-Pretendard text-xl font-bold">
             날씨 성격 테스트
@@ -51,38 +43,27 @@ function MbtiHome() {
             decoding="async"
           />
           <div
-            className={`
-              font-SSRONETHandwritten text-base font-bold text-slate-600
-              opacity-80
-            `}
+            className={`font-SSRONETHandwritten text-base font-bold text-slate-600 opacity-80`}
           >
             <p>날씨별 상황에 따라 내 행동을 골라보자!</p>
             <p>나는 어떤 날씨와 어울릴까?</p>
           </div>
-          <div className="flex w-full gap-4">
-            <Button
-              text={"테스트 시작하기"}
-              textColor="white"
-              bgColor="sky"
-              width="full"
-              onClick={() => {
-                if (!user?.name) {
-                  confirm("로그인이 필요합니다. 로그인 하시겠습니까?")
-                    ? navigate("/mainlogin", { state: location.pathname })
-                    : null;
-                } else {
-                  navigate("question");
-                }
-              }}
-            ></Button>
-            <Button
-              text={"메인으로 돌아가기"}
-              textColor="gray"
-              bgColor="gray"
-              width="full"
-              onClick={() => navigate("/")}
-            ></Button>
-          </div>
+          <Button
+            text={"테스트 시작하기"}
+            textColor="white"
+            bgColor="blue"
+            width="5/6"
+            height="12"
+            onClick={() => {
+              if (!user?.name) {
+                confirm("로그인이 필요합니다. 로그인 하시겠습니까?")
+                  ? navigate("/mainlogin", { state: location.pathname })
+                  : null;
+              } else {
+                navigate("question");
+              }
+            }}
+          ></Button>
         </div>
       </div>
     </div>
