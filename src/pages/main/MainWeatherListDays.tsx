@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Button from "@components/layout/Button";
 import Loading from "@components/layout/Loading";
 import { useWeatherDayQuery } from "@features/weather/useWeatherDayQuery";
 import { UnixTime } from "@hooks/UnixTime";
+import { useTimeAgo } from "@hooks/useTimeAgo";
 import ErrorPage from "@pages/ErrorPage";
 
+import { MdAutorenew } from "react-icons/md";
 import type { WeatherTime } from "types/WeatherType";
 
 function MainWeatherListDays() {
@@ -16,12 +18,43 @@ function MainWeatherListDays() {
     refetch
   } = useWeatherDayQuery();
   // console.log(DayWeather);
+  const {
+    timeAgoText,
+    handleRefresh: refreshTimeAgo,
+    setRefreshTime
+  } = useTimeAgo();
+
+  // 새로 고침 함수
+  const handleRefresh = () => {
+    refreshTimeAgo();
+    refetch();
+  };
+
+  // 컴포넌트 마운트 시 초기 갱신 시간 설정
+  useEffect(() => {
+    if (DayWeather && !isFetching) {
+      setRefreshTime(Date.now());
+    }
+  }, [DayWeather, isFetching, setRefreshTime]);
 
   return (
-    <section className="flex w-full flex-col gap-1 bg-slate-50">
-      <h2 className="flex justify-between text-base text-slate-600">
-        주간 날씨
-      </h2>
+    <section className="flex w-full flex-col gap-1 bg-white p-4 text-caption drop-shadow-sm">
+      <div className="flex w-full items-center justify-between">
+        <h2 className="flex justify-between text-body font-bold text-toss-black">
+          주간 날씨
+        </h2>
+        <div className="flex items-center gap-2">
+          <p>최근 갱신 : {timeAgoText}전</p>
+          <Button
+            text={<MdAutorenew className="text-subtitle" />}
+            textColor="white"
+            bgColor="gray"
+            width="8"
+            height="4"
+            onClick={handleRefresh}
+          ></Button>
+        </div>
+      </div>
       {!isFetching && !isError ? (
         DayWeather?.cod == "200" ? (
           <div className="flex w-full gap-1 overflow-x-scroll rounded-lg py-1 scrollbar-hide">
@@ -47,7 +80,7 @@ function MainWeatherListDays() {
             ))}
           </div>
         ) : (
-          <div className="flex items-center justify-center">
+          <div className="flex h-24 items-center justify-center">
             <Button
               text={"다시 불러오기"}
               textColor="white"
@@ -59,7 +92,9 @@ function MainWeatherListDays() {
           </div>
         )
       ) : (
-        <Loading />
+        <div className="flex h-24 items-center justify-center">
+          <Loading />
+        </div>
       )}
       {isError && <ErrorPage />}
     </section>
