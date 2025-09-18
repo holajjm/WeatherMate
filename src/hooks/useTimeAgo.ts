@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 
 /**
  * 시간 갱신 상태를 관리하는 커스텀 훅
  * @param initialRefreshTime 초기 갱신 시간 (기본값: 현재 시간)
- * @returns { timeAgoText, refreshTime, handleRefresh }
+ * @returns { timeAgoText, refreshTime, handleRefresh, setRefreshTime }
  */
 export const useTimeAgo = (initialRefreshTime?: number) => {
   const [lastRefreshTime, setLastRefreshTime] = useState<number>(
@@ -11,8 +11,8 @@ export const useTimeAgo = (initialRefreshTime?: number) => {
   );
   const [currentTime, setCurrentTime] = useState<number>(Date.now());
 
-  // 시간 차이를 계산하여 표시할 텍스트를 반환하는 함수
-  const getTimeAgoText = (): string => {
+  // 시간 차이를 계산하여 표시할 텍스트를 반환하는 함수 (useMemo로 최적화)
+  const timeAgoText = useMemo((): string => {
     const diffInSeconds = Math.floor((currentTime - lastRefreshTime) / 1000);
 
     if (diffInSeconds < 60) {
@@ -24,12 +24,17 @@ export const useTimeAgo = (initialRefreshTime?: number) => {
       const hours = Math.floor(diffInSeconds / 3600);
       return `${hours}시간`;
     }
-  };
+  }, [currentTime, lastRefreshTime]);
 
-  // 새로 고침 함수
-  const handleRefresh = () => {
+  // 새로 고침 함수 (useCallback으로 최적화)
+  const handleRefresh = useCallback(() => {
     setLastRefreshTime(Date.now());
-  };
+  }, []);
+
+  // 갱신 시간을 외부에서 설정할 수 있는 함수 (useCallback으로 최적화)
+  const setRefreshTime = useCallback((time: number) => {
+    setLastRefreshTime(time);
+  }, []);
 
   // 1분마다 현재 시간 업데이트
   useEffect(() => {
@@ -40,13 +45,8 @@ export const useTimeAgo = (initialRefreshTime?: number) => {
     return () => clearInterval(interval);
   }, []);
 
-  // 갱신 시간을 외부에서 설정할 수 있는 함수
-  const setRefreshTime = (time: number) => {
-    setLastRefreshTime(time);
-  };
-
   return {
-    timeAgoText: getTimeAgoText(),
+    timeAgoText,
     refreshTime: lastRefreshTime,
     handleRefresh,
     setRefreshTime
