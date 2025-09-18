@@ -55,7 +55,7 @@ function NavigationBar() {
         <p className="text-nowrap text-caption">장소추천</p>
       </Link>
       <Link
-        to="/user/mypage"
+        to="/mbti"
         className={`flex w-full flex-col items-center gap-1 p-1 ${
           location.pathname === "/user/mypage"
             ? "text-blue_middle"
