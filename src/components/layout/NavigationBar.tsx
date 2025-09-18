@@ -6,11 +6,20 @@ import { IoMdChatboxes } from "react-icons/io";
 import { MdLocationOn } from "react-icons/md";
 import { IoMdSunny } from "react-icons/io";
 
+import { useScrollDirection } from "@hooks/useScrollDirection";
+
 function NavigationBar() {
   const location = useLocation();
+  const { scrollDirection } = useScrollDirection(10);
+
+  // 스크롤 방향에 따라 네비게이션 바 표시 여부 결정
+  const isVisible = scrollDirection === "up";
+
   return (
     <nav
-      className={`sticky bottom-0 z-20 m-auto flex h-16 w-full min-w-[320px] max-w-[600px] items-center gap-4 rounded-t-button border-b-[1px] border-t-[1px] border-slate-300 bg-white text-lg font-bold text-white shadow-inner`}
+      className={`fixed bottom-0 left-1/2 z-20 m-auto flex h-16 w-full min-w-[320px] max-w-[600px] -translate-x-1/2 items-center gap-4 border-t-[1px] border-slate-300 bg-white text-body font-bold text-white transition-transform duration-300 ease-in-out ${
+        isVisible ? "translate-y-0" : "translate-y-full"
+      }`}
     >
       <Link
         to="/"
