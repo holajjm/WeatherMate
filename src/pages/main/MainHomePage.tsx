@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-import MainModal from "@components/modal/MainModal";
 import ToTheTopButton from "@components/layout/ToTheTopButton";
-import Button from "@components/layout/Button";
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
-import { ModalPortal } from "@hooks/modalPortal";
 import { useCoords } from "@hooks/useCoords";
 import MainNowWeather from "@pages/main/MainNowWeather";
 import MainWeatherTimeZone from "@pages/main/MainWeatherTimeZone";
 import MainWeatherListDays from "@pages/main/MainWeatherListDays";
-import { useModalStore } from "@store/store";
 
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -19,9 +14,6 @@ function MainHomePage() {
   usePageTitle("WeatherMate");
   useScrollTop();
   useCoords();
-  const navigate = useNavigate();
-  const modal = useModalStore(state => state.modal);
-  const modalOpen = useModalStore(state => state.modalOpen);
   const [step, setStep] = useState(0);
 
   useEffect(() => {
@@ -35,11 +27,6 @@ function MainHomePage() {
 
   return (
     <main className="relative m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-2 bg-slate-50 text-toss-black">
-      {modal && (
-        <ModalPortal>
-          <MainModal />
-        </ModalPortal>
-      )}
       <AnimatePresence mode="wait">
         {step === 1 && (
           <motion.div
@@ -73,38 +60,7 @@ function MainHomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            <div className="flex w-full flex-col gap-4 p-4">
-              <div className="box-border">
-                <div className="flex gap-2">
-                  <Button
-                    text={
-                      <>
-                        오늘의 추천 보기
-                        <svg
-                          className="ml-2 h-5 w-5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 -1 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            // d="M15 191-7-7 7-7"
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </>
-                    }
-                    textColor="black"
-                    bgColor="lightgray"
-                    width="1/2"
-                    height="10"
-                    onClick={() => modalOpen()}
-                  ></Button>
-                </div>
-              </div>
-
+            <div className="flex w-full flex-col gap-4">
               <motion.section
                 initial={{ translateY: 50, opacity: 0 }}
                 animate={{ translateY: 0, opacity: 1 }}
