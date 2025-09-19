@@ -19,12 +19,10 @@ export const CommunityEdit = React.lazy(
   () => import("@pages/community/CommunityEdit")
 );
 // Location
-export const LocationDetailPage = React.lazy(
-  () => import("@pages/location/LocationDetailPage")
-);
-export const LocationMainPage = React.lazy(
-  () => import("@pages/location/LocationMainPage")
-);
+// export const LocationDetailPage = React.lazy(
+//   () => import("@pages/location/LocationDetailPage")
+// );
+export const Location = React.lazy(() => import("@pages/location/Location"));
 export const LocationSearchPage = React.lazy(
   () => import("@pages/location/LocationSearchPage")
 );
@@ -91,7 +89,7 @@ const router = createBrowserRouter([
           // Location
           {
             path: "location",
-            element: WithSuspense(<LocationMainPage />)
+            element: WithSuspense(<Location />)
           },
           {
             path: "location/search",
@@ -101,10 +99,10 @@ const router = createBrowserRouter([
             path: "location/category",
             element: WithSuspense(<LocationCategoryPage />)
           },
-          {
-            path: "location/:id",
-            element: WithSuspense(<LocationDetailPage />)
-          },
+          // {
+          //   path: "location/:id",
+          //   element: WithSuspense(<LocationDetailPage />)
+          // },
 
           // Mbti
           {
