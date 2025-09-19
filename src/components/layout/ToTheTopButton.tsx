@@ -25,22 +25,18 @@ function ToTheTopButton() {
   const handleClick = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // 부드럽게 스크롤되도록 설정
+      behavior: "smooth" // 부드럽게 스크롤되도록 설정
     });
   };
 
   return (
     <button
-      className={`
-        fixed bottom-24 right-5 z-50 flex h-12 w-12 items-center justify-center
-        rounded-full border-2 shadow-xl transition-opacity duration-200
-        ${
+      className={`fixed bottom-24 right-3 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-toss-lightgray bg-white drop-shadow-md transition-opacity duration-200 ${
         isVisible ? "opacity-100" : "opacity-0"
-      }
-      `}
+      } `}
       onClick={handleClick}
     >
-      <FaArrowUp className="text-2xl font-bold text-primary" />
+      <FaArrowUp className="text-body font-bold text-toss-blue" />
     </button>
   );
 }
