@@ -38,7 +38,7 @@ function TodaysInfo() {
   }, [data]);
 
   return (
-    <div className="flex h-screen items-start justify-center bg-slate-100 p-4 text-lg">
+    <div className="flex h-96 items-start justify-center bg-slate-50 p-4 text-lg">
       <section className="flex h-full w-full flex-col justify-between gap-2 rounded-button text-center">
         <div className="z-20 flex w-full flex-col justify-between gap-4">
           <h1 className="text-subtitle font-bold">오늘의 추천</h1>

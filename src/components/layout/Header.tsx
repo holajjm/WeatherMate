@@ -51,14 +51,14 @@ function Header() {
       <AnimatePresence>
         {categoryOpen && (
           <motion.div
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -100 }}
             transition={{
               ease: "easeInOut",
               duration: 0.8
             }}
-            className={`absolute left-0 top-16 h-full w-full bg-toss-black`}
+            className={`absolute left-0 top-16 z-10 h-full w-full bg-toss-black`}
             onMouseEnter={handleCategoryOpen}
             onMouseLeave={handleCategoryClose}
           >
@@ -69,7 +69,7 @@ function Header() {
 
       {/* 헤더 메인 */}
       <Link to="/" className="flex h-full items-center justify-center">
-        <img
+        <img  
           src="/MainLogo.webp"
           alt="Main logo"
           width={200}
@@ -97,7 +97,7 @@ function Header() {
               ease: "easeInOut",
               duration: 0.8
             }}
-            className={`absolute right-0 top-16 h-full w-1/3 bg-toss-black`}
+            className={`absolute right-0 top-16 z-20 h-full w-1/2 sm:w-1/3 bg-toss-black`}
             onMouseEnter={handleUserCategoryOpen}
             onMouseLeave={handleUserCategoryClose}
           >

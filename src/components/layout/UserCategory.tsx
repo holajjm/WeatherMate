@@ -15,7 +15,7 @@ function UserCategory() {
   const navigate = useNavigate();
   const [user] = useRecoilState(memberState);
   const setUser = useSetRecoilState(memberState);
-  console.log(user);
+  // console.log(user);
   const handleLogout = () => {
     if (confirm("로그아웃 할까요?")) {
       setUser(null);
