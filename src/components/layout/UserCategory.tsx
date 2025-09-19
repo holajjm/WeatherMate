@@ -51,7 +51,7 @@ function UserCategory() {
             duration: 0.75
           }}
         >
-          {user ? (
+          {user.name ? (
             <button
               onClick={handleLogout}
               className="flex aspect-square h-full w-full flex-col items-center justify-center gap-2 rounded-button bg-white p-2 text-caption font-medium drop-shadow-md transition-all duration-200 hover:scale-105 hover:bg-toss-lightred hover:text-white hover:shadow-lg"
