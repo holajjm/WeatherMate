@@ -52,7 +52,7 @@ function NavigationBar() {
         } `}
       >
         <MdLocationOn className="text-title" />
-        <p className="text-nowrap text-caption">장소추천</p>
+        <p className="text-nowrap text-caption">장소검색</p>
       </Link>
       <Link
         to="/mbti"
