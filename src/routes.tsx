@@ -25,6 +25,12 @@ export const LocationDetailPage = React.lazy(
 export const LocationMainPage = React.lazy(
   () => import("@pages/location/LocationMainPage")
 );
+export const LocationSearchPage = React.lazy(
+  () => import("@pages/location/LocationSearchPage")
+);
+export const LocationCategoryPage = React.lazy(
+  () => import("@pages/location/LocationCategoryPage")
+);
 // Mbti
 export const MbtiQuestion = React.lazy(
   () => import("@pages/Mbti/MbtiQuestion")
@@ -86,6 +92,14 @@ const router = createBrowserRouter([
           {
             path: "location",
             element: WithSuspense(<LocationMainPage />)
+          },
+          {
+            path: "location/search",
+            element: WithSuspense(<LocationSearchPage />)
+          },
+          {
+            path: "location/category",
+            element: WithSuspense(<LocationCategoryPage />)
           },
           {
             path: "location/:id",
