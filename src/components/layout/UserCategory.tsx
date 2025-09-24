@@ -2,23 +2,23 @@ import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import useScrollTop from "@hooks/useScrollTop";
-import { motion } from "framer-motion";
+import { useUserStore } from "@store/store";
 
+import { motion } from "framer-motion";
 import { MdLocationOn } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { memberState } from "@recoil/atom";
 
 function UserCategory() {
   useScrollTop();
   const location = useLocation();
   const navigate = useNavigate();
-  const [user] = useRecoilState(memberState);
-  const setUser = useSetRecoilState(memberState);
+  const user = useUserStore(state => state.user);
+  const resetUser = useUserStore(state => state.resetUser);
   // console.log(user);
   const handleLogout = () => {
     if (confirm("로그아웃 할까요?")) {
-      setUser(null);
+      resetUser();
+      localStorage.clear();
       navigate("/");
     }
   };
