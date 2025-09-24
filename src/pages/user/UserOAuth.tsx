@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { memberState } from "../../recoil/atom.js";
 
 import useCustomAxios from "@hooks/useCustomAxios.js";
+import { useUserStore } from "@store/store.js";
 
 const UserOAuth = () => {
   const [loading, setLoading] = useState(true);
-  const setUser = useSetRecoilState(memberState);
+  const setUser = useUserStore(state => state.setUser);
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,7 +21,7 @@ const UserOAuth = () => {
     try {
       const res = await axios.post("/users/login/kakao", {
         code,
-        redirect_uri,
+        redirect_uri
       });
       console.log("User data sent to backend:", res.data);
       if (res.data.item) {
@@ -30,9 +29,8 @@ const UserOAuth = () => {
           _id: res.data.item._id,
           email: res.data.item.email,
           name: res.data.item.name,
-          phone: res.data.item.phone,
           profile: res.data.item.profileImage,
-          token: res.data.item.token,
+          token: res.data.item.token
         });
         alert(res.data.item.name + "님 반갑습니다");
         navigate(location.state?.from ? location.state?.from : "/main");

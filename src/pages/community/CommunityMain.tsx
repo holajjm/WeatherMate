@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
-import { useRecoilState } from "recoil";
-import { memberState } from "@recoil/atom";
 
 import Button from "@components/layout/Button";
 import Search from "@components/layout/Search";
 import ToTheTopButton from "@components/layout/ToTheTopButton";
 import useCustomAxios from "@hooks/useCustomAxios";
 import usePageTitle from "@hooks/usePageTitle";
+import useScrollTop from "@hooks/useScrollTop";
 import CommunityItem from "@pages/community/CommunityItem";
 import CommunityPopularItem from "@pages/community/CommunityPopularItem";
 import UserValidLogin from "@pages/user/UserValidLogin";
-import useScrollTop from "@hooks/useScrollTop";
+import { useUserStore } from "@store/store";
 
 import type { CommunityMainData } from "types/CommunityType";
 
@@ -23,7 +22,7 @@ function CommunityMain() {
   const [select, setSelect] = useState<string>("");
   const axios = useCustomAxios();
   const [searchParams, setSearchParams] = useSearchParams();
-  const user = useRecoilState(memberState);
+  const user = useUserStore(state => state.user);
   const page = searchParams.get("page");
   const navigate = useNavigate();
   const { isLoading, data, error, refetch } = useQuery<
@@ -92,7 +91,7 @@ function CommunityMain() {
   };
   return (
     <>
-      {user && user[0]?.name ? (
+      {user?.name ? (
         <div className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-4 overflow-y-scroll bg-slate-50 px-4 scrollbar-hide">
           <aside>
             <CommunityPopularItem />

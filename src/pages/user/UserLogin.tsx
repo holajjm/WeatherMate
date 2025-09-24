@@ -1,19 +1,18 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useSetRecoilState } from "recoil";
-import { memberState } from "@recoil/atom.js";
 
 import { ENV } from "@constants/env";
 import Button from "@components/layout/Button";
 import useCustomAxios from "@hooks/useCustomAxios.js";
+import { useUserStore } from "@store/store";
 
 import { toast } from "react-toastify";
 import type { LoginMainData } from "types/UserType";
 
 function UserLogin() {
   const location = useLocation();
-  const setUser = useSetRecoilState(memberState);
+  const setUser = useUserStore(state => state?.setUser);
   const axios = useCustomAxios();
   const navigate = useNavigate();
   const {
@@ -38,12 +37,14 @@ function UserLogin() {
         name: res.data.item.name,
         // phone: res.data.item.phone,
         email: res.data.item.email,
-        profile: res.data.item.profileImage,
+        profile: res.data.item.profileImage || null,
         token: res.data.item.token
       });
+      localStorage.setItem("accessToken", res.data.item?.token.accessToken);
+      localStorage.setItem("refreshToken", res.data.item?.token.refreshToken);
 
       toast(res.data.item.name + "님 반갑습니다");
-      navigate(location.state ? `${location.state}` : "/");
+      navigate(location.state?.from ? `${location.state?.from}` : "/");
       console.log(res.data.item);
     } catch (err: any) {
       console.log(err);
@@ -116,7 +117,7 @@ function UserLogin() {
                 </p>
               )}
             </section>
-            
+
             <section className="relative">
               <label htmlFor="password" className="sr-only">
                 비밀번호
@@ -149,17 +150,17 @@ function UserLogin() {
                 ></Button>
                 <hr className="m-auto w-5/6 border-toss-gray" />
                 <div className="m-auto">
-                <img
-                  src="/KakaoButton.webp"
-                  alt="kakaologo"
-                  className="cursor-pointer rounded-button transition-all duration-200 hover:scale-[1.03]"
-                  width={300}
-                  height={40}
-                  {...{ fetchpriority: "high" }}
-                  decoding="async"
-                  onClick={handleLogin}
-                />
-              </div>
+                  <img
+                    src="/KakaoButton.webp"
+                    alt="kakaologo"
+                    className="cursor-pointer rounded-button transition-all duration-200 hover:scale-[1.03]"
+                    width={300}
+                    height={40}
+                    {...{ fetchpriority: "high" }}
+                    decoding="async"
+                    onClick={handleLogin}
+                  />
+                </div>
               </div>
             </div>
           </form>

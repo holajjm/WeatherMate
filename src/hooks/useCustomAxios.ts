@@ -1,11 +1,8 @@
-import { useRecoilState } from "recoil";
-import { memberState } from "@recoil/atom";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { ENV } from "@constants/env";
-
-import type { UserMainData } from "types/UserType";
+import { useUserStore } from "@store/store";
 
 const REFRESH_URL = "/auth/refresh";
 
@@ -13,9 +10,9 @@ function useCustomAxios() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Recoil에서 사용자 상태 가져오기
-  const [user, setUser] = useRecoilState<UserMainData>(memberState);
-
+  // Zustand에서 사용자 상태 가져오기
+  const user = useUserStore(state => state.user);
+  const setUser = useUserStore(state => state.setUser);
   // Axios 인스턴스 생성
   const instance = axios.create({
     baseURL: ENV.API_SERVER,
@@ -23,15 +20,15 @@ function useCustomAxios() {
     headers: {
       "content-type": "application/json", // 요청 데이터 유형
       accept: "application/json", // 응답 데이터 유형
-      "client-id": "07-WeatherMate", // 프로젝트 식별자
-    },
+      "client-id": "07-WeatherMate" // 프로젝트 식별자
+    }
   });
 
   // 리프레시 토큰으로 새로운 액세스 토큰 요청
   async function getAccessToken(instance: any) {
     try {
       const {
-        data: { accessToken },
+        data: { accessToken }
       } = await instance.get(REFRESH_URL);
       return accessToken;
     } catch (err) {
@@ -60,22 +57,24 @@ function useCustomAxios() {
         // 인증되지 않음
         if (config.url === REFRESH_URL) {
           // 리프레시 토큰 인증 실패
-          const gotoLogin = confirm(
-            "로그인 후 이용 가능합니다.\n로그인 페이지로 이동하시겠습니까?",
-          );
-          gotoLogin &&
+          if (
+            confirm(
+              "로그인 후 이용 가능합니다.\n로그인 페이지로 이동하시겠습니까?"
+            )
+          ) {
             navigate("/users/login", { state: { from: location.pathname } });
+          }
         } else {
           // 리프레시 토큰으로 액세스 토큰 요청
           const accessToken = await getAccessToken(instance);
           if (accessToken) {
-            setUser(prevUser => ({
-              ...prevUser,
+            setUser({
+              ...user,
               token: {
-                ...prevUser.token,
-                accessToken,
-              },
-            }));
+                ...user.token,
+                accessToken
+              }
+            });
             config.headers.Authorization = `Bearer ${accessToken}`;
             // 업데이트된 액세스 토큰으로 요청 다시 보내기
             return axios(config);
@@ -84,7 +83,7 @@ function useCustomAxios() {
       } else {
         return Promise.reject(err);
       }
-    },
+    }
   );
 
   return instance;

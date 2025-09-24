@@ -1,18 +1,17 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { memberState } from "@recoil/atom";
 
 import usePageTitle from "@hooks/usePageTitle";
 import Button from "@components/layout/Button";
 import useScrollTop from "@hooks/useScrollTop";
+import { useUserStore } from "@store/store";
 
 function MbtiHome() {
   usePageTitle("MBTI");
   useScrollTop();
   const navigate = useNavigate();
   const location = useLocation();
-  const [user] = useRecoilState(memberState);
+  const user = useUserStore(state => state.user);
 
   return (
     <div
