@@ -8,7 +8,7 @@ import type { CommunityData } from "types/CommunityType";
 
 function CommunityModal({
   handleClose,
-  item,
+  item
 }: {
   handleClose: () => void;
   item: CommunityData | null;
@@ -17,14 +17,13 @@ function CommunityModal({
   return (
     <div
       onClick={handleClose}
-      className="font-Pretendard absolute left-0 top-0 z-50 box-border flex h-screen w-full items-center justify-center bg-black p-2 text-[#2d2d2d] opacity-95"
+      className="absolute left-0 top-0 z-50 box-border flex h-screen w-full items-center justify-center bg-black p-2 text-toss-black opacity-95"
     >
-      <div className="h-84 box-border flex w-80 flex-col justify-between gap-1 rounded-lg bg-slate-200 p-2">
-        <button onClick={handleClose} className="ml-auto">
+      <div className="relative box-border flex h-80 w-80 flex-col justify-between gap-1 rounded-modal bg-white p-2">
+        <button onClick={handleClose} className="ml-auto mr-1 hover:text-toss-red">
           X
         </button>
-        <hr className="border-b-[1px] border-slate-400" />
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
           <div>
             <img
               src={
@@ -42,7 +41,9 @@ function CommunityModal({
           </div>
           <div>
             <div className="font-bold">{item?.user?.name}</div>
-            <div className="text-sm text-slate-500">{item?.createdAt}</div>
+            <div className="text-caption text-toss-gray">
+              {item?.createdAt.slice(0, 10)}
+            </div>
           </div>
         </div>
         <div className="flex items-center justify-center">
@@ -53,19 +54,20 @@ function CommunityModal({
                 : `/ReadyForImage.webp`
             }
             alt="img"
-            className="h-36 w-60 object-contain"
+            className="h-36 w-full object-cover"
             width={240}
             height={144}
             loading="lazy"
             decoding="async"
           />
         </div>
-        <div className="h-12 text-wrap text-sm">{item?.content}</div>
+        <div className="h-12 text-wrap text-caption">{item?.content}</div>
         <Button
           text={"상세보기"}
-          textColor="gray"
+          textColor="white"
           bgColor="gray"
           width="full"
+          height="10"
           onClick={() => navigate(`/community/${item?._id}`)}
         ></Button>
       </div>
