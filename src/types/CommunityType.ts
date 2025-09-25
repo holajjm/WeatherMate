@@ -4,7 +4,7 @@ export interface CommunityData {
   createdAt: string;
   extra?: { image: string };
   image: string;
-  replies?: ReplyData[];
+  repliesCount: number;
   seller_id: string | null;
   type: string;
   title: string | null;
