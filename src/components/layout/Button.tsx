@@ -16,8 +16,8 @@ const buttonColor = {
   lightblue: "bg-toss-lightblue",
   gray: "bg-toss-gray",
   lightgray: "bg-toss-lightgray",
-  red: "bg-red-500",
-  lightRed: "bg-red-300",
+  red: "bg-toss-red",
+  lightred: "bg-toss-lightred",
 
   sky: "bg-sky-400",
   indigo: "bg-indigo-500",
