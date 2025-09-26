@@ -2,17 +2,18 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
-import { memberState } from "@recoil/atom";
-import { useRecoilState } from "recoil";
+// import { memberState } from "@recoil/atom";
+// import { useRecoilState } from "recoil";
 
 import { ENV } from "@constants/env";
-import Button from "@components/layout/Button";
+// import Button from "@components/layout/Button";
 import useCustomAxios from "@hooks/useCustomAxios";
 import usePageTitle from "@hooks/usePageTitle";
 import useScrollTop from "@hooks/useScrollTop";
 import UserBoard from "@pages/user/UserBoard";
 import UserBookMark from "@pages/user/UserBookmark";
 import ValidLogin from "@pages/user/UserValidLogin";
+import { useUserStore } from "@store/store";
 
 import { BsBookmarkStarFill } from "react-icons/bs";
 import { PiUserListBold } from "react-icons/pi";
@@ -24,12 +25,11 @@ import type {
 function UserPage() {
   usePageTitle("MyPage");
   useScrollTop();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const axios = useCustomAxios();
-  const [user, setUser] = useRecoilState(memberState);
-  
-
-  
+  // const [user, setUser] = useRecoilState(memberState);
+  const user = useUserStore(state => state.user);
+  const setUser = useUserStore(state => state.setUser);
 
   const { data } = useQuery<AxiosResponse<CommunityMainData>>({
     queryKey: ["posts"],
@@ -91,12 +91,10 @@ function UserPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    // d="M15 191-7-7 7-7"
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
               </Link>
-              
             </header>
           </section>
 

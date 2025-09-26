@@ -1,14 +1,16 @@
 import React from "react";
 
 import Button from "@components/layout/Button";
-import { useRecoilState } from "recoil";
-import { memberState } from "@recoil/atom";
+// import { useRecoilState } from "recoil";
+// import { memberState } from "@recoil/atom";
 import { useNavigate } from "react-router-dom";
 import { ENV } from "@constants/env";
+import { useUserStore } from "@store/store";
 
 function UserDetail() {
   const navigate = useNavigate();
-  const [user, setUser] = useRecoilState(memberState);
+  const user = useUserStore(state => state.user);
+  const resetUser = useUserStore(state => state.resetUser);
   console.log(user);
 
   const Edit = () => {
@@ -16,14 +18,14 @@ function UserDetail() {
   };
   const handleLogout = () => {
     if (confirm("로그아웃 하시겠습니까?")) {
-      setUser(null);
+      resetUser();
       navigate("/");
     }
   };
   return (
     <div className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-4 overflow-y-scroll bg-slate-50 scrollbar-hide">
-      <div className="flex flex-col items-center justify-center gap-4 text-body bg-white p-4 box-border drop-shadow-sm">
-        <div className="w-full flex flex-col items-center justify-center">
+      <div className="box-border flex flex-col items-center justify-center gap-4 bg-white p-4 text-body drop-shadow-sm">
+        <div className="flex w-full flex-col items-center justify-center">
           <svg
             className="mr-auto h-5 w-5 cursor-pointer hover:scale-110"
             fill="none"
@@ -59,7 +61,7 @@ function UserDetail() {
           <p className="text-right text-toss-gray">{user?.email}</p>
         </div>
       </div>
-      <div className="flex w-full items-center gap-2 p-4 box-border bg-white drop-shadow-sm">
+      <div className="box-border flex w-full items-center gap-2 bg-white p-4 drop-shadow-sm">
         <Button
           text={"회원 정보 수정"}
           textColor="white"
@@ -71,7 +73,7 @@ function UserDetail() {
         <Button
           text={"로그아웃"}
           textColor="white"
-          bgColor="lightRed"
+          bgColor="red"
           width="full"
           height="10"
           onClick={handleLogout}
