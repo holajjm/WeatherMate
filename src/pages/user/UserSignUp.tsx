@@ -2,10 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
+import Button from "@components/layout/Button";
 import useCustomAxios from "@hooks/useCustomAxios";
 
 import type { SignUpMainData } from "types/UserType";
-import Button from "@components/layout/Button";
 
 function UserSignUp() {
   const axios = useCustomAxios();
@@ -50,10 +50,10 @@ function UserSignUp() {
 
   return (
     <div className="m-auto h-screen min-w-[320px] max-w-[600px] bg-slate-50 p-4">
-      <div className="flex flex-col gap-4 rounded-button bg-white p-6 drop-shadow-lg">
+      <div className="flex flex-col gap-4 rounded-button bg-white p-4 drop-shadow-lg">
         <header className="relative flex items-center justify-center gap-2 pr-5">
           <svg
-            className="h-5 w-5 cursor-pointer hover:scale-110"
+            className="absolute left-0 top-2 h-5 w-5 cursor-pointer hover:scale-110"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -66,23 +66,25 @@ function UserSignUp() {
               d="M15 19l-7-7 7-7"
             />
           </svg>
-          <div className="flex grow flex-col items-center justify-center pr-7">
-            <h2 className="text-title font-black text-sky-400">Weather Mate</h2>
-            <p className="text-caption text-slate-600">
+          <div className="flex grow flex-col items-center justify-center">
+            <h2 className="text-title font-black text-toss-blue">
+              Weather Mate
+            </h2>
+            <p className="text-caption text-toss-gray">
               회원 서비스 이용을 위해 회원가입 해주세요
             </p>
           </div>
         </header>
         <main>
           <form
-            className="flex flex-col gap-2"
+            className="flex flex-col gap-2 text-caption"
             onSubmit={handleSubmit(onSubmit)}
           >
             <section className="relative">
               <div className="flex">
                 <label
                   htmlFor="name"
-                  className="flex w-1/6 items-center justify-start text-body text-toss-gray"
+                  className="flex w-1/6 items-center justify-start text-caption text-toss-gray"
                 >
                   닉네임
                 </label>
@@ -97,7 +99,7 @@ function UserSignUp() {
                       message: "닉네임을 두글자 이상 입력하세요"
                     }
                   })}
-                  className="w-full rounded-button bg-slate-100 p-4 text-body focus:border-transparent focus:ring-2 focus:ring-primary"
+                  className="w-full rounded-button bg-slate-100 p-4 focus:border-transparent focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div>
@@ -113,7 +115,7 @@ function UserSignUp() {
               <div className="flex">
                 <label
                   htmlFor="name"
-                  className="flex w-1/6 items-center justify-start text-body text-toss-gray"
+                  className="flex w-1/6 items-center justify-start text-caption text-toss-gray"
                 >
                   번호
                 </label>
@@ -128,7 +130,7 @@ function UserSignUp() {
                       message: "전화번호 양식을 맞춰 입력 해 주세요"
                     }
                   })}
-                  className="w-full rounded-button bg-slate-100 p-4 text-body focus:border-transparent focus:ring-2 focus:ring-primary"
+                  className="w-full rounded-button bg-slate-100 p-4 focus:border-transparent focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div>
@@ -146,7 +148,7 @@ function UserSignUp() {
               <div className="flex">
                 <label
                   htmlFor="email"
-                  className="flex w-1/6 items-center justify-start text-body text-toss-gray"
+                  className="flex w-1/6 items-center justify-start text-caption text-toss-gray"
                 >
                   이메일
                 </label>
@@ -162,7 +164,7 @@ function UserSignUp() {
                       message: "이메일 형식이 아닙니다"
                     }
                   })}
-                  className="w-full rounded-button bg-slate-100 p-4 text-body focus:border-transparent focus:ring-2 focus:ring-primary"
+                  className="w-full rounded-button bg-slate-100 p-4 focus:border-transparent focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div>
@@ -178,7 +180,7 @@ function UserSignUp() {
               <div className="flex">
                 <label
                   htmlFor="password"
-                  className="flex w-1/6 items-center justify-start text-body text-toss-gray"
+                  className="flex w-1/6 items-center justify-start text-caption text-toss-gray"
                 >
                   비밀번호
                 </label>
@@ -189,7 +191,7 @@ function UserSignUp() {
                   {...register("password", {
                     required: "비밀번호를 입력하세요"
                   })}
-                  className="w-full rounded-button bg-slate-100 p-4 text-body focus:border-transparent focus:ring-2 focus:ring-primary"
+                  className="w-full rounded-button bg-slate-100 p-4 focus:border-transparent focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div>
@@ -205,7 +207,7 @@ function UserSignUp() {
               <div className="flex">
                 <label
                   htmlFor="profileImage"
-                  className="flex w-1/6 items-center justify-start text-body text-toss-gray"
+                  className="flex w-1/6 items-center justify-start text-caption text-toss-gray"
                 >
                   프로필
                 </label>
@@ -214,7 +216,7 @@ function UserSignUp() {
                   accept="image/*"
                   id="profileImage"
                   {...register("profileImage")}
-                  className="w-full rounded-button bg-slate-100 p-4 text-body focus:border-transparent focus:ring-2 focus:ring-primary"
+                  className="w-full rounded-button bg-slate-100 p-4 focus:border-transparent focus:ring-2 focus:ring-primary"
                 />
               </div>
             </section>

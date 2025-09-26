@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { ENV } from "@constants/env";
@@ -20,12 +20,7 @@ function UserLogin() {
     handleSubmit,
     formState: { errors },
     setError
-  } = useForm<LoginMainData>({
-    // values: {
-    //   email: 'WeatherMate@naver.com',
-    //   password: '123456789',
-    // },
-  });
+  } = useForm<LoginMainData>();
 
   const onSubmit = async (formData: LoginMainData) => {
     try {
@@ -35,7 +30,6 @@ function UserLogin() {
       setUser({
         _id: res.data.item._id,
         name: res.data.item.name,
-        // phone: res.data.item.phone,
         email: res.data.item.email,
         profile: res.data.item.profileImage || null,
         token: res.data.item.token
@@ -81,7 +75,7 @@ function UserLogin() {
               />
             </svg>
             <div className="flex grow flex-col items-center justify-center pr-7">
-              <h2 className="text-title font-black text-sky-400">
+              <h2 className="text-title font-black text-toss-blue">
                 Weather Mate
               </h2>
               <p className="text-caption text-slate-600">
@@ -98,7 +92,7 @@ function UserLogin() {
                 이메일
               </label>
               <input
-                className="w-full rounded-button border-gray-300 bg-slate-100 p-4 focus:border-transparent focus:ring-2 focus:ring-primary"
+                className="w-full rounded-button border-gray-300 bg-slate-100 p-4 focus:border-primary focus:ring-2 focus:ring-primary"
                 type="email"
                 id="email"
                 placeholder="이메일을 입력하세요"
@@ -123,7 +117,7 @@ function UserLogin() {
                 비밀번호
               </label>
               <input
-                className="w-full rounded-button border-gray-300 bg-slate-100 p-4 focus:border-transparent focus:ring-2 focus:ring-primary"
+                className="w-full rounded-button border-gray-300 bg-slate-100 p-4 focus:border-primary focus:ring-2 focus:ring-primary"
                 type="password"
                 id="password"
                 placeholder="비밀번호를 입력하세요"
@@ -149,17 +143,14 @@ function UserLogin() {
                   onClick={() => {}}
                 ></Button>
                 <hr className="m-auto w-5/6 border-toss-gray" />
-                <div className="m-auto">
-                  <img
-                    src="/KakaoButton.webp"
-                    alt="kakaologo"
-                    className="cursor-pointer rounded-button transition-all duration-200 hover:scale-[1.03]"
-                    width={300}
-                    height={40}
-                    {...{ fetchpriority: "high" }}
-                    decoding="async"
-                    onClick={handleLogin}
-                  />
+                <div className="flex items-center justify-center gap-2 text-caption text-toss-gray">
+                  <p>아직 계정이 없으신가요?</p>
+                  <Link
+                    to={"/user/signup"}
+                    className="text-caption text-black transition-all duration-200 hover:font-bold hover:text-toss-blue"
+                  >
+                    회원가입
+                  </Link>
                 </div>
               </div>
             </div>

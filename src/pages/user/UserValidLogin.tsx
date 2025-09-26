@@ -1,8 +1,7 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { ENV } from "@constants/env";
-import Button from "@components/layout/Button";
 
 function UserValidLogin() {
   const navigate = useNavigate();
@@ -14,9 +13,9 @@ function UserValidLogin() {
   return (
     <div className="m-auto h-screen min-w-[320px] max-w-[600px] bg-gray-100">
       <div className="flex justify-center p-4 drop-shadow-md">
-        <div className="flex w-full flex-col rounded-modal bg-white p-4">
+        <div className="flex w-full flex-col gap-4 rounded-modal bg-white p-4">
           <div className="flex flex-col items-center justify-center gap-4">
-            <div className="flex grow flex-col items-center justify-center">
+            <div className="flex grow flex-col items-center justify-center gap-2">
               <h2 className="text-title font-bold text-toss-blue">
                 로그인 후 이용할 수 있어요!
               </h2>
@@ -34,7 +33,37 @@ function UserValidLogin() {
               decoding="async"
             />
           </div>
-          <div className="flex w-full flex-col items-center gap-2">
+          <div className="flex w-full flex-col items-center gap-4">
+            <div className="flex w-full items-center justify-center gap-6">
+              <button
+                className="h-24 w-24 cursor-pointer rounded-full bg-toss-gray text-caption font-bold text-white opacity-95 transition-all duration-200 hover:scale-105"
+                onClick={() =>
+                  navigate("/user/login", { state: location.state })
+                }
+              >
+                이메일로 <br />
+                시작하기
+              </button>
+              <button
+                className="h-24 w-24 cursor-pointer rounded-full bg-kakao text-caption font-bold text-toss-gray opacity-95 transition-all duration-200 hover:scale-105"
+                onClick={handleLogin}
+              >
+                카카오로 <br />
+                시작하기
+              </button>
+            </div>
+            <hr className="m-auto w-3/4 border-toss-gray" />
+            <div className="flex gap-2 text-caption text-toss-gray">
+              <p>아직 계정이 없으신가요?</p>
+              <Link
+                to={"/user/signup"}
+                className="text-caption text-black transition-all duration-200 hover:font-bold hover:text-toss-blue"
+              >
+                회원가입
+              </Link>
+            </div>
+          </div>
+          {/* <div className="flex w-full flex-col items-center gap-2">
             <div className="flex w-full gap-2">
               <Button
                 text={"로그인"}
@@ -66,7 +95,7 @@ function UserValidLogin() {
               decoding="async"
               onClick={handleLogin}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
