@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import { MbtiResultData } from "@constants/MbtiResultData";
 import KakaoShareButton from "@components/KakaoShareButton";
 import Button from "@components/layout/Button";
+import { MbtiResultData } from "@constants/MbtiResultData";
 
 import type { MBTIResult } from "types/MbtiType";
 
@@ -15,7 +15,7 @@ function MbtiResult() {
     desc: "",
     id: 0,
     title: "",
-    type: "",
+    type: ""
   });
   console.log(resultData);
 
@@ -25,44 +25,51 @@ function MbtiResult() {
   }, [mbti]);
 
   return (
-    <div className="font-Pretendard m-auto flex min-h-screen min-w-[320px] max-w-[600px] flex-col items-center gap-8 p-2">
+    <div className="m-auto flex min-h-screen min-w-[320px] max-w-[600px] flex-col items-center gap-8 p-4">
       <header>
-        <h1 className="h-16 text-xl font-bold">테스트 결과</h1>
+        <h1 className="text-subtitle font-bold">테스트 결과</h1>
       </header>
-      <div className="relative mt-4 text-pretty rounded-lg border-4 p-4">
+      <div className="relative mt-16 text-pretty rounded-modal border-4 p-4">
         <img
           src={`/MBTIImage/${resultData?.type}.webp`}
           alt="result"
+          width={144}
+          height={144}
+          {...{ fetchpriority: "high" }}
+          decoding="async"
           className="absolute -top-20 left-1/2 h-36 w-36 -translate-x-1/2 rounded-full bg-white"
         />
-        <div className="mt-5 flex flex-col gap-2">
-          <p className="h-full w-1/3 text-left">
-            MBTI:{" "}
-            <span className="text-2xl font-bold text-blue-500">
+        <div className="flex flex-col gap-2">
+          <p className="h-full w-1/3 text-left">당신의 MBTI는</p>
+          <br />
+          <div className="flex gap-2">
+            <p className="text-title font-bold text-toss-blue">
               {resultData?.type}
-            </span>
-          </p>
-          <p className="text-center text-lg font-bold text-amber-500">
-            {resultData?.title}
-          </p>
-          <p className="text-pretty text-sm">{resultData?.desc}</p>
+            </p>
+            <p className="text-center text-body font-bold text-amber-500">
+              {resultData?.title}
+            </p>
+          </div>
+          <p className="text-pretty text-caption">{resultData?.desc}</p>
         </div>
       </div>
 
       <div className="flex w-full gap-2">
         <Button
           text={"테스트 다시하기"}
-          textColor="gray"
+          textColor="white"
           bgColor="gray"
           width="full"
+          height="10"
           onClick={() => navigate("/mbti")}
         ></Button>
         <KakaoShareButton resultData={resultData} />
         <Button
           text={"메인으로 돌아가기"}
           textColor="white"
-          bgColor="sky"
+          bgColor="blue"
           width="full"
+          height="10"
           onClick={() => navigate("/")}
         ></Button>
       </div>
