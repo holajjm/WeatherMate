@@ -109,7 +109,7 @@ function CommunityMain() {
   return (
     <>
       {user?.name ? (
-        <main className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-4 overflow-y-scroll bg-slate-50 py-4 scrollbar-hide">
+        <main className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-4 overflow-y-scroll bg-slate-50 scrollbar-hide">
           {/* 인기 게시물 영역 */}
           <aside className="flex items-center justify-center gap-4 bg-white px-4 py-2 drop-shadow-sm">
             <CommunityPopularItem />
@@ -132,7 +132,7 @@ function CommunityMain() {
                 </label>
                 <select
                   id="community-sort"
-                  className="h-10 rounded-button border-2 border-slate-300 text-center text-caption font-bold text-toss-gray"
+                  className="h-10 cursor-pointer rounded-button border-2 border-slate-300 text-center text-caption font-bold text-toss-gray"
                   value={select}
                   onChange={selectValue}
                 >
@@ -152,7 +152,7 @@ function CommunityMain() {
             PostsData ? (
               <section
                 aria-label="커뮤니티 게시글 목록"
-                className="flex flex-col items-center justify-center gap-4 bg-white p-4 sm:grid sm:grid-cols-2"
+                className="flex flex-col items-center justify-center gap-4 bg-white sm:grid sm:grid-cols-2"
               >
                 {sortItemList(select)}
               </section>

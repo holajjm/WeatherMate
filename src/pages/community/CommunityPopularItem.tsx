@@ -90,7 +90,7 @@ function CommunityPopularItem() {
                   </div>
                   <div className="flex h-full w-1/2 gap-2 rounded-button">
                     <img
-                      className="h-full w-full rounded-button"
+                      className="h-full w-full rounded-button object-contain"
                       src={
                         item.image
                           ? `${ENV.API_SERVER}/files/07-WeatherMate/${item.image}`

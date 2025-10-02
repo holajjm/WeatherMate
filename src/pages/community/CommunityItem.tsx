@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ENV } from "@constants/env";
@@ -41,8 +41,8 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
   };
 
   return (
-    <div className="box-border flex h-[25rem] w-full cursor-pointer flex-col gap-1 rounded-button bg-white drop-shadow-lg">
-      <div className="grow" onClick={() => navigate(`/community/${item._id}`)}>
+    <div className="box-border flex h-[25rem] w-full cursor-pointer flex-col gap-1 bg-white drop-shadow-md transition-all duration-200 hover:scale-[0.98] hover:border hover:border-toss-blue">
+      <div className="grow flex flex-col gap-2" onClick={() => navigate(`/community/${item._id}`)}>
         <header className="h-12 p-2">
           <section className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full border-2">
@@ -100,7 +100,7 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
         <section className="flex h-60 grow flex-col gap-1">
           <div className="h-full">
             <img
-              className="h-full w-full border-y-[1px] border-toss-lightgray object-cover"
+              className="h-full w-full border-y-[1px] border-toss-lightgray object-scale-down"
               src={
                 item.extra
                   ? `${ENV.API_SERVER}/files/07-WeatherMate/${item.extra.image}`
@@ -128,18 +128,20 @@ function CommunityItem({ item }: { item: ExpandCommunityData }) {
         <p className="text-caption font-medium text-toss-gray">
           {TimeDiff(item.createdAt)}
         </p>
-        <section className="flex items-center justify-center gap-1">
-          <button>
+        <section className="flex items-center justify-center gap-2">
+          <button className="text-subtitle">
             {likes.some(e => e.realId === item._id) ? (
               <GoHeartFill onClick={handleDeleteLike} />
             ) : (
               <GoHeart onClick={() => postLike(item._id)} />
             )}
           </button>
-          <p className="flex items-center">
-            <IoChatbubbleEllipsesOutline className="text-body" />
-          </p>
-          <p className="text-caption">{item.repliesCount}</p>
+          <div className="flex gap-1">
+            <p className="flex items-center">
+              <IoChatbubbleEllipsesOutline className="text-subtitle" />
+            </p>
+            <p className="text-body">{item.repliesCount}</p>
+          </div>
         </section>
       </footer>
     </div>
