@@ -1,25 +1,15 @@
-import Button from "@components/layout/Button";
-import { ENV } from "@constants/env";
-import { ExpandCommunityData } from "types/CommunityType";
 import React from "react";
+
+import { ENV } from "@constants/env";
+import Button from "@components/layout/Button";
 import { useNavigate } from "react-router-dom";
-import useCustomAxios from "@hooks/useCustomAxios";
-import { toast } from "react-toastify";
+import usePostsDelete from "@features/community/usePostsDelete";
+
+import { ExpandCommunityData } from "types/CommunityType";
 
 function UserBoardItem({ item }: { item: ExpandCommunityData }) {
   const navigate = useNavigate();
-  const axios = useCustomAxios();
-  const deleteItem = async () => {
-    if (confirm("삭제하시겠습니까?")) {
-      try {
-        await axios.delete(`/posts/${item?._id}`);
-        toast("삭제되었습니다.");
-        window.location.reload();
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
+  const { mutate: deleteItem } = usePostsDelete();
   return (
     <div className="box-border flex h-full flex-col gap-4 rounded-lg bg-white p-4 text-[#2d2d2d] drop-shadow-lg">
       <header className="flex gap-2">
@@ -75,7 +65,7 @@ function UserBoardItem({ item }: { item: ExpandCommunityData }) {
           bgColor="lightred"
           width="full"
           height="10"
-          onClick={deleteItem}
+          onClick={() => deleteItem(String(item._id))}
         ></Button>
       </footer>
     </div>
