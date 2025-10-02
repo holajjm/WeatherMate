@@ -5,7 +5,7 @@ import useCustomAxios from "@hooks/useCustomAxios";
 export function usePostsQuery() {
   const axios = useCustomAxios();
   return useQuery({
-    queryKey: ["posts"],
+    queryKey: ["Posts"],
     queryFn: () =>
       axios.get("/posts", {
         params: {
