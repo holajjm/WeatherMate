@@ -73,3 +73,17 @@ export interface NewReply {
   comment: string;
   commentRequired: string;
 }
+
+export interface LikesData {
+  createdAt: string;
+  memo: string;
+  post: {
+    image: string | null;
+    title: string;
+    type: string;
+    user: { _id: number; name: string; profile: string | null };
+    _id: number;
+  };
+  user_id: number;
+  _id: number;
+}
