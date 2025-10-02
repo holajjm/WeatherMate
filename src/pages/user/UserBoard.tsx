@@ -1,87 +1,52 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-import { ENV } from "@constants/env";
-import Button from "@components/layout/Button";
-import useCustomAxios from "@hooks/useCustomAxios";
+import { usePostsQuery } from "@features/community/usePostsQuery";
+import UserBoardItem from "@pages/user/UserBoardItem";
+import { useUserStore } from "@store/store";
 
-import { toast } from "react-toastify";
 import type { ExpandCommunityData } from "types/CommunityType";
 
-function UserBoard({ item }: { item: ExpandCommunityData }) {
-  const navigate = useNavigate();
-  const axios = useCustomAxios();
-  console.log(item);
-  const deleteItem = async () => {
-    if (confirm("삭제하시겠습니까?")) {
-      try {
-        await axios.delete(`/posts/${item?._id}`);
-        toast("삭제되었습니다.");
-        window.location.reload();
-      } catch (error) {
-        console.error(error);
+function UserBoard() {
+  const user = useUserStore(state => state.user);
+
+  const { data: item } = usePostsQuery();
+  const itemList = item
+    ?.filter((item: ExpandCommunityData) => {
+      if (item.user._id === user._id) {
+        return item;
       }
-    }
-  };
+    })
+    .map((item: ExpandCommunityData) => <UserBoardItem item={item} />);
+  // console.log(itemList);
 
   return (
-    <div className="box-border flex h-full flex-col gap-4 rounded-lg bg-white p-4 text-[#2d2d2d] drop-shadow-lg">
-      <header className="flex gap-2">
-        <img
-          src={
-            item?.user.profile
-              ? `${ENV.API_SERVER}/files/07-WeatherMate/${item?.user.profile}`
-              : "/mainlogin.webp"
-          }
-          className="h-10 w-10 rounded-full border-2"
-        />
-        <div className="flex grow items-center gap-2">
-          <div className="grow">
-            <h1 className="text-base font-bold">{item.user?.name}</h1>
-            <p className="text-xs">조회수 {item.views}</p>
-          </div>
-          {item.title && (
-            <img
-              className="h-8 w-8 rounded-full"
-              src={`/WeatherIcon${item.title}.webp`}
-              alt="weatherIcon"
-            />
-          )}
-        </div>
+    <div className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-4 overflow-y-scroll bg-slate-50 scrollbar-hide">
+      <header className="relative flex h-16 w-full items-center justify-center">
+        <svg
+          className="absolute left-0 top-5 h-5 w-5 cursor-pointer hover:scale-110"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          onClick={() => window.history.back()}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+        <p className="text-cetner flex w-full items-center justify-center text-nowrap text-body font-bold text-toss-gray">
+          내 게시글
+        </p>
       </header>
-      <hr className="border-slate-400" />
-      <main className="flex grow flex-col gap-2">
-        <img
-          className="h-2/3 w-full"
-          src={
-            item.image
-              ? `${ENV.API_SERVER}/files/07-WeatherMate/${item.image}`
-              : "/readyforimage.jpeg"
-          }
-          alt="image"
-        />
-        <div className="box-border grow rounded-lg bg-gray-100 p-2">
-          {item.content}
-        </div>
-      </main>
-      <footer className="flex gap-1">
-        <Button
-          text="상세보기"
-          textColor="gray"
-          bgColor="gray"
-          width="full"
-          height="10"
-          onClick={() => navigate(`/community/${item._id}`)}
-        ></Button>
-        <Button
-          text="삭제하기"
-          textColor="white"
-          bgColor="lightred"
-          width="full"
-          height="10"
-          onClick={deleteItem}
-        ></Button>
-      </footer>
+      {itemList?.length ? (
+        itemList
+      ) : (
+        <p className="flex h-60 items-center justify-center text-toss-gray">
+          작성한 게시글이 없습니다.
+        </p>
+      )}
     </div>
   );
 }
