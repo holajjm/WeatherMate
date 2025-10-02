@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { ENV } from "@constants/env";
@@ -25,7 +25,7 @@ function useCustomAxios() {
   });
 
   // 리프레시 토큰으로 새로운 액세스 토큰 요청
-  async function getAccessToken(instance: any) {
+  async function getAccessToken(instance: AxiosInstance) {
     try {
       const {
         data: { accessToken }
