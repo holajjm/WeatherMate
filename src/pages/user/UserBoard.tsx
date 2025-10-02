@@ -70,13 +70,15 @@ function UserBoard({ item }: { item: ExpandCommunityData }) {
           textColor="gray"
           bgColor="gray"
           width="full"
+          height="10"
           onClick={() => navigate(`/community/${item._id}`)}
         ></Button>
         <Button
           text="삭제하기"
           textColor="white"
-          bgColor="lightRed"
+          bgColor="lightred"
           width="full"
+          height="10"
           onClick={deleteItem}
         ></Button>
       </footer>
