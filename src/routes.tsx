@@ -46,6 +46,7 @@ export const UserPage = React.lazy(() => import("@pages/user/UserPage"));
 export const UserDetail = React.lazy(() => import("@pages/user/UserDetail"));
 export const UserEdit = React.lazy(() => import("@pages/user/UserEdit"));
 export const UserLikes = React.lazy(() => import("@pages/user/UserLikes"));
+export const UserBoard = React.lazy(() => import("@pages/user/UserBoard"));
 
 import WithSuspense from "@components/WithSuspense";
 
@@ -151,6 +152,10 @@ const router = createBrowserRouter([
           {
             path: "user/likes",
             element: WithSuspense(<UserLikes />)
+          },
+          {
+            path: "user/board",
+            element: WithSuspense(<UserBoard />)
           }
         ]
       }
