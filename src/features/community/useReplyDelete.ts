@@ -1,10 +1,12 @@
-import useCustomAxios from "@hooks/useCustomAxios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import useCustomAxios from "@hooks/useCustomAxios";
+
 import type { ReplyData } from "types/CommunityType";
 
 export default function useReplyDelete({
   item,
-  _id,
+  _id
 }: {
   item: ReplyData;
   _id: string | undefined;
@@ -17,7 +19,7 @@ export default function useReplyDelete({
       if (confirm("댓글을 삭제하시겠습니까?")) {
         try {
           const response = await axios.delete(
-            `/posts/${_id}/replies/${replyId}`,
+            `/posts/${_id}/replies/${replyId}`
           );
           console.log(response?.data);
           return response?.data;
@@ -26,11 +28,11 @@ export default function useReplyDelete({
         }
       }
     },
-    onSuccess: data => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["replys"] });
     },
     onError: error => {
       console.error(error);
-    },
+    }
   });
 }

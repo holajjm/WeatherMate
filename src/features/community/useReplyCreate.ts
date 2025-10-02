@@ -1,10 +1,12 @@
-import useCustomAxios from "@hooks/useCustomAxios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import useCustomAxios from "@hooks/useCustomAxios";
+
 import type { NewReply } from "types/CommunityType";
 
 export default function useReplyCreate({
   _id,
-  reset,
+  reset
 }: {
   _id: string | undefined;
   reset: () => void;
@@ -21,12 +23,12 @@ export default function useReplyCreate({
         console.log(error);
       }
     },
-    onSuccess: data => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["replys"] });
       reset();
     },
     onError: error => {
       console.error(error);
-    },
+    }
   });
 }
