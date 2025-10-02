@@ -1,45 +1,21 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { AxiosResponse } from "axios";
-import { useRecoilValue } from "recoil";
-import { memberState } from "@recoil/atom";
 
 import { ENV } from "@constants/env";
 import Button from "@components/layout/Button";
-import useCustomAxios from "@hooks/useCustomAxios";
+import usePostsDelete from "@features/community/usePostsDelete";
+import usePostsDetailQuery from "@features/community/usePostsDetailQuery";
 import useScrollTop from "@hooks/useScrollTop";
 import ReplyMain from "@pages/community/ReplyMain";
-
-import type { CommunityDetailData } from "types/CommunityType";
+import { useUserStore } from "@store/store";
 
 function CommunityDetail() {
   useScrollTop();
   const navigate = useNavigate();
-  const user = useRecoilValue(memberState);
-  const { _id } = useParams();
-  const axios = useCustomAxios();
-  const { data } = useQuery<AxiosResponse<CommunityDetailData>>({
-    queryKey: ["posts", _id],
-    queryFn: () => axios.get(`/posts/${_id}`),
-    refetchOnWindowFocus: false
-  });
-  const handleEdit = () => {
-    navigate(`/community/${_id}/edit`);
-    return;
-  };
-  const handleDelete = async () => {
-    if (confirm("삭제하시겠습니까?")) {
-      try {
-        await axios.delete(`/posts/${_id}`);
-        alert("삭제되었습니다.");
-        navigate("/community");
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
-  // console.log(data?.data?.item);
+  const user = useUserStore(state => state.user);
+  const { _id } = useParams<{ _id: string }>();
+  const { data: DetailData } = usePostsDetailQuery({ _id });
+  const { mutate: handleDelete } = usePostsDelete();
 
   return (
     <div className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-4 overflow-y-scroll bg-slate-50 pt-4 scrollbar-hide">
@@ -59,13 +35,13 @@ function CommunityDetail() {
           />
         </svg>
       </div>
-      {data?.data?.item && (
+      {DetailData && (
         <section className="flex flex-col flex-nowrap gap-2 bg-white p-2 drop-shadow-sm">
           <header className="flex gap-2">
             <img
               src={
-                data?.data?.item.user.profile
-                  ? `${ENV.API_SERVER}/files/07-WeatherMate/${data?.data?.item.user.profile}`
+                DetailData.user.profile
+                  ? `${ENV.API_SERVER}/files/07-WeatherMate/${DetailData.user.profile}`
                   : "/NullUser.webp"
               }
               className="h-10 w-10 rounded-full border-2"
@@ -75,11 +51,9 @@ function CommunityDetail() {
               decoding="async"
             />
             <div className="grow">
-              <h1 className="text-base font-bold">
-                {data?.data?.item.user.name}
-              </h1>
+              <h1 className="text-base font-bold">{DetailData.user.name}</h1>
               <p className="grow text-sm text-gray-400">
-                {data?.data?.item.createdAt.substring(5, 16)}
+                {DetailData.createdAt.substring(5, 16)}
               </p>
             </div>
             <div className="flex flex-col items-center justify-center">
@@ -94,8 +68,8 @@ function CommunityDetail() {
                     "Snow",
                     "Thunder",
                     "Wind"
-                  ].includes(data?.data?.item?.title as string)
-                    ? `/WeatherIcon/WeatherIcon${data?.data?.item.title}.webp`
+                  ].includes(DetailData?.title as string)
+                    ? `/WeatherIcon/WeatherIcon${DetailData.title}.webp`
                     : "/MBTIImage/MBTIMain.webp"
                 }
                 alt="weather"
@@ -111,10 +85,10 @@ function CommunityDetail() {
             <div className="h-60 w-full object-cover">
               <img
                 src={
-                  data?.data?.item.extra
-                    ? `${ENV.API_SERVER}/files/07-WeatherMate/${data?.data?.item.extra.image}`
-                    : data?.data?.item?.image
-                      ? `${ENV.API_SERVER}/files/07-WeatherMate/${data?.data?.item?.image}`
+                  DetailData.extra
+                    ? `${ENV.API_SERVER}/files/07-WeatherMate/${DetailData.extra.image}`
+                    : DetailData?.image
+                      ? `${ENV.API_SERVER}/files/07-WeatherMate/${DetailData?.image}`
                       : `/ReadyForImage.webp`
                 }
                 alt="Content Image"
@@ -125,16 +99,14 @@ function CommunityDetail() {
                 decoding="async"
               />
             </div>
-            <p className="rounded-button text-body">
-              {data?.data?.item.content}
-            </p>
+            <p className="rounded-button text-body">{DetailData.content}</p>
           </main>
 
           <footer className="mt-auto flex items-center justify-end">
             <p className="text-caption text-toss-gray">
-              조회수 {data?.data?.item.views}
+              조회수 {DetailData.views}
             </p>
-            {data.data.item.user.name === user.name ? (
+            {DetailData.user.name === user.name ? (
               <section className="ml-auto flex w-1/2 gap-2">
                 <Button
                   text="수정"
@@ -142,7 +114,7 @@ function CommunityDetail() {
                   bgColor="blue"
                   width="full"
                   height="10"
-                  onClick={handleEdit}
+                  onClick={() => navigate(`/community/${_id}/edit`)}
                 ></Button>
                 <Button
                   text="삭제"
@@ -150,7 +122,7 @@ function CommunityDetail() {
                   bgColor="red"
                   width="full"
                   height="10"
-                  onClick={handleDelete}
+                  onClick={() => handleDelete(_id)}
                 ></Button>
               </section>
             ) : null}
