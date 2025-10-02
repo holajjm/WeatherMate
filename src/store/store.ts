@@ -82,3 +82,19 @@ export const useModalStore = create<ModalState>(set => ({
   modalOpen: () => set({ modal: true }),
   modalClose: () => set({ modal: false })
 }));
+
+// 좋아요 목록 상태
+interface Likes {
+  likes: { realId: number; likeId: number }[];
+  setLikes: (newItem: { realId: number; likeId: number }) => void;
+}
+
+export const useLikesStore = create<Likes>(set => ({
+  likes: [],
+  setLikes: newItem =>
+    set(state => ({
+      likes: state.likes.some(like => like.realId === newItem.realId)
+        ? state.likes
+        : [...state.likes, newItem]
+    }))
+}));
