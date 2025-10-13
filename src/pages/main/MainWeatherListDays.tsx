@@ -52,7 +52,7 @@ function MainWeatherListDays() {
             width="8"
             height="4"
             onClick={handleRefresh}
-            aria-label="새로 고침"
+            label="새로 고침"
           ></Button>
         </div>
       </div>
@@ -89,6 +89,7 @@ function MainWeatherListDays() {
               width="24"
               height="10"
               onClick={refetch}
+              label="새로 고침"
             ></Button>
           </div>
         )
