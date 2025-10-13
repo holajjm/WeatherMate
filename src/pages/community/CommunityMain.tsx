@@ -14,6 +14,7 @@ import ErrorPage from "@pages/ErrorPage";
 import { useUserStore } from "@store/store";
 
 import type { CommunityData } from "types/CommunityType";
+import { Helmet } from "react-helmet-async";
 
 function CommunityMain() {
   usePageTitle("Community");
@@ -110,6 +111,39 @@ function CommunityMain() {
     <>
       {user?.name ? (
         <main className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-4 overflow-y-scroll bg-slate-50 scrollbar-hide">
+          <Helmet>
+            <title>WeatherMate - Community</title>
+            <meta
+              name="description"
+              content="당신의 위치에 따른 날씨와 다양한 정보를 추천해주는 친구"
+            />
+            <meta
+              name="keywords"
+              content="날씨, 장소, weather, 친구, mate, friend, location, place"
+            />
+
+            <meta property="og:title" content="WeatherMate - 커뮤니티" />
+            <meta
+              property="og:description"
+              content="WeatherMate 커뮤니티입니다."
+            />
+            <meta property="og:image" content="/thumbnail.webp" />
+            <meta property="og:type" content="website" />
+            <meta
+              property="og:url"
+              content="https://weather-mate-holajjms-projects.vercel.app/community"
+            />
+            <meta property="og:site_name" content="WeatherMate" />
+            <meta property="og:locale" content="ko_KR" />
+
+            <meta name="twitter:title" content="WeatherMate - 커뮤니티" />
+            <meta
+              name="twitter:description"
+              content="WeatherMate 커뮤니티입니다."
+            />
+            <meta name="twitter:card" content="/thumbnail.webp" />
+            <meta name="twitter:image" content="/thumbnail.webp" />
+          </Helmet>
           {/* 인기 게시물 영역 */}
           <aside className="flex items-center justify-center gap-4 bg-white px-4 py-2 drop-shadow-sm">
             <CommunityPopularItem />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 // import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 // import { useInfiniteQuery } from "@tanstack/react-query";
@@ -165,6 +166,39 @@ function Location() {
 
   return (
     <div className="m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-4 bg-slate-50 p-4">
+      <Helmet>
+        <title>WeatherMate - Location</title>
+        <meta
+          name="description"
+          content="당신의 위치에 따른 날씨와 다양한 정보를 추천해주는 친구"
+        />
+        <meta
+          name="keywords"
+          content="날씨, 장소, weather, 친구, mate, friend, location, place"
+        />
+
+        <meta property="og:title" content="WeatherMate - 장소 검색" />
+        <meta
+          property="og:description"
+          content="WeatherMate 장소 검색 페이지입니다."
+        />
+        <meta property="og:image" content="/thumbnail.webp" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://weather-mate-holajjms-projects.vercel.app/location"
+        />
+        <meta property="og:site_name" content="WeatherMate" />
+        <meta property="og:locale" content="ko_KR" />
+
+        <meta name="twitter:title" content="WeatherMate - 장소 검색" />
+        <meta
+          name="twitter:description"
+          content="WeatherMate 장소 검색 페이지입니다."
+        />
+        <meta name="twitter:card" content="/thumbnail.webp" />
+        <meta name="twitter:image" content="/thumbnail.webp" />
+      </Helmet>
       {/* ---------------------------임시 UI */}
       <div className="flex w-full flex-col items-center justify-center gap-4">
         <h1 className="text-center text-title font-bold text-toss-black">

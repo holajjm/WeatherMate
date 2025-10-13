@@ -5,6 +5,7 @@ import usePageTitle from "@hooks/usePageTitle";
 import Button from "@components/layout/Button";
 import useScrollTop from "@hooks/useScrollTop";
 import { useUserStore } from "@store/store";
+import { Helmet } from "react-helmet-async";
 
 function MbtiHome() {
   usePageTitle("MBTI");
@@ -17,6 +18,39 @@ function MbtiHome() {
     <div
       className={`relative m-auto min-h-screen min-w-[320px] max-w-[600px] bg-cover bg-center p-2`}
     >
+      <Helmet>
+        <title>WeatherMate - MBTI</title>
+        <meta
+          name="description"
+          content="당신의 위치에 따른 날씨와 다양한 정보를 추천해주는 친구"
+        />
+        <meta
+          name="keywords"
+          content="날씨, 장소, weather, 친구, mate, friend, location, place"
+        />
+
+        <meta property="og:title" content="WeatherMate - MBTI" />
+        <meta
+          property="og:description"
+          content="WeatherMate MBTI 페이지입니다."
+        />
+        <meta property="og:image" content="/thumbnail.webp" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://weather-mate-holajjms-projects.vercel.app/mbti"
+        />
+        <meta property="og:site_name" content="WeatherMate" />
+        <meta property="og:locale" content="ko_KR" />
+
+        <meta name="twitter:title" content="WeatherMate - MBTI" />
+        <meta
+          name="twitter:description"
+          content="WeatherMate MBTI 페이지입니다."
+        />
+        <meta name="twitter:card" content="/thumbnail.webp" />
+        <meta name="twitter:image" content="/thumbnail.webp" />
+      </Helmet>
       <img
         className="absolute left-0 top-0 -z-10 h-screen object-cover"
         src="./MBTIImage/MBTIMain.webp"
