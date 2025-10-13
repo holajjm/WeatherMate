@@ -9,6 +9,7 @@ import MainWeatherTimeZone from "@pages/main/MainWeatherTimeZone";
 import MainWeatherListDays from "@pages/main/MainWeatherListDays";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 function MainHomePage() {
   usePageTitle("WeatherMate");
@@ -27,6 +28,24 @@ function MainHomePage() {
 
   return (
     <main className="relative m-auto flex h-screen min-w-[320px] max-w-[600px] flex-col gap-2 bg-slate-50 text-toss-black">
+      <Helmet>
+        <title>WeatherMate - Main</title>
+        <meta name="description" content="당신의 위치에 따른 날씨와 다양한 정보를 추천해주는 친구" />
+        <meta name="keywords" content="날씨, 장소, weather, 친구, mate, friend, location, place" />
+        
+        <meta property="og:title" content="WeatherMate - 메인페이지" />
+        <meta property="og:description" content="WeatherMate 메인페이지입니다." />
+        <meta property="og:image" content="/thumbnail.webp" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://weather-mate-holajjms-projects.vercel.app/" />
+        <meta property="og:site_name" content="WeatherMate"/>
+        <meta property="og:locale" content="ko_KR" />
+        
+        <meta name="twitter:title" content="WeatherMate - 메인페이지" />
+        <meta name="twitter:description" content="WeatherMate 메인페이지입니다." />
+        <meta name="twitter:card" content="/thumbnail.webp" />
+        <meta name="twitter:image" content="/thumbnail.webp" />
+      </Helmet>
       <AnimatePresence mode="wait">
         {step === 1 && (
           <motion.div
