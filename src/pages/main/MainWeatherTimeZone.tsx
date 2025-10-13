@@ -54,6 +54,7 @@ function MainWeatherTimeZone() {
             width="8"
             height="4"
             onClick={handleRefresh}
+            aria-label="새로 고침"
           ></Button>
         </div>
       </div>
