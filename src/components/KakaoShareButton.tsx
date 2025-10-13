@@ -40,7 +40,9 @@ function KakaoShareButton({ resultData }: { resultData: MBTIResult }) {
       textColor="gray"
       bgColor="kakao"
       width="full"
+      height="10"
       onClick={shareKakao}
+      label="카카오 공유"
     ></Button>
   );
 }

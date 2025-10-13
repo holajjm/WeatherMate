@@ -55,6 +55,7 @@ function UserCategory() {
             <button
               onClick={handleLogout}
               className="flex aspect-square h-full w-full flex-col items-center justify-center gap-2 rounded-button bg-white p-2 text-caption font-medium drop-shadow-md transition-all duration-200 hover:scale-105 hover:bg-toss-lightred hover:text-white hover:shadow-lg"
+              aria-label="로그아웃"
             >
               <MdLocationOn className="text-2xl" />
               <span>로그아웃</span>
