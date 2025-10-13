@@ -58,6 +58,7 @@ function UserBoardItem({ item }: { item: ExpandCommunityData }) {
           width="full"
           height="10"
           onClick={() => navigate(`/community/${item._id}`)}
+          label="상세보기"
         ></Button>
         <Button
           text="삭제하기"
@@ -66,6 +67,7 @@ function UserBoardItem({ item }: { item: ExpandCommunityData }) {
           width="full"
           height="10"
           onClick={() => deleteItem(String(item._id))}
+          label="삭제하기"
         ></Button>
       </footer>
     </div>

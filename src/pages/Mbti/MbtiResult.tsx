@@ -62,6 +62,7 @@ function MbtiResult() {
           width="full"
           height="10"
           onClick={() => navigate("/mbti")}
+          label="다시하기"
         ></Button>
         <KakaoShareButton resultData={resultData} />
         <Button
@@ -71,6 +72,7 @@ function MbtiResult() {
           width="full"
           height="10"
           onClick={() => navigate("/")}
+          label="메인으로"
         ></Button>
       </div>
     </div>

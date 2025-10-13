@@ -141,6 +141,7 @@ function UserLogin() {
                   width="full"
                   height="12"
                   onClick={() => {}}
+                  label="로그인"
                 ></Button>
                 <hr className="m-auto w-5/6 border-toss-gray" />
                 <div className="flex items-center justify-center gap-2 text-caption text-toss-gray">

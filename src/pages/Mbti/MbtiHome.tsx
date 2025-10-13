@@ -96,6 +96,7 @@ function MbtiHome() {
                 navigate("question");
               }
             }}
+            label="테스트 시작하기"
           ></Button>
         </div>
       </div>

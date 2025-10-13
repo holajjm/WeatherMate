@@ -256,6 +256,7 @@ function LocationSearchPage() {
           width="20"
           height="10"
           onClick={handleSearch}
+          label="장소 검색"
         ></Button>
         <Button
           text="초기화"
@@ -264,6 +265,7 @@ function LocationSearchPage() {
           width="20"
           height="10"
           onClick={() => setSearchKeyword("")}
+          label="검색 초기화"
         ></Button>
       </div>
 

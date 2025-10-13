@@ -93,7 +93,9 @@ function LocationDetailPage() {
             textColor="gray"
             bgColor="gray"
             width="8"
+            height="8"
             onClick={() => window.history.back()}
+            label=""
           ></Button>
           <h1 className="font-Pretendard grow pr-8 text-center text-xl font-bold">
             {detailData?.title}

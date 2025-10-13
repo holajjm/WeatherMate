@@ -154,6 +154,7 @@ function UserEdit() {
             width="full"
             height="12"
             onClick={() => {}}
+            label="수정하기"
           ></Button>
         </form>
       </div>

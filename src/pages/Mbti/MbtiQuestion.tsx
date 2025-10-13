@@ -107,6 +107,7 @@ function MbtiQuestion() {
                   width="1/2"
                   height="10"
                   onClick={handleback}
+                  label="이전 문제"
                 ></Button>
               )}
               <Button
@@ -120,6 +121,7 @@ function MbtiQuestion() {
                     navigate("/mbti");
                   }
                 }}
+                label="그만하기"
               ></Button>
             </div>
           </section>

@@ -69,6 +69,7 @@ function UserDetail() {
           width="full"
           height="10"
           onClick={Edit}
+          label="회원정보수정"
         ></Button>
         <Button
           text={"로그아웃"}
@@ -77,6 +78,7 @@ function UserDetail() {
           width="full"
           height="10"
           onClick={handleLogout}
+          label="로그아웃"
         ></Button>
       </div>
     </div>

@@ -86,6 +86,7 @@ function UserPage() {
               width="20"
               height="10"
               onClick={handleLogout}
+              label="로그아웃"
             ></Button>
           </header>
           <article className="flex flex-col gap-4">

@@ -229,6 +229,7 @@ function UserSignUp() {
                 width="full"
                 height="12"
                 onClick={() => {}}
+                label="회원가입"
               ></Button>
               <hr className="m-auto w-5/6 border-toss-gray" />
               <div className="m-auto">
