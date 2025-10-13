@@ -6,6 +6,7 @@ interface ButtonProps {
   width: string;
   height: string;
   text: React.ReactNode;
+  label: string;
   onClick: () => void;
 }
 
@@ -36,12 +37,14 @@ function Button({
   bgColor,
   width,
   height,
+  label,
   onClick
 }: ButtonProps) {
   return (
     <button
       className={`${buttonColor[bgColor]} ${fontColor[textColor]} w-${width} h-${height} box-border flex items-center justify-center text-nowrap rounded-button p-2 text-caption font-bold transition-all duration-200 hover:scale-[1.03]`}
       onClick={onClick}
+      aria-label={`${label}`}
     >
       {text}
     </button>
