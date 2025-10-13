@@ -35,6 +35,7 @@ function ToTheTopButton() {
         isVisible ? "opacity-100" : "opacity-0"
       } `}
       onClick={handleClick}
+      aria-label="최상단 이동 버튼"
     >
       <FaArrowUp className="text-body font-bold text-toss-blue" />
     </button>
