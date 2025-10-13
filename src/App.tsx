@@ -6,6 +6,7 @@ import { ENV } from "@constants/env";
 
 import router from "./routes";
 import { Bounce, ToastContainer } from "react-toastify";
+import { HelmetProvider } from "react-helmet-async";
 
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
@@ -21,21 +22,23 @@ function App() {
   return (
     <>
       <RecoilRoot>
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          limit={1}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          transition={Bounce}
-        />
-        <RouterProvider router={router} />
+        <HelmetProvider>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            limit={1}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+          />
+          <RouterProvider router={router} />
+        </HelmetProvider>
       </RecoilRoot>
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </>
