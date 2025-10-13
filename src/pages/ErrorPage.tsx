@@ -35,6 +35,7 @@ function ErrorPage() {
           width="32"
           height="10"
           onClick={() => router("/")}
+          label="메인으로 이동"
         ></Button>
       </section>
     </>
