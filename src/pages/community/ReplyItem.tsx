@@ -122,6 +122,7 @@ function ReplyItem({ item }: { item: ReplyData }) {
                     width="12"
                     height="9"
                     onClick={() => {}}
+                    label="댓글 수정하기"
                   ></Button>
                   <Button
                     text={"취소"}
@@ -133,6 +134,7 @@ function ReplyItem({ item }: { item: ReplyData }) {
                       setIsEdit(!isEdit);
                       reset();
                     }}
+                    label="댓글 작성 취소하기"
                   ></Button>
                 </div>
               </form>

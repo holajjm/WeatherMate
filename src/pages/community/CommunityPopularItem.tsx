@@ -114,6 +114,7 @@ function CommunityPopularItem() {
               width="24"
               height="10"
               onClick={refetch}
+              label="다시 불러오기"
             ></Button>
           </div>
         )

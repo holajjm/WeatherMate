@@ -224,14 +224,18 @@ function CommunityEdit() {
                   textColor="white"
                   bgColor="indigo"
                   width="full"
+                  height="10"
                   onClick={() => {}}
+                  label="수정하기"
                 ></Button>
                 <Button
                   text="취소"
                   textColor="white"
                   bgColor="gray"
                   width="full"
+                  height="10"
                   onClick={handleCancel}
+                  label="취소하기"
                 ></Button>
               </div>
             )}

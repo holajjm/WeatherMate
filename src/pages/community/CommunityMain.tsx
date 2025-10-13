@@ -160,6 +160,7 @@ function CommunityMain() {
                   width="full"
                   height="10"
                   onClick={() => navigate("/community/new")}
+                  label="글 작성"
                 />
                 <label htmlFor="community-sort" className="sr-only">
                   게시글 정렬 기준 선택
@@ -199,6 +200,7 @@ function CommunityMain() {
                   width="24"
                   height="10"
                   onClick={refetch}
+                  label="다시 불러오기"
                 ></Button>
               </div>
             )

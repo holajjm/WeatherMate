@@ -174,6 +174,7 @@ function CommunityNew() {
                 }
                 return;
               }}
+              label="취소하기"
             ></Button>
             <Button
               bgColor="blue"
@@ -182,6 +183,7 @@ function CommunityNew() {
               height="10"
               text={"등록"}
               onClick={() => {}}
+              label="등록하기"
             ></Button>
           </footer>
         </form>

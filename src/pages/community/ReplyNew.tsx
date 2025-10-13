@@ -42,6 +42,7 @@ function ReplyNew() {
           width="12"
           height="9"
           onClick={() => {}}
+          label="댓글 등록"
         ></Button>
       </form>
     </div>

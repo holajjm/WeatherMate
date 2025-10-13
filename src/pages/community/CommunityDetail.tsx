@@ -115,6 +115,7 @@ function CommunityDetail() {
                   width="full"
                   height="10"
                   onClick={() => navigate(`/community/${_id}/edit`)}
+                  label="수정하기"
                 ></Button>
                 <Button
                   text="삭제"
@@ -123,6 +124,7 @@ function CommunityDetail() {
                   width="full"
                   height="10"
                   onClick={() => handleDelete(_id)}
+                  label="삭제하기"
                 ></Button>
               </section>
             ) : null}
