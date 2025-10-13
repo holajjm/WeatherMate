@@ -7,10 +7,6 @@
     <loc>https://weather-mate-holajjms-projects.vercel.app/</loc>
     <priority>1.0</priority>
   </url>
-  <url>
-    <loc>https://weather-mate-holajjms-projects.vercel.app/allcity</loc>
-    <priority>0.9</priority>
-  </url>
 
   <!-- Community -->
   <url>
@@ -25,6 +21,14 @@
   <!-- Location -->
   <url>
     <loc>https://weather-mate-holajjms-projects.vercel.app/location</loc>
+    <priority>0.8</priority>
+  </url>
+    <url>
+    <loc>https://weather-mate-holajjms-projects.vercel.app/location/search</loc>
+    <priority>0.8</priority>
+  </url>
+    <url>
+    <loc>https://weather-mate-holajjms-projects.vercel.app/location/category</loc>
     <priority>0.8</priority>
   </url>
 
